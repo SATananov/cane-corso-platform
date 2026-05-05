@@ -1,0 +1,27 @@
+USG Official Certificate Layout Patch
+
+Purpose:
+- Replace the previous web-card-like certificate layout with a more formal certificate composition.
+- Use the Cane Corso head emblem as the official top mark.
+- Keep the certificate about USG recognition/authenticity by USG standards, not Gallery certification.
+- Keep Owner as an identification field.
+- Add a real server-rendered QR SVG that points to the Verify URL without relying on external QR image services.
+
+Changed / added files:
+- apps/web/components/certificate-v2-document.tsx
+- apps/web/app/certificate-v2.css
+- apps/web/public/brand/statements/one-of-a-kind-head.png
+- apps/web/lib/vendor/qrcode-terminal/package.json
+- apps/web/lib/vendor/qrcode-terminal/QRCode/*
+
+Validation performed:
+- node scripts/check-workshop-syntax.mjs: passed
+
+Recommended local checks after applying:
+- pnpm --filter @cane-corso-platform/web typecheck
+- pnpm build
+- pnpm dev
+
+Notes:
+- No database migration required.
+- No package install required; the QR generator vendor files are included locally.

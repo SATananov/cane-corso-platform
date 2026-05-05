@@ -1,0 +1,11 @@
+Step 8.10 — Access IT copy/fit micro-fix
+
+Scope:
+- apps/web/components/member-access-panel.tsx
+- apps/web/app/access/page.tsx
+
+What changed:
+- tightened Italian /access copy for clearer member and partner flow wording;
+- shortened long Italian card titles in the Access path and Platform clarity sections;
+- made signed-out wording more natural;
+- kept the changes limited to copy only, with no registry, certificate, gallery, partner, community, review, or admin logic changes.

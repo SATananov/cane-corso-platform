@@ -1,0 +1,12 @@
+Step 8.6 — Access BG copy micro-fix
+
+Scope:
+- apps/web/components/member-access-panel.tsx
+
+Changes:
+- Refined Bulgarian sign-out notice wording.
+- Replaced clunky member benefits copy with clearer Bulgarian labels.
+- Refined private USG layer heading and description.
+- Refined support section heading/grammar.
+
+No locked pages or flows changed.

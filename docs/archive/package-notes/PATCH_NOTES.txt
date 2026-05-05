@@ -1,0 +1,12 @@
+Cane Corso Platform — legacy member + verify transplant patch
+
+Included in this patch:
+- richer My Dogs owner-center layer
+- richer Profile owner-center page
+- stronger Verify trust layout and distinction copy
+- updated verify hero visuals/chips
+- supporting CSS in globals.css
+
+Validation run in container:
+- node scripts/check-workshop-syntax.mjs -> passed
+- node scripts/verify-workshop-foundation.mjs -> passed

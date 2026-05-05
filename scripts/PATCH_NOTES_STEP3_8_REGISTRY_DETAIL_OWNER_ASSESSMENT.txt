@@ -1,0 +1,23 @@
+Step 3.8 — Registry detail route hardening + owner assessment visibility
+
+What changed:
+- Public registry detail lookup is now more tolerant:
+  - exact registry publicSlug
+  - normalized lowercase slug
+  - slugified route value
+  - dog slug fallback
+- This prevents a published Cane Corso profile from going to 404 when the link/slug casing or encoded value does not match perfectly.
+- Owner / My Dogs spotlight now reads the public Registry profile document when the Cane Corso is published.
+- The owner can see a read-only summary for:
+  - community rating / vote count
+  - official admin assessment score
+  - USG certificate trust
+- Public profile button now prefers the canonical publicSlug returned by the Registry document.
+
+No database migration is required.
+
+After copy-paste:
+pnpm workspace:syntax
+pnpm workspace:verify
+pnpm --filter @cane-corso-platform/web typecheck
+pnpm dev

@@ -1,0 +1,15 @@
+Registry final micro-fix
+
+Included files:
+- apps/web/components/public-registry-overview.tsx
+- apps/web/lib/i18n.ts
+- apps/web/app/globals.css
+
+Changes:
+- Cleaned remaining BG copy in the registry overview/editorial layer.
+- Localized common registry class values (e.g. owner-declared profile) for BG/IT.
+- Refined certificate strip layout and wrapping so the certificate code fits more cleanly.
+- Tightened registry-related Bulgarian labels in i18n.
+
+Note:
+- If a profile summary itself still appears in English, that text is user-authored content from the saved profile record, not static UI copy.

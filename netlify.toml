@@ -1,0 +1,11 @@
+# Netlify deployment configuration for Cane Corso Platform.
+# Root is kept as the build base so pnpm workspace packages are installed correctly.
+
+[build]
+  command = "pnpm --filter @cane-corso-platform/web build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_FLAGS = "--shamefully-hoist"
+  NEXT_TELEMETRY_DISABLED = "1"

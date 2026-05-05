@@ -1,0 +1,10 @@
+Cane Corso Platform clean ZIP pass — 2026-04-26
+
+Applied changes:
+- Removed local/build artifacts: apps/mobile/.expo, apps/web/tsconfig.tsbuildinfo.
+- Moved patch/QA/package note files from project root into docs/archive/package-notes/.
+- Kept README.md and all source/package/config files in place.
+- Replaced leftover certificate wording that described the certificate as a registration document with certified/certificate wording.
+- Repacked the ZIP with normal forward-slash paths for better cross-platform extraction.
+
+No layout/header/home structure was intentionally changed.

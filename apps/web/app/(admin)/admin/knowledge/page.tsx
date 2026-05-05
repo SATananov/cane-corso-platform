@@ -1,0 +1,66 @@
+import { KnowledgeAdminDashboard } from '@/components/knowledge-admin-dashboard';
+import { PageShell } from '@/components/page-shell';
+import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
+import { getAdminKnowledgeArticles } from '@/lib/knowledge-articles';
+import { getCurrentLocale } from '@/lib/locale.server';
+
+export const dynamic = 'force-dynamic';
+
+const copyByLocale = {
+  en: {
+    eyebrow: 'Admin Knowledge foundation',
+    title: 'Knowledge articles',
+    description:
+      'Read-only foundation for the future admin-managed Knowledge CMS. Step 30 introduces article records, statuses, source discipline, and public-only publishing boundaries without adding database writes.',
+    helpLabel: 'Help',
+    note:
+      'This page is intentionally read-only in Step 30. It prepares the content model before the future editor, database migration, and write actions are added.',
+    chips: ['Articles', 'Statuses', 'Sources', 'Draft guardrail'],
+  },
+  bg: {
+    eyebrow: 'Админ основа за знания',
+    title: 'Статии в знанията',
+    description:
+      'Основа само за преглед за бъдещата админ управлявана система за знания. Step 30 добавя записи за статии, статуси, дисциплина на източниците и публична граница само за публикувани статии, без записи към базата данни.',
+    helpLabel: 'Помощ',
+    note:
+      'Тази страница умишлено е само за преглед в Step 30. Тя подготвя модела преди бъдещия редактор, миграция към база данни и действия за запис.',
+    chips: ['Статии', 'Статуси', 'Източници', 'Защита на чернови'],
+  },
+  it: {
+    eyebrow: 'Fondazione Admin Knowledge',
+    title: 'Articoli Knowledge',
+    description:
+      'Fondazione read-only per la futura Knowledge CMS gestita da admin. Step 30 introduce record articolo, stati, disciplina fonti e confine pubblico solo per pubblicati, senza database writes.',
+    helpLabel: 'Aiuto',
+    note:
+      'Questa pagina è volutamente read-only nello Step 30. Prepara il modello prima del futuro editor, database migration e write actions.',
+    chips: ['Articoli', 'Stati', 'Fonti', 'Draft guardrail'],
+  },
+} as const;
+
+export default async function AdminKnowledgePage() {
+  const locale = await getCurrentLocale();
+  const copy = copyByLocale[locale] ?? copyByLocale.en;
+  const articles = getAdminKnowledgeArticles(locale);
+
+  return (
+    <PageShell
+      eyebrow={copy.eyebrow}
+      title={copy.title}
+      description={copy.description}
+      cards={[]}
+      accentLabel={copy.eyebrow}
+      helpHref="/guide?topic=knowledge#knowledge"
+      helpLabel={copy.helpLabel}
+      visualSrc="/brand/primary/welcome-logo.jpg"
+      visualAlt={copy.title}
+      heroChips={copy.chips}
+      heroNote={copy.note}
+      variant="knowledge"
+    >
+      <AdminOperationalClarityPanel locale={locale} surface="knowledge" />
+      <KnowledgeAdminDashboard articles={articles} locale={locale} />
+    </PageShell>
+  );
+}

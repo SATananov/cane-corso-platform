@@ -1,0 +1,16 @@
+Registry USG polish patch
+
+Included changes
+- PageShell now supports page-specific hero visuals, hero chips, and a short registry trust note.
+- Registry page hero now uses the USG seal asset with contain fit.
+- Registry copy adds a clearer trust explanation for published profile / certificate / Verify.
+- Public registry overview now includes a 3-card orientation section.
+- Registry directory now uses a two-column layout with a branded USG seal editorial panel, removing the empty dark space when there are few results.
+- Registry placeholder media now carries a subtle seal watermark.
+
+Files changed
+- apps/web/components/page-shell.tsx
+- apps/web/app/(public)/registry/page.tsx
+- apps/web/components/public-registry-overview.tsx
+- apps/web/app/globals.css
+- apps/web/lib/i18n.ts

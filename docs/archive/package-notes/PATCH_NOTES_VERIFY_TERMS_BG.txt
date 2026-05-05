@@ -1,0 +1,15 @@
+BG terminology polish
+
+Changed visible Bulgarian terminology around Verify / trust to be clearer and less mixed:
+- Registry page and registry overview now use "Проверка" instead of visible "Verify"
+- Registry trust wording changed from mixed English/Bulgarian to Bulgarian phrasing like "слой на доверие"
+- Verify entry/result panels use clearer Bulgarian labels (e.g. "код за проверка", "регистъра")
+- Related public guidance/community copy was cleaned where the same mixed terms appeared in BG
+
+Files:
+- apps/web/lib/i18n.ts
+- apps/web/components/public-registry-overview.tsx
+- apps/web/components/verify-entry-panel.tsx
+- apps/web/components/verification-result-panel.tsx
+- apps/web/components/platform-guide.tsx
+- apps/web/app/(public)/community/page.tsx

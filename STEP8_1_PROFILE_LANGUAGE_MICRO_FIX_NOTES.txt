@@ -1,0 +1,24 @@
+Step 8.1 — Profile language micro-fix
+
+Scope:
+- apps/web/app/(member)/profile/page.tsx
+
+What changed:
+- Fixed EN profile card labels so Knowledge and Community no longer appear in Italian while EN is selected.
+- Tightened the profile hero text in EN/BG/IT.
+- Replaced casual/dev-sounding phrasing with cleaner product copy.
+- Kept locked routes untouched.
+
+Locked routes not changed:
+- Registry
+- Registry detail
+- Certificate
+- Verify logic
+- My Cane Corso
+- Gallery
+- /community
+- /partners
+- /partners/[slug]
+- /review
+- /admin/partners
+- /admin/ecosystem

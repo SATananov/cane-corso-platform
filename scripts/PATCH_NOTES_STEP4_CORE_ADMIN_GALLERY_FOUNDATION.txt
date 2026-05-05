@@ -1,0 +1,66 @@
+Step 4 Core Admin / Gallery Foundation
+
+Scope:
+- Kept Header, Home, and the locked /my-dogs visual layout untouched.
+- Tightened the core admin-control flow around Registry, USG Certificate, admin assessment, and USG Gallery.
+- No broad redesign and no technology/README final cleanup yet.
+
+Changed files:
+- packages/db/src/schema/dogs.ts
+- packages/db/src/schema/partners.ts
+- packages/db/src/repositories/my-dogs.repository.ts
+- apps/web/app/(admin)/review/actions.ts
+- apps/web/app/(admin)/admin/registry/actions.ts
+- apps/web/app/(admin)/admin/registry/page.tsx
+
+What changed:
+1. Rating schema alignment
+   - Added Drizzle unique constraints for:
+     - registry_entry_ratings(registry_entry_id, voter_profile_id)
+     - partner_ratings(partner_id, voter_profile_id)
+   - This aligns code schema with migration 0005_community_ratings.sql and protects the “one member = one vote, update later” logic.
+
+2. Certificate / assessment consistency
+   - When admin issues a USG certificate, the dog admin assessment is now automatically synced to:
+     - registryDecision: usg_certified
+     - certificateDecision: usg_certified
+   - When admin revokes a certificate, certificateDecision is moved back to usg_candidate if it was usg_certified.
+   - This keeps public profile, owner read-only view, Review queue, and Verify flow consistent.
+
+3. Safer published Registry removal
+   - Admin Registry “Remove” for already-published profiles is now a soft public removal:
+     - registry entry becomes inactive
+     - dog returns to approved/private
+     - active certificate is revoked
+     - admin assessment is moved away from active certified status
+   - This avoids destructive deletion when the admin only wants to remove a profile from public Registry.
+
+4. Cache / route revalidation
+   - Added Gallery and certificate-code verify revalidation where needed.
+   - Registry detail path is revalidated when a profile is removed from the public Registry.
+
+Verification performed in this workspace:
+- node scripts/verify-workshop-foundation.mjs: PASS
+- node scripts/check-workshop-syntax.mjs: PASS for 222 source files
+- tsc direct typecheck could not complete in the clean extracted workspace because node_modules/@types are not present after artifact cleanup. Run the normal local command after copy-paste:
+  pnpm --filter @cane-corso-platform/web typecheck
+
+Manual test focus:
+1. Member:
+   - /my-dogs
+   - open Public profile
+   - confirm no 404
+   - confirm Registry photos, community rating, admin assessment, certificate status
+   - confirm own Cane Corso cannot be rated
+2. Admin:
+   - /review
+   - approve/publish
+   - save admin assessment
+   - issue/revoke USG certificate
+   - choose Registry / USG Gallery photo visibility
+3. Public:
+   - /registry
+   - /registry/[slug]
+   - /gallery
+   - /verify/[certificateCode]
+   - /verify/[verificationSlug]

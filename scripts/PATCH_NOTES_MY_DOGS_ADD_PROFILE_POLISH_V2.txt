@@ -1,0 +1,20 @@
+USG Cane Corso Platform — My Dogs / Add Cane Corso profile polish pass v2
+
+Changed files:
+- apps/web/components/dog-profile-preview-card.tsx
+- apps/web/components/pedigree-editor.tsx
+- apps/web/app/globals.css
+
+What was improved:
+- Reworked the live preview hero so it no longer feels like an empty placeholder block.
+- The preview now shows a richer premium cover state with initial, name, short description, and quick chips.
+- Fixed pedigree ancestor clear behavior so removing an ancestor also collapses that card instead of leaving empty opened fields behind.
+- Adjusted open pedigree card state styling so open cards are not visually treated as filled when they are empty.
+- Improved button/text wrapping for long Bulgarian labels inside pedigree action areas.
+- Kept the scope strictly limited to My Dogs / Add Cane Corso profile page flow.
+
+Validation run:
+- node scripts/check-workshop-syntax.mjs -> passed
+
+Note:
+- I did not change business logic, routing, or any other page outside this flow.

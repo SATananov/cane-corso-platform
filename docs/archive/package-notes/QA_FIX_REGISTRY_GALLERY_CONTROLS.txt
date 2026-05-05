@@ -1,0 +1,26 @@
+USG Registry / Certificate / Gallery QA Fix
+
+What this patch fixes:
+1. Registry wording no longer calls the Registry list a Gallery.
+2. Public Registry profile wording separates:
+   - Published in Registry
+   - USG certificate
+   - USG Gallery
+3. Admin review media controls now show clear buttons:
+   - Add this photo to USG Gallery
+   - Remove from USG Gallery
+4. The existing checkbox controls remain available, but the intended admin action is now visually clear.
+5. The Gallery page still shows only:
+   - active Registry profiles
+   - with active USG certificate
+   - and photos explicitly selected for USG Gallery
+
+Changed files:
+- apps/web/components/review-queue-dashboard.tsx
+- apps/web/components/public-registry-overview.tsx
+- apps/web/components/public-registry-profile.tsx
+- apps/web/app/globals.css
+
+Local checks run in the extracted project:
+- TypeScript web typecheck: passed
+- syntax check: passed

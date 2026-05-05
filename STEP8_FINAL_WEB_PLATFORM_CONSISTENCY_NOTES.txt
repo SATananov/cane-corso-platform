@@ -1,0 +1,66 @@
+Step 8 — Final Web Platform Consistency Pass
+
+Checkpoint source:
+- cane-corso-platform_clean_after_step7_1_mobile_pass.zip
+
+Scope touched:
+- apps/web/app/(member)/profile/page.tsx
+- apps/web/app/access/page.tsx
+- apps/web/components/site-header.tsx
+- apps/web/components/member-access-panel.tsx
+- apps/web/components/entry-experience.tsx
+- apps/web/app/globals.css
+
+Locked areas intentionally not edited:
+- Registry
+- Registry detail
+- Certificate
+- Verify logic
+- My Cane Corso
+- Gallery
+- /community
+- /partners
+- /partners/[slug]
+- /review
+- /admin/partners
+- /admin/ecosystem
+
+What changed:
+1. Profile final pass
+   - Cleaner owner/member copy across EN/BG/IT.
+   - Added a clear zero-state panel when the user has no Cane Corso profiles yet.
+   - Reduced mixed-language wording in Italian and Bulgarian profile copy.
+   - Kept links and business logic unchanged.
+
+2. Access final pass
+   - Reworked /access support copy into a clearer platform access contract.
+   - Clarified member, partner, review, publication, registry, certificate and community separation.
+   - Removed scaffold/old-project style wording from visible access copy.
+
+3. Header utility behavior
+   - Public and workspace header links now use HeaderNavLink.
+   - Active route state can show aria-current/page state consistently.
+   - Header aria labels are localized EN/BG/IT.
+
+4. Entry/home consistency
+   - Minor copy consistency fix in Italian entry information.
+   - Entry flow structure and cinematic behavior are unchanged.
+
+5. Light/heritage contrast polish
+   - Added scoped Step 8 CSS for profile/access/header/entry focus states and heritage contrast.
+   - No broad redesign and no locked page layout changes.
+
+Validation performed in this environment:
+- node scripts/qa-full-stack-requirements.mjs — PASS
+- node scripts/qa-ecosystem-engine.mjs — PASS
+- node scripts/qa-review-publish-workflow.mjs — PASS
+- Targeted TypeScript parse checks for edited TSX files returned PASS output.
+
+Notes:
+- pnpm is not installed in this sandbox, so pnpm workspace:syntax / pnpm typecheck could not be run here.
+- Run locally after replacing files:
+  pnpm workspace:syntax
+  pnpm typecheck
+  pnpm ecosystem:qa
+  pnpm workflow:qa
+  pnpm requirements:qa

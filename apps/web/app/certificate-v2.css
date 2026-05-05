@@ -1,0 +1,577 @@
+/* USG Certificate of Authenticity — premium print template */
+
+.certv2-shell{
+  padding:24px 0 42px;
+}
+
+.certv2-top{
+  width:min(1055px, calc(100vw - 48px));
+  margin:0 auto 14px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.certv2-top h1{
+  margin:0;
+  font-size:18px;
+  font-weight:900;
+  color:var(--light);
+}
+
+.certv2-note{
+  margin:2px 0 0;
+  color:rgba(248,245,239,.62);
+  font-size:13px;
+}
+
+.certv2-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.usgCertViewport{
+  width:100%;
+  overflow-x:auto;
+  padding:0 0 4px;
+}
+
+.usgCertCanvas{
+  --paper:#fbf4de;
+  --paper2:#f7eac4;
+  --gold:#9e711c;
+  --gold2:#c49a38;
+  --ink:#2b2112;
+  position:relative;
+  width:1055px;
+  height:1491px;
+  margin:0 auto;
+  box-sizing:border-box;
+  overflow:hidden;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,255,255,.70), transparent 35%),
+    radial-gradient(circle at 28% 19%, rgba(189,145,44,.10), transparent 34%),
+    radial-gradient(circle at 78% 74%, rgba(166,113,22,.10), transparent 34%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cdefs%3E%3Cpattern id='p' width='22' height='22' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 11 C7 4 15 18 22 11 M11 0 C4 7 18 15 11 22' fill='none' stroke='%23b69444' stroke-width='.42' stroke-opacity='.16'/%3E%3Ccircle cx='11' cy='11' r='1.1' fill='%23b69444' fill-opacity='.10'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #fff9ea 0%, #f7e8c0 100%);
+  border:4px solid #856014;
+  box-shadow:0 28px 60px rgba(0,0,0,.35);
+  font-family:"Times New Roman", Georgia, serif;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+.usgCertCanvas:before,
+.usgCertCanvas:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:2;
+}
+
+.usgCertCanvas:before{
+  inset:15px;
+  border:2px solid rgba(137,93,17,.92);
+  box-shadow:
+    inset 0 0 0 5px rgba(255,248,226,.70),
+    inset 0 0 0 7px rgba(178,127,29,.72),
+    inset 0 0 0 16px rgba(255,248,226,.50),
+    inset 0 0 0 18px rgba(155,104,20,.52),
+    inset 0 0 0 27px rgba(255,248,226,.35);
+}
+
+.usgCertCanvas:after{
+  left:30px;
+  right:30px;
+  top:30px;
+  bottom:30px;
+  background:
+    linear-gradient(90deg, transparent 0 7px, rgba(145,98,18,.68) 7px 9px, transparent 9px 16px, rgba(145,98,18,.38) 16px 17px, transparent 17px 28px) top left / 28px 2px repeat-x,
+    linear-gradient(90deg, transparent 0 7px, rgba(145,98,18,.68) 7px 9px, transparent 9px 16px, rgba(145,98,18,.38) 16px 17px, transparent 17px 28px) bottom left / 28px 2px repeat-x,
+    linear-gradient(0deg, transparent 0 7px, rgba(145,98,18,.68) 7px 9px, transparent 9px 16px, rgba(145,98,18,.38) 16px 17px, transparent 17px 28px) top left / 2px 28px repeat-y,
+    linear-gradient(0deg, transparent 0 7px, rgba(145,98,18,.68) 7px 9px, transparent 9px 16px, rgba(145,98,18,.38) 16px 17px, transparent 17px 28px) top right / 2px 28px repeat-y;
+  opacity:.9;
+}
+
+.usgCertOrnament{
+  position:absolute;
+  width:116px;
+  height:116px;
+  z-index:3;
+  pointer-events:none;
+}
+
+.usgCertOrnament:before,
+.usgCertOrnament:after{
+  content:"";
+  position:absolute;
+  border-color:#9b701b;
+}
+
+.usgCertOrnament:before{
+  inset:0;
+  border-top:3px double;
+  border-left:3px double;
+  opacity:.9;
+  border-radius:4px 0 0 0;
+}
+
+.usgCertOrnament:after{
+  width:70px;
+  height:70px;
+  left:18px;
+  top:18px;
+  border-top:1px solid;
+  border-left:1px solid;
+  opacity:.75;
+  box-shadow:
+    -10px -10px 0 -9px #9b701b,
+    8px 8px 0 -7px #9b701b;
+}
+
+.usgCertOrnament--tl{left:30px;top:30px;}
+.usgCertOrnament--tr{right:30px;top:30px;transform:scaleX(-1);}
+.usgCertOrnament--bl{left:30px;bottom:30px;transform:scaleY(-1);}
+.usgCertOrnament--br{right:30px;bottom:30px;transform:scale(-1);}
+
+.usgCertHeader{
+  position:absolute;
+  z-index:5;
+  left:78px;
+  right:78px;
+  top:40px;
+  height:470px;
+  text-align:center;
+}
+
+.usgCertEmblem{
+  width:165px;
+  height:128px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 7px;
+  filter:grayscale(1) contrast(1.18) drop-shadow(0 4px 5px rgba(0,0,0,.12));
+}
+
+.usgCertBrand{
+  position:relative;
+  display:inline-block;
+  margin-top:2px;
+  padding:0 42px;
+  font-size:43px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+
+.usgCertBrand:before,
+.usgCertBrand:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:150px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(122,87,21,.72));
+}
+
+.usgCertBrand:before{right:100%;}
+.usgCertBrand:after{left:100%;transform:scaleX(-1);}
+
+.usgCertBrandSub{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.usgCertFlourish,
+.usgCertSubtitleFlourish{
+  width:96px;
+  height:16px;
+  margin:16px auto 0;
+  background:linear-gradient(90deg, transparent, #9b701b 38%, #9b701b 62%, transparent);
+  opacity:.82;
+  position:relative;
+}
+
+.usgCertFlourish:before,
+.usgCertSubtitleFlourish:before{
+  content:"◆";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  font-size:10px;
+  color:#9b701b;
+  background:var(--paper);
+  padding:0 8px;
+}
+
+.usgCertTitleBlock{
+  margin:25px 0 0;
+}
+
+.usgCertTitleBlock h2{
+  margin:0;
+  font-size:49px;
+  line-height:1.12;
+  font-weight:700;
+  letter-spacing:.018em;
+  text-transform:uppercase;
+  color:#3a2a12;
+  white-space:nowrap;
+}
+
+.usgCertSubtitle{
+  margin:23px auto 0;
+  font-size:18px;
+  line-height:1.2;
+  font-style:italic;
+  color:#3d2e19;
+  white-space:nowrap;
+}
+
+.usgCertSubtitleFlourish{
+  margin-top:15px;
+  width:190px;
+}
+
+.usgCertMediaPanel{
+  position:absolute;
+  z-index:6;
+  left:78px;
+  top:532px;
+  width:246px;
+  border:2px solid rgba(143,99,22,.90);
+  background:rgba(255,249,232,.58);
+  box-shadow:0 0 0 5px rgba(255,248,226,.24);
+}
+
+.usgCertPhotoFrame{
+  margin:8px 8px 0;
+  padding:6px;
+  border:2px solid rgba(53,37,13,.86);
+  background:linear-gradient(180deg, rgba(170,119,25,.22), rgba(255,255,255,.38));
+}
+
+.usgCertPhoto{
+  display:block;
+  width:100%;
+  height:258px;
+  object-fit:cover;
+  object-position:center;
+}
+
+.usgCertPhotoPlaceholder{
+  height:258px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#5c431b;
+  background:rgba(255,255,255,.55);
+  font-size:15px;
+  font-style:italic;
+}
+
+.usgCertPhotoCaption{
+  height:43px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-top:1px solid rgba(143,99,22,.75);
+  border-bottom:1px solid rgba(143,99,22,.75);
+  margin:8px 0 0;
+  font-size:21px;
+  font-style:italic;
+  color:#392b16;
+}
+
+.usgCertQrPanel{
+  height:210px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  background:rgba(255,249,232,.42);
+}
+
+.usgCertQrSvg{
+  width:112px;
+  height:112px;
+  display:block;
+  margin:0 auto 9px;
+  padding:4px;
+  background:#fffaf0;
+  border:1px solid rgba(52,38,14,.22);
+}
+
+.usgCertQrPanel span{
+  display:block;
+  font-size:16px;
+  line-height:1.16;
+  font-style:italic;
+  color:#3a2a12;
+}
+
+.usgCertFields{
+  position:absolute;
+  z-index:7;
+  left:348px;
+  top:535px;
+  width:620px;
+}
+
+.usgCertField{
+  display:grid;
+  grid-template-columns:286px 20px 1fr;
+  min-height:35px;
+  align-items:end;
+  border-bottom:1px solid rgba(131,92,24,.55);
+}
+
+.usgCertField dt,
+.usgCertField dd{
+  margin:0;
+  padding:0 0 6px;
+  font-size:18px;
+  line-height:1.04;
+  color:#2d2112;
+}
+
+.usgCertField dt{
+  font-style:italic;
+}
+
+.usgCertField span{
+  align-self:center;
+  justify-self:center;
+  padding-top:3px;
+  font-size:9px;
+  color:#9b701b;
+}
+
+.usgCertField dd{
+  font-weight:700;
+}
+
+.usgCertSignatureBlock{
+  position:absolute;
+  z-index:7;
+  left:80px;
+  top:1118px;
+  width:390px;
+  text-align:center;
+}
+
+.usgCertSignature{
+  height:88px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.usgCertSignature img{
+  display:block;
+  width:374px;
+  height:auto;
+  object-fit:contain;
+  filter:contrast(1.12);
+}
+
+.usgCertSignatureRule{
+  height:1px;
+  margin:7px 0 12px;
+  background:linear-gradient(90deg, transparent, rgba(112,78,18,.75) 18%, rgba(112,78,18,.75) 82%, transparent);
+  position:relative;
+}
+
+.usgCertSignatureRule:after{
+  content:"◆";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  color:#9b701b;
+  background:var(--paper);
+  padding:0 8px;
+  font-size:11px;
+}
+
+.usgCertSigner{
+  font-size:22px;
+  letter-spacing:.025em;
+  color:#2d2112;
+}
+
+.usgCertStatement{
+  position:absolute;
+  z-index:7;
+  left:88px;
+  top:1248px;
+  width:430px;
+  text-align:center;
+  font-style:italic;
+  color:#332514;
+}
+
+.usgCertStatement p{
+  margin:0;
+  font-size:16px;
+  line-height:1.34;
+}
+
+.usgCertStatement p + p{
+  margin-top:17px;
+  position:relative;
+}
+
+.usgCertStatement p + p:before{
+  content:"";
+  display:block;
+  width:112px;
+  height:1px;
+  margin:0 auto 8px;
+  background:linear-gradient(90deg, transparent, rgba(143,99,22,.7), transparent);
+}
+
+.usgCertSeal{
+  position:absolute;
+  z-index:6;
+  right:82px;
+  bottom:84px;
+  width:344px;
+  height:344px;
+  object-fit:contain;
+  filter:drop-shadow(0 16px 19px rgba(48,31,9,.35));
+}
+
+.usgCertVerifyUrl{
+  position:absolute;
+  z-index:7;
+  left:64px;
+  right:64px;
+  bottom:36px;
+  font-size:8px;
+  line-height:1;
+  color:rgba(48,33,12,.38);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@media print{
+  @page{size:A4 portrait; margin:0;}
+
+  html, body{
+    width:210mm;
+    height:297mm;
+    margin:0 !important;
+    padding:0 !important;
+    background:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  body > header,
+  body > footer,
+  .site-header,
+  .site-footer,
+  .certv2-top{
+    display:none !important;
+  }
+
+  .certv2-shell,
+  .usgCertViewport{
+    padding:0 !important;
+    margin:0 !important;
+    overflow:visible !important;
+  }
+
+  .usgCertCanvas{
+    width:210mm !important;
+    height:297mm !important;
+    margin:0 !important;
+    border-width:.8mm !important;
+    box-shadow:none !important;
+    transform-origin:top left;
+  }
+
+  .usgCertCanvas:before{inset:3mm !important;}
+  .usgCertCanvas:after{left:6mm !important;right:6mm !important;top:6mm !important;bottom:6mm !important;}
+  .usgCertOrnament{width:23mm !important;height:23mm !important;}
+  .usgCertOrnament--tl{left:6mm !important;top:6mm !important;}
+  .usgCertOrnament--tr{right:6mm !important;top:6mm !important;}
+  .usgCertOrnament--bl{left:6mm !important;bottom:6mm !important;}
+  .usgCertOrnament--br{right:6mm !important;bottom:6mm !important;}
+  .usgCertHeader{left:15.5mm !important;right:15.5mm !important;top:8mm !important;height:93.5mm !important;}
+  .usgCertEmblem{width:33mm !important;height:25.5mm !important;margin-bottom:1.4mm !important;}
+  .usgCertBrand{font-size:23px !important;padding:0 9mm !important;}
+  .usgCertBrand:before,.usgCertBrand:after{width:33mm !important;}
+  .usgCertBrandSub{font-size:7px !important;margin-top:2mm !important;}
+  .usgCertFlourish{margin-top:3mm !important;width:22mm !important;height:3mm !important;}
+  .usgCertTitleBlock{margin-top:5mm !important;}
+  .usgCertTitleBlock h2{font-size:25.5px !important;line-height:1.12 !important;}
+  .usgCertSubtitle{font-size:9.5px !important;margin-top:4.6mm !important;}
+  .usgCertSubtitleFlourish{width:38mm !important;height:3mm !important;margin-top:3mm !important;}
+  .usgCertMediaPanel{left:15.5mm !important;top:106mm !important;width:49mm !important;border-width:.4mm !important;}
+  .usgCertPhotoFrame{margin:1.6mm 1.6mm 0 !important;padding:1.2mm !important;border-width:.4mm !important;}
+  .usgCertPhoto,.usgCertPhotoPlaceholder{height:51.5mm !important;}
+  .usgCertPhotoCaption{height:8.6mm !important;font-size:10px !important;margin-top:1.6mm !important;}
+  .usgCertQrPanel{height:41.8mm !important;gap:.55mm !important;}
+  .usgCertQrSvg{width:22.5mm !important;height:22.5mm !important;margin-bottom:1.4mm !important;padding:.8mm !important;}
+  .usgCertQrPanel span{font-size:7px !important;}
+  .usgCertFields{left:69.2mm !important;top:106.5mm !important;width:123.5mm !important;}
+  .usgCertField{grid-template-columns:56.8mm 4mm 1fr !important;min-height:6.95mm !important;}
+  .usgCertField dt,.usgCertField dd{font-size:8.4px !important;padding-bottom:1.15mm !important;}
+  .usgCertSignatureBlock{left:16mm !important;top:222.5mm !important;width:77.5mm !important;}
+  .usgCertSignature{height:17.5mm !important;}
+  .usgCertSignature img{width:74mm !important;}
+  .usgCertSigner{font-size:11px !important;}
+  .usgCertStatement{left:17.5mm !important;top:248.5mm !important;width:85.5mm !important;}
+  .usgCertStatement p{font-size:7.2px !important;line-height:1.28 !important;}
+  .usgCertStatement p + p{margin-top:2.7mm !important;}
+  .usgCertSeal{right:16.5mm !important;bottom:16.7mm !important;width:68.5mm !important;height:68.5mm !important;}
+  .usgCertVerifyUrl{left:12mm !important;right:12mm !important;bottom:6mm !important;font-size:4.4px !important;}
+}
+
+/* Step 33 — Official USG certificate seal START */
+.usgCertSeal {
+  object-fit: contain;
+  border-radius: 50%;
+  filter:
+    saturate(1.08)
+    contrast(1.04)
+    drop-shadow(0 10px 18px rgba(55, 34, 5, 0.24));
+}
+/* Step 33 — Official USG certificate seal END */
+
+/* Step 33.1 — Certificate official seal print polish START */
+.usgCertSeal {
+  right: 66px !important;
+  bottom: 66px !important;
+  width: 300px !important;
+  height: 300px !important;
+  filter:
+    saturate(1.06)
+    contrast(1.03)
+    drop-shadow(0 12px 16px rgba(45, 27, 4, 0.22)) !important;
+}
+
+@media print {
+  .usgCertSeal {
+    right: 13.6mm !important;
+    bottom: 13.8mm !important;
+    width: 59mm !important;
+    height: 59mm !important;
+  }
+}
+/* Step 33.1 — Certificate official seal print polish END */

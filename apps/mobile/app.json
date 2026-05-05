@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Cane Corso Platform",
+    "slug": "cane-corso-platform",
+    "scheme": "canecorso",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

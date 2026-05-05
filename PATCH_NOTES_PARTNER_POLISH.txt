@@ -1,0 +1,12 @@
+Partner access polish patch
+
+Included files:
+- apps/web/components/member-access-panel.tsx
+- apps/web/app/globals.css
+
+Changes:
+- polished partner access copy in BG for a more premium and guided tone
+- added a dedicated right-side partner editorial panel with heritage visual
+- improved onboarding layout with a stronger sidebar structure
+- softened DEV tools visual weight so they interrupt the premium flow less
+- fixed current active partner-session continue path to prefer /partners/apply

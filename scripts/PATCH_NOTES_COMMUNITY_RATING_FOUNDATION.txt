@@ -1,0 +1,29 @@
+USG Community Rating Foundation
+
+Included in this patch:
+- Community rating foundation for Registry and Partners
+- 1 member account = 1 rating (1-5), updatable later
+- Self-rating blocked for own Cane Corso / own partner profile
+- Community rating stays separate from:
+  - admin approval
+  - publication state
+  - USG certificate
+- Public profile pages now show a community rating panel
+- Public cards now show compact community summary when ratings exist
+- Guest users are guided to member access before rating
+- Success/error feedback is returned on the same page after rating attempts
+
+Database step required:
+- Run migrations so 0005_community_ratings.sql is applied
+
+Recommended local commands after copy-paste:
+- pnpm db:migrate
+- node scripts/check-workshop-syntax.mjs
+- node scripts/verify-workshop-foundation.mjs
+
+Main paths to test:
+- /registry/[slug]
+- /partners/[slug]
+- rate as signed-in member
+- confirm you cannot rate your own entry
+- confirm guest path redirects toward member access

@@ -1,0 +1,22 @@
+USG Cane Corso Platform — My Dogs Pedigree Progressive Flow Patch
+
+Included files:
+- apps/web/components/pedigree-editor.tsx
+- apps/web/components/dog-profile-form.tsx
+- apps/web/app/globals.css
+- apps/web/lib/i18n.ts
+
+What changed:
+- Converted pedigree editing into a progressive on-demand flow.
+- Parents are now opened only when the user chooses to add them.
+- Maternal and paternal lines are unlocked only after the relevant parent exists.
+- Great-grandparents are unlocked only when at least one grandparent exists.
+- Added a contextual help CTA for the page/workflow.
+- Added compact luxury step shells and progressive ancestor cards.
+- Ancestor cards now open their fields only on demand instead of rendering one long page.
+- Removing an ancestor clears the dependent branch below it to keep the tree consistent.
+- Updated EN/BG/IT pedigree helper copy to match the new flow.
+
+Validation run in container:
+- node scripts/check-workshop-syntax.mjs  -> passed
+- node scripts/verify-workshop-foundation.mjs -> passed

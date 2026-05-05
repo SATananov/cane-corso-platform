@@ -1,0 +1,25 @@
+Step 5 — USG Gallery + Verify trust evidence
+
+Scope:
+- No header/Home/layout redesign.
+- Public Gallery now exposes the three evidence layers for every selected USG Gallery card:
+  1) active certificate code/status context,
+  2) community rating,
+  3) admin assessment.
+- Verify result now shows certificate, status, community rating, and admin assessment together.
+- Added CSS for the compact Gallery evidence strip, including light/Heritage theme safety.
+
+Files changed:
+- apps/web/app/(public)/gallery/page.tsx
+- apps/web/components/verification-result-panel.tsx
+- apps/web/app/globals.css
+
+Manual test focus:
+1. /gallery should still render even when empty.
+2. If a gallery item exists, it should show certificate code, community rating, admin assessment, selected photos, public profile link and verify link.
+3. /verify/[code] should show active certificate + community/admin evidence.
+4. Registry != Gallery != Certificate must remain visually and semantically separate.
+
+Additional polish:
+- Cleaned Bulgarian Gallery wording to reduce mixed English/Bulgarian terms in this area.
+- Localized Review media visibility badges so Registry/Gallery flags are no longer hardcoded in English inside the admin queue.

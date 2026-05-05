@@ -1,0 +1,70 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2022"
+    ],
+    "allowJs": false,
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "ignoreDeprecations": "5.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@cane-corso-platform/auth": [
+        "../../packages/auth/src/index.ts"
+      ],
+      "@cane-corso-platform/config": [
+        "../../packages/config/src/index.ts"
+      ],
+      "@cane-corso-platform/contracts": [
+        "../../packages/contracts/src/index.ts"
+      ],
+      "@cane-corso-platform/db": [
+        "../../packages/db/src/index.ts"
+      ],
+      "@cane-corso-platform/ui": [
+        "../../packages/ui/src/index.ts"
+      ],
+      "@cane-corso-platform/storage": [
+        "../../packages/storage/src/index.ts"
+      ]
+    },
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "next-env.d.ts",
+    "next.config.ts",
+    "tailwind.config.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "packages",
+    "scripts"
+  ]
+}

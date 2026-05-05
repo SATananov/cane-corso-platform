@@ -1,0 +1,18 @@
+Registry final polish patch
+
+Files changed:
+- apps/web/components/overview-stat-card.tsx
+- apps/web/components/public-registry-overview.tsx
+- apps/web/app/globals.css
+
+What changed:
+- Added secondary detail line support to KPI cards.
+- Refined Registry KPI copy for stronger public/trust context.
+- Polished registry public card hierarchy:
+  - stronger title area
+  - public/certified badge stack
+  - improved certificate strip
+  - cleaner 2-column metadata layout
+  - clearer footer/action separation
+- Improved placeholder presentation with subtle registry layer note.
+- Localized sex pill labels for BG/IT instead of raw male/female values.

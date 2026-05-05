@@ -1,0 +1,37 @@
+After copying these files into your real repository, do ONE of the following:
+
+1) Recommended:
+   run: node scripts/workspace-cleanup.mjs
+
+or
+
+2) Manually delete these stale paths if they still exist:
+- apps/web/apps
+- apps/web/packages
+- apps/web/scripts
+- apps/web/.next
+- apps/web/.turbo
+- apps/web/node_modules
+- apps/web/tsconfig.tsbuildinfo
+- apps/mobile/.expo
+- node_modules
+- .turbo
+- packages/auth/node_modules
+- packages/config/node_modules
+- packages/contracts/node_modules
+- packages/db/node_modules
+- packages/ui/node_modules
+- packages/auth/.turbo
+- packages/config/.turbo
+- packages/contracts/.turbo
+- packages/db/.turbo
+- packages/ui/.turbo
+- generated .js / .d.ts files inside packages/auth/src
+- generated .js / .d.ts files inside packages/config/src
+- generated .js / .d.ts files inside packages/contracts/src
+- generated .js / .d.ts files inside packages/db/src
+- generated .js / .d.ts files inside packages/ui/src
+
+Then run:
+- pnpm install
+- node scripts/workshop-doctor.mjs --full

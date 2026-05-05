@@ -1,0 +1,32 @@
+Step 5 — Partner / Ecosystem Member + Public Flow Polish
+
+Scope respected:
+- Did not touch Registry flow.
+- Did not touch Registry detail flow.
+- Did not touch Certificate flow.
+- Did not touch My Cane Corso or Gallery flow.
+- Kept Step 4 admin polish locked.
+
+Implemented:
+1. Member ecosystem workspace can now continue editing existing drafts and entries returned with needs_changes.
+2. Existing member entries include a controlled edit/resubmit panel using the same server actions and existing listingId.
+3. Pending, approved, and published member entries are intentionally locked from member editing to protect the moderation flow.
+4. Repository now enforces the same rule server-side: only draft and needs_changes records can be updated by the owner.
+5. /ecosystem now redirects unauthenticated visitors to /access?intent=ecosystem instead of throwing a session error.
+6. Ecosystem server actions now revalidate /community after draft/submit/admin moderation changes.
+7. Ecosystem API routes now reject unsupported mutation/moderation intents with INVALID_INTENT instead of silently treating them as another action.
+8. Public ecosystem directory English stats labels were corrected from Bulgarian to English.
+9. Added small CSS polish for the member edit/resubmit details panel, including Heritage theme handling.
+
+Local static QA run in this environment:
+- node scripts/check-workshop-syntax.mjs — PASS
+- node scripts/qa-ecosystem-engine.mjs — PASS
+- node scripts/qa-full-stack-requirements.mjs — PASS
+- node scripts/qa-review-publish-workflow.mjs — PASS
+
+Full pnpm typecheck was not run in this environment because pnpm/node_modules are not available here. Run locally after copying the patch:
+- pnpm workspace:syntax
+- pnpm typecheck
+- pnpm ecosystem:qa
+- pnpm workflow:qa
+- pnpm requirements:qa

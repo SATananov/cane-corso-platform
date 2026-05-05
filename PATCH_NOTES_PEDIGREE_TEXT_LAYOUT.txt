@@ -1,0 +1,6 @@
+Pedigree progressive flow micro-fix
+- fixed missing Help label in member hero pills
+- removed empty hero pill caused by missing translation
+- rebalanced progressive pedigree intro/help layout so step cards fit better
+- improved wrapping for long Bulgarian text in pedigree help/stat/profile cards
+- stacked pedigree tree stats/help blocks earlier on narrower widths

@@ -1,0 +1,28 @@
+Step 65.1 — Access login UI payload hardening
+
+Frontend-only patch. No database scripts, no seed, no migrations, no bootstrap.
+
+Changed files:
+- apps/web/components/member-access-panel.tsx
+- scripts/qa-access-login-ui-payload.mjs
+- package.json
+
+What changed:
+- Access sign-in now builds one normalized payload before POST.
+- Email is trim/lowercase normalized.
+- Password removes accidental leading/trailing whitespace before POST.
+- Browser auto-capitalize/auto-correct/spellcheck are disabled for sign-in fields.
+- 401 status now reports sent email + password length without exposing the password.
+- Successful login now uses the shared role-aware handleSuccessfulAuth redirect instead of hardcoded /member.
+
+Safe checks used in sandbox:
+- node scripts/qa-access-login-ui-payload.mjs
+- node scripts/check-workshop-syntax.mjs
+
+After copy-paste, run:
+- pnpm access:login-ui:qa
+- pnpm workspace:syntax
+- pnpm typecheck
+
+Then browser-test /access against the demo Neon DB with:
+member@demo.cane-corso.local / DemoMember123!

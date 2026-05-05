@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@cane-corso-platform/auth": [
+        "packages/auth/src/index.ts"
+      ],
+      "@cane-corso-platform/config": [
+        "packages/config/src/index.ts"
+      ],
+      "@cane-corso-platform/contracts": [
+        "packages/contracts/src/index.ts"
+      ],
+      "@cane-corso-platform/db": [
+        "packages/db/src/index.ts"
+      ],
+      "@cane-corso-platform/ui": [
+        "packages/ui/src/index.ts"
+      ],
+      "@cane-corso-platform/storage": [
+        "packages/storage/src/index.ts"
+      ]
+    }
+  }
+}

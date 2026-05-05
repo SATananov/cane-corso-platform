@@ -1,0 +1,47 @@
+Step 48-55 consolidated release candidate patch
+
+Base checkpoint:
+- ccp_step47_public_knowledge_education_experience_verified_clean.zip
+
+Scope:
+- Step 48 — Public Community / Ecosystem Discovery Experience
+- Step 49 — Partners / Services Public Experience Polish
+- Step 50 — Mobile / Responsive Final Platform Pass
+- Step 51 — Access / Profile / Owner Onboarding Final Polish
+- Step 52 — Admin Operational Clarity Pass
+- Step 53 — Full i18n / Copy Consistency Pass
+- Step 54 — Performance / Accessibility / UX Sanity Pass
+- Step 55 — Full Release Candidate QA & Clean ZIP guardrails
+
+Boundaries preserved:
+- Registry publish logic was not changed.
+- Certificate issue / revoke logic was not changed.
+- Verify lookup logic was not changed.
+- Gallery backend selection was not changed.
+- Admin moderation backend was not changed.
+- Ecosystem API / DB logic was not changed.
+- Auth / session logic was not changed.
+
+Local verification recommended:
+- pnpm release:consolidated:qa
+- pnpm community:discovery:qa
+- pnpm partners:services-experience:qa
+- pnpm mobile:responsive-final:qa
+- pnpm owner:onboarding-final:qa
+- pnpm admin:operational-clarity:qa
+- pnpm i18n:full-copy:qa
+- pnpm ux:sanity:qa
+- pnpm workspace:syntax
+- pnpm typecheck
+
+Browser review recommended:
+- /community
+- /partners
+- /access
+- /profile
+- /member
+- /review
+- /admin/registry
+- /admin/partners
+- /admin/ecosystem
+- /admin/knowledge

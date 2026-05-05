@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+  <defs>
+    <radialGradient id="gold" cx="34%" cy="25%" r="78%">
+      <stop offset="0" stop-color="#fff6cc"/>
+      <stop offset="0.22" stop-color="#e7c15f"/>
+      <stop offset="0.55" stop-color="#b98523"/>
+      <stop offset="0.82" stop-color="#7f5716"/>
+      <stop offset="1" stop-color="#e3bc58"/>
+    </radialGradient>
+    <radialGradient id="inner" cx="40%" cy="35%" r="68%">
+      <stop offset="0" stop-color="#fff1bc"/>
+      <stop offset="0.44" stop-color="#d6aa3e"/>
+      <stop offset="1" stop-color="#8d6117"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#3d2607" flood-opacity=".35"/>
+    </filter>
+    <filter id="emboss" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
+      <feOffset dx="2" dy="2" in="blur" result="offset"/>
+      <feComposite in="offset" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="emboss"/>
+      <feColorMatrix in="emboss" type="matrix" values="0 0 0 0 0.19  0 0 0 0 0.13  0 0 0 0 0.04  0 0 0 .78 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <path id="topArc" d="M 88 260 A 172 172 0 0 1 432 260"/>
+    <path id="bottomArc" d="M 432 260 A 172 172 0 0 1 88 260"/>
+    <pattern id="engrave" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M0 17 C8 2 26 32 34 17 M17 0 C2 8 32 26 17 34" fill="none" stroke="#61400d" stroke-width="1" stroke-opacity=".16"/>
+    </pattern>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <circle cx="260" cy="260" r="242" fill="url(#gold)"/>
+    <circle cx="260" cy="260" r="238" fill="none" stroke="#6f4810" stroke-width="8"/>
+    <circle cx="260" cy="260" r="218" fill="url(#inner)" stroke="#f9e7a7" stroke-width="6"/>
+    <circle cx="260" cy="260" r="206" fill="url(#engrave)" opacity=".72"/>
+    <circle cx="260" cy="260" r="190" fill="none" stroke="#6e4510" stroke-width="4" opacity=".55"/>
+    <circle cx="260" cy="260" r="164" fill="none" stroke="#fff0b7" stroke-width="4" opacity=".45"/>
+    <circle cx="260" cy="260" r="152" fill="none" stroke="#5f3b0b" stroke-width="2" opacity=".4"/>
+
+    <g filter="url(#emboss)">
+      <text font-family="Georgia, 'Times New Roman', serif" font-size="31" font-weight="700" fill="#5b3a0c" letter-spacing="3.4">
+        <textPath href="#topArc" startOffset="50%" text-anchor="middle">UNICO SUO GENERE</textPath>
+      </text>
+      <text font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="700" fill="#5b3a0c" letter-spacing="2.8">
+        <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">CANE CORSO CERTIFIED</textPath>
+      </text>
+    </g>
+
+    <g filter="url(#emboss)">
+      <text x="260" y="304" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="118" font-weight="700" fill="#765014" letter-spacing="4">USG</text>
+    </g>
+
+    <g opacity=".58" fill="#66430e">
+      <circle cx="260" cy="61" r="5"/>
+      <circle cx="260" cy="459" r="5"/>
+      <circle cx="61" cy="260" r="5"/>
+      <circle cx="459" cy="260" r="5"/>
+    </g>
+  </g>
+</svg>

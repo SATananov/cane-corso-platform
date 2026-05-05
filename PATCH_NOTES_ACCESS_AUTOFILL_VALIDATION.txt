@@ -1,0 +1,12 @@
+Patch: access autofill + validation + member editorial luxury panel
+
+Included changes:
+- member access / partner access form autofill separation with section-specific autocomplete tokens
+- client-side field validation for sign-up and sign-in
+- inline field error messages and invalid field highlighting
+- member-side luxury editorial panel with large USG monogram to fill the empty right-side space
+- small field-error spacing polish
+
+Touched files:
+- apps/web/components/member-access-panel.tsx
+- apps/web/app/globals.css

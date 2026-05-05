@@ -1,0 +1,98 @@
+$ node scripts/verify-workshop-foundation.mjs
+exit: 0
+STDOUT:
+✔ Shared workspace TypeScript config — tsconfig.base.json
+✔ Workspace cleanup script — scripts/workspace-cleanup.mjs
+✔ Workshop verification script — scripts/verify-workshop-foundation.mjs
+✔ Workspace syntax check script — scripts/check-workshop-syntax.mjs
+✔ Workspace doctor script — scripts/workshop-doctor.mjs
+✔ Nested duplicate web app directory — apps/web/apps removed from workspace
+✔ Nested duplicate package directory — apps/web/packages removed from workspace
+✔ Nested duplicate script directory — apps/web/scripts removed from workspace
+✔ Committed Next build output — apps/web/.next not tracked by git
+✔ Committed app node_modules — apps/web/node_modules not tracked by git
+✔ Committed Expo local state — apps/mobile/.expo not tracked by git
+✔ Committed root node_modules — node_modules not tracked by git
+✔ Committed package auth node_modules — packages/auth/node_modules not tracked by git
+✔ Committed package config node_modules — packages/config/node_modules not tracked by git
+✔ Committed package contracts node_modules — packages/contracts/node_modules not tracked by git
+✔ Committed package db node_modules — packages/db/node_modules not tracked by git
+✔ Committed package storage node_modules — packages/storage/node_modules not tracked by git
+✔ Committed package ui node_modules — packages/ui/node_modules not tracked by git
+✔ Health API route — apps/web/app/api/health/route.ts
+✔ Session API route — apps/web/app/api/session/route.ts
+✔ Bootstrap session API route — apps/web/app/api/session/bootstrap/route.ts
+✔ Auth provider API route — apps/web/app/api/auth/provider/route.ts
+✔ Dogs collection API route — apps/web/app/api/dogs/route.ts
+✔ Single dog API route — apps/web/app/api/dogs/[dogId]/route.ts
+✔ Dog media collection API route — apps/web/app/api/dogs/[dogId]/media/route.ts
+✔ Dog media item API route — apps/web/app/api/dogs/[dogId]/media/[mediaId]/route.ts
+✔ Dog media upload API route — apps/web/app/api/dogs/[dogId]/media/upload/route.ts
+✔ Expo mobile manifest — apps/mobile/package.json
+✔ Expo mobile app entry — apps/mobile/App.tsx
+✔ Shared UI package manifest — packages/ui/package.json
+✔ Shared storage package manifest — packages/storage/package.json
+✔ Tailwind config — apps/web/tailwind.config.ts
+✔ PostCSS config — apps/web/postcss.config.mjs
+✔ Root cleanup script registration — package.json -> workspace:cleanup
+✔ Root verification script registration — package.json -> workspace:verify
+✔ Root syntax script registration — package.json -> workspace:syntax
+✔ Root doctor script registration — package.json -> workspace:doctor
+✔ Web app auth dependency linkage — apps/web/package.json -> @cane-corso-platform/auth
+✔ Web app Tailwind dependency setup — apps/web/package.json -> tailwindcss
+✔ Architecture roadmap text — docs/architecture/workshop-alignment.md -> API-first
+✔ My Dogs workspace API mutation wiring — apps/web/components/my-dog-form-workspace.tsx -> mutateDogProfile
+✔ Automatic bootstrap session sync in layout — apps/web/app/layout.tsx -> SessionBootstrapSync
+✔ Expo app reads My Dogs from shared API — apps/mobile/App.tsx -> fetchDogsDocument
+✔ Member profile query helper — apps/web/lib/member-profile.server.ts
+✔ Dog media server query helper — apps/web/lib/my-dog-media.server.ts
+✔ Dog media repository — packages/db/src/repositories/dog-media.repository.ts
+✔ Web app storage dependency linkage — apps/web/package.json -> @cane-corso-platform/storage
+✔ Dog media member route — apps/web/app/(member)/my-dogs/[dogId]/media/page.tsx
+✔ My Dogs server query helper — apps/web/lib/my-dogs.server.ts -> executeCurrentMemberDogAction
+✔ My Dogs server action uses query helper — apps/web/app/(member)/my-dogs/actions.ts -> executeCurrentMemberDogAction
+✔ Web tsconfig excludes nested duplicate packages — apps/web/tsconfig.json -> "packages"
+✔ Web tsconfig excludes nested duplicate scripts — apps/web/tsconfig.json -> "scripts"
+✔ Mobile tsconfig is self-contained — apps/mobile/tsconfig.json -> react-jsx
+
+Workshop foundation verification passed.
+
+STDERR:
+
+
+---
+$ node scripts/check-workshop-syntax.mjs
+exit: 0
+STDOUT:
+Syntax check passed for 222 source files.
+
+STDERR:
+
+
+---
+$ tsc -p packages/db/tsconfig.json --noEmit
+exit: 2
+STDOUT:
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+
+STDERR:
+
+
+---
+$ tsc -p apps/web/tsconfig.json --noEmit
+exit: 1
+STDOUT:
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+error TS2688: Cannot find type definition file for 'react'.
+  The file is in the program because:
+    Entry point of type library 'react' specified in compilerOptions
+error TS2688: Cannot find type definition file for 'react-dom'.
+  The file is in the program because:
+    Entry point of type library 'react-dom' specified in compilerOptions
+
+STDERR:
+

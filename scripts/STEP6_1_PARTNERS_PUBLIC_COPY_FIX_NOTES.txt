@@ -1,0 +1,27 @@
+Step 6.1 — Partners public copy/localization fix
+
+Scope:
+- apps/web/lib/partner-copy.ts
+- apps/web/components/partner-directory-overview.tsx
+- apps/web/components/partner-profile-detail.tsx
+
+Changes:
+- Localizes known seeded partner descriptions in BG/IT without changing database records.
+- Localizes known seeded location values such as Sofia/Plovdiv/Bulgaria in BG.
+- Displays known seeded owner label "Starter Member" as a localized friendly label.
+- Keeps public partner cards and detail pages consistent with selected locale.
+
+Not touched:
+- Registry
+- Certificate
+- My Cane Corso
+- Gallery
+- Admin review
+- Admin partner/ecosystem moderation logic
+- DB/migrations/repositories
+
+QA in sandbox:
+- node scripts/check-workshop-syntax.mjs — PASS
+- node scripts/qa-ecosystem-engine.mjs — PASS
+- node scripts/qa-full-stack-requirements.mjs — PASS
+- node scripts/qa-review-publish-workflow.mjs — PASS

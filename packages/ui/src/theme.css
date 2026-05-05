@@ -1,0 +1,10 @@
+:root {
+  --ui-color-ink: #0e0e10;
+  --ui-color-ivory: #f8f5ef;
+  --ui-color-gold: #d4af37;
+  --ui-color-panel: #17171c;
+  --ui-color-line: rgba(212, 175, 55, 0.18);
+  --ui-radius-card: 28px;
+  --ui-radius-pill: 999px;
+  --ui-shadow-card: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
