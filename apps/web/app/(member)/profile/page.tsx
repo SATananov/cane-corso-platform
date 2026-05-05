@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { OverviewStatCard } from '@/components/overview-stat-card';
-import { SectionCard } from '@/components/section-card';
 import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
 import { OwnerProfilePhotoPanel } from '@/components/owner-profile-photo-panel';
 import { getCurrentProfileDocument } from '@/lib/member-profile.server';
@@ -90,11 +89,8 @@ export default async function ProfilePage() {
     const workingDog =
       dogs.find((dog) => ['draft', 'needs_changes', 'submitted', 'approved'].includes(dog.lifecycleStatus)) ?? dogs[0] ?? null;
 
-    const publishedProfileHref = publishedDog?.publication?.publicSlug ? `/registry/${publishedDog.publication.publicSlug}` : '/registry';
-    const verifyHref = publishedDog?.publication?.verificationSlug
-      ? `/verify/${publishedDog.publication.certificateCode ?? publishedDog.publication.verificationSlug}`
-      : '/verify';
     const continueHref = workingDog ? `/my-dogs/${workingDog.id}/edit` : '/my-dogs/new';
+    const primaryNextHref = workingDog ? continueHref : '/my-dogs/new';
     const emptyStateCopy = {
       en: {
         title: 'No Cane Corso profiles yet',
@@ -121,11 +117,11 @@ export default async function ProfilePage() {
       en: {
         eyebrow: 'Owner profile',
         heroDescription:
-          'This page gives you a clear owner overview: who you are here, what status each Cane Corso profile has, and the next action to take.',
+          'Start here: add your owner photo, check your status, then continue to the Cane Corso profile that needs action.',
         quickActionsEyebrow: 'Quick actions',
         quickActionsTitle: 'Start with the next real action',
         quickActionsDescription:
-          'The most important owner steps stay in front of you: continue work, add a new Cane Corso, open public presence, and use verification only when needed.',
+          'Use the main button first. Public registry and verification are later layers, not the first owner task.',
         quickActions: {
           myDogs: 'Open My Cane Corso',
           addDog: 'Add Cane Corso',
@@ -169,7 +165,7 @@ export default async function ProfilePage() {
         },
         journey: {
           eyebrow: 'Simple owner path',
-          title: 'Everything important in one clear flow',
+          title: 'Short path without confusion',
           description: 'The owner area should guide every person from profile setup to public Registry presence without confusion.',
           doneLabel: 'Done',
           nextLabel: 'Next',
@@ -228,11 +224,11 @@ export default async function ProfilePage() {
       bg: {
         eyebrow: 'Профил на собственика',
         heroDescription:
-          'Тази страница ти дава ясен поглед: кой си тук, какъв статус има всеки Cane Corso профил и кое е следващото правилно действие.',
+          'Започни оттук: добави снимка на собственика, провери статуса и продължи към Cane Corso профила, който чака действие.',
         quickActionsEyebrow: 'Бързи действия',
         quickActionsTitle: 'Продължи от най-важната стъпка',
         quickActionsDescription:
-          'Най-важните действия са пред теб: продължи текущ профил, добави нов Cane Corso, отвори публичното присъствие и използвай проверката само при нужда.',
+          'Първо използвай основния бутон. Публичният регистър и проверката са следващи слоеве, не първата задача на собственика.',
         quickActions: {
           myDogs: 'Отвори Моите Cane Corso',
           addDog: 'Добави Cane Corso',
@@ -276,7 +272,7 @@ export default async function ProfilePage() {
         },
         journey: {
           eyebrow: 'Лесен път за собственика',
-          title: 'Всичко важно в един ясен flow',
+          title: 'Кратък път без объркване',
           description: 'Личната зона трябва да води човека от профил до публичен Registry без объркване.',
           doneLabel: 'Готово',
           nextLabel: 'Следва',
@@ -335,11 +331,11 @@ export default async function ProfilePage() {
       it: {
         eyebrow: 'Profilo del proprietario',
         heroDescription:
-          'Questa pagina ti dà una visione chiara: chi sei qui, quale stato ha ogni profilo Cane Corso e qual è la prossima azione corretta.',
+          'Inizia qui: aggiungi la foto owner, controlla lo stato e continua il profilo Cane Corso che richiede azione.',
         quickActionsEyebrow: 'Azioni rapide',
         quickActionsTitle: 'Continua dal prossimo passo concreto',
         quickActionsDescription:
-          'Le azioni principali restano in primo piano: continua il profilo attivo, aggiungi un nuovo Cane Corso, apri la presenza pubblica e usa la verifica solo quando serve.',
+          'Usa prima il pulsante principale. Registro pubblico e verifica sono layer successivi, non il primo compito owner.',
         quickActions: {
           myDogs: 'Apri I miei Cane Corso',
           addDog: 'Aggiungi Cane Corso',
@@ -383,7 +379,7 @@ export default async function ProfilePage() {
         },
         journey: {
           eyebrow: 'Percorso proprietario semplice',
-          title: 'Tutto ciò che conta in un flusso chiaro',
+          title: 'Percorso breve senza confusione',
           description: 'L’area proprietario deve guidare ogni persona dal profilo alla presenza pubblica nel Registry senza confusione.',
           doneLabel: 'Fatto',
           nextLabel: 'Prossimo',
@@ -442,11 +438,11 @@ export default async function ProfilePage() {
     }[locale] ?? {
       eyebrow: 'Owner profile',
       heroDescription:
-        'This page gives you a clear owner overview: who you are here, what status each Cane Corso profile has, and the next action to take.',
+        'Start here: add your owner photo, check your status, then continue to the Cane Corso profile that needs action.',
       quickActionsEyebrow: 'Quick actions',
       quickActionsTitle: 'Start with the next real action',
       quickActionsDescription:
-        'The most important owner steps stay in front of you: continue work, add a new Cane Corso, open public presence, and use verification only when needed.',
+        'Use the main button first. Public registry and verification are later layers, not the first owner task.',
       quickActions: {
         myDogs: 'Open My Cane Corso',
         addDog: 'Add Cane Corso',
@@ -489,7 +485,7 @@ export default async function ProfilePage() {
       },
       journey: {
         eyebrow: 'Simple owner path',
-        title: 'Everything important in one clear flow',
+        title: 'Short path without confusion',
         description: 'The owner area should guide every person from profile setup to public Registry presence without confusion.',
         doneLabel: 'Done',
         nextLabel: 'Next',
@@ -542,21 +538,12 @@ export default async function ProfilePage() {
               <h2>{copy.quickActionsTitle}</h2>
               <p>{copy.quickActionsDescription}</p>
             </div>
-            <div className="profile-page__hero-actions-grid">
-              <Link href="/my-dogs" className="button-primary">
-                {copy.quickActions.myDogs}
-              </Link>
-              <Link href="/my-dogs/new" className="button-secondary">
-                {copy.quickActions.addDog}
-              </Link>
-              <Link href={continueHref} className="button-secondary">
+            <div className="profile-page__hero-actions-grid profile-page__hero-actions-grid--priority">
+              <Link href={primaryNextHref} className="button-primary">
                 {copy.quickActions.continueProfile}
               </Link>
-              <Link href={publishedProfileHref} className="button-secondary">
-                {copy.quickActions.publicProfile}
-              </Link>
-              <Link href={verifyHref} className="button-ghost">
-                {copy.quickActions.verify}
+              <Link href="/my-dogs" className="button-secondary">
+                {copy.quickActions.myDogs}
               </Link>
               <Link href="/guide?topic=member-workspace#member-workspace" className="button-ghost">
                 {t.common.help}
@@ -693,25 +680,6 @@ export default async function ProfilePage() {
 
         <OwnerOnboardingFinalPanel locale={locale} surface="profile" />
 
-        <section className="content-card profile-page__center-card">
-          <div className="section-head-row">
-            <div>
-              <span className="eyebrow-label">{copy.centerEyebrow}</span>
-              <h2>{copy.centerTitle}</h2>
-              <p className="section-support-copy">{copy.centerDescription}</p>
-            </div>
-          </div>
-
-          <div className="section-card-grid section-card-grid--three profile-page__section-grid">
-            {copy.cards.map((card) => (
-              <SectionCard
-                key={card.title}
-                {...card}
-                actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'}
-              />
-            ))}
-          </div>
-        </section>
       </div>
     );
   } catch (error) {

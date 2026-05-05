@@ -3,8 +3,6 @@ import type { Dog, DogMedia } from '@cane-corso-platform/contracts';
 import { MyDogCard, type OwnerWorkspaceDog } from '@/components/my-dog-card';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { EmptyStatePanel } from '@/components/empty-state-panel';
-import { SectionCard } from '@/components/section-card';
-import { InfoPanelGrid } from '@/components/info-panel-grid';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
@@ -246,43 +244,6 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
   };
 
 
-  const ownerJourneyByLocale = {
-    en: {
-      eyebrow: 'Owner workspace path',
-      title: 'The strongest owner flow should stay obvious and calm',
-      description: 'My Dogs should feel like a real preparation center: profile first, review second, publication later, certificate trust only if it is actually issued.',
-      cards: [
-        { eyebrow: 'Step 1', title: 'Complete the private profile first', description: 'Identity, data, pedigree, and media should feel solid before submission.', href: '/profile', meta: 'Profile • data • private prep', icon: 'profile' as const },
-        { eyebrow: 'Step 2', title: 'Prepare and refine your Cane Corso entry', description: 'Use My Dogs as the owner workspace before anything becomes public.', href: '/my-dogs/new', meta: 'Draft • media • pedigree', icon: 'member' as const },
-        { eyebrow: 'Step 3', title: 'Understand review and publication as separate moments', description: 'A stronger owner experience explains what is draft, what is in review, and what is publicly published.', href: '/guide?topic=member-workspace#member-workspace', meta: 'Review • publication • clarity', icon: 'guide' as const },
-        { eyebrow: 'Step 4', title: 'Treat verify and certificate trust as a later layer', description: 'Publication does not automatically mean active certificate trust.', href: '/verify', meta: 'Verify • certificate • later trust', icon: 'verify' as const },
-      ],
-    },
-    bg: {
-      eyebrow: 'Път в личната работна зона',
-      title: 'Най-силният път за собственика трябва да остане очевиден и спокоен',
-      description: 'My Dogs трябва да се усеща като истински център за подготовка: първо профил, после преглед, после публикация, а сертификатното доверие идва само ако реално е издадено.',
-      cards: [
-        { eyebrow: 'Стъпка 1', title: 'Първо завърши личния профил', description: 'Идентичността, данните, pedigree-то и медията трябва да са стабилни преди изпращане.', href: '/profile', meta: 'Профил • данни • лична подготовка', icon: 'profile' as const },
-        { eyebrow: 'Стъпка 2', title: 'Подготви и изчисти своя Cane Corso запис', description: 'Използвай My Dogs като лична работна зона, преди нещо да стане публично.', href: '/my-dogs/new', meta: 'Чернова • медия • родословие', icon: 'member' as const },
-        { eyebrow: 'Стъпка 3', title: 'Разбирай прегледа и публикацията като отделни моменти', description: 'По-силното преживяване за собственика обяснява кое е чернова, кое е в преглед и кое е публично публикувано.', href: '/guide?topic=member-workspace#member-workspace', meta: 'Преглед • публикация • яснота', icon: 'guide' as const },
-        { eyebrow: 'Стъпка 4', title: 'Гледай проверката и сертификатното доверие като по-късен слой', description: 'Публикацията не значи автоматично активен сертификатен запис на доверие.', href: '/verify', meta: 'Проверка • сертификат • по-късно доверие', icon: 'verify' as const },
-      ],
-    },
-    it: {
-      eyebrow: 'Percorso owner workspace',
-      title: 'Il flusso owner più forte dovrebbe restare ovvio e calmo',
-      description: 'My Dogs dovrebbe sembrare un vero centro di preparazione: prima profilo, poi review, poi pubblicazione, e fiducia del certificato solo se davvero emessa.',
-      cards: [
-        { eyebrow: 'Passo 1', title: 'Completa prima il profilo privato', description: 'Identità, dati, pedigree e media dovrebbero essere solidi prima dell’invio.', href: '/profile', meta: 'Profilo • dati • preparazione privata', icon: 'profile' as const },
-        { eyebrow: 'Passo 2', title: 'Prepara e rifinisci la tua scheda Cane Corso', description: 'Usa My Dogs come owner workspace prima che qualcosa diventi pubblico.', href: '/my-dogs/new', meta: 'Bozza • media • pedigree', icon: 'member' as const },
-        { eyebrow: 'Passo 3', title: 'Comprendi review e pubblicazione come momenti separati', description: 'Una migliore esperienza owner spiega cosa è bozza, cosa è in review e cosa è pubblicato.', href: '/guide?topic=member-workspace#member-workspace', meta: 'Review • pubblicazione • chiarezza', icon: 'guide' as const },
-        { eyebrow: 'Passo 4', title: 'Considera verify e fiducia del certificato come layer successivo', description: 'La pubblicazione non significa automaticamente fiducia certificata attiva.', href: '/verify', meta: 'Verify • certificato • fiducia successiva', icon: 'verify' as const },
-      ],
-    },
-  } as const;
-  const ownerJourney = ownerJourneyByLocale[locale] ?? ownerJourneyByLocale.en;
-
   const totalDogs = dogsWithMedia.length;
   const published = dogsWithMedia.filter((dog) => dog.lifecycleStatus === 'published').length;
   const inReview = dogsWithMedia.filter((dog) => ['submitted', 'approved'].includes(dog.lifecycleStatus)).length;
@@ -329,8 +290,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
   const spotlightCopy = {
     en: {
       eyebrow: 'Selected Cane Corso',
-      title: 'Use the open space as a clear profile summary',
-      description: 'The right panel should help you read the current Cane Corso quickly instead of leaving the section visually empty.',
+      title: 'Profile summary and next action',
+      description: 'Read the selected Cane Corso quickly, then use the action that matters now.',
       publicationLead: 'This Cane Corso already has a public registry presence and can be reviewed as a visitor would see it.',
       workspaceLead: 'This Cane Corso still lives inside your private owner workspace and can be refined before review.',
       overviewTitle: 'Profile overview',
@@ -374,8 +335,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
     },
     bg: {
       eyebrow: 'Избран Cane Corso',
-      title: 'Използвай празното място като ясно обобщение на профила',
-      description: 'Десният панел трябва да ти помага да четеш най-важното за Cane Corso бързо, вместо секцията да остава визуално празна.',
+      title: 'Обобщение и следващо действие',
+      description: 'Виж най-важното за избрания Cane Corso и продължи само с действието, което има значение сега.',
       publicationLead: 'Този Cane Corso вече има публично присъствие в регистъра и можеш да го прегледаш както би го видял посетителят.',
       workspaceLead: 'Този Cane Corso все още е в личната работна зона и може да бъде доизчистен преди преглед.',
       overviewTitle: 'Обобщение на профила',
@@ -419,8 +380,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
     },
     it: {
       eyebrow: 'Cane Corso selezionato',
-      title: 'Usa lo spazio libero come riepilogo chiaro del profilo',
-      description: 'Il pannello a destra dovrebbe aiutarti a leggere subito il Cane Corso corrente invece di lasciare la sezione visivamente vuota.',
+      title: 'Riepilogo e prossima azione',
+      description: 'Leggi subito il Cane Corso selezionato e usa solo l’azione che conta ora.',
       publicationLead: 'Questo Cane Corso ha già una presenza pubblica nel registro e puoi rivederlo come lo vedrebbe un visitatore.',
       workspaceLead: 'Questo Cane Corso vive ancora nel tuo owner workspace privato e può essere rifinito prima della review.',
       overviewTitle: 'Riepilogo profilo',
@@ -464,8 +425,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
     },
   }[locale] ?? {
     eyebrow: 'Selected Cane Corso',
-    title: 'Use the open space as a clear profile summary',
-    description: 'The right panel should help you read the current Cane Corso quickly instead of leaving the section visually empty.',
+    title: 'Profile summary and next action',
+    description: 'Read the selected Cane Corso quickly, then use the action that matters now.',
     publicationLead: 'This Cane Corso already has a public registry presence and can be reviewed as a visitor would see it.',
     workspaceLead: 'This Cane Corso still lives inside your private owner workspace and can be refined before review.',
     overviewTitle: 'Profile overview',
@@ -549,15 +510,6 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
           <Link href="/guide?topic=member-workspace#member-workspace" className="button-ghost small">
             {t.common.help}
           </Link>
-          {dogsWithMedia[0] ? (
-            <Link href={`/my-dogs/${dogsWithMedia[0].id}/media`} className="button-secondary">
-              {t.common.manageMedia}
-            </Link>
-          ) : (
-            <button type="button" className="button-secondary" disabled>
-              {t.common.manageMedia}
-            </button>
-          )}
         </div>
       </section>
 
@@ -568,34 +520,6 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
         <OverviewStatCard label={t.pages.myDogs.labels.needsChanges} value={String(needsChanges)} tone="ivory" />
         <OverviewStatCard label={t.pages.myDogs.labels.drafts} value={String(drafts)} tone="gold" />
       </div>
-
-      <InfoPanelGrid
-        eyebrow={ownerJourney.eyebrow}
-        title={ownerJourney.title}
-        description={ownerJourney.description}
-        cards={ownerJourney.cards}
-        actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'}
-        ariaLabel={ownerJourney.title}
-      />
-
-      <section className="content-card">
-        <div className="section-head-row">
-          <div>
-            <span className="eyebrow-label">{workspaceCopy.eyebrow}</span>
-            <h2>{workspaceCopy.title}</h2>
-            <p className="section-support-copy">{workspaceCopy.description}</p>
-          </div>
-          <Link href="/registry" className="inline-link-action">
-            {locale === 'bg' ? 'Публичен регистър' : locale === 'it' ? 'Registro pubblico' : 'Public registry'}
-          </Link>
-        </div>
-
-        <div className="section-card-grid section-card-grid--three">
-          {workspaceCopy.cards.map((card) => (
-            <SectionCard key={card.title} {...card} actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'} />
-          ))}
-        </div>
-      </section>
 
       <div className="content-grid two-columns-wide-right my-dogs-command-layout">
         <div className="stack-blocks">

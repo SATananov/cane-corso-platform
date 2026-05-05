@@ -107,7 +107,8 @@
     "platform:product-release:qa": "node scripts/qa-platform-product-release-pack.mjs",
     "release:all:qa": "node scripts/qa-fullstack-all-in-one-release-lock.mjs",
     "release:fullstack-final:qa": "node scripts/qa-fullstack-all-in-one-release-lock.mjs",
-    "owner:profile-photo-journey:qa": "node scripts/qa-owner-profile-photo-simple-journey.mjs"
+    "owner:profile-photo-journey:qa": "node scripts/qa-owner-profile-photo-simple-journey.mjs",
+    "user:clarity-scroll:qa": "node scripts/qa-user-clarity-scroll-reduction.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

@@ -14,7 +14,7 @@ const copyByLocale = {
     eyebrow: 'Member Command Center',
     title: 'Owner journey, registry preparation, and public trust in one place',
     description:
-      'A dedicated member command center that shows where each Cane Corso stands before review, after publication, and across certificate, verify, gallery, and ecosystem layers.',
+      'A calm member home: see what needs action first, then open My Cane Corso when you need to edit or submit.',
     accentLabel: 'USG member command center',
     helpLabel: 'Owner guide',
     heroChips: ['Private owner workspace', 'Review status clarity', 'Public trust readiness'],
@@ -48,7 +48,7 @@ const copyByLocale = {
     eyebrow: 'Команден център на члена',
     title: 'Пътят на собственика, подготовката за регистъра и публичното доверие на едно място',
     description:
-      'Специален членски център, който показва къде се намира всеки Cane Corso преди преглед, след публикация и през слоевете сертификат, проверка, галерия и екосистема.',
+      'Спокойна членска начална зона: първо виж какво чака действие, после отвори Моите Cane Corso за редакция или изпращане.',
     accentLabel: 'USG команден център на члена',
     helpLabel: 'Наръчник за собственика',
     heroChips: ['Лична зона на собственика', 'Ясен статус на прегледа', 'Готовност за публично доверие'],
@@ -82,7 +82,7 @@ const copyByLocale = {
     eyebrow: 'Centro comando membro',
     title: 'Percorso owner, preparazione registro e fiducia pubblica in un solo posto',
     description:
-      'Un centro membro dedicato che mostra dove si trova ogni Cane Corso prima della review, dopo la pubblicazione e nei layer certificato, verify, gallery ed ecosistema.',
+      'Una home membro più calma: vedi prima cosa richiede azione, poi apri I miei Cane Corso per modificare o inviare.',
     accentLabel: 'Centro comando membro USG',
     helpLabel: 'Guida owner',
     heroChips: ['Workspace owner privato', 'Chiarezza stato review', 'Prontezza fiducia pubblica'],
@@ -125,7 +125,6 @@ export default async function MemberCommandCenterPage() {
         eyebrow={copy.eyebrow}
         title={copy.title}
         description={copy.description}
-        cards={copy.cards}
         accentLabel={copy.accentLabel}
         helpHref="/guide?topic=member-workspace#member-workspace"
         helpLabel={copy.helpLabel}
