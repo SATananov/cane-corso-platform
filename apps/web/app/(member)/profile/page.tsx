@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { SectionCard } from '@/components/section-card';
 import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
+import { OwnerProfilePhotoPanel } from '@/components/owner-profile-photo-panel';
 import { getCurrentProfileDocument } from '@/lib/member-profile.server';
 import { getCurrentMemberDogsDocument } from '@/lib/my-dogs.server';
 import { getDictionary } from '@/lib/i18n';
@@ -79,6 +80,11 @@ export default async function ProfilePage() {
     const published = dogs.filter((dog) => dog.lifecycleStatus === 'published').length;
     const inReview = dogs.filter((dog) => ['submitted', 'approved'].includes(dog.lifecycleStatus)).length;
     const drafts = dogs.filter((dog) => dog.lifecycleStatus === 'draft').length;
+    const hasOwnerPhoto = Boolean(profile.avatarUrl);
+    const hasCaneCorsoProfile = totalDogs > 0;
+    const hasCaneCorsoPhoto = dogs.some((dog) => Boolean(dog.mainImageUrl));
+    const isReviewStarted = inReview > 0 || published > 0;
+    const hasPublicPresence = published > 0;
 
     const publishedDog = dogs.find((dog) => dog.publication?.publicSlug) ?? null;
     const workingDog =
@@ -140,6 +146,40 @@ export default async function ProfilePage() {
           account: 'Account',
           accountReady: 'Active member profile',
           bio: 'Owner note',
+        },
+        photo: {
+          eyebrow: 'Owner photo',
+          title: 'Add a clear owner photo',
+          description: 'Make the owner profile feel personal and credible before adding or reviewing Cane Corso profiles.',
+          currentPhotoLabel: 'Current owner profile photo',
+          emptyPhotoLabel: 'No owner photo yet',
+          chooseLabel: 'Choose photo',
+          replaceLabel: 'Change photo',
+          removeLabel: 'Remove',
+          saveLabel: 'Save photo',
+          savingLabel: 'Saving…',
+          savedMessage: 'Owner photo saved.',
+          removedMessage: 'Owner photo removed.',
+          selectedFileLabel: 'Selected file',
+          fileHelp: 'PNG, JPG or WebP. The image is optimized before saving.',
+          fileTooLargeMessage: 'Choose an image under 5 MB.',
+          unsupportedFileMessage: 'Choose a PNG, JPG or WebP image.',
+          previewReadyMessage: 'Preview ready. Save when it looks right.',
+          noChangesMessage: 'No photo changes to save.',
+        },
+        journey: {
+          eyebrow: 'Simple owner path',
+          title: 'Everything important in one clear flow',
+          description: 'The owner area should guide every person from profile setup to public Registry presence without confusion.',
+          doneLabel: 'Done',
+          nextLabel: 'Next',
+          items: [
+            ['Owner photo', 'Make the profile human and recognizable.'],
+            ['Cane Corso profile', 'Add the first Cane Corso identity.'],
+            ['Cane Corso photo', 'Add a main image before review.'],
+            ['USG review', 'Send or keep a profile in review.'],
+            ['Public Registry', 'Approved profiles become publicly visible.'],
+          ],
         },
         presenceEyebrow: 'Public presence',
         presenceTitle: 'How your owner profile connects to the registry',
@@ -214,6 +254,40 @@ export default async function ProfilePage() {
           accountReady: 'Активен членски профил',
           bio: 'Бележка за собственика',
         },
+        photo: {
+          eyebrow: 'Снимка на собственика',
+          title: 'Добави ясна профилна снимка',
+          description: 'Така личният профил изглежда по-човешки, по-достоверен и по-лесен за ориентиране.',
+          currentPhotoLabel: 'Текуща профилна снимка на собственика',
+          emptyPhotoLabel: 'Все още няма снимка на собственика',
+          chooseLabel: 'Избери снимка',
+          replaceLabel: 'Смени снимката',
+          removeLabel: 'Премахни',
+          saveLabel: 'Запази снимката',
+          savingLabel: 'Запазване…',
+          savedMessage: 'Снимката на собственика е запазена.',
+          removedMessage: 'Снимката на собственика е премахната.',
+          selectedFileLabel: 'Избран файл',
+          fileHelp: 'PNG, JPG или WebP. Снимката се оптимизира преди запис.',
+          fileTooLargeMessage: 'Избери снимка под 5 MB.',
+          unsupportedFileMessage: 'Избери PNG, JPG или WebP изображение.',
+          previewReadyMessage: 'Прегледът е готов. Запази, когато изглежда добре.',
+          noChangesMessage: 'Няма промяна по снимката за запис.',
+        },
+        journey: {
+          eyebrow: 'Лесен път за собственика',
+          title: 'Всичко важно в един ясен flow',
+          description: 'Личната зона трябва да води човека от профил до публичен Registry без объркване.',
+          doneLabel: 'Готово',
+          nextLabel: 'Следва',
+          items: [
+            ['Снимка на собственика', 'Профилът става човешки и разпознаваем.'],
+            ['Cane Corso профил', 'Добавя се първата Cane Corso идентичност.'],
+            ['Снимка на Cane Corso', 'Добавя се основна снимка преди преглед.'],
+            ['USG преглед', 'Профилът се изпраща или вече е в преглед.'],
+            ['Публичен Registry', 'Одобрените профили стават публични.'],
+          ],
+        },
         presenceEyebrow: 'Публично присъствие',
         presenceTitle: 'Как профилът ти се свързва с регистъра',
         presenceDescription:
@@ -287,6 +361,40 @@ export default async function ProfilePage() {
           accountReady: 'Profilo membro attivo',
           bio: 'Nota del proprietario',
         },
+        photo: {
+          eyebrow: 'Foto proprietario',
+          title: 'Aggiungi una foto profilo chiara',
+          description: 'Rendi il profilo proprietario più personale, credibile e facile da riconoscere.',
+          currentPhotoLabel: 'Foto profilo proprietario attuale',
+          emptyPhotoLabel: 'Nessuna foto proprietario ancora',
+          chooseLabel: 'Scegli foto',
+          replaceLabel: 'Cambia foto',
+          removeLabel: 'Rimuovi',
+          saveLabel: 'Salva foto',
+          savingLabel: 'Salvataggio…',
+          savedMessage: 'Foto proprietario salvata.',
+          removedMessage: 'Foto proprietario rimossa.',
+          selectedFileLabel: 'File selezionato',
+          fileHelp: 'PNG, JPG o WebP. L’immagine viene ottimizzata prima del salvataggio.',
+          fileTooLargeMessage: 'Scegli un’immagine sotto 5 MB.',
+          unsupportedFileMessage: 'Scegli un’immagine PNG, JPG o WebP.',
+          previewReadyMessage: 'Anteprima pronta. Salva quando va bene.',
+          noChangesMessage: 'Nessuna modifica foto da salvare.',
+        },
+        journey: {
+          eyebrow: 'Percorso proprietario semplice',
+          title: 'Tutto ciò che conta in un flusso chiaro',
+          description: 'L’area proprietario deve guidare ogni persona dal profilo alla presenza pubblica nel Registry senza confusione.',
+          doneLabel: 'Fatto',
+          nextLabel: 'Prossimo',
+          items: [
+            ['Foto proprietario', 'Rende il profilo umano e riconoscibile.'],
+            ['Profilo Cane Corso', 'Aggiungi la prima identità Cane Corso.'],
+            ['Foto Cane Corso', 'Aggiungi l’immagine principale prima della revisione.'],
+            ['Revisione USG', 'Invia o mantieni un profilo in revisione.'],
+            ['Registry pubblico', 'I profili approvati diventano visibili.'],
+          ],
+        },
         presenceEyebrow: 'Presenza pubblica',
         presenceTitle: 'Come il tuo profilo si collega al registro',
         presenceDescription:
@@ -359,6 +467,40 @@ export default async function ProfilePage() {
         accountReady: 'Active member profile',
         bio: 'Owner note',
       },
+      photo: {
+        eyebrow: 'Owner photo',
+        title: 'Add a clear owner photo',
+        description: 'Make the owner profile feel personal and credible before adding or reviewing Cane Corso profiles.',
+        currentPhotoLabel: 'Current owner profile photo',
+        emptyPhotoLabel: 'No owner photo yet',
+        chooseLabel: 'Choose photo',
+        replaceLabel: 'Change photo',
+        removeLabel: 'Remove',
+        saveLabel: 'Save photo',
+        savingLabel: 'Saving…',
+        savedMessage: 'Owner photo saved.',
+        removedMessage: 'Owner photo removed.',
+        selectedFileLabel: 'Selected file',
+        fileHelp: 'PNG, JPG or WebP. The image is optimized before saving.',
+        fileTooLargeMessage: 'Choose an image under 5 MB.',
+        unsupportedFileMessage: 'Choose a PNG, JPG or WebP image.',
+        previewReadyMessage: 'Preview ready. Save when it looks right.',
+        noChangesMessage: 'No photo changes to save.',
+      },
+      journey: {
+        eyebrow: 'Simple owner path',
+        title: 'Everything important in one clear flow',
+        description: 'The owner area should guide every person from profile setup to public Registry presence without confusion.',
+        doneLabel: 'Done',
+        nextLabel: 'Next',
+        items: [
+          ['Owner photo', 'Make the profile human and recognizable.'],
+          ['Cane Corso profile', 'Add the first Cane Corso identity.'],
+          ['Cane Corso photo', 'Add a main image before review.'],
+          ['USG review', 'Send or keep a profile in review.'],
+          ['Public Registry', 'Approved profiles become publicly visible.'],
+        ],
+      },
       presenceEyebrow: 'Public presence',
       presenceTitle: 'How your owner profile connects to the registry',
       presenceDescription:
@@ -373,6 +515,12 @@ export default async function ProfilePage() {
       centerDescription: 'Your profile should not feel isolated. It should stay connected to your Cane Corso work, knowledge, and the wider community layer.',
       cards: [],
     };
+
+    const ownerJourneyItems = copy.journey.items.map(([title, description], index) => ({
+      title,
+      description,
+      complete: [hasOwnerPhoto, hasCaneCorsoProfile, hasCaneCorsoPhoto, isReviewStarted, hasPublicPresence][index] ?? false,
+    }));
 
     return (
       <div className="member-route-stack profile-page">
@@ -424,6 +572,31 @@ export default async function ProfilePage() {
           <OverviewStatCard label={t.pages.myDogs.labels.drafts} value={String(drafts)} tone="ivory" />
         </div>
 
+        <section className="content-card profile-page__journey-card">
+          <div className="section-head-row">
+            <div>
+              <span className="eyebrow-label">{copy.journey.eyebrow}</span>
+              <h2>{copy.journey.title}</h2>
+              <p className="section-support-copy">{copy.journey.description}</p>
+            </div>
+          </div>
+          <div className="profile-page__journey-steps">
+            {ownerJourneyItems.map((item, index) => (
+              <div
+                key={item.title}
+                className={`profile-page__journey-step${item.complete ? ' profile-page__journey-step--complete' : ''}`}
+              >
+                <span className="profile-page__journey-index">{index + 1}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.description}</p>
+                </div>
+                <em>{item.complete ? copy.journey.doneLabel : copy.journey.nextLabel}</em>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {totalDogs === 0 ? (
           <section className="empty-state-panel profile-page__empty-state">
             <div>
@@ -446,6 +619,13 @@ export default async function ProfilePage() {
                 <p className="section-support-copy">{copy.identityDescription}</p>
               </div>
             </div>
+
+            <OwnerProfilePhotoPanel
+              initialAvatarUrl={profile.avatarUrl}
+              displayName={nameLabel}
+              email={session.user.email}
+              labels={copy.photo}
+            />
 
             <dl className="profile-page__identity-grid">
               <div>

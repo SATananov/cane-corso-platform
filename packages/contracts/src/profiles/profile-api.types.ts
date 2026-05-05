@@ -6,3 +6,17 @@ export interface CurrentProfileDocument {
   session: AppSession;
   bootstrap: 'cookie' | 'dev-fallback';
 }
+
+
+export interface UpdateCurrentProfileInput {
+  displayName?: string;
+  avatarUrl?: string | null;
+  city?: string | null;
+  country?: string | null;
+  bio?: string | null;
+  locale?: string | null;
+}
+
+export interface CurrentProfileMutationDocument extends CurrentProfileDocument {
+  updated: true;
+}

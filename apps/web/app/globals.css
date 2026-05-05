@@ -18106,3 +18106,253 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Step 77 — owner profile photo + simple owner journey */
+.owner-profile-photo-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(140px, 0.42fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(212, 175, 55, 0.16), transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.018)),
+    rgba(7, 8, 10, 0.58);
+  box-shadow: inset 0 1px 0 rgba(248, 245, 239, 0.055);
+}
+
+.owner-profile-photo-panel__preview {
+  min-height: 170px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(212, 175, 55, 0.2), transparent 44%),
+    linear-gradient(180deg, rgba(248, 245, 239, 0.055), rgba(248, 245, 239, 0.012)),
+    rgba(4, 5, 7, 0.92);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.owner-profile-photo-panel__preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 170px;
+  object-fit: cover;
+}
+
+.owner-profile-photo-panel__initials {
+  display: grid;
+  min-height: 170px;
+  place-items: center;
+  color: var(--color-gold);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 760;
+  letter-spacing: -0.08em;
+}
+
+.owner-profile-photo-panel__body {
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  gap: 10px;
+}
+
+.owner-profile-photo-panel__body h3 {
+  margin: 0;
+  color: var(--ivory);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.owner-profile-photo-panel__body p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.56;
+}
+
+.owner-profile-photo-panel__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.owner-profile-photo-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.owner-profile-photo-panel__actions .button-primary,
+.owner-profile-photo-panel__actions .button-secondary,
+.owner-profile-photo-panel__actions .button-ghost {
+  min-width: 132px;
+  justify-content: center;
+  text-align: center;
+}
+
+.owner-profile-photo-panel__hint {
+  color: rgba(248, 245, 239, 0.58);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.owner-profile-photo-panel__message,
+.owner-profile-photo-panel__error {
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 720;
+}
+
+.owner-profile-photo-panel__message {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: rgba(212, 175, 55, 0.075);
+  color: rgba(248, 245, 239, 0.82);
+}
+
+.owner-profile-photo-panel__error {
+  border: 1px solid rgba(255, 116, 116, 0.24);
+  background: rgba(255, 116, 116, 0.08);
+  color: #ffd1d1;
+}
+
+.profile-page__journey-card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.profile-page__journey-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 94% 0%, rgba(212, 175, 55, 0.12), transparent 38%);
+  pointer-events: none;
+}
+
+.profile-page__journey-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-page__journey-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.profile-page__journey-step {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.032);
+}
+
+.profile-page__journey-step--complete {
+  border-color: rgba(212, 175, 55, 0.24);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(212, 175, 55, 0.14), transparent 38%),
+    rgba(212, 175, 55, 0.052);
+}
+
+.profile-page__journey-index {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 999px;
+  color: var(--color-gold);
+  font-weight: 850;
+}
+
+.profile-page__journey-step strong {
+  display: block;
+  color: var(--ivory);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.98rem;
+  line-height: 1.15;
+}
+
+.profile-page__journey-step p {
+  margin: 6px 0 0;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.profile-page__journey-step em {
+  width: fit-content;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  color: var(--color-gold);
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-theme='heritage'] .owner-profile-photo-panel,
+[data-theme='heritage'] .profile-page__journey-step,
+[data-theme='heritage'] .profile-page__journey-step--complete {
+  border-color: rgba(170, 127, 39, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 239, 198, 0.07), rgba(255, 239, 198, 0.02)),
+    rgba(9, 10, 13, 0.86);
+}
+
+[data-theme='heritage'] .owner-profile-photo-panel__body h3,
+[data-theme='heritage'] .profile-page__journey-step strong {
+  color: #f7f0e2;
+}
+
+[data-theme='heritage'] .owner-profile-photo-panel__body p,
+[data-theme='heritage'] .owner-profile-photo-panel__hint,
+[data-theme='heritage'] .profile-page__journey-step p {
+  color: rgba(247, 240, 226, 0.72);
+}
+
+@media (max-width: 1180px) {
+  .profile-page__journey-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .owner-profile-photo-panel,
+  .profile-page__journey-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .owner-profile-photo-panel__preview,
+  .owner-profile-photo-panel__preview img,
+  .owner-profile-photo-panel__initials {
+    min-height: 220px;
+  }
+
+  .owner-profile-photo-panel__actions .button-primary,
+  .owner-profile-photo-panel__actions .button-secondary,
+  .owner-profile-photo-panel__actions .button-ghost {
+    width: 100%;
+  }
+}

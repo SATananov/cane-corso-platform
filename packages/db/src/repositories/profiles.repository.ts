@@ -1,4 +1,4 @@
-import type { DevAccessIdentity, Profile } from '@cane-corso-platform/contracts';
+import type { DevAccessIdentity, Profile, UpdateCurrentProfileInput } from '@cane-corso-platform/contracts';
 import { eq } from 'drizzle-orm';
 import { getDb } from '../client';
 import { profiles, users } from '../schema';
@@ -15,6 +15,7 @@ export interface ProfilesRepository {
   getIdentityByEmail(email: string): Promise<ProfileIdentity | null>;
   getIdentityByProfileId(profileId: string): Promise<ProfileIdentity | null>;
   getById(profileId: string): Promise<Profile | null>;
+  updateProfile(profileId: string, input: UpdateCurrentProfileInput): Promise<Profile | null>;
   listAccessIdentities(limit?: number): Promise<DevAccessIdentity[]>;
 }
 
@@ -80,6 +81,49 @@ class DrizzleProfilesRepository implements ProfilesRepository {
     return rows[0] ? mapProfileRow(rows[0]) : null;
   }
 
+
+
+  async updateProfile(profileId: string, input: UpdateCurrentProfileInput): Promise<Profile | null> {
+    const db = getDb();
+    const updates: Partial<ProfileRow> = {
+      updatedAt: new Date(),
+    };
+
+    if (typeof input.displayName === 'string') {
+      const displayName = input.displayName.trim();
+      if (displayName) {
+        updates.displayName = displayName;
+      }
+    }
+
+    if ('avatarUrl' in input) {
+      updates.avatarUrl = input.avatarUrl?.trim() || null;
+    }
+
+    if ('city' in input) {
+      updates.city = input.city?.trim() || null;
+    }
+
+    if ('country' in input) {
+      updates.country = input.country?.trim() || null;
+    }
+
+    if ('bio' in input) {
+      updates.bio = input.bio?.trim() || null;
+    }
+
+    if ('locale' in input) {
+      updates.locale = input.locale?.trim() || null;
+    }
+
+    const rows = await db
+      .update(profiles)
+      .set(updates)
+      .where(eq(profiles.id, profileId))
+      .returning();
+
+    return rows[0] ? mapProfileRow(rows[0]) : null;
+  }
 
   async listAccessIdentities(limit = 12): Promise<DevAccessIdentity[]> {
     const db = getDb();

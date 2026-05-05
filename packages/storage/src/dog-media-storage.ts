@@ -4,6 +4,21 @@ import { fileURLToPath } from 'node:url';
 
 export type StoredDogMediaKind = 'image' | 'video' | 'document';
 
+
+export interface StoreProfileAvatarFileInput {
+  ownerProfileId: string;
+  filename: string;
+  mimeType: string;
+  bytes: Buffer;
+}
+
+export interface StoredProfileAvatarFile {
+  storageKey: string;
+  publicUrl: string;
+  mimeType: string;
+  sizeBytes: number;
+}
+
 export interface StoreDogMediaFileInput {
   dogId: string;
   ownerProfileId: string;
@@ -22,6 +37,7 @@ export interface StoredDogMediaFile {
 
 const DEFAULT_PUBLIC_BASE_PATH = '/uploads';
 const DOGS_DIRECTORY = 'dogs';
+const PROFILES_DIRECTORY = 'profiles';
 
 function getWorkspaceRoot(): string {
   const currentDir = path.dirname(fileURLToPath(import.meta.url));
@@ -155,6 +171,40 @@ function buildPublicUrl(relativeStoragePath: string): string {
 
 function resolveAbsolutePublicPath(relativeStoragePath: string): string {
   return path.join(getPublicRootDirectory(), relativeStoragePath);
+}
+
+
+function buildProfileAvatarRelativeStoragePath(ownerProfileId: string, filename: string, mimeType: string): string {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const randomPart = Math.random().toString(36).slice(2, 10);
+  const extension = resolveFileExtension(filename, mimeType);
+  const fileStem = buildFileStem(filename || 'owner-avatar');
+
+  return path.posix.join(
+    PROFILES_DIRECTORY,
+    sanitizePathSegment(ownerProfileId),
+    'avatar',
+    `${timestamp}-${randomPart}-${fileStem}${extension}`,
+  );
+}
+
+function buildProfileAvatarStorageKey(relativeStoragePath: string): string {
+  return `${PROFILES_DIRECTORY}/local/${toPosixPath(relativeStoragePath)}`;
+}
+
+export async function storeProfileAvatarFile(input: StoreProfileAvatarFileInput): Promise<StoredProfileAvatarFile> {
+  const relativeStoragePath = buildProfileAvatarRelativeStoragePath(input.ownerProfileId, input.filename, input.mimeType);
+  const absolutePublicPath = resolveAbsolutePublicPath(relativeStoragePath);
+
+  await fs.mkdir(path.dirname(absolutePublicPath), { recursive: true });
+  await fs.writeFile(absolutePublicPath, input.bytes);
+
+  return {
+    storageKey: buildProfileAvatarStorageKey(relativeStoragePath),
+    publicUrl: buildPublicUrl(relativeStoragePath),
+    mimeType: input.mimeType,
+    sizeBytes: input.bytes.byteLength,
+  };
 }
 
 export async function storeDogMediaFile(input: StoreDogMediaFileInput): Promise<StoredDogMediaFile> {
