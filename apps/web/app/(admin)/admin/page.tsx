@@ -15,179 +15,179 @@ type LocaleKey = 'en' | 'bg' | 'it';
 
 const copyByLocale = {
   en: {
-    eyebrow: 'Admin command center',
-    title: 'Admin control',
+    eyebrow: 'Admin work center',
+    title: 'What needs admin action?',
     description:
-      'Open the full admin home first, then choose the exact control lane: moderation, members, registry, partners, or ecosystem.',
-    actionLabel: 'Open lane',
-    chips: ['Review', 'Members', 'Registry', 'Partners', 'Ecosystem'],
+      'Start with Review. New owner Cane Corso submissions appear there only after the owner sends them for USG review. Registry is for profiles that are already public.',
+    actionLabel: 'Open',
+    chips: ['1. Review pending', '2. Check owner data', '3. Publish to Registry', '4. Certificate separately'],
     note:
-      'Delete member profiles and owner-entered Cane Corso data from Members. Use Review for moderation and approval flow. Use Registry for already public profiles and certificate control.',
+      'If a member says they uploaded data but you do not see it in Registry, open Review first. If it is not in Review, the owner most likely saved it in My Cane Corso but did not send it for review yet.',
     stats: {
-      queue: 'Waiting moderation',
-      registry: 'Registry live',
-      members: 'Active members',
+      queue: 'Need review now',
+      registry: 'Already public',
+      members: 'Owner profiles',
       partners: 'Approved partners',
       ecosystem: 'Ecosystem records',
     },
     cards: {
       review: {
-        eyebrow: 'Moderation lane',
-        title: 'Review queue',
-        description: 'Approve, return for changes, publish, and control certificate flow for Cane Corso submissions.',
-        meta: (count: number) => `${count} items in the queue`,
+        eyebrow: 'First admin action',
+        title: 'Review pending Cane Corso submissions',
+        description: 'This is where owner submissions wait for approval, correction, publish decision, or certificate decision.',
+        meta: (count: number) => `${count} waiting for admin work`,
       },
       members: {
-        eyebrow: 'Identity lane',
-        title: 'Members',
-        description: 'Open full user profiles, inspect owned Cane Corso records, and remove member profiles or specific dog data.',
-        meta: (count: number) => `${count} active identities`,
+        eyebrow: 'Find owner data',
+        title: 'Members and their Cane Corso profiles',
+        description: 'Use this when you need to inspect a user profile, see what the owner has saved, or remove owner-entered data.',
+        meta: (count: number) => `${count} active owner profiles`,
       },
       registry: {
-        eyebrow: 'Public lane',
-        title: 'Registry',
-        description: 'Control live registry entries, issue or revoke USG certificates, and inspect public trust presence.',
+        eyebrow: 'Public registry control',
+        title: 'Published Registry profiles',
+        description: 'Use this only for Cane Corso profiles that are already public in the official Registry and for USG certificate control.',
         meta: (count: number) => `${count} public profiles`,
       },
       partners: {
-        eyebrow: 'Business lane',
-        title: 'Partners',
-        description: 'Review partner applications, approve trusted businesses, and manage featured visibility in the directory.',
-        meta: (count: number) => `${count} approved partner profiles`,
+        eyebrow: 'Partner moderation',
+        title: 'Partner applications',
+        description: 'Review partner applications, approve trusted businesses, and manage featured visibility in the public directory.',
+        meta: (count: number) => `${count} approved partners`,
       },
       ecosystem: {
-        eyebrow: 'Community lane',
-        title: 'Ecosystem',
-        description: 'Moderate places, services, suggestions, and community-powered listings before they go public.',
+        eyebrow: 'Community moderation',
+        title: 'Ecosystem submissions',
+        description: 'Moderate places, services, suggestions, and community listings before they become visible publicly.',
         meta: (count: number) => `${count} ecosystem records`,
       },
     },
     guide: {
-      eyebrow: 'Admin routing',
-      title: 'Use the right lane for the right action',
+      eyebrow: 'How admin work flows',
+      title: 'Private owner data is not the public Registry',
       description:
-        'Members is the safest place for deleting a user profile or removing owner-entered Cane Corso data. Review handles moderation. Registry handles already public trust presence.',
-      members: 'Open members',
-      review: 'Open review',
-      registry: 'Open registry',
+        'Owners first create private Cane Corso profiles. They become admin work only after Send for review. They become Registry records only after admin publish. The USG certificate remains a separate admin decision.',
+      review: 'Open review first',
+      members: 'Find member data',
+      registry: 'Open public Registry control',
       help: 'Help',
     },
   },
   bg: {
-    eyebrow: 'Админ команден център',
-    title: 'Админ управление',
+    eyebrow: 'Админ работен център',
+    title: 'Какво чака админ действие?',
     description:
-      'Първо отвори пълния admin home, после избери точния слой за работа: преглед, потребители, регистър, партньори или екосистема.',
-    actionLabel: 'Отвори слоя',
-    chips: ['Преглед', 'Потребители', 'Регистър', 'Партньори', 'Екосистема'],
+      'Започни от Преглед. Новите Cane Corso кандидатури се появяват там само след като собственикът ги изпрати за USG преглед. Регистър е за вече публичните профили.',
+    actionLabel: 'Отвори',
+    chips: ['1. Преглед на чакащи', '2. Провери owner данни', '3. Публикувай в Registry', '4. Сертификат отделно'],
     note:
-      'Изтриването на user профили и попълнените от собственика Cane Corso данни става от Потребители. Преглед е за модерация и одобрение. Регистър е за вече публичните профили и сертификатния контрол.',
+      'Ако потребител казва, че е качил данни, но не ги виждаш в Registry, първо отвори Преглед. Ако ги няма там, най-вероятно са запазени в Моите Cane Corso, но още не са изпратени за преглед.',
     stats: {
-      queue: 'Чакат модерация',
-      registry: 'Публични в регистъра',
-      members: 'Активни потребители',
+      queue: 'Чакат преглед сега',
+      registry: 'Вече публични',
+      members: 'Owner профили',
       partners: 'Одобрени партньори',
       ecosystem: 'Записи в екосистемата',
     },
     cards: {
       review: {
-        eyebrow: 'Модерационен слой',
-        title: 'Преглед',
-        description: 'Одобрявай, връщай за корекции, публикувай и управлявай сертификатния поток за Cane Corso кандидатурите.',
-        meta: (count: number) => `${count} записа в опашката`,
+        eyebrow: 'Първо админ действие',
+        title: 'Преглед на чакащи Cane Corso кандидатури',
+        description: 'Тук чакат owner кандидатурите за одобрение, връщане за корекция, публикуване или решение за сертификат.',
+        meta: (count: number) => `${count} чакат админ работа`,
       },
       members: {
-        eyebrow: 'Слой за идентичности',
-        title: 'Потребители',
-        description: 'Отваряй пълните user профили, виж техните Cane Corso записи и изтривай профили или конкретни Cane Corso данни.',
-        meta: (count: number) => `${count} активни идентичности`,
+        eyebrow: 'Намери owner данни',
+        title: 'Потребители и техните Cane Corso профили',
+        description: 'Използвай това, когато трябва да отвориш user профил, да видиш какво е запазил собственикът или да премахнеш попълнени данни.',
+        meta: (count: number) => `${count} активни owner профила`,
       },
       registry: {
-        eyebrow: 'Публичен слой',
-        title: 'Регистър',
-        description: 'Управлявай живите registry записи, издавай или отнемай USG сертификати и следи публичното доверено присъствие.',
+        eyebrow: 'Публичен Registry контрол',
+        title: 'Публикувани Registry профили',
+        description: 'Използвай това само за Cane Corso профили, които вече са публични в официалния Registry, и за USG сертификатен контрол.',
         meta: (count: number) => `${count} публични профила`,
       },
       partners: {
-        eyebrow: 'Бизнес слой',
-        title: 'Партньори',
-        description: 'Преглеждай кандидатурите на партньори, одобрявай trusted business профили и управлявай featured видимостта.',
-        meta: (count: number) => `${count} одобрени партньорски профила`,
+        eyebrow: 'Партньорска модерация',
+        title: 'Партньорски кандидатури',
+        description: 'Преглеждай кандидатури, одобрявай trusted business профили и управлявай featured видимостта в публичната директория.',
+        meta: (count: number) => `${count} одобрени партньора`,
       },
       ecosystem: {
-        eyebrow: 'Общностен слой',
-        title: 'Екосистема',
+        eyebrow: 'Community модерация',
+        title: 'Екосистема предложения',
         description: 'Модерирай места, услуги, предложения и community listings преди да станат публични.',
         meta: (count: number) => `${count} записа в екосистемата`,
       },
     },
     guide: {
-      eyebrow: 'Админ ориентация',
-      title: 'Използвай правилния слой за правилното действие',
+      eyebrow: 'Как работи админ потокът',
+      title: 'Личните owner данни не са публичен Registry',
       description:
-        'Потребители е най-сигурното място за изтриване на user профил или на попълнени от собственика Cane Corso данни. Преглед е за модерация. Регистър е за вече публичното доверено присъствие.',
-      members: 'Отвори потребители',
-      review: 'Отвори преглед',
-      registry: 'Отвори регистъра',
+        'Собственикът първо създава личен Cane Corso профил. Той става админ работа само след Изпрати за преглед. Става Registry запис само след admin publish. USG сертификатът остава отделно admin решение.',
+      review: 'Отвори първо Преглед',
+      members: 'Намери потребителски данни',
+      registry: 'Отвори публичния Registry контрол',
       help: 'Помощ',
     },
   },
   it: {
-    eyebrow: 'Centro di comando admin',
-    title: 'Controllo admin',
+    eyebrow: 'Centro operativo admin',
+    title: 'Cosa richiede azione admin?',
     description:
-      'Apri prima la home admin completa e poi scegli il percorso giusto: review, membri, registro, partner o ecosystem.',
-    actionLabel: 'Apri percorso',
-    chips: ['Review', 'Membri', 'Registro', 'Partner', 'Ecosystem'],
+      'Inizia da Review. Le nuove candidature Cane Corso compaiono lì solo dopo che il proprietario le invia per la review USG. Il Registro è per i profili già pubblici.',
+    actionLabel: 'Apri',
+    chips: ['1. Review in attesa', '2. Controlla dati owner', '3. Pubblica nel Registro', '4. Certificato separato'],
     note:
-      'L’eliminazione dei profili utente e dei dati Cane Corso inseriti dal proprietario avviene da Membri. Review serve per la moderazione. Registro serve per i profili già pubblici e per il controllo dei certificati.',
+      'Se un membro dice di aver caricato dati ma non li vedi nel Registro, apri prima Review. Se non sono in Review, probabilmente sono salvati in My Cane Corso ma non ancora inviati per la review.',
     stats: {
-      queue: 'In moderazione',
-      registry: 'Pubblici nel registro',
-      members: 'Membri attivi',
+      queue: 'Da rivedere ora',
+      registry: 'Già pubblici',
+      members: 'Profili owner',
       partners: 'Partner approvati',
       ecosystem: 'Record ecosystem',
     },
     cards: {
       review: {
-        eyebrow: 'Percorso moderazione',
-        title: 'Review',
-        description: 'Approva, rimanda per modifiche, pubblica e gestisci il flusso certificato per le candidature Cane Corso.',
-        meta: (count: number) => `${count} elementi in coda`,
+        eyebrow: 'Prima azione admin',
+        title: 'Review candidature Cane Corso in attesa',
+        description: 'Qui attendono le candidature owner per approvazione, correzione, pubblicazione o decisione certificato.',
+        meta: (count: number) => `${count} richiedono lavoro admin`,
       },
       members: {
-        eyebrow: 'Percorso identità',
-        title: 'Membri',
-        description: 'Apri i profili utente completi, controlla i Cane Corso posseduti e rimuovi profili o dati specifici del Cane Corso.',
-        meta: (count: number) => `${count} identità attive`,
+        eyebrow: 'Trova dati owner',
+        title: 'Membri e profili Cane Corso',
+        description: 'Usalo per aprire un profilo utente, vedere cosa ha salvato il proprietario o rimuovere dati inseriti.',
+        meta: (count: number) => `${count} profili owner attivi`,
       },
       registry: {
-        eyebrow: 'Percorso pubblico',
-        title: 'Registro',
-        description: 'Gestisci le schede live del registro, emetti o revoca certificati USG e controlla la presenza pubblica di fiducia.',
+        eyebrow: 'Controllo Registro pubblico',
+        title: 'Profili Registro pubblicati',
+        description: 'Usalo solo per i profili Cane Corso già pubblici nel Registro ufficiale e per il controllo certificati USG.',
         meta: (count: number) => `${count} profili pubblici`,
       },
       partners: {
-        eyebrow: 'Percorso business',
-        title: 'Partner',
-        description: 'Rivedi le candidature partner, approva i profili business trusted e gestisci la visibilità featured.',
-        meta: (count: number) => `${count} profili partner approvati`,
+        eyebrow: 'Moderazione partner',
+        title: 'Candidature partner',
+        description: 'Rivedi le candidature partner, approva business trusted e gestisci la visibilità featured nella directory pubblica.',
+        meta: (count: number) => `${count} partner approvati`,
       },
       ecosystem: {
-        eyebrow: 'Percorso community',
-        title: 'Ecosystem',
+        eyebrow: 'Moderazione community',
+        title: 'Proposte ecosystem',
         description: 'Modera luoghi, servizi, suggerimenti e listing community prima che diventino pubblici.',
         meta: (count: number) => `${count} record ecosystem`,
       },
     },
     guide: {
-      eyebrow: 'Orientamento admin',
-      title: 'Usa il percorso giusto per l’azione giusta',
+      eyebrow: 'Come funziona il flusso admin',
+      title: 'I dati owner privati non sono il Registro pubblico',
       description:
-        'Membri è il posto più sicuro per eliminare un profilo utente o i dati Cane Corso inseriti dal proprietario. Review gestisce la moderazione. Registro gestisce la presenza pubblica di fiducia.',
-      members: 'Apri membri',
-      review: 'Apri review',
-      registry: 'Apri registro',
+        'Il proprietario crea prima un profilo Cane Corso privato. Diventa lavoro admin solo dopo Send for review. Diventa record del Registro solo dopo admin publish. Il certificato USG resta una decisione admin separata.',
+      review: 'Apri prima Review',
+      members: 'Trova dati membro',
+      registry: 'Apri controllo Registro pubblico',
       help: 'Aiuto',
     },
   },
@@ -224,11 +224,11 @@ export default async function AdminHomePage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      accentLabel="USG admin home"
+      accentLabel="USG admin work center"
       helpHref="/guide?topic=review#review"
       helpLabel={copy.guide.help}
       visualSrc="/brand/seal/usg-seal-wide.png"
-      visualAlt="USG admin home"
+      visualAlt="USG admin work center"
       visualFit="contain"
       heroChips={copy.chips}
       heroNote={copy.note}
@@ -287,11 +287,11 @@ export default async function AdminHomePage() {
             <p>{copy.guide.description}</p>
           </div>
           <div className="admin-guide-card__actions">
-            <Link href="/admin/members" className="button-primary small">
-              {copy.guide.members}
-            </Link>
-            <Link href="/review" className="button-secondary small">
+            <Link href="/review" className="button-primary small">
               {copy.guide.review}
+            </Link>
+            <Link href="/admin/members" className="button-secondary small">
+              {copy.guide.members}
             </Link>
             <Link href="/admin/registry" className="button-ghost small">
               {copy.guide.registry}

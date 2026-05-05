@@ -108,7 +108,8 @@
     "release:all:qa": "node scripts/qa-fullstack-all-in-one-release-lock.mjs",
     "release:fullstack-final:qa": "node scripts/qa-fullstack-all-in-one-release-lock.mjs",
     "owner:profile-photo-journey:qa": "node scripts/qa-owner-profile-photo-simple-journey.mjs",
-    "user:clarity-scroll:qa": "node scripts/qa-user-clarity-scroll-reduction.mjs"
+    "user:clarity-scroll:qa": "node scripts/qa-user-clarity-scroll-reduction.mjs",
+    "admin:real-netlify-flow:qa": "node scripts/qa-admin-real-netlify-flow.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
