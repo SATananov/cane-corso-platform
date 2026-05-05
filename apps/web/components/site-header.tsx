@@ -8,6 +8,7 @@ import { getPublicNavigation } from '@/lib/navigation';
 import type { Locale } from '@/lib/i18n';
 import { getDictionary } from '@/lib/i18n';
 import { SignOutButton } from '@/components/sign-out-button';
+import { AdminTaskMenu } from '@/components/admin-task-menu';
 import { canAccessAdminArea } from '@/lib/access-control';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
 
@@ -58,7 +59,6 @@ export async function SiteHeader() {
         { href: '/my-dogs', label: t.navigation.myDogs, tone: 'workspace' },
         { href: '/profile', label: t.navigation.profile, tone: 'account' },
         { href: '/guide', label: t.common.help, quiet: true, tone: 'support' },
-        ...(showAdminLink ? [{ href: '/admin', label: t.site.admin, quiet: true, tone: 'admin' }] : []),
       ]
     : [
         { href: '/access?intent=member', label: t.common.signIn, soft: true, tone: 'support' },
@@ -126,6 +126,7 @@ export async function SiteHeader() {
                   {link.label}
                 </HeaderNavLink>
               ))}
+              {showAdminLink ? <AdminTaskMenu locale={locale} /> : null}
             </div>
 
             <div className="site-utility__preferences site-utility__preferences--cluster site-utility__preferences--workline">

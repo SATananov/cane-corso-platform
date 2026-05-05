@@ -18446,3 +18446,283 @@ body {
   color: var(--text);
 }
 /* Step 78 — User clarity and scroll reduction polish END */
+
+/* === Step 80 — Admin task navigation and approval clarity START === */
+.site-utility__menus.site-utility__menus--workline {
+  overflow: visible;
+}
+
+.admin-task-menu {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 40;
+}
+
+.admin-task-menu__trigger {
+  list-style: none;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.26);
+  background: linear-gradient(180deg, rgba(245, 207, 89, 0.92), rgba(212, 175, 55, 0.86));
+  color: #17120b;
+  font-size: 0.86rem;
+  font-weight: 900;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 12px 26px rgba(212, 175, 55, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.admin-task-menu__trigger::-webkit-details-marker {
+  display: none;
+}
+
+.admin-task-menu__trigger:hover,
+.admin-task-menu__trigger:focus-visible,
+.admin-task-menu__trigger.is-active {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 16px 32px rgba(212, 175, 55, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.admin-task-menu__chevron {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.admin-task-menu[open] .admin-task-menu__chevron {
+  transform: rotate(180deg);
+}
+
+.admin-task-menu__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: min(420px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(212, 175, 55, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(25, 24, 23, 0.98), rgba(10, 10, 11, 0.98));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  z-index: 80;
+}
+
+.admin-task-menu__head {
+  display: grid;
+  gap: 5px;
+  padding: 4px 4px 12px;
+}
+
+.admin-task-menu__head strong {
+  color: var(--ivory);
+  font-size: 1rem;
+}
+
+.admin-task-menu__head p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.admin-task-menu__list {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-task-menu__item,
+.admin-task-menu__center {
+  display: grid;
+  gap: 3px;
+  padding: 11px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--ivory);
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.admin-task-menu__item span,
+.admin-task-menu__center {
+  font-weight: 900;
+}
+
+.admin-task-menu__item small {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.38;
+}
+
+.admin-task-menu__item:hover,
+.admin-task-menu__item:focus-visible,
+.admin-task-menu__center:hover,
+.admin-task-menu__center:focus-visible,
+.admin-task-menu__item.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.28);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.admin-task-menu__item--primary {
+  border-color: rgba(212, 175, 55, 0.36);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.16), rgba(212, 175, 55, 0.07));
+}
+
+.admin-task-menu__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  min-height: 40px;
+  color: var(--gold-bright);
+}
+
+.admin-workflow-strip {
+  width: min(1540px, calc(100vw - 40px));
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 24px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background:
+    radial-gradient(circle at left, rgba(212, 175, 55, 0.14), transparent 32%),
+    rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.admin-workflow-strip__copy {
+  display: grid;
+  gap: 3px;
+}
+
+.admin-workflow-strip__copy span {
+  color: var(--gold-bright);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.admin-workflow-strip__copy strong {
+  color: var(--ivory);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.admin-workflow-strip__links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.admin-workflow-strip__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.admin-workflow-strip__link:hover,
+.admin-workflow-strip__link:focus-visible {
+  color: var(--ivory);
+  border-color: rgba(212, 175, 55, 0.28);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.admin-workflow-strip__link--primary {
+  color: #1b1409;
+  border-color: rgba(212, 175, 55, 0.42);
+  background: linear-gradient(180deg, rgba(245, 207, 89, 0.96), rgba(212, 175, 55, 0.88));
+}
+
+.admin-workflow-strip__link--primary:hover,
+.admin-workflow-strip__link--primary:focus-visible {
+  color: #1b1409;
+  background: linear-gradient(180deg, rgba(255, 221, 111, 0.98), rgba(212, 175, 55, 0.92));
+}
+
+.admin-inline-guidance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 18px;
+  padding: 13px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.04));
+}
+
+.admin-inline-guidance p {
+  margin: 0;
+  color: var(--text-soft);
+  font-weight: 720;
+  line-height: 1.45;
+}
+
+@media (max-width: 1240px) {
+  .site-utility__menus.site-utility__menus--workline {
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .admin-task-menu__panel {
+    left: auto;
+    right: 0;
+  }
+
+  .admin-workflow-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-workflow-strip__links {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 740px) {
+  .admin-workflow-strip {
+    width: calc(100vw - 22px);
+    margin-top: 12px;
+    border-radius: 18px;
+  }
+
+  .admin-workflow-strip__links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 2px;
+  }
+
+  .admin-inline-guidance {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-task-menu__panel {
+    left: 0;
+    right: auto;
+  }
+}
+/* === Step 80 — Admin task navigation and approval clarity END === */

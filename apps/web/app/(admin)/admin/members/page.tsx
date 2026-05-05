@@ -39,6 +39,8 @@ const copyByLocale = {
     },
     labels: {
       list: 'Member profiles with registry presence',
+      reviewHint: 'This page shows owner data. To approve or publish a Cane Corso profile, open Review first.',
+      openReview: 'Open Review',
       email: 'Email',
       role: 'Role',
       access: 'Access',
@@ -107,6 +109,8 @@ const copyByLocale = {
     },
     labels: {
       list: 'Потребители с реално registry присъствие',
+      reviewHint: 'Тази страница показва owner данни. За одобрение или публикуване на Cane Corso профил първо отвори Преглед.',
+      openReview: 'Отвори Преглед',
       email: 'Имейл',
       role: 'Роля',
       access: 'Достъп',
@@ -175,6 +179,8 @@ const copyByLocale = {
     },
     labels: {
       list: 'Membri con presenza reale nel registro',
+      reviewHint: 'Questa pagina mostra i dati owner. Per approvare o pubblicare un profilo Cane Corso, apri prima Review.',
+      openReview: 'Apri Review',
       email: 'Email',
       role: 'Ruolo',
       access: 'Accesso',
@@ -371,6 +377,13 @@ export default async function AdminMembersPage() {
               <span className="eyebrow-label">USG member control</span>
               <h2>{copy.labels.list}</h2>
             </div>
+          </div>
+
+          <div className="admin-inline-guidance admin-inline-guidance--review">
+            <p>{copy.labels.reviewHint}</p>
+            <Link href="/review" className="button-primary small">
+              {copy.labels.openReview}
+            </Link>
           </div>
 
           {identities.length === 0 ? (
