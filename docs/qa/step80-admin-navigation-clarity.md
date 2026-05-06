@@ -39,3 +39,10 @@ pnpm deploy:netlify:qa
 pnpm workspace:syntax
 pnpm typecheck
 ```
+
+
+## Post-deploy UX hotfix notes
+
+- Admin task menu is controlled by state and closes after selecting a task, on route change, outside click, or Escape.
+- Members admin view includes both Review and Registry control CTAs so admins can see whether they need approval workflow or already-public Registry control.
+- Published Cane Corso entries remain managed through Registry control; not-public owner uploads route admins back to Review.

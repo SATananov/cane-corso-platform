@@ -39,6 +39,10 @@ assert(adminTaskMenu.includes("href: '/admin/ecosystem'"), 'Admin dropdown links
 assert(adminTaskMenu.includes("href: '/admin/knowledge'"), 'Admin dropdown links to Knowledge');
 assert(adminTaskMenu.includes('Работи по задача'), 'Admin dropdown uses task-first BG guidance');
 assert(adminTaskMenu.includes('role="menu"'), 'Admin dropdown exposes menu semantics');
+assert(adminTaskMenu.includes('useState(false)'), 'Admin dropdown uses controlled open state');
+assert(adminTaskMenu.includes('setIsOpen(false)'), 'Admin dropdown can close after selection');
+assert(adminTaskMenu.includes('onClick={closeMenu}'), 'Admin dropdown items close the menu on click');
+assert(adminTaskMenu.includes('aria-expanded={isOpen}'), 'Admin dropdown exposes expanded state');
 
 assert(adminLayout.includes('admin-workflow-strip'), 'Admin layout adds visible workflow strip to every admin page');
 assert(adminLayout.includes("href: '/review', label: copy.review, primary: true"), 'Admin workflow strip makes Review the first/primary link');
@@ -47,12 +51,16 @@ assert(adminLayout.includes('Одобряването на Cane Corso започ
 assert(adminMembersPage.includes('reviewHint'), 'Members page has explicit review guidance copy');
 assert(adminMembersPage.includes('Тази страница показва owner данни'), 'Members page says it shows owner data, not approval');
 assert(adminMembersPage.includes('<Link href="/review" className="button-primary small">'), 'Members page provides direct Review CTA');
+assert(adminMembersPage.includes('openRegistryControl'), 'Members page provides Registry control copy');
+assert(adminMembersPage.includes('<Link href="/admin/registry" className="button-secondary small">'), 'Members page provides direct Registry control CTA');
 assert(adminMembersPage.includes('admin-inline-guidance admin-inline-guidance--review'), 'Members page renders visible inline guidance');
 
 assert(globalsCss.includes('Step 80 — Admin task navigation and approval clarity START'), 'Step 80 CSS block exists');
 assert(globalsCss.includes('.admin-task-menu__panel'), 'CSS styles admin dropdown panel');
 assert(globalsCss.includes('.admin-workflow-strip'), 'CSS styles admin workflow strip');
 assert(globalsCss.includes('.admin-inline-guidance'), 'CSS styles inline member guidance');
+assert(globalsCss.includes('.admin-inline-guidance__actions'), 'CSS styles inline member action group');
+assert(globalsCss.includes('.admin-task-menu__panel[hidden]'), 'CSS hides the controlled admin dropdown panel');
 
 assert(packageJson.scripts['admin:navigation-clarity:qa'] === 'node scripts/qa-admin-navigation-clarity.mjs', 'Package script admin:navigation-clarity:qa exists');
 assert(packageJson.scripts['admin:real-netlify-flow:qa'] === 'node scripts/qa-admin-real-netlify-flow.mjs', 'Step 79 QA remains wired');

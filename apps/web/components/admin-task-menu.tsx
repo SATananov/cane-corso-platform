@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { Locale } from '@/lib/i18n';
@@ -67,15 +68,60 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const isAdminActive = pathname === '/admin' || pathname.startsWith('/admin/') || pathname.startsWith('/review');
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const panelId = 'admin-task-menu-panel';
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function handlePointerDown(event: MouseEvent | TouchEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <details className="admin-task-menu">
-      <summary className={`admin-task-menu__trigger${isAdminActive ? ' is-active' : ''}`} aria-label={copy.title}>
+    <div className={`admin-task-menu${isOpen ? ' is-open' : ''}`} ref={menuRef}>
+      <button
+        type="button"
+        className={`admin-task-menu__trigger${isAdminActive ? ' is-active' : ''}`}
+        aria-label={copy.title}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
+        onClick={() => setIsOpen((current) => !current)}
+      >
         <span>{copy.label}</span>
         <span className="admin-task-menu__chevron" aria-hidden="true">▾</span>
-      </summary>
+      </button>
 
-      <div className="admin-task-menu__panel" role="menu" aria-label={copy.title}>
+      <div className="admin-task-menu__panel" id={panelId} role="menu" aria-label={copy.title} hidden={!isOpen}>
         <div className="admin-task-menu__head">
           <span className="eyebrow-label">{copy.eyebrow}</span>
           <strong>{copy.title}</strong>
@@ -92,6 +138,7 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
                 key={item.href}
                 role="menuitem"
                 aria-current={active ? 'page' : undefined}
+                onClick={closeMenu}
               >
                 <span>{item.label}</span>
                 <small>{item.description}</small>
@@ -100,10 +147,10 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
           })}
         </div>
 
-        <Link href="/admin" className="admin-task-menu__center" role="menuitem">
+        <Link href="/admin" className="admin-task-menu__center" role="menuitem" onClick={closeMenu}>
           {copy.center}
         </Link>
       </div>
-    </details>
+    </div>
   );
 }

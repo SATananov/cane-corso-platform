@@ -41,6 +41,7 @@ const copyByLocale = {
       list: 'Member profiles with registry presence',
       reviewHint: 'This page shows owner data. To approve or publish a Cane Corso profile, open Review first.',
       openReview: 'Open Review',
+      openRegistryControl: 'Open Registry control',
       email: 'Email',
       role: 'Role',
       access: 'Access',
@@ -111,6 +112,7 @@ const copyByLocale = {
       list: 'Потребители с реално registry присъствие',
       reviewHint: 'Тази страница показва owner данни. За одобрение или публикуване на Cane Corso профил първо отвори Преглед.',
       openReview: 'Отвори Преглед',
+      openRegistryControl: 'Отвори Registry контрол',
       email: 'Имейл',
       role: 'Роля',
       access: 'Достъп',
@@ -181,6 +183,7 @@ const copyByLocale = {
       list: 'Membri con presenza reale nel registro',
       reviewHint: 'Questa pagina mostra i dati owner. Per approvare o pubblicare un profilo Cane Corso, apri prima Review.',
       openReview: 'Apri Review',
+      openRegistryControl: 'Apri controllo Registro',
       email: 'Email',
       role: 'Ruolo',
       access: 'Accesso',
@@ -381,9 +384,14 @@ export default async function AdminMembersPage() {
 
           <div className="admin-inline-guidance admin-inline-guidance--review">
             <p>{copy.labels.reviewHint}</p>
-            <Link href="/review" className="button-primary small">
-              {copy.labels.openReview}
-            </Link>
+            <div className="admin-inline-guidance__actions">
+              <Link href="/review" className="button-primary small">
+                {copy.labels.openReview}
+              </Link>
+              <Link href="/admin/registry" className="button-secondary small">
+                {copy.labels.openRegistryControl}
+              </Link>
+            </div>
           </div>
 
           {identities.length === 0 ? (
@@ -569,10 +577,19 @@ export default async function AdminMembersPage() {
 
                                   <div className="admin-member-dog-card__actions">
                                     {dog.publicSlug ? (
-                                      <Link href={`/registry/${dog.publicSlug}`} className="button-secondary small">
-                                        {copy.labels.openRegistry}
+                                      <>
+                                        <Link href={`/registry/${dog.publicSlug}`} className="button-secondary small">
+                                          {copy.labels.openRegistry}
+                                        </Link>
+                                        <Link href="/admin/registry" className="button-secondary small">
+                                          {copy.labels.openRegistryControl}
+                                        </Link>
+                                      </>
+                                    ) : (
+                                      <Link href="/review" className="button-primary small">
+                                        {copy.labels.openReview}
                                       </Link>
-                                    ) : null}
+                                    )}
                                     {dog.verificationSlug || dog.certificateCode ? (
                                       <Link href={`/verify/${dog.certificateCode ?? dog.verificationSlug}`} className="button-ghost small">
                                         {copy.labels.verify}

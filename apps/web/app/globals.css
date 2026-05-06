@@ -18495,8 +18495,13 @@ body {
   line-height: 1;
 }
 
-.admin-task-menu[open] .admin-task-menu__chevron {
+.admin-task-menu.is-open .admin-task-menu__chevron {
   transform: rotate(180deg);
+}
+
+
+.admin-task-menu__panel[hidden] {
+  display: none;
 }
 
 .admin-task-menu__panel {
@@ -18679,6 +18684,14 @@ body {
   color: var(--text-soft);
   font-weight: 720;
   line-height: 1.45;
+}
+
+.admin-inline-guidance__actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1240px) {
