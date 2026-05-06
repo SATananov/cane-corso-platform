@@ -92,6 +92,20 @@ const copyByLocale = {
       publishOfficial: 'Publishes as official listing',
       publishCommunity: 'Publishes as community listing',
       publishSuggestion: 'Stays internal until admin converts it',
+      quickEyebrow: 'Cane Corso-friendly places',
+      quickTitle: 'Suggest a place where owners can safely go with Cane Corso',
+      quickDescription:
+        'Start with parks, walking zones, training fields, shops, cafés, hotels, clinics, or services that truly accept large breeds. Public visibility comes only after admin review.',
+      quickPrimary: 'Use this form for a place',
+      quickSecondary: 'Admin checks every public entry first',
+      quickRulesTitle: 'Useful details to include',
+      quickRules: [
+        'Is it suitable for large breeds?',
+        'Leash or muzzle rules',
+        'Indoor/outdoor access',
+        'Water, shade, space, parking',
+      ],
+      placeDefaults: 'Default path: community listing • walk/play place',
     },
   },
   bg: {
@@ -166,6 +180,20 @@ const copyByLocale = {
       publishOfficial: 'Публикува се като официален запис',
       publishCommunity: 'Публикува се като общностен запис',
       publishSuggestion: 'Остава вътрешно, докато админ не го превърне в реален запис',
+      quickEyebrow: 'Cane Corso-friendly места',
+      quickTitle: 'Предложи място, където може спокойно да се отиде с Cane Corso',
+      quickDescription:
+        'Започни с парк, зона за разходка, тренировъчно поле, магазин, заведение, хотел, клиника или услуга, която реално приема едри породи. Публично става само след админ преглед.',
+      quickPrimary: 'Използвай формата за място',
+      quickSecondary: 'Админ проверява всеки публичен запис',
+      quickRulesTitle: 'Полезни детайли за попълване',
+      quickRules: [
+        'Подходящо ли е за едри породи?',
+        'Правила за повод или намордник',
+        'Достъп вътре или само отвън',
+        'Вода, сянка, пространство, паркинг',
+      ],
+      placeDefaults: 'Стартова настройка: общностен запис • място за разходка/игра',
     },
   },
   it: {
@@ -240,6 +268,20 @@ const copyByLocale = {
       publishOfficial: 'Pubblica come scheda ufficiale',
       publishCommunity: 'Pubblica come scheda community',
       publishSuggestion: 'Resta interno finché l’admin non lo converte',
+      quickEyebrow: 'Luoghi Cane Corso-friendly',
+      quickTitle: 'Suggerisci un luogo dove andare serenamente con un Cane Corso',
+      quickDescription:
+        'Inizia da parchi, aree passeggio, campi training, negozi, locali, hotel, cliniche o servizi che accettano davvero razze grandi. La visibilità pubblica arriva solo dopo revisione admin.',
+      quickPrimary: 'Usa il modulo per un luogo',
+      quickSecondary: 'L’admin controlla ogni voce pubblica',
+      quickRulesTitle: 'Dettagli utili da inserire',
+      quickRules: [
+        'È adatto a razze grandi?',
+        'Regole guinzaglio o museruola',
+        'Accesso interno o solo esterno',
+        'Acqua, ombra, spazio, parcheggio',
+      ],
+      placeDefaults: 'Percorso iniziale: scheda community • luogo passeggio/gioco',
     },
   },
 } as const;
@@ -305,6 +347,31 @@ function getOwnerActionHint(copy: EcosystemOwnerCopy, status: EcosystemListingSt
   return copy.labels.publishedActionHint;
 }
 
+
+function FriendlyPlaceQuickStart({ copy }: { copy: EcosystemOwnerCopy }) {
+  return (
+    <section className="content-card friendly-place-start" id="friendly-place-form">
+      <div className="friendly-place-start__copy">
+        <span className="eyebrow-label">{copy.labels.quickEyebrow}</span>
+        <h2>{copy.labels.quickTitle}</h2>
+        <p>{copy.labels.quickDescription}</p>
+        <div className="friendly-place-start__badges">
+          <span>{copy.labels.placeDefaults}</span>
+          <span>{copy.labels.quickSecondary}</span>
+        </div>
+      </div>
+      <div className="friendly-place-start__checklist" aria-label={copy.labels.quickRulesTitle}>
+        <strong>{copy.labels.quickRulesTitle}</strong>
+        <ul>
+          {copy.labels.quickRules.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 interface EcosystemListingFormProps {
   copy: EcosystemOwnerCopy;
   locale: Locale;
@@ -330,7 +397,7 @@ function EcosystemListingForm({ copy, locale, item, mode }: EcosystemListingForm
             <LuxurySelect
               id={isEdit ? `submissionChannel-${item?.id}` : 'submissionChannel'}
               name="submissionChannel"
-              defaultValue={item?.submissionChannel ?? 'official_listing'}
+              defaultValue={item?.submissionChannel ?? 'community_listing'}
               options={submissionLaneOptions}
             />
           </div>
@@ -340,7 +407,7 @@ function EcosystemListingForm({ copy, locale, item, mode }: EcosystemListingForm
             <LuxurySelect
               id={isEdit ? `listingType-${item?.id}` : 'listingType'}
               name="listingType"
-              defaultValue={item?.listingType ?? 'partner_service'}
+              defaultValue={item?.listingType ?? 'walk_play_place'}
               options={options}
             />
           </div>
@@ -543,14 +610,9 @@ export function EcosystemOwnerWorkspace({ document, locale }: EcosystemOwnerWork
         <OverviewStatCard label={copy.stats.published} value={String(document.summary.published)} tone="gold" />
       </div>
 
-      <EcosystemSubmissionMatrix locale={locale} />
+      <FriendlyPlaceQuickStart copy={copy} />
 
-      <section className="ecosystem-owner-guardrail-card" aria-label={copy.labels.workspaceNoticeTitle}>
-        <span className="eyebrow-label">{copy.labels.workspaceNoticeTitle}</span>
-        <p>{copy.labels.workspaceNoticeBody}</p>
-      </section>
-
-      <section className="form-section-card">
+      <section className="form-section-card form-section-card--friendly-place-first">
         <div className="form-section-head">
           <span className="eyebrow-label">{copy.labels.formEyebrow}</span>
           <h2>{copy.labels.formTitle}</h2>
@@ -558,6 +620,13 @@ export function EcosystemOwnerWorkspace({ document, locale }: EcosystemOwnerWork
         </div>
 
         <EcosystemListingForm copy={copy} locale={locale} mode="create" />
+      </section>
+
+      <EcosystemSubmissionMatrix locale={locale} />
+
+      <section className="ecosystem-owner-guardrail-card" aria-label={copy.labels.workspaceNoticeTitle}>
+        <span className="eyebrow-label">{copy.labels.workspaceNoticeTitle}</span>
+        <p>{copy.labels.workspaceNoticeBody}</p>
       </section>
 
       <section className="content-card ecosystem-owner-card">

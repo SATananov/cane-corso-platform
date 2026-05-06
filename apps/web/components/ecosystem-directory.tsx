@@ -39,6 +39,12 @@ const copyByLocale = {
       joinHeadline: 'One publication engine for official and community visibility',
       joinCopy:
         'Official listings represent real operators. Community listings represent useful places discovered by members. Suggestions stay internal until they are converted.',
+      placesEyebrow: 'Cane Corso-friendly places',
+      placesTitle: 'Approved places for daily Cane Corso life',
+      placesIntro:
+        'Parks, walk zones, training fields, shops, cafés, hotels, clinics, and services that have passed review before public display.',
+      placesEmpty: 'No approved places yet. Members can submit places from the owner workspace.',
+      suitability: 'Large-breed suitability',
     },
   },
   bg: {
@@ -71,6 +77,12 @@ const copyByLocale = {
       joinHeadline: 'Официални и общностни записи в един ясен поток',
       joinCopy:
         'Официалните записи са реални услуги и партньори. Общностните записи са полезни места и предложения от членовете. Нищо не става публично без преглед и одобрение.',
+      placesEyebrow: 'Cane Corso-friendly места',
+      placesTitle: 'Одобрени места за ежедневието с Cane Corso',
+      placesIntro:
+        'Паркове, зони за разходка, тренировъчни полета, магазини, заведения, хотели, клиники и услуги, които са прегледани преди публично показване.',
+      placesEmpty: 'Все още няма одобрени места. Членовете могат да изпращат места от личната си зона.',
+      suitability: 'Подходящост за едри породи',
     },
   },
   it: {
@@ -103,6 +115,12 @@ const copyByLocale = {
       joinHeadline: 'Un solo motore di pubblicazione per visibilità official e community',
       joinCopy:
         'Le schede official rappresentano operatori reali. Le schede community rappresentano luoghi utili scoperti dai membri. I suggerimenti restano interni finché non vengono convertiti.',
+      placesEyebrow: 'Luoghi Cane Corso-friendly',
+      placesTitle: 'Luoghi approvati per la vita quotidiana con Cane Corso',
+      placesIntro:
+        'Parchi, aree passeggio, campi training, negozi, locali, hotel, cliniche e servizi valutati prima della visibilità pubblica.',
+      placesEmpty: 'Non ci sono ancora luoghi approvati. I membri possono inviarli dall’area proprietario.',
+      suitability: 'Idoneità per razze grandi',
     },
   },
 } as const;
@@ -117,6 +135,12 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     photographer: 'Photographer',
     shop: 'Shop',
     breeder: 'Breeder',
+    park: 'Park / walking area',
+    training_field: 'Training field',
+    pet_friendly_shop: 'Pet-friendly shop',
+    pet_friendly_cafe: 'Pet-friendly café / restaurant',
+    dog_friendly_hotel: 'Dog-friendly hotel',
+    large_breed_place: 'Large-breed friendly place',
     other: 'Other',
   },
   bg: {
@@ -128,6 +152,12 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     photographer: 'Фотограф',
     shop: 'Магазин',
     breeder: 'Развъдник',
+    park: 'Парк / зона за разходка',
+    training_field: 'Тренировъчно поле',
+    pet_friendly_shop: 'Магазин, подходящ за кучета',
+    pet_friendly_cafe: 'Заведение, подходящо за кучета',
+    dog_friendly_hotel: 'Хотел, подходящ за кучета',
+    large_breed_place: 'Място, подходящо за едри породи',
     other: 'Друго',
   },
   it: {
@@ -139,6 +169,12 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     photographer: 'Fotografo',
     shop: 'Negozio',
     breeder: 'Allevatore',
+    park: 'Parco / area passeggio',
+    training_field: 'Campo training',
+    pet_friendly_shop: 'Negozio pet-friendly',
+    pet_friendly_cafe: 'Locale pet-friendly',
+    dog_friendly_hotel: 'Hotel dog-friendly',
+    large_breed_place: 'Luogo adatto a razze grandi',
     other: 'Altro',
   },
 };
@@ -162,6 +198,11 @@ const standardTextTranslations: Record<Locale, Record<string, string>> = {
       'Visibile dopo approvazione amministratore. Le valutazioni community restano separate dall’approvazione ufficiale.',
   },
 };
+
+
+function isFriendlyPlace(item: EcosystemListing) {
+  return item.listingType === 'walk_play_place' || item.listingType === 'pet_friendly_place';
+}
 
 function formatCategory(value: string | null | undefined, locale: Locale, fallback: string) {
   if (!value) {
@@ -200,6 +241,7 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const typeLabels = getEcosystemListingTypeLabels(locale);
   const channelLabels = getEcosystemSubmissionChannelLabels(locale);
+  const friendlyPlaces = document.items.filter(isFriendlyPlace);
 
   return (
     <div className="member-route-stack">
@@ -210,6 +252,43 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
         <OverviewStatCard label={copy.stats.countries} value={String(document.summary.countries)} tone="ivory" />
         <OverviewStatCard label={copy.stats.featured} value={String(document.summary.featured)} tone="gold" />
       </div>
+
+      <section className="content-card friendly-places-public-card">
+        <div className="section-head-row">
+          <div>
+            <span className="eyebrow-label">{copy.labels.placesEyebrow}</span>
+            <h2>{copy.labels.placesTitle}</h2>
+            <p className="section-card__description">{copy.labels.placesIntro}</p>
+          </div>
+          <Link href={applyHref} className="button-secondary small">
+            {copy.labels.apply}
+          </Link>
+        </div>
+
+        {friendlyPlaces.length === 0 ? (
+          <div className="empty-state-panel empty-state-panel--compact">
+            <p className="empty-state-panel__description">{copy.labels.placesEmpty}</p>
+          </div>
+        ) : (
+          <div className="friendly-places-grid">
+            {friendlyPlaces.slice(0, 6).map((item) => (
+              <article className="friendly-place-card" key={item.id}>
+                <span className="eyebrow-label">{typeLabels[item.listingType]}</span>
+                <h3>{item.title}</h3>
+                <p>{localizeStandardText(item.shortDescription || item.longDescription, locale, copy.labels.pending)}</p>
+                <dl>
+                  <div><dt>{copy.labels.location}</dt><dd>{formatLocation(item, copy.labels.pending)}</dd></div>
+                  <div><dt>{copy.labels.category}</dt><dd>{formatCategory(item.category, locale, copy.labels.pending)}</dd></div>
+                  <div><dt>{copy.labels.suitability}</dt><dd>{localizeStandardText(item.rulesNote || item.coverageNote, locale, copy.labels.pending)}</dd></div>
+                </dl>
+                <Link className="button-primary small" href={getCommunityProfileHref(item.slug)}>
+                  {copy.labels.openDetail}
+                </Link>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
       <section className="content-card ecosystem-directory-card">
         <div className="section-head-row">
