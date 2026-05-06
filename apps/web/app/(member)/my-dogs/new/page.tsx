@@ -16,7 +16,7 @@ export default async function NewDogPage() {
 
     return (
       <div className="member-route-stack">
-        <section className="route-hero-card route-hero-card--member">
+        <section className="route-hero-card route-hero-card--member route-hero-card--form-first">
           <div>
             <span className="eyebrow-label">{t.pages.newDog.eyebrow}</span>
             <h1 className="route-title">{t.pages.newDog.title}</h1>

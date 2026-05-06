@@ -112,7 +112,8 @@
     "admin:real-netlify-flow:qa": "node scripts/qa-admin-real-netlify-flow.mjs",
     "admin:navigation-clarity:qa": "node scripts/qa-admin-navigation-clarity.mjs",
     "owner:cane-first-ux:qa": "node scripts/qa-owner-cane-first-ux.mjs",
-    "db:target:qa": "node scripts/qa-runtime-db-target-guardrail.mjs"
+    "db:target:qa": "node scripts/qa-runtime-db-target-guardrail.mjs",
+    "owner:form-first-ux:qa": "node scripts/qa-owner-form-first-ux.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

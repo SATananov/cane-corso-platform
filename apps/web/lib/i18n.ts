@@ -408,41 +408,41 @@ export const dictionary: Record<Locale, any> = {
         eyebrow: 'Member area',
         title: 'Add a Cane Corso profile',
         description:
-          'Start with the essential profile data. This step now writes through real server actions directly into the database-backed repository.',
-        pillA: 'Draft setup',
-        pillB: 'Server action active',
-        pillC: 'PostgreSQL wired',
+          'Start directly with the form: add the main details, upload photos, add pedigree information if available, then save or send for review.',
+        pillA: 'Main details',
+        pillB: 'Photos',
+        pillC: 'Pedigree',
       },
       editDog: {
         eyebrow: 'Member area',
         title: 'Edit Cane Corso profile',
         description:
-          'Refine registry data, profile presentation, and publication readiness with real PostgreSQL persistence now wired through the repository layer.',
-        pillA: 'Profile editing',
-        pillB: 'PostgreSQL persistence',
-        pillC: 'Review-ready',
+          'Update the form, check the preview, and send the profile for review when the important details are ready.',
+        pillA: 'Edit form',
+        pillB: 'Photos',
+        pillC: 'Review',
       },
     },
     form: {
-      validationEyebrow: 'Проверка на профила',
-      validationClean: 'Profile foundation looks clean',
+      validationEyebrow: 'Profile check',
+      validationClean: 'The profile looks ready for the next step',
       validationDetected: 'field issues detected',
       validationText:
-        'This step now mirrors future server/API flow with async actions, contract payloads, and repository-backed persistence.',
+        'Check the required fields before saving a draft or sending the profile for review.',
       sections: {
         foundationTitleCreate: 'Profile foundation',
         foundationTitleEdit: 'Profile data',
         foundationDescription:
-          'This form now uses real local state, validation feedback, server actions, and preview synchronization.',
+          'Fill the most important details first. Name, identity, photos, and basic information create the foundation of the profile.',
         registryTitle: 'Registry information',
         registryDescription:
-          'These fields define verification, pedigree quality, and registry readiness.',
+          'These fields help the administrator understand the registry class, documents, and profile quality.',
         presentationTitle: 'Presentation',
         presentationDescription:
-          'Owner-facing profile content for the registry card and future public detail page.',
+          'The short and long descriptions shape how the Cane Corso is presented later.',
         locationTitle: 'Location',
         locationDescription:
-          'Used later for partner discovery, region filters, and community proximity features.',
+          'Location keeps the profile clear and useful for future filters and public context.',
       },
       fields: {
         name: 'Dog name',
@@ -526,7 +526,7 @@ export const dictionary: Record<Locale, any> = {
         draftFlow: 'Draft creation flow',
         editingProfile: 'Editing profile',
         saveDraftDefault:
-          'Save a draft or move this profile into submitted state through the shared server action.',
+          'Save a draft or send the profile for review when the main details are ready.',
       },
       preview: {
         livePreview: 'Live preview',
@@ -546,8 +546,8 @@ export const dictionary: Record<Locale, any> = {
         country: 'Country',
         registryStory: 'Registry story',
         longFallback: 'Long-form profile story and owner presentation will appear here.',
-        persistenceTitle: 'Current persistence layer',
-        persistenceFallback: 'This form now calls a real server action backed by the My Dogs repository layer.',
+        persistenceTitle: 'Current state',
+        persistenceFallback: 'After saving, the latest profile status appears here.',
       },
       status: {
         draft: 'Draft',
@@ -559,12 +559,12 @@ export const dictionary: Record<Locale, any> = {
       },
       workspace: {
         slugGenerated: 'Slug was generated from the current profile name.',
-        validationPassed: 'Profile foundation passed validation and is ready for the database-backed server action.',
+        validationPassed: 'The profile looks ready to save or send for review.',
         validationIssues: 'Validation found issues. Review the highlighted fields before continuing.',
-        submissionBlocked: 'Submission blocked until all validation issues are resolved.',
+        submissionBlocked: 'Sending is blocked until all highlighted issues are fixed.',
         submitMessageSuffix: 'core profile fields are currently filled.',
-        serverActionFailedPrefix: 'Server action failed:',
-        persistedTo: 'Persisted to PostgreSQL on',
+        serverActionFailedPrefix: 'Saving failed:',
+        persistedTo: 'Last saved on',
       },
       validation: {
         nameRequired: 'Dog name is required.',
@@ -983,19 +983,19 @@ export const dictionary: Record<Locale, any> = {
         eyebrow: 'Членска зона',
         title: 'Добави Cane Corso профил',
         description:
-          'Започни с основните данни за профила, подреди представянето и не пропускай родителите и родословието. Всичко нужно за силен Cane Corso профил е събрано в една ясна членска форма.',
-        pillA: 'Нова чернова',
-        pillB: 'Жив преглед',
-        pillC: 'Родители и родословие',
+          'Започни директно с формата: добави основните данни, качи снимки, попълни родословие ако го имаш и после запази или изпрати за преглед.',
+        pillA: 'Основни данни',
+        pillB: 'Снимки',
+        pillC: 'Родословие',
       },
       editDog: {
         eyebrow: 'Членска зона',
         title: 'Редактирай профил на Cane Corso',
         description:
-          'Обновявай данните спокойно, преглеждай готовността за публикация и поддържай родителите и родословието подредени в същия премиум поток.',
+          'Обнови формата, провери прегледа вдясно и изпрати профила за преглед, когато важните данни са готови.',
         pillA: 'Редакция',
-        pillB: 'Жив преглед',
-        pillC: 'Родители и родословие',
+        pillB: 'Снимки',
+        pillC: 'Преглед',
       },
     },
     form: {
@@ -1136,7 +1136,7 @@ export const dictionary: Record<Locale, any> = {
         slugGenerated: 'Адресът на профила беше генериран от текущото име.',
         validationPassed: 'Основата на профила е подредена и е готова за записване или изпращане.',
         validationIssues: 'Валидацията откри проблеми. Прегледай маркираните полета, преди да продължиш.',
-        submissionBlocked: 'Изпращането е спряно, докато не бъдат оправени всички validation проблеми.',
+        submissionBlocked: 'Изпращането е спряно, докато не бъдат оправени всички маркирани проблеми.',
         submitMessageSuffix: 'основни полета са попълнени в момента.',
         serverActionFailedPrefix: 'Грешка при записване:',
         persistedTo: 'Последно записване на',
@@ -1558,41 +1558,41 @@ export const dictionary: Record<Locale, any> = {
         eyebrow: 'Area membri',
         title: 'Aggiungi un profilo Cane Corso',
         description:
-          'Inizia con i dati essenziali del profilo. Questo passaggio ora scrive tramite vere server actions direttamente nel repository collegato al database.',
-        pillA: 'Setup bozza',
-        pillB: 'Server action attiva',
-        pillC: 'PostgreSQL collegato',
+          'Inizia direttamente dal modulo: aggiungi i dati principali, carica foto, inserisci il pedigree se disponibile, poi salva o invia alla revisione.',
+        pillA: 'Dati principali',
+        pillB: 'Foto',
+        pillC: 'Pedigree',
       },
       editDog: {
         eyebrow: 'Area membri',
-        title: 'Modifica profilo cane',
+        title: 'Modifica profilo Cane Corso',
         description:
-          'Affina i dati del registro, la presentazione del profilo e la prontezza alla pubblicazione con vera persistenza PostgreSQL collegata al layer repository.',
-        pillA: 'Modifica profilo',
-        pillB: 'Persistenza PostgreSQL',
-        pillC: 'Pronto per revisione',
+          'Aggiorna il modulo, controlla l’anteprima e invia il profilo alla revisione quando i dati importanti sono pronti.',
+        pillA: 'Modifica',
+        pillB: 'Foto',
+        pillC: 'Revisione',
       },
     },
     form: {
-      validationEyebrow: 'Проверка на профила',
-      validationClean: 'La base del profilo appare pulita',
+      validationEyebrow: 'Controllo profilo',
+      validationClean: 'Il profilo sembra pronto per il prossimo passo',
       validationDetected: 'problemi di campo rilevati',
       validationText:
-        'Questo passaggio riflette ora il futuro flusso server/API con async actions, payload da contratto e persistenza supportata dal repository.',
+        'Controlla i campi richiesti prima di salvare una bozza o inviare il profilo alla revisione.',
       sections: {
         foundationTitleCreate: 'Base del profilo',
         foundationTitleEdit: 'Dati del profilo',
         foundationDescription:
-          'Questo modulo usa ora vero stato locale, feedback di validazione, server actions e sincronizzazione del preview.',
+          'Compila prima i dati più importanti. Nome, identità, foto e informazioni principali creano la base del profilo.',
         registryTitle: 'Informazioni di registro',
         registryDescription:
-          'Questi campi definiscono verifica, qualità del pedigree e prontezza per il registro.',
+          'Questi campi aiutano l’amministratore a capire classe di registro, documenti e qualità del profilo.',
         presentationTitle: 'Presentazione',
         presentationDescription:
-          'Contenuti rivolti al proprietario per la card del registro e la futura pagina pubblica di dettaglio.',
+          'La descrizione breve e quella lunga formano la presentazione futura del Cane Corso.',
         locationTitle: 'Località',
         locationDescription:
-          'Usata più avanti per discovery partner, filtri regionali e funzioni di prossimità della community.',
+          'La posizione mantiene il profilo chiaro e utile per filtri e contesto pubblico futuri.',
       },
       fields: {
         name: 'Nome del cane',
@@ -1676,7 +1676,7 @@ export const dictionary: Record<Locale, any> = {
         draftFlow: 'Flusso di creazione bozza',
         editingProfile: 'Modifica profilo',
         saveDraftDefault:
-          'Salva una bozza o sposta questo profilo nello stato submitted tramite la server action condivisa.',
+          'Salva una bozza o invia il profilo alla revisione quando i dati principali sono pronti.',
       },
       preview: {
         livePreview: 'Anteprima live',
@@ -1696,8 +1696,8 @@ export const dictionary: Record<Locale, any> = {
         country: 'Paese',
         registryStory: 'Storia del registro',
         longFallback: 'Qui appariranno la storia estesa del profilo e la presentazione del proprietario.',
-        persistenceTitle: 'Layer di persistenza corrente',
-        persistenceFallback: 'Questo modulo ora chiama una vera server action supportata dal layer repository My Dogs.',
+        persistenceTitle: 'Stato corrente',
+        persistenceFallback: 'Dopo il salvataggio, qui appare lo stato più recente del profilo.',
       },
       status: {
         draft: 'Bozza',
@@ -1709,12 +1709,12 @@ export const dictionary: Record<Locale, any> = {
       },
       workspace: {
         slugGenerated: 'Lo slug è stato generato dal nome attuale del profilo.',
-        validationPassed: 'La base del profilo ha superato la validazione ed è pronta per la server action collegata al database.',
+        validationPassed: 'Il profilo sembra pronto per essere salvato o inviato alla revisione.',
         validationIssues: 'La validazione ha trovato problemi. Rivedi i campi evidenziati prima di continuare.',
-        submissionBlocked: 'Invio bloccato finché tutti i problemi di validazione non vengono risolti.',
+        submissionBlocked: 'Invio bloccato finché tutti i problemi evidenziati non vengono corretti.',
         submitMessageSuffix: 'campi principali del profilo sono attualmente compilati.',
-        serverActionFailedPrefix: 'Errore server action:',
-        persistedTo: 'Salvato in PostgreSQL il',
+        serverActionFailedPrefix: 'Errore durante il salvataggio:',
+        persistedTo: 'Ultimo salvataggio il',
       },
       validation: {
         nameRequired: 'Il nome del cane è obbligatorio.',
@@ -1734,8 +1734,8 @@ export const dictionary: Record<Locale, any> = {
         pedigreePending: 'Pedigree in attesa',
         age: 'Età',
         visibility: 'Visibilità',
-        descriptionFallback: 'La presentazione del profilo è in preparazione per il workspace del proprietario.',
-        manageMedia: 'Media',
+        descriptionFallback: 'La presentazione del profilo è in preparazione nell’area personale.',
+        manageMedia: 'Foto',
         birthDatePending: 'Data di nascita in attesa',
         months: 'mesi',
         years: 'anni',

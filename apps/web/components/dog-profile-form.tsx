@@ -598,112 +598,6 @@ export function DogProfileForm({
 
   return (
     <div className="form-stack">
-      <div className="validation-banner-row">
-        <div className="validation-summary-card">
-          <span className="eyebrow-label">{t.validationEyebrow}</span>
-          <h3>{errorCount === 0 ? t.validationClean : `${errorCount} ${t.validationDetected}`}</h3>
-          <p>{t.validationText}</p>
-        </div>
-
-        <div className="validation-actions">
-          <button type="button" className="button-secondary" onClick={onGenerateSlug} disabled={isBusy}>
-            {dictionary.common.generateSlug}
-          </button>
-          <button type="button" className="button-ghost" onClick={onValidateProfile} disabled={isBusy}>
-            {dictionary.common.runValidation}
-          </button>
-        </div>
-      </div>
-
-      <div className="member-status-panel">
-        <div className="member-status-panel__copy">
-          <span className="eyebrow-label">{t.ownerStatus.eyebrow}</span>
-          <div className="member-status-panel__title-row">
-            <h3>{t.ownerStatus.title}</h3>
-            <StatusBadge status={values.lifecycleStatus} />
-          </div>
-          <p>{t.ownerStatus.help[values.lifecycleStatus]}</p>
-        </div>
-        <div className="member-status-panel__meta">
-          <div>
-            <strong>{t.registryClass[values.registryClass]}</strong>
-            <span>{t.ownerStatus.registryClassLabel}</span>
-          </div>
-          <div>
-            <strong>{publicationLabel}</strong>
-            <span>{t.fields.visibility}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="usg-evaluation-panel">
-        <div className="usg-evaluation-panel__copy">
-          <span className="eyebrow-label">{reviewT.eyebrow}</span>
-          <h3>{reviewT.title}</h3>
-          <p>{reviewT.description}</p>
-        </div>
-
-        <div className="usg-evaluation-panel__grid">
-          <div className="usg-evaluation-card">
-            <span>{reviewT.reviewStage}</span>
-            <strong>{t.status[values.lifecycleStatus]}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.registryClass}</span>
-            <strong>{t.registryClass[values.registryClass]}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.publication}</span>
-            <strong>{publicationLabel}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.certificate}</span>
-            <strong>{hasCertificate ? reviewT.issued : reviewT.waiting}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.photoCount}</span>
-            <strong>{galleryImages.length}/3</strong>
-          </div>
-        </div>
-
-        <div className="usg-evaluation-panel__actions">
-          <button
-            type="button"
-            className="button-secondary"
-            onClick={() => void handlePreviewBrandedImage()}
-            disabled={!values.mainImageUrl}
-          >
-            {imageT.downloadPreview}
-          </button>
-          <button
-            type="button"
-            className="button-ghost"
-            onClick={() => void handleDownloadBrandedImage()}
-            disabled={!values.mainImageUrl}
-          >
-            {imageT.download}
-          </button>
-          <button
-            type="button"
-            className="button-secondary"
-            onClick={openCertificatePreview}
-            disabled={!hasCertificate}
-          >
-            {reviewT.showCertificate}
-          </button>
-          <button
-            type="button"
-            className="button-ghost"
-            onClick={handleDownloadCertificate}
-            disabled={!hasCertificate}
-          >
-            {reviewT.downloadCertificate}
-          </button>
-        </div>
-
-        {!hasCertificate ? <small>{reviewT.noCertificate}</small> : null}
-      </div>
-
       <FormSectionCard
         title={mode === 'create' ? t.sections.foundationTitleCreate : t.sections.foundationTitleEdit}
         description={t.sections.foundationDescription}
@@ -1019,6 +913,115 @@ export function DogProfileForm({
             {isSubmittingForReview ? dictionary.common.submitting : dictionary.common.submitForReview}
           </button>
         </div>
+      </div>
+
+      <div className="dog-form-secondary-panels">
+      <div className="validation-banner-row">
+        <div className="validation-summary-card">
+          <span className="eyebrow-label">{t.validationEyebrow}</span>
+          <h3>{errorCount === 0 ? t.validationClean : `${errorCount} ${t.validationDetected}`}</h3>
+          <p>{t.validationText}</p>
+        </div>
+
+        <div className="validation-actions">
+          <button type="button" className="button-secondary" onClick={onGenerateSlug} disabled={isBusy}>
+            {dictionary.common.generateSlug}
+          </button>
+          <button type="button" className="button-ghost" onClick={onValidateProfile} disabled={isBusy}>
+            {dictionary.common.runValidation}
+          </button>
+        </div>
+      </div>
+
+      <div className="member-status-panel">
+        <div className="member-status-panel__copy">
+          <span className="eyebrow-label">{t.ownerStatus.eyebrow}</span>
+          <div className="member-status-panel__title-row">
+            <h3>{t.ownerStatus.title}</h3>
+            <StatusBadge status={values.lifecycleStatus} />
+          </div>
+          <p>{t.ownerStatus.help[values.lifecycleStatus]}</p>
+        </div>
+        <div className="member-status-panel__meta">
+          <div>
+            <strong>{t.registryClass[values.registryClass]}</strong>
+            <span>{t.ownerStatus.registryClassLabel}</span>
+          </div>
+          <div>
+            <strong>{publicationLabel}</strong>
+            <span>{t.fields.visibility}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="usg-evaluation-panel">
+        <div className="usg-evaluation-panel__copy">
+          <span className="eyebrow-label">{reviewT.eyebrow}</span>
+          <h3>{reviewT.title}</h3>
+          <p>{reviewT.description}</p>
+        </div>
+
+        <div className="usg-evaluation-panel__grid">
+          <div className="usg-evaluation-card">
+            <span>{reviewT.reviewStage}</span>
+            <strong>{t.status[values.lifecycleStatus]}</strong>
+          </div>
+          <div className="usg-evaluation-card">
+            <span>{reviewT.registryClass}</span>
+            <strong>{t.registryClass[values.registryClass]}</strong>
+          </div>
+          <div className="usg-evaluation-card">
+            <span>{reviewT.publication}</span>
+            <strong>{publicationLabel}</strong>
+          </div>
+          <div className="usg-evaluation-card">
+            <span>{reviewT.certificate}</span>
+            <strong>{hasCertificate ? reviewT.issued : reviewT.waiting}</strong>
+          </div>
+          <div className="usg-evaluation-card">
+            <span>{reviewT.photoCount}</span>
+            <strong>{galleryImages.length}/3</strong>
+          </div>
+        </div>
+
+        <div className="usg-evaluation-panel__actions">
+          <button
+            type="button"
+            className="button-secondary"
+            onClick={() => void handlePreviewBrandedImage()}
+            disabled={!values.mainImageUrl}
+          >
+            {imageT.downloadPreview}
+          </button>
+          <button
+            type="button"
+            className="button-ghost"
+            onClick={() => void handleDownloadBrandedImage()}
+            disabled={!values.mainImageUrl}
+          >
+            {imageT.download}
+          </button>
+          <button
+            type="button"
+            className="button-secondary"
+            onClick={openCertificatePreview}
+            disabled={!hasCertificate}
+          >
+            {reviewT.showCertificate}
+          </button>
+          <button
+            type="button"
+            className="button-ghost"
+            onClick={handleDownloadCertificate}
+            disabled={!hasCertificate}
+          >
+            {reviewT.downloadCertificate}
+          </button>
+        </div>
+
+        {!hasCertificate ? <small>{reviewT.noCertificate}</small> : null}
+      </div>
+
       </div>
 
       {assetPreview ? (

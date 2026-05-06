@@ -24,7 +24,7 @@ export default async function EditDogPage({ params }: EditDogPageProps) {
 
     return (
       <div className="member-route-stack">
-        <section className="route-hero-card route-hero-card--member">
+        <section className="route-hero-card route-hero-card--member route-hero-card--form-first">
           <div>
             <span className="eyebrow-label">{t.pages.editDog.eyebrow}</span>
             <h1 className="route-title">{t.pages.editDog.title}</h1>

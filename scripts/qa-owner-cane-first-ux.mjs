@@ -40,7 +40,7 @@ assert(spotlight.includes('bg:') && spotlight.includes('it:') && spotlight.inclu
 
 assert(formWorkspace.includes('dog-form-priority-card'), 'Edit workspace starts with a priority summary card');
 assert(formWorkspace.indexOf('dog-form-priority-card') < formWorkspace.indexOf('<DogProfileForm'), 'Priority summary appears before the form');
-assert(formWorkspace.indexOf('<OwnerSubmissionHappyPathPanel') < formWorkspace.indexOf('<DogProfileForm'), 'Happy path guidance remains before the form for existing QA contract');
+assert(formWorkspace.indexOf('<DogProfileForm') < formWorkspace.indexOf('<OwnerSubmissionHappyPathPanel'), 'Happy path guidance remains available after the form in the Step 85 form-first flow');
 assert(formWorkspace.indexOf('<DogProfileForm') < formWorkspace.indexOf('<OwnerReviewReadinessPanel'), 'Readiness details are moved after the form in the main column');
 assert(previewCard.includes('OwnerReviewReadinessPanel'), 'Preview card keeps compact live readiness guidance');
 

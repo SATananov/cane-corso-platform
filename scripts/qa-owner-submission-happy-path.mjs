@@ -47,6 +47,7 @@ const component = read(componentPath);
 const workspace = read(workspacePath);
 const css = read(cssPath);
 const doc = read(docPath);
+const step85Doc = exists('docs/qa/step85-owner-form-first-ux.md') ? read('docs/qa/step85-owner-form-first-ux.md') : '';
 
 for (const locale of ['en', 'bg', 'it']) {
   check(`Happy-path copy includes locale ${locale}`, component.includes(`${locale}: {`));
@@ -57,7 +58,7 @@ for (const step of ['profile', 'draft', 'submission', 'admin']) {
 }
 
 for (const boundary of ['Auth', 'session', 'Registry', 'Certificate', 'Gallery', 'Verify', 'admin authority']) {
-  check(`Happy-path copy/doc records ${boundary} boundary`, component.includes(boundary) || doc.includes(boundary));
+  check(`Happy-path copy/doc records ${boundary} boundary`, component.includes(boundary) || doc.includes(boundary) || step85Doc.includes(boundary));
 }
 
 check('Happy-path component receives DogLifecycleStatus', component.includes('DogLifecycleStatus'));
@@ -67,7 +68,7 @@ check('Happy-path component keeps media workspace CTA member-owned', component.i
 check('Happy-path component keeps overview CTA member-owned', component.includes('href="/my-dogs"'));
 
 check('Dog form workspace imports happy-path panel', workspace.includes("OwnerSubmissionHappyPathPanel"));
-check('Dog form workspace renders happy-path panel before DogProfileForm', workspace.indexOf('<OwnerSubmissionHappyPathPanel') < workspace.indexOf('<DogProfileForm'));
+check('Dog form workspace keeps happy-path panel available after DogProfileForm in the form-first flow', workspace.indexOf('<DogProfileForm') < workspace.indexOf('<OwnerSubmissionHappyPathPanel'));
 check('Dog form workspace derives live validation issues', workspace.includes('hasBlockingSubmissionIssues'));
 check('Dog form workspace keeps client validation', workspace.includes('validateDogForm'));
 check('Dog form workspace keeps API mutation client wiring', workspace.includes('mutateDogProfile'));

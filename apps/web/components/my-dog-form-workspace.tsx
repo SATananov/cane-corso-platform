@@ -497,7 +497,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     en: {
       eyebrow: 'Edit Cane Corso',
       title: values.name ? `Work on ${values.name}` : 'Create the Cane Corso profile',
-      description: 'Start with the form. The preview and guidance stay close, but they no longer block the main task.',
+      description: 'Fill the form first. Photos, pedigree, and the final review stay visible, but the main task starts immediately.',
       essentials: 'Main details',
       photos: 'Photos',
       pedigree: 'Pedigree',
@@ -508,7 +508,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     bg: {
       eyebrow: 'Редакция на Cane Corso',
       title: values.name ? `Работа по ${values.name}` : 'Създай Cane Corso профил',
-      description: 'Започни директно с формата. Прегледът и насоките остават близо, но вече не застават пред основната задача.',
+      description: 'Попълни формата първо. Снимките, родословието и финалната проверка остават видими, но основната задача започва веднага.',
       essentials: 'Основни данни',
       photos: 'Снимки',
       pedigree: 'Родословие',
@@ -519,7 +519,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     it: {
       eyebrow: 'Modifica Cane Corso',
       title: values.name ? `Lavora su ${values.name}` : 'Crea il profilo Cane Corso',
-      description: 'Inizia direttamente dal modulo. Anteprima e guida restano vicine, ma non bloccano più il compito principale.',
+      description: 'Compila prima il modulo. Foto, pedigree e controllo finale restano visibili, ma il compito principale inizia subito.',
       essentials: 'Dati principali',
       photos: 'Foto',
       pedigree: 'Pedigree',
@@ -530,7 +530,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
   }[locale] ?? {
     eyebrow: 'Edit Cane Corso',
     title: values.name ? `Work on ${values.name}` : 'Create the Cane Corso profile',
-    description: 'Start with the form. The preview and guidance stay close, but they no longer block the main task.',
+    description: 'Fill the form first. Photos, pedigree, and the final review stay visible, but the main task starts immediately.',
     essentials: 'Main details',
     photos: 'Photos',
     pedigree: 'Pedigree',
@@ -544,7 +544,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     : priorityCopy.ready;
 
   return (
-    <div className="two-column-layout dog-form-layout--simplified">
+    <div className="two-column-layout dog-form-layout--simplified dog-form-layout--form-first">
       <div className="form-workspace-main-stack">
         <section className="content-card dog-form-priority-card">
           <div>
@@ -571,22 +571,6 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
             </div>
           </div>
         </section>
-
-          <OwnerSubmissionHappyPathPanel
-            locale={locale}
-            mode={mode}
-            dogId={activeDogId}
-            dogName={values.name}
-            lifecycleStatus={values.lifecycleStatus}
-            hasBlockingIssues={hasBlockingSubmissionIssues}
-            completionCount={completionCount}
-            importantFieldsCount={importantFieldsCount}
-            galleryImageCount={galleryImageCount}
-            pedigreeFilledCount={pedigreeFilledCount}
-            isSaving={pendingIntent === 'save_draft'}
-            isSubmitting={pendingIntent === 'submit_for_review'}
-            lastPersistedAtLabel={lastPersistedAtLabel}
-          />
 
         <DogProfileForm
           mode={mode}
@@ -628,6 +612,23 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
             mediaHref={activeDogId ? `/my-dogs/${activeDogId}/media` : undefined}
             compact
           />
+
+          <OwnerSubmissionHappyPathPanel
+            locale={locale}
+            mode={mode}
+            dogId={activeDogId}
+            dogName={values.name}
+            lifecycleStatus={values.lifecycleStatus}
+            hasBlockingIssues={hasBlockingSubmissionIssues}
+            completionCount={completionCount}
+            importantFieldsCount={importantFieldsCount}
+            galleryImageCount={galleryImageCount}
+            pedigreeFilledCount={pedigreeFilledCount}
+            isSaving={pendingIntent === 'save_draft'}
+            isSubmitting={pendingIntent === 'submit_for_review'}
+            lastPersistedAtLabel={lastPersistedAtLabel}
+          />
+
         </div>
       </div>
       <DogProfilePreviewCard
