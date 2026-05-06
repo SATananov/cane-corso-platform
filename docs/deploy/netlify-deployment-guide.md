@@ -24,7 +24,9 @@ Add these in Netlify → Site configuration → Environment variables:
 
 ```txt
 DATABASE_PROVIDER=neon
+DATABASE_EXPECTED_NAME=cane_corso_platform
 DATABASE_URL=postgresql://USER:PASSWORD@HOST/cane_corso_platform?sslmode=require
+DATABASE_URL_DIRECT=postgresql://USER:PASSWORD@DIRECT_HOST/cane_corso_platform?sslmode=require
 DATABASE_SSL=true
 AUTH_SECRET=<long-random-production-secret-minimum-32-chars>
 SESSION_COOKIE_NAME=ccp_session
@@ -60,11 +62,41 @@ pnpm db:seed
 5. Add the required environment variables.
 6. Deploy.
 7. After deploy, open `/api/health` and confirm it returns `ok: true` and `database: configured`.
-8. Test public pages first: `/`, `/registry`, `/gallery`, `/knowledge`, `/partners`, `/community`, `/verify`.
-9. Then test auth/member/admin flows after the database is migrated and seeded.
+8. Open `/api/health/db` and confirm `activeDatabase`, `configuredRuntimeDatabase`, and `configuredMigrationDatabase` all equal `cane_corso_platform`.
+9. Test public pages first: `/`, `/registry`, `/gallery`, `/knowledge`, `/partners`, `/community`, `/verify`.
+10. Then test auth/member/admin flows after the database is migrated and seeded.
 
 ## Important notes
 
 - Netlify’s current Next.js support uses the OpenNext adapter automatically; do not pin or manually install a legacy Next runtime unless a future Netlify deploy log explicitly requires it.
 - Manual drag-and-drop deploys do not run a build command, so they are not the right deployment path for this SSR/API app.
 - Keep `ENABLE_DEV_BOOTSTRAP_SESSION=false` in production.
+
+
+## Runtime database target guardrail
+
+The live Netlify app must use the clean main Neon database:
+
+```txt
+cane_corso_platform
+```
+
+The old demo/reference database remains separate and must not be used for production writes:
+
+```txt
+cane_corso_platform_demo
+```
+
+After changing `DATABASE_URL`, `DATABASE_URL_DIRECT`, or `DATABASE_EXPECTED_NAME` in Netlify, use:
+
+```txt
+Deploys → Trigger deploy → Deploy project without cache
+```
+
+Then verify the real runtime target:
+
+```txt
+https://cane-corso-platform.netlify.app/api/health/db
+```
+
+Expected result: `status: ok` and all database fields point to `cane_corso_platform`.

@@ -95,7 +95,7 @@ if (exists('apps/web/next.config.ts')) {
 
 if (exists('.env.example')) {
   const env = read('.env.example');
-  for (const key of ['DATABASE_URL', 'AUTH_SECRET', 'SESSION_COOKIE_NAME', 'NEXT_PUBLIC_APP_URL']) {
+  for (const key of ['DATABASE_URL', 'DATABASE_URL_DIRECT', 'DATABASE_EXPECTED_NAME', 'AUTH_SECRET', 'SESSION_COOKIE_NAME', 'NEXT_PUBLIC_APP_URL']) {
     if (env.includes(`${key}=`)) {
       pass(`.env.example documents ${key}`);
     } else {
@@ -108,6 +108,12 @@ if (exists('.env.example')) {
 
 if (exists('docs/deploy/netlify-deployment-guide.md')) {
   pass('Netlify deployment guide exists');
+  const deployGuide = read('docs/deploy/netlify-deployment-guide.md');
+  if (deployGuide.includes('/api/health/db') && deployGuide.includes('DATABASE_EXPECTED_NAME=cane_corso_platform')) {
+    pass('Netlify deployment guide documents the runtime DB target guardrail');
+  } else {
+    fail('Netlify deployment guide must document /api/health/db and DATABASE_EXPECTED_NAME');
+  }
 } else {
   fail('Netlify deployment guide is missing');
 }

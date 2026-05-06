@@ -31,7 +31,7 @@ This document defines mandatory rules, boundaries, and best practices for all co
   - `@cane-corso/contracts` — TypeScript types / contracts
   - `@cane-corso/config` — Shared configuration
   - `@cane-corso/auth` — Session/JWT utilities
-- **Database**: PostgreSQL (local) → Neon (production, future)
+- **Database**: PostgreSQL (local) → Neon PostgreSQL (production)
 - **ORM**: Drizzle
 - **Languages**: EN (English), BG (Bulgarian), IT (Italian)
 
@@ -111,20 +111,20 @@ This document defines mandatory rules, boundaries, and best practices for all co
 
 ### Connection Status
 
-- ⚠️ **Neon is NOT connected yet** (Step 56 is pre-Neon)
-- Do not attempt to connect to Neon production
-- Do not add real Neon credentials
-- Do not write code that assumes Neon is active
+- ✅ Neon is the production database provider for the live Netlify deployment.
+- Live target database: `cane_corso_platform`.
+- Demo/reference database: `cane_corso_platform_demo`. Keep it separate; do not migrate demo data into the live database unless explicitly approved.
+- `neondb` is not the intended live application database.
+- Runtime database target must be verified through `/api/health/db` after Netlify env changes.
 
-### Connection Management (Future)
+### Connection Management
 
-When Neon is integrated:
-
-- [ ] Use `DATABASE_URL` (pooled connection) for application runtime
-- [ ] Use `DATABASE_URL_DIRECT` (direct connection) for migrations
-- [ ] Load connection strings from environment only
-- [ ] Never hardcode connection strings
-- [ ] Never log connection strings
+- Use `DATABASE_URL` (pooled connection) for application runtime.
+- Use `DATABASE_URL_DIRECT` (direct connection) for migrations.
+- Set `DATABASE_EXPECTED_NAME=cane_corso_platform` in production-like environments.
+- Load connection strings from environment only.
+- Never hardcode connection strings.
+- Never log connection strings.
 
 ### Secrets
 
