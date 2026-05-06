@@ -29,33 +29,33 @@ const copyByLocale: Record<Locale, { label: string; eyebrow: string; title: stri
     ],
   },
   bg: {
-    label: 'Админ',
-    eyebrow: 'Админ задачи',
+    label: 'Администратор',
+    eyebrow: 'Администраторски задачи',
     title: 'Избери какво искаш да направиш',
     closeHint: 'Работи по задача, не по търсене на страници.',
-    center: 'Админ център',
+    center: 'Администраторски център',
     items: [
       { href: '/review', label: 'Преглед на чакащи', description: 'Одобри, върни, публикувай или реши сертификатния поток.', primary: true },
-      { href: '/admin/members', label: 'Потребители', description: 'Виж owners и личните Cane Corso данни, които са запазили.' },
-      { href: '/admin/registry', label: 'Registry контрол', description: 'Управлявай вече публични Registry профили и сертификати.' },
-      { href: '/admin/partners', label: 'Партньори', description: 'Преглеждай и управлявай trusted partner кандидатури.' },
-      { href: '/admin/ecosystem', label: 'Екосистема', description: 'Модерирай услуги, места и community предложения.' },
-      { href: '/admin/knowledge', label: 'Знания', description: 'Управлявай образователни статии и breed guidance.' },
+      { href: '/admin/members', label: 'Потребители', description: 'Виж собствениците и личните Cane Corso данни, които са запазили.' },
+      { href: '/admin/registry', label: 'Контрол на Регистъра', description: 'Управлявай вече публични профили в Регистъра и сертификати.' },
+      { href: '/admin/partners', label: 'Партньори', description: 'Преглеждай и управлявай кандидатури от доверени партньори.' },
+      { href: '/admin/ecosystem', label: 'Екосистема', description: 'Модерирай услуги, места и предложения от общността.' },
+      { href: '/admin/knowledge', label: 'Знания', description: 'Управлявай образователни статии и насоки за породата.' },
     ],
   },
   it: {
-    label: 'Admin',
-    eyebrow: 'Attività admin',
+    label: 'Amministratore',
+    eyebrow: 'Attività amministrative',
     title: 'Scegli cosa vuoi fare',
     closeHint: 'Lavora per attività, non cercando pagine.',
-    center: 'Centro admin',
+    center: 'Centro amministrazione',
     items: [
-      { href: '/review', label: 'Review in attesa', description: 'Approva, rimanda, pubblica o decidi il certificato.', primary: true },
-      { href: '/admin/members', label: 'Membri', description: 'Vedi owner e dati Cane Corso privati salvati.' },
+      { href: '/review', label: 'Revisione in attesa', description: 'Approva, rimanda, pubblica o decidi il certificato.', primary: true },
+      { href: '/admin/members', label: 'Membri', description: 'Vedi i proprietari e i dati Cane Corso privati salvati.' },
       { href: '/admin/registry', label: 'Controllo Registro', description: 'Gestisci profili Registro già pubblici e certificati.' },
-      { href: '/admin/partners', label: 'Partner', description: 'Rivedi e gestisci candidature partner trusted.' },
-      { href: '/admin/ecosystem', label: 'Ecosystem', description: 'Modera servizi, luoghi e proposte community.' },
-      { href: '/admin/knowledge', label: 'Knowledge', description: 'Gestisci articoli educativi e guida breed.' },
+      { href: '/admin/partners', label: 'Partner', description: 'Rivedi e gestisci candidature di partner fidati.' },
+      { href: '/admin/ecosystem', label: 'Ecosistema', description: 'Modera servizi, luoghi e proposte della comunità.' },
+      { href: '/admin/knowledge', label: 'Conoscenza', description: 'Gestisci articoli educativi e guida alla razza.' },
     ],
   },
 };
@@ -106,6 +106,14 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
 
   const closeMenu = () => setIsOpen(false);
 
+  const handleMenuItemSelect = () => {
+    setIsOpen(false);
+
+    if (typeof window !== 'undefined') {
+      window.requestAnimationFrame(() => setIsOpen(false));
+    }
+  };
+
   return (
     <div className={`admin-task-menu${isOpen ? ' is-open' : ''}`} ref={menuRef}>
       <button
@@ -138,7 +146,7 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
                 key={item.href}
                 role="menuitem"
                 aria-current={active ? 'page' : undefined}
-                onClick={closeMenu}
+                onClick={handleMenuItemSelect}
               >
                 <span>{item.label}</span>
                 <small>{item.description}</small>
@@ -147,7 +155,7 @@ export function AdminTaskMenu({ locale }: { locale: Locale }) {
           })}
         </div>
 
-        <Link href="/admin" className="admin-task-menu__center" role="menuitem" onClick={closeMenu}>
+        <Link href="/admin" className="admin-task-menu__center" role="menuitem" onClick={handleMenuItemSelect}>
           {copy.center}
         </Link>
       </div>

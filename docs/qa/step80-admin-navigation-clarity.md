@@ -2,31 +2,31 @@
 
 ## Цел
 
-Да се реши реалният UX проблем: админът се губи между `Център`, `Потребители`, `Registry` и `Преглед` и не знае къде се approve-ва качено Cane Corso съдържание.
+Да се реши реалният UX проблем: администраторът се губи между `Център`, `Потребители`, `Регистър` и `Преглед` и не знае къде се одобрява качено Cane Corso съдържание.
 
 ## Решение
 
-- Добавен е **Admin dropdown / task menu** в глобалния header.
-- Преглед е първият и най-видим admin action.
-- Всяка admin страница получава видима `admin-workflow-strip` лента с директни връзки.
-- `/admin/members` вече казва ясно: тази страница показва owner данни, но approve/publish започва от `Преглед`.
+- Добавено е **Администраторско падащо меню** в глобалната навигация.
+- Преглед е първото и най-видимо администраторско действие.
+- Всяка администраторска страница получава видима `admin-workflow-strip` лента с директни връзки.
+- `/admin/members` вече казва ясно: тази страница показва данни за собствениците, но одобрение/публикуване започва от `Преглед`.
 
 ## UX правило
 
 Не добавяме още дълги обяснения. Подреждаме работата по задачи:
 
 1. Преглед на чакащи
-2. Потребители / owner данни
-3. Registry контрол
+2. Потребители / данни за собствениците
+3. Контрол на Регистъра
 4. Партньори
 5. Екосистема
 6. Знания
 
 ## Locked boundary
 
-Не се пипа Registry / Certificate / Verify / Gallery / Ecosystem backend логика.
-Не се добавя нова DB migration.
-Не се записват production secrets или `DATABASE_URL` в ZIP.
+Не се пипа backend логиката на Registry / Certificate / Verify / Gallery / Ecosystem.
+Не се добавя нова DB миграция.
+Не се записват production тайни или `DATABASE_URL` в ZIP.
 
 ## QA
 
@@ -43,6 +43,16 @@ pnpm typecheck
 
 ## Post-deploy UX hotfix notes
 
-- Admin task menu is controlled by state and closes after selecting a task, on route change, outside click, or Escape.
-- Members admin view includes both Review and Registry control CTAs so admins can see whether they need approval workflow or already-public Registry control.
-- Published Cane Corso entries remain managed through Registry control; not-public owner uploads route admins back to Review.
+- Администраторското меню се управлява със state и се затваря след избор на задача, при смяна на маршрут, външен клик или Escape.
+- Администраторският изглед за потребители има директни бутони към Преглед и контрол на Регистъра, за да е ясно дали е нужен поток за одобрение или управление на вече публичен профил.
+- Публикуваните Cane Corso профили се управляват през контрола на Регистъра; непубличните качвания от собственици връщат администратора към Преглед.
+
+
+## Step 81 focused hotfix layer
+
+Приложено върху Step 80 без промяна на backend authority потоковете:
+
+- Администраторското падащо меню запазва съществуващия контролиран state и използва отделен handler при избор, с второ затваряне на следващия animation frame, за да се прибира надеждно дори при бърза клиентска навигация.
+- Текстът в `/review` вече разделя **изпратените/чакащи за преглед записи** от **вече публикуваните записи**.
+- `/review` обяснява, че запазен Cane Corso профил или качена снимка не се появява в Преглед, докато собственикът не натисне „Изпрати за преглед“.
+- Това изяснява случаи като: потребител има 1 запазен Cane Corso, но `0 published / 0 certified` и още няма чакащ запис за преглед.

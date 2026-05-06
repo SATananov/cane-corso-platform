@@ -29,6 +29,8 @@ const copyByLocale = {
     description:
       'Inspect the real member footprint behind every account — full identity details, Cane Corso profiles, public registry state, certificates, and quick admin removal actions.',
     chips: ['Full member view', 'Cane Corso details', 'Safer admin control'],
+    accentLabel: 'USG admin members',
+    visualAlt: 'USG admin members',
     note:
       'This layer is no longer just an access list. It now shows what each member actually owns and what is already public in the registry.',
     stats: {
@@ -95,24 +97,26 @@ const copyByLocale = {
     },
   },
   bg: {
-    eyebrow: 'Админ управление на потребители',
+    eyebrow: 'Администраторско управление на потребители',
     title: 'Потребители',
     description:
-      'Тук вече виждаш реалното съдържание зад всеки профил — пълна информация за потребителя, неговите Cane Corso профили, публичния registry статус, сертификатите и бързите админ действия.',
-    chips: ['Пълен member view', 'Детайли за Cane Corso', 'Истински админ контрол'],
+      'Тук вече виждаш реалното съдържание зад всеки профил — пълна информация за потребителя, неговите Cane Corso профили, публичния статус в регистъра, сертификатите и бързите администраторски действия.',
+    chips: ['Пълен поглед към потребител', 'Детайли за Cane Corso', 'Истински администраторски контрол'],
+    accentLabel: 'USG администраторски потребители',
+    visualAlt: 'USG администраторски потребители',
     note:
       'Тази страница вече не е само списък за достъп. Тя показва какво реално притежава всеки потребител и какво вече е публично в регистъра.',
     stats: {
       active: 'Активни идентичности',
-      admins: 'Админ идентичности',
+      admins: 'Администраторски идентичности',
       members: 'Членски идентичности',
       publishedDogs: 'Публични Cane Corso',
     },
     labels: {
-      list: 'Потребители с реално registry присъствие',
-      reviewHint: 'Тази страница показва owner данни. За одобрение или публикуване на Cane Corso профил първо отвори Преглед.',
+      list: 'Потребители с реално присъствие в регистъра',
+      reviewHint: 'Тази страница показва данните на собственика. За одобрение или публикуване на Cane Corso профил първо отвори Преглед.',
       openReview: 'Отвори Преглед',
-      openRegistryControl: 'Отвори Registry контрол',
+      openRegistryControl: 'Отвори контрола на Регистъра',
       email: 'Имейл',
       role: 'Роля',
       access: 'Достъп',
@@ -123,13 +127,13 @@ const copyByLocale = {
       location: 'Локация',
       joined: 'Създаден',
       fullName: 'Пълно име',
-      current: 'Текуща админ сесия',
+      current: 'Текуща администраторска сесия',
       disable: 'Спри достъпа',
       deleteProfile: 'Изтрий профила',
       deleteDog: 'Изтрий Cane Corso',
       noDogs: 'Този потребител все още няма свързани Cane Corso профили.',
       emptyTitle: 'Няма активни идентичности',
-      emptyDescription: 'Когато в платформата има активни членове, те ще се виждат тук за пълен админ контрол.',
+      emptyDescription: 'Когато в платформата има активни членове, те ще се виждат тук за пълен администраторски контрол.',
       help: 'Помощ',
       openRegistry: 'Отвори публичния профил',
       verify: 'Провери',
@@ -149,14 +153,14 @@ const copyByLocale = {
       status: 'Статус',
       certificate: 'Сертификат',
       publicEntry: 'Публичен профил',
-      safeHint: 'По-безопасно от hard delete',
+      safeHint: 'По-безопасно от окончателно изтриване',
       notAvailable: 'Няма',
       publishedSince: 'Публичен от',
     },
     roleLabels: {
-      admin: 'Админ',
-      super_admin: 'Супер админ',
-      reviewer: 'Ревю админ',
+      admin: 'Администратор',
+      super_admin: 'Главен администратор',
+      reviewer: 'Проверяващ администратор',
       partner: 'Партньор',
       member: 'Член',
     },
@@ -166,23 +170,25 @@ const copyByLocale = {
     },
   },
   it: {
-    eyebrow: 'Controllo admin membri',
+    eyebrow: 'Controllo amministrativo membri',
     title: 'Membri',
     description:
-      'Qui vedi il contenuto reale dietro ogni profilo — identità completa, profili Cane Corso, stato pubblico nel registro, certificati e azioni admin rapide.',
-    chips: ['Vista completa membri', 'Dettagli Cane Corso', 'Controllo admin reale'],
+      'Qui vedi il contenuto reale dietro ogni profilo — identità completa, profili Cane Corso, stato pubblico nel registro, certificati e azioni rapide dell\'amministratore.',
+    chips: ['Vista completa membri', 'Dettagli Cane Corso', 'Controllo amministrativo reale'],
+    accentLabel: 'Gestione membri USG',
+    visualAlt: 'Gestione membri USG',
     note:
       'Questa pagina non è più solo una lista accessi. Mostra cosa possiede davvero ogni membro e cosa è già pubblico nel registro.',
     stats: {
       active: 'Identità attive',
-      admins: 'Identità admin',
+      admins: 'Identità amministrative',
       members: 'Identità membri',
       publishedDogs: 'Cane Corso pubblici',
     },
     labels: {
       list: 'Membri con presenza reale nel registro',
-      reviewHint: 'Questa pagina mostra i dati owner. Per approvare o pubblicare un profilo Cane Corso, apri prima Review.',
-      openReview: 'Apri Review',
+      reviewHint: 'Questa pagina mostra i dati del proprietario. Per approvare o pubblicare un profilo Cane Corso, apri prima Revisione.',
+      openReview: 'Apri Revisione',
       openRegistryControl: 'Apri controllo Registro',
       email: 'Email',
       role: 'Ruolo',
@@ -194,13 +200,13 @@ const copyByLocale = {
       location: 'Località',
       joined: 'Creato',
       fullName: 'Nome completo',
-      current: 'Sessione admin corrente',
+      current: 'Sessione amministratore corrente',
       disable: 'Disattiva accesso',
       deleteProfile: 'Elimina profilo',
       deleteDog: 'Elimina Cane Corso',
       noDogs: 'Questo membro non ha ancora profili Cane Corso collegati.',
       emptyTitle: 'Nessuna identità attiva trovata',
-      emptyDescription: 'Quando esistono membri attivi nella piattaforma, appariranno qui per il pieno controllo admin.',
+      emptyDescription: 'Quando esistono membri attivi nella piattaforma, appariranno qui per il pieno controllo amministrativo.',
       help: 'Aiuto',
       openRegistry: 'Apri profilo pubblico',
       verify: 'Verifica',
@@ -220,14 +226,14 @@ const copyByLocale = {
       status: 'Stato',
       certificate: 'Certificato',
       publicEntry: 'Profilo pubblico',
-      safeHint: 'Più sicuro del hard delete',
+      safeHint: 'Più sicuro dell’eliminazione definitiva',
       notAvailable: 'Non disponibile',
       publishedSince: 'Pubblico dal',
     },
     roleLabels: {
-      admin: 'Admin',
-      super_admin: 'Super admin',
-      reviewer: 'Reviewer',
+      admin: 'Amministratore',
+      super_admin: 'Super amministratore',
+      reviewer: 'Revisore',
       partner: 'Partner',
       member: 'Membro',
     },
@@ -357,11 +363,11 @@ export default async function AdminMembersPage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      accentLabel="USG admin members"
+      accentLabel={copy.accentLabel}
       helpHref="/guide?topic=member-workspace#member-workspace"
       helpLabel={copy.labels.help}
       visualSrc="/brand/seal/usg-seal-wide.png"
-      visualAlt="USG admin members"
+      visualAlt={copy.visualAlt}
       visualFit="contain"
       heroChips={copy.chips}
       heroNote={copy.note}

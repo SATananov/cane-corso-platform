@@ -30,10 +30,10 @@ const qaDoc = read(qaDocPath);
 
 console.log('--- Step 79 Admin clarity / real Netlify DB boundary QA ---');
 
-assert(adminPage.includes('Какво чака админ действие?'), 'Admin home headline is action-first in BG');
+assert(adminPage.includes('Какво чака администраторско действие?'), 'Admin home headline is action-first in BG');
 assert(adminPage.includes('Започни от Преглед'), 'Admin home tells the admin to start from Review');
-assert(adminPage.includes('не ги виждаш в Registry'), 'Admin home explains uploaded data may not be in Registry yet');
-assert(adminPage.includes('Личните owner данни не са публичен Registry'), 'Admin guide separates private owner data from public Registry');
+assert(adminPage.includes('не ги виждаш в Регистъра'), 'Admin home explains uploaded data may not be in Registry yet');
+assert(adminPage.includes('Личните данни на собственика не са публичен Регистър'), 'Admin guide separates private owner data from public Registry');
 assert(adminPage.includes('<Link href="/review" className="button-primary small">'), 'Admin guide primary action opens Review first');
 assert(adminPage.includes("href: '/review'"), 'Admin review card points to the review queue');
 assert(adminPage.includes("href: '/admin/members'"), 'Admin members card points to member/owner data');

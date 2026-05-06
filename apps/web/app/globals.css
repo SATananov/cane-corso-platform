@@ -18739,3 +18739,14 @@ body {
   }
 }
 /* === Step 80 — Admin task navigation and approval clarity END === */
+
+/* Step 81 — Admin dropdown close guard and review wording clarity START */
+.review-queue-card__scope-note {
+  max-width: 860px;
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+/* Step 81 — Admin dropdown close guard and review wording clarity END */
+
