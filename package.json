@@ -110,7 +110,8 @@
     "owner:profile-photo-journey:qa": "node scripts/qa-owner-profile-photo-simple-journey.mjs",
     "user:clarity-scroll:qa": "node scripts/qa-user-clarity-scroll-reduction.mjs",
     "admin:real-netlify-flow:qa": "node scripts/qa-admin-real-netlify-flow.mjs",
-    "admin:navigation-clarity:qa": "node scripts/qa-admin-navigation-clarity.mjs"
+    "admin:navigation-clarity:qa": "node scripts/qa-admin-navigation-clarity.mjs",
+    "owner:cane-first-ux:qa": "node scripts/qa-owner-cane-first-ux.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

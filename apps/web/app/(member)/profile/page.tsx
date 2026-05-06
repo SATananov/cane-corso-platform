@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import type { Dog, DogMedia } from '@cane-corso-platform/contracts';
 import { redirect } from 'next/navigation';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
 import { OwnerProfilePhotoPanel } from '@/components/owner-profile-photo-panel';
+import { OwnerCaneCorsoSpotlight, type OwnerSpotlightDog } from '@/components/owner-cane-corso-spotlight';
 import { getCurrentProfileDocument } from '@/lib/member-profile.server';
 import { getCurrentMemberDogsDocument } from '@/lib/my-dogs.server';
+import { getCurrentMemberDogMediaDocument } from '@/lib/my-dog-media.server';
+import { getPublishedRegistryProfileDocument } from '@/lib/registry.server';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { buildAccessPath } from '@/lib/access-control';
@@ -62,6 +66,25 @@ function formatLocaleLabel(uiLocale: string, value?: string | null) {
   return localeMap[normalized as keyof typeof localeMap] ?? normalized.toUpperCase();
 }
 
+
+async function enrichProfileDogsWithMedia(dogs: Dog[]): Promise<OwnerSpotlightDog[]> {
+  return await Promise.all(
+    dogs.map(async (dog) => {
+      try {
+        const document = await getCurrentMemberDogMediaDocument(dog.id, { allowDevFallback: false });
+        const media = document.media
+          .filter((item): item is DogMedia => item.mediaType === 'image')
+          .sort((a, b) => Number(b.isPrimary) - Number(a.isPrimary) || a.sortOrder - b.sortOrder)
+          .slice(0, 3);
+
+        return { ...dog, media };
+      } catch {
+        return { ...dog, media: [] };
+      }
+    }),
+  );
+}
+
 export default async function ProfilePage() {
   try {
     const [{ profile, session }, { dogs }] = await Promise.all([
@@ -75,44 +98,35 @@ export default async function ProfilePage() {
     const locationLabel = [profile.city, profile.country].filter(Boolean).join(', ') || t.common.pending;
     const nameLabel = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || displayName;
 
-    const totalDogs = dogs.length;
-    const published = dogs.filter((dog) => dog.lifecycleStatus === 'published').length;
-    const inReview = dogs.filter((dog) => ['submitted', 'approved'].includes(dog.lifecycleStatus)).length;
-    const drafts = dogs.filter((dog) => dog.lifecycleStatus === 'draft').length;
+    const dogsWithMedia = await enrichProfileDogsWithMedia(dogs);
+
+    const totalDogs = dogsWithMedia.length;
+    const published = dogsWithMedia.filter((dog) => dog.lifecycleStatus === 'published').length;
+    const inReview = dogsWithMedia.filter((dog) => ['submitted', 'approved'].includes(dog.lifecycleStatus)).length;
+    const drafts = dogsWithMedia.filter((dog) => dog.lifecycleStatus === 'draft').length;
     const hasOwnerPhoto = Boolean(profile.avatarUrl);
     const hasCaneCorsoProfile = totalDogs > 0;
-    const hasCaneCorsoPhoto = dogs.some((dog) => Boolean(dog.mainImageUrl));
+    const hasCaneCorsoPhoto = dogsWithMedia.some((dog) => Boolean(dog.mainImageUrl || dog.media?.some((item) => item.mediaType === 'image' && item.url)));
     const isReviewStarted = inReview > 0 || published > 0;
     const hasPublicPresence = published > 0;
 
-    const publishedDog = dogs.find((dog) => dog.publication?.publicSlug) ?? null;
+    const publishedDog = dogsWithMedia.find((dog) => dog.publication?.publicSlug) ?? null;
     const workingDog =
-      dogs.find((dog) => ['draft', 'needs_changes', 'submitted', 'approved'].includes(dog.lifecycleStatus)) ?? dogs[0] ?? null;
+      dogsWithMedia.find((dog) => ['draft', 'needs_changes', 'submitted', 'approved'].includes(dog.lifecycleStatus)) ?? publishedDog ?? dogsWithMedia[0] ?? null;
 
     const continueHref = workingDog ? `/my-dogs/${workingDog.id}/edit` : '/my-dogs/new';
     const primaryNextHref = workingDog ? continueHref : '/my-dogs/new';
-    const emptyStateCopy = {
-      en: {
-        title: 'No Cane Corso profiles yet',
-        description: 'Start your first Cane Corso profile so the private owner area can move toward review and public presence.',
-        action: 'Add Cane Corso',
-      },
-      bg: {
-        title: 'Все още няма Cane Corso профили',
-        description: 'Започни първия Cane Corso профил, за да премине личната зона към преглед и публично присъствие.',
-        action: 'Добави Cane Corso',
-      },
-      it: {
-        title: 'Nessun profilo Cane Corso per ora',
-        description: 'Crea il primo profilo Cane Corso per portare l’area privata verso revisione e presenza pubblica.',
-        action: 'Aggiungi Cane Corso',
-      },
-    }[locale] ?? {
-      title: 'No Cane Corso profiles yet',
-      description: 'Start your first Cane Corso profile so the private owner area can move toward review and public presence.',
-      action: 'Add Cane Corso',
-    };
-
+    const workingDogRegistryDocument = workingDog?.publication
+      ? await getPublishedRegistryProfileDocument(workingDog.publication.publicSlug, session.user.profileId ?? null)
+      : null;
+    const workingDogPublicHref = workingDog?.publication
+      ? `/registry/${workingDog.publication.publicSlug}`
+      : '/registry';
+    const workingDogVerifyHref = workingDog?.publication?.certificateCode
+      ? `/verify/${workingDog.publication.certificateCode}`
+      : workingDog?.publication?.verificationSlug
+        ? `/verify/${workingDog.publication.verificationSlug}`
+        : '/verify';
     const copy = {
       en: {
         eyebrow: 'Owner profile',
@@ -273,7 +287,7 @@ export default async function ProfilePage() {
         journey: {
           eyebrow: 'Лесен път за собственика',
           title: 'Кратък път без объркване',
-          description: 'Личната зона трябва да води човека от профил до публичен Registry без объркване.',
+          description: 'Личната зона трябва да води човека от профил до публичен регистър без объркване.',
           doneLabel: 'Готово',
           nextLabel: 'Следва',
           items: [
@@ -281,7 +295,7 @@ export default async function ProfilePage() {
             ['Cane Corso профил', 'Добавя се първата Cane Corso идентичност.'],
             ['Снимка на Cane Corso', 'Добавя се основна снимка преди преглед.'],
             ['USG преглед', 'Профилът се изпраща или вече е в преглед.'],
-            ['Публичен Registry', 'Одобрените профили стават публични.'],
+            ['Публичен регистър', 'Одобрените профили стават публични.'],
           ],
         },
         presenceEyebrow: 'Публично присъствие',
@@ -331,11 +345,11 @@ export default async function ProfilePage() {
       it: {
         eyebrow: 'Profilo del proprietario',
         heroDescription:
-          'Inizia qui: aggiungi la foto owner, controlla lo stato e continua il profilo Cane Corso che richiede azione.',
+          'Inizia qui: aggiungi la foto del proprietario, controlla lo stato e continua il profilo Cane Corso che richiede azione.',
         quickActionsEyebrow: 'Azioni rapide',
         quickActionsTitle: 'Continua dal prossimo passo concreto',
         quickActionsDescription:
-          'Usa prima il pulsante principale. Registro pubblico e verifica sono layer successivi, non il primo compito owner.',
+          'Usa prima il pulsante principale. Registro pubblico e verifica sono livelli successivi, non il primo compito del proprietario.',
         quickActions: {
           myDogs: 'Apri I miei Cane Corso',
           addDog: 'Aggiungi Cane Corso',
@@ -380,7 +394,7 @@ export default async function ProfilePage() {
         journey: {
           eyebrow: 'Percorso proprietario semplice',
           title: 'Percorso breve senza confusione',
-          description: 'L’area proprietario deve guidare ogni persona dal profilo alla presenza pubblica nel Registry senza confusione.',
+          description: 'L’area proprietario deve guidare ogni persona dal profilo alla presenza pubblica nel registro senza confusione.',
           doneLabel: 'Fatto',
           nextLabel: 'Prossimo',
           items: [
@@ -388,7 +402,7 @@ export default async function ProfilePage() {
             ['Profilo Cane Corso', 'Aggiungi la prima identità Cane Corso.'],
             ['Foto Cane Corso', 'Aggiungi l’immagine principale prima della revisione.'],
             ['Revisione USG', 'Invia o mantieni un profilo in revisione.'],
-            ['Registry pubblico', 'I profili approvati diventano visibili.'],
+            ['Registro pubblico', 'I profili approvati diventano visibili.'],
           ],
         },
         presenceEyebrow: 'Presenza pubblica',
@@ -428,7 +442,7 @@ export default async function ProfilePage() {
           {
             eyebrow: 'Comunità',
             title: 'Resta connesso alla vita intorno al Cane Corso',
-            description: 'Mantieni un percorso semplice verso comunità, FUN layer ed ecosistema della razza.',
+            description: 'Mantieni un percorso semplice verso comunità, livello FUN ed ecosistema della razza.',
             href: '/community',
             meta: 'Comunità • FUN • ecosistema',
             icon: 'community' as const,
@@ -552,6 +566,17 @@ export default async function ProfilePage() {
           </div>
         </section>
 
+        <OwnerCaneCorsoSpotlight
+          locale={locale}
+          dog={workingDog}
+          registryEntry={workingDogRegistryDocument?.entry ?? null}
+          variant="profile"
+          editHref={workingDog ? `/my-dogs/${workingDog.id}/edit` : undefined}
+          mediaHref={workingDog ? `/my-dogs/${workingDog.id}/media` : undefined}
+          publicHref={workingDogPublicHref}
+          verifyHref={workingDogVerifyHref}
+        />
+
         <div className="stats-grid four-up profile-page__stats">
           <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />
           <OverviewStatCard label={t.pages.myDogs.labels.published} value={String(published)} tone="ivory" />
@@ -583,19 +608,6 @@ export default async function ProfilePage() {
             ))}
           </div>
         </section>
-
-        {totalDogs === 0 ? (
-          <section className="empty-state-panel profile-page__empty-state">
-            <div>
-              <div className="section-heading__eyebrow">{t.common.emptyState}</div>
-              <h3 className="section-heading__title">{emptyStateCopy.title}</h3>
-              <p className="empty-state-panel__description">{emptyStateCopy.description}</p>
-            </div>
-            <Link href="/my-dogs/new" className="button button--primary">
-              {emptyStateCopy.action}
-            </Link>
-          </section>
-        ) : null}
 
         <div className="profile-page__hub-grid">
           <section className="content-card profile-page__identity-card">

@@ -493,46 +493,101 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     }
   };
 
+  const priorityCopy = {
+    en: {
+      eyebrow: 'Edit Cane Corso',
+      title: values.name ? `Work on ${values.name}` : 'Create the Cane Corso profile',
+      description: 'Start with the form. The preview and guidance stay close, but they no longer block the main task.',
+      essentials: 'Main details',
+      photos: 'Photos',
+      pedigree: 'Pedigree',
+      review: 'Review status',
+      ready: 'ready',
+      issues: 'items need attention',
+    },
+    bg: {
+      eyebrow: 'Редакция на Cane Corso',
+      title: values.name ? `Работа по ${values.name}` : 'Създай Cane Corso профил',
+      description: 'Започни директно с формата. Прегледът и насоките остават близо, но вече не застават пред основната задача.',
+      essentials: 'Основни данни',
+      photos: 'Снимки',
+      pedigree: 'Родословие',
+      review: 'Статус на прегледа',
+      ready: 'готово',
+      issues: 'полета имат нужда от внимание',
+    },
+    it: {
+      eyebrow: 'Modifica Cane Corso',
+      title: values.name ? `Lavora su ${values.name}` : 'Crea il profilo Cane Corso',
+      description: 'Inizia direttamente dal modulo. Anteprima e guida restano vicine, ma non bloccano più il compito principale.',
+      essentials: 'Dati principali',
+      photos: 'Foto',
+      pedigree: 'Pedigree',
+      review: 'Stato revisione',
+      ready: 'pronto',
+      issues: 'campi richiedono attenzione',
+    },
+  }[locale] ?? {
+    eyebrow: 'Edit Cane Corso',
+    title: values.name ? `Work on ${values.name}` : 'Create the Cane Corso profile',
+    description: 'Start with the form. The preview and guidance stay close, but they no longer block the main task.',
+    essentials: 'Main details',
+    photos: 'Photos',
+    pedigree: 'Pedigree',
+    review: 'Review status',
+    ready: 'ready',
+    issues: 'items need attention',
+  };
+
+  const profileStatusText = hasBlockingSubmissionIssues
+    ? `${Object.keys(liveValidationErrors).length} ${priorityCopy.issues}`
+    : priorityCopy.ready;
+
   return (
-    <div className="two-column-layout">
+    <div className="two-column-layout dog-form-layout--simplified">
       <div className="form-workspace-main-stack">
-        <OwnerReviewReadinessPanel
-          locale={locale}
-          context="form"
-          dogName={values.name}
-          slug={values.slug}
-          lifecycleStatus={values.lifecycleStatus}
-          visibility={values.visibility}
-          hasPublication={Boolean(values.publicationPublicSlug)}
-          hasCertificate={Boolean(values.publicationCertificateCode)}
-          hasName={Boolean(values.name.trim())}
-          hasSlug={Boolean(values.slug.trim())}
-          hasDateOfBirth={Boolean(values.dateOfBirth)}
-          hasColor={Boolean(values.color.trim())}
-          hasShortDescription={Boolean(values.shortDescription.trim())}
-          hasCity={Boolean(values.city.trim())}
-          hasCountry={Boolean(values.country.trim())}
-          hasPrimaryImage={Boolean(values.mainImageUrl || values.galleryImageUrls[0])}
-          galleryImageCount={galleryImageCount}
-          pedigreeFilledCount={pedigreeFilledCount}
-          pedigreePhotoCount={pedigreePhotoCount}
-          mediaHref={activeDogId ? `/my-dogs/${activeDogId}/media` : undefined}
-        />
-        <OwnerSubmissionHappyPathPanel
-          locale={locale}
-          mode={mode}
-          dogId={activeDogId}
-          dogName={values.name}
-          lifecycleStatus={values.lifecycleStatus}
-          hasBlockingIssues={hasBlockingSubmissionIssues}
-          completionCount={completionCount}
-          importantFieldsCount={importantFieldsCount}
-          galleryImageCount={galleryImageCount}
-          pedigreeFilledCount={pedigreeFilledCount}
-          isSaving={pendingIntent === 'save_draft'}
-          isSubmitting={pendingIntent === 'submit_for_review'}
-          lastPersistedAtLabel={lastPersistedAtLabel}
-        />
+        <section className="content-card dog-form-priority-card">
+          <div>
+            <span className="eyebrow-label">{priorityCopy.eyebrow}</span>
+            <h2>{priorityCopy.title}</h2>
+            <p>{priorityCopy.description}</p>
+          </div>
+          <div className="dog-form-priority-card__grid">
+            <div>
+              <span>{priorityCopy.essentials}</span>
+              <strong>{completionCount}/{importantFieldsCount}</strong>
+            </div>
+            <div>
+              <span>{priorityCopy.photos}</span>
+              <strong>{galleryImageCount}/3</strong>
+            </div>
+            <div>
+              <span>{priorityCopy.pedigree}</span>
+              <strong>{pedigreeFilledCount}/14</strong>
+            </div>
+            <div>
+              <span>{priorityCopy.review}</span>
+              <strong>{profileStatusText}</strong>
+            </div>
+          </div>
+        </section>
+
+          <OwnerSubmissionHappyPathPanel
+            locale={locale}
+            mode={mode}
+            dogId={activeDogId}
+            dogName={values.name}
+            lifecycleStatus={values.lifecycleStatus}
+            hasBlockingIssues={hasBlockingSubmissionIssues}
+            completionCount={completionCount}
+            importantFieldsCount={importantFieldsCount}
+            galleryImageCount={galleryImageCount}
+            pedigreeFilledCount={pedigreeFilledCount}
+            isSaving={pendingIntent === 'save_draft'}
+            isSubmitting={pendingIntent === 'submit_for_review'}
+            lastPersistedAtLabel={lastPersistedAtLabel}
+          />
+
         <DogProfileForm
           mode={mode}
           values={values}
@@ -548,6 +603,32 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
           onSaveDraft={() => void runAction('save_draft')}
           onSubmitForReview={() => void runAction('submit_for_review')}
         />
+
+        <div className="dog-form-guidance-stack">
+          <OwnerReviewReadinessPanel
+            locale={locale}
+            context="form"
+            dogName={values.name}
+            slug={values.slug}
+            lifecycleStatus={values.lifecycleStatus}
+            visibility={values.visibility}
+            hasPublication={Boolean(values.publicationPublicSlug)}
+            hasCertificate={Boolean(values.publicationCertificateCode)}
+            hasName={Boolean(values.name.trim())}
+            hasSlug={Boolean(values.slug.trim())}
+            hasDateOfBirth={Boolean(values.dateOfBirth)}
+            hasColor={Boolean(values.color.trim())}
+            hasShortDescription={Boolean(values.shortDescription.trim())}
+            hasCity={Boolean(values.city.trim())}
+            hasCountry={Boolean(values.country.trim())}
+            hasPrimaryImage={Boolean(values.mainImageUrl || values.galleryImageUrls[0])}
+            galleryImageCount={galleryImageCount}
+            pedigreeFilledCount={pedigreeFilledCount}
+            pedigreePhotoCount={pedigreePhotoCount}
+            mediaHref={activeDogId ? `/my-dogs/${activeDogId}/media` : undefined}
+            compact
+          />
+        </div>
       </div>
       <DogProfilePreviewCard
         values={values}
