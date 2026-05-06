@@ -11,6 +11,7 @@ import { useLocale } from '@/components/locale-provider';
 import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigree';
 import type { DogAncestorProfile, DogAncestorRelationKey } from '@cane-corso-platform/contracts';
 import { ImageLightbox } from '@/components/image-lightbox';
+import { compactImageFileToDataUrl } from '@/lib/image-payload.client';
 
 const imageUploadCopy = {
   en: {
@@ -130,29 +131,12 @@ async function loadImage(source: string): Promise<HTMLImageElement> {
 }
 
 async function optimizeImageToDataUrl(file: File): Promise<string> {
-  const objectUrl = URL.createObjectURL(file);
-
-  try {
-    const image = await loadImage(objectUrl);
-    const maxWidth = 1600;
-    const maxHeight = 1600;
-    const scale = Math.min(maxWidth / image.naturalWidth, maxHeight / image.naturalHeight, 1);
-    const width = Math.max(1, Math.round(image.naturalWidth * scale));
-    const height = Math.max(1, Math.round(image.naturalHeight * scale));
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-
-    const context = canvas.getContext('2d');
-    if (!context) {
-      throw new Error('Unable to prepare the selected image.');
-    }
-
-    context.drawImage(image, 0, 0, width, height);
-    return canvas.toDataURL('image/webp', 0.9);
-  } finally {
-    URL.revokeObjectURL(objectUrl);
-  }
+  return compactImageFileToDataUrl(file, {
+    maxWidth: 900,
+    maxHeight: 900,
+    mimeType: 'image/webp',
+    quality: 0.72,
+  });
 }
 
 async function buildBrandedImageDataUrl(

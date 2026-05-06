@@ -16,6 +16,7 @@ import {
 } from '@/lib/dog-pedigree';
 import { LuxurySelect } from '@/components/luxury-select';
 import { ImageLightbox } from '@/components/image-lightbox';
+import { compactImageFileToDataUrl } from '@/lib/image-payload.client';
 
 interface PedigreeEditorProps {
   pedigree: DogPedigreeProfile;
@@ -212,17 +213,18 @@ function PedigreeAncestorCard({
     <span>{ancestorInitial(title, value)}</span>
   );
 
-  const handleLocalImageChange = (file: File | null) => {
+  const handleLocalImageChange = async (file: File | null) => {
     if (!file) {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = typeof reader.result === 'string' ? reader.result : null;
-      onAncestorChange(relationKey, 'photoUrl', result as DogAncestorProfile['photoUrl']);
-    };
-    reader.readAsDataURL(file);
+    const result = await compactImageFileToDataUrl(file, {
+      maxWidth: 640,
+      maxHeight: 640,
+      mimeType: 'image/webp',
+      quality: 0.68,
+    });
+    onAncestorChange(relationKey, 'photoUrl', result as DogAncestorProfile['photoUrl']);
   };
 
   if (!isOpen) {
@@ -291,7 +293,7 @@ function PedigreeAncestorCard({
                 accept="image/*"
                 className="pedigree-ancestor-upload__input"
                 onChange={(event) => {
-                  handleLocalImageChange(event.target.files?.[0] ?? null);
+                  void handleLocalImageChange(event.target.files?.[0] ?? null);
                   event.currentTarget.value = '';
                 }}
               />

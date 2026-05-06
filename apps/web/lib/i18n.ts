@@ -564,6 +564,8 @@ export const dictionary: Record<Locale, any> = {
         submissionBlocked: 'Sending is blocked until all highlighted issues are fixed.',
         submitMessageSuffix: 'core profile fields are currently filled.',
         serverActionFailedPrefix: 'Saving failed:',
+        payloadTooLarge: 'The selected photos were too large for one save. The platform now prepares smaller profile copies before saving. Try saving again.',
+        unexpectedApiResponse: 'The server returned an unexpected response. Try again after the page finishes preparing the photos.',
         persistedTo: 'Last saved on',
       },
       validation: {
@@ -1139,6 +1141,8 @@ export const dictionary: Record<Locale, any> = {
         submissionBlocked: 'Изпращането е спряно, докато не бъдат оправени всички маркирани проблеми.',
         submitMessageSuffix: 'основни полета са попълнени в момента.',
         serverActionFailedPrefix: 'Грешка при записване:',
+        payloadTooLarge: 'Снимките бяха твърде големи за едно записване. Платформата вече подготвя по-леки копия за профила. Опитай да запазиш отново.',
+        unexpectedApiResponse: 'Сървърът върна неочакван отговор. Опитай отново, след като снимките се подготвят докрай.',
         persistedTo: 'Последно записване на',
       },
       validation: {
@@ -1714,6 +1718,8 @@ export const dictionary: Record<Locale, any> = {
         submissionBlocked: 'Invio bloccato finché tutti i problemi evidenziati non vengono corretti.',
         submitMessageSuffix: 'campi principali del profilo sono attualmente compilati.',
         serverActionFailedPrefix: 'Errore durante il salvataggio:',
+        payloadTooLarge: 'Le foto selezionate erano troppo grandi per un unico salvataggio. La piattaforma ora prepara copie più leggere prima del salvataggio. Prova a salvare di nuovo.',
+        unexpectedApiResponse: 'Il server ha restituito una risposta inattesa. Riprova dopo la preparazione delle foto.',
         persistedTo: 'Ultimo salvataggio il',
       },
       validation: {

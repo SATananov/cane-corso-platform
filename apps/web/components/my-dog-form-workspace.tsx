@@ -26,6 +26,7 @@ import { ApiRequestError } from '@/lib/api/fetcher';
 import { useLocale } from '@/components/locale-provider';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
 import { OwnerSubmissionHappyPathPanel } from '@/components/owner-submission-happy-path-panel';
+import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 interface MyDogFormWorkspaceProps {
   mode: 'create' | 'edit';
@@ -38,6 +39,58 @@ type EphemeralMediaState = {
   galleryImageUrls?: string[];
   pedigreePhotoUrls?: Partial<Record<DogAncestorRelationKey, string>>;
 };
+
+async function compactDogFormValuesForPayload(values: DogFormValues): Promise<DogFormValues> {
+  const [mainImageUrl, galleryImageUrls] = await Promise.all([
+    values.mainImageUrl
+      ? compactImageDataUrlForPayload(values.mainImageUrl, {
+          maxWidth: 900,
+          maxHeight: 900,
+          mimeType: 'image/webp',
+          quality: 0.72,
+        })
+      : Promise.resolve(values.mainImageUrl),
+    Promise.all(
+      values.galleryImageUrls.map((imageUrl) =>
+        compactImageDataUrlForPayload(imageUrl, {
+          maxWidth: 900,
+          maxHeight: 900,
+          mimeType: 'image/webp',
+          quality: 0.72,
+        }),
+      ),
+    ),
+  ]);
+
+  const pedigree = { ...values.pedigree };
+
+  await Promise.all(
+    PEDIGREE_RELATION_ORDER.map(async (relationKey) => {
+      const ancestor = pedigree[relationKey];
+
+      if (!ancestor?.photoUrl) {
+        return;
+      }
+
+      pedigree[relationKey] = {
+        ...ancestor,
+        photoUrl: await compactImageDataUrlForPayload(ancestor.photoUrl, {
+          maxWidth: 640,
+          maxHeight: 640,
+          mimeType: 'image/webp',
+          quality: 0.68,
+        }),
+      };
+    }),
+  );
+
+  return {
+    ...values,
+    mainImageUrl,
+    galleryImageUrls,
+    pedigree,
+  };
+}
 
 const LEGACY_STORAGE_PREFIX = 'usg-dog-gallery:';
 const EPHEMERAL_MEDIA_DB_NAME = 'usg-dog-form-media';
@@ -452,14 +505,15 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
     setPendingIntent(intent);
 
     try {
+      const payloadValues = await compactDogFormValuesForPayload(normalizedValues);
       const response = await mutateDogProfile(
-        mapDogFormValuesToActionInput(normalizedValues, intent, activeDogId),
+        mapDogFormValuesToActionInput(payloadValues, intent, activeDogId),
       );
       const result = response.result;
-      const cachedMedia = createEphemeralMediaState(normalizedValues);
-      await writeEphemeralMedia(cachedMedia, result.dogId, normalizedValues.slug);
+      const cachedMedia = createEphemeralMediaState(payloadValues);
+      await writeEphemeralMedia(cachedMedia, result.dogId, payloadValues.slug);
       const mappedProfile = mergeEphemeralValues(
-        normalizedValues,
+        payloadValues,
         mapActionProfileToDogFormValues(result.profile),
         cachedMedia,
       );
@@ -485,7 +539,14 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
         setErrors(error.details as DogFormErrors);
       }
 
-      const message = error instanceof Error ? error.message : 'The dog profile action failed.';
+      let message = error instanceof Error ? error.message : 'The dog profile action failed.';
+
+      if (error instanceof ApiRequestError && error.code === 'INVALID_API_RESPONSE') {
+        message = error.status === 413
+          ? dictionary.form.workspace.payloadTooLarge
+          : dictionary.form.workspace.unexpectedApiResponse;
+      }
+
       setValidationPassed(false);
       setSubmitMessage(`${dictionary.form.workspace.serverActionFailedPrefix} ${message}`);
     } finally {
