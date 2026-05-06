@@ -15,6 +15,7 @@ import {
 export const dynamic = 'force-dynamic';
 
 const MAX_AVATAR_URL_LENGTH = 1_000;
+const SUPPORTED_WEBSITE_URL = /^https?:\/\//i;
 const SUPPORTED_AVATAR_REMOTE_URL = /^https?:\/\//i;
 const SUPPORTED_AVATAR_LOCAL_URL = /^\/uploads\//i;
 
@@ -87,9 +88,29 @@ async function parseProfileUpdateInput(request: Request): Promise<UpdateCurrentP
     input.displayName = displayName;
   }
 
+  const firstName = normalizeOptionalText(body.firstName, 80);
+  if (firstName !== undefined) {
+    input.firstName = firstName;
+  }
+
+  const middleName = normalizeOptionalText(body.middleName, 80);
+  if (middleName !== undefined) {
+    input.middleName = middleName;
+  }
+
+  const lastName = normalizeOptionalText(body.lastName, 80);
+  if (lastName !== undefined) {
+    input.lastName = lastName;
+  }
+
   const avatarUrl = normalizeAvatarUrl(body.avatarUrl);
   if (avatarUrl !== undefined) {
     input.avatarUrl = avatarUrl;
+  }
+
+  const phone = normalizeOptionalText(body.phone, 80);
+  if (phone !== undefined) {
+    input.phone = phone;
   }
 
   const city = normalizeOptionalText(body.city, 120);
@@ -100,6 +121,20 @@ async function parseProfileUpdateInput(request: Request): Promise<UpdateCurrentP
   const country = normalizeOptionalText(body.country, 120);
   if (country !== undefined) {
     input.country = country;
+  }
+
+  const addressLine = normalizeOptionalText(body.addressLine, 260);
+  if (addressLine !== undefined) {
+    input.addressLine = addressLine;
+  }
+
+  const websiteUrl = normalizeOptionalText(body.websiteUrl, 220);
+  if (websiteUrl !== undefined) {
+    if (websiteUrl && !SUPPORTED_WEBSITE_URL.test(websiteUrl)) {
+      throw new Error('Website must start with http:// or https://.');
+    }
+
+    input.websiteUrl = websiteUrl;
   }
 
   const bio = normalizeOptionalText(body.bio, 800);

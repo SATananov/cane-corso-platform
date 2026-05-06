@@ -115,7 +115,8 @@
     "db:target:qa": "node scripts/qa-runtime-db-target-guardrail.mjs",
     "owner:form-first-ux:qa": "node scripts/qa-owner-form-first-ux.mjs",
     "owner:form-polish:qa": "node scripts/qa-owner-form-polish.mjs",
-    "owner:image-payload:qa": "node scripts/qa-owner-image-payload-guardrail.mjs"
+    "owner:image-payload:qa": "node scripts/qa-owner-image-payload-guardrail.mjs",
+    "owner:identity-privacy:qa": "node scripts/qa-owner-identity-privacy.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

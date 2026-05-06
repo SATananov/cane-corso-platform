@@ -7,6 +7,7 @@ import type { PublicDogAdminAssessment } from './dog-review.types';
 export interface PublicRegistryOwner {
   profileId: EntityId;
   displayName: string;
+  avatarUrl: string | null;
   city: string | null;
   country: string | null;
 }

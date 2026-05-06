@@ -32,6 +32,12 @@ const copyByLocale = {
       emptyDescription:
         'As members submit Cane Corso profiles, they will appear here for approval, publication, certification, or change requests.',
       owner: 'Owner',
+      ownerIdentity: 'Protected owner identity',
+      ownerPublicNote: 'Public Registry shows only owner name and avatar by default.',
+      ownerPhone: 'Phone',
+      ownerWebsite: 'Website',
+      ownerAddress: 'Address',
+      ownerBio: 'Owner note',
       submittedAt: 'Submitted',
       publishedAt: 'Published',
       location: 'Location',
@@ -116,6 +122,12 @@ const copyByLocale = {
       emptyDescription:
         'Когато членовете изпратят Cane Corso профили, те ще се появяват тук за одобрение, публикация в регистъра, издаване на сертификат или връщане за корекции.',
       owner: 'Собственик',
+      ownerIdentity: 'Защитена идентичност на собственика',
+      ownerPublicNote: 'Публичният Регистър показва само име и аватар на собственика по подразбиране.',
+      ownerPhone: 'Телефон',
+      ownerWebsite: 'Сайт',
+      ownerAddress: 'Адрес',
+      ownerBio: 'Бележка за собственика',
       submittedAt: 'Изпратен',
       publishedAt: 'Публикуван',
       location: 'Локация',
@@ -200,6 +212,12 @@ const copyByLocale = {
       emptyDescription:
         'Quando i membri inviano profili Cane Corso, compariranno qui per approvazione, pubblicazione nel registro, certificazione o richiesta modifiche.',
       owner: 'Proprietario',
+      ownerIdentity: 'Identità proprietario protetta',
+      ownerPublicNote: 'Il Registro pubblico mostra solo nome e avatar del proprietario di default.',
+      ownerPhone: 'Telefono',
+      ownerWebsite: 'Sito web',
+      ownerAddress: 'Indirizzo',
+      ownerBio: 'Nota proprietario',
       submittedAt: 'Inviato',
       publishedAt: 'Pubblicato',
       location: 'Località',
@@ -473,8 +491,15 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                     <div>
                       <dt>{copy.labels.owner}</dt>
                       <dd>
-                        <strong>{item.owner.displayName}</strong>
-                        <span>{item.owner.email}</span>
+                        <span className="review-owner-identity">
+                          <span className="review-owner-identity__avatar">
+                            {item.owner.avatarUrl ? <img src={item.owner.avatarUrl} alt="" loading="lazy" decoding="async" /> : item.owner.displayName.slice(0, 2).toUpperCase()}
+                          </span>
+                          <span>
+                            <strong>{item.owner.displayName}</strong>
+                            <small>{item.owner.email}</small>
+                          </span>
+                        </span>
                       </dd>
                     </div>
                     <div>
@@ -494,6 +519,31 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                       <dd>{item.certificateCode || copy.labels.certificatePending}</dd>
                     </div>
                   </dl>
+
+                  <section className="review-owner-protected-card">
+                    <div>
+                      <span className="eyebrow-label">{copy.labels.ownerIdentity}</span>
+                      <p>{copy.labels.ownerPublicNote}</p>
+                    </div>
+                    <dl>
+                      <div>
+                        <dt>{copy.labels.ownerPhone}</dt>
+                        <dd>{item.owner.phone || copy.labels.unknown}</dd>
+                      </div>
+                      <div>
+                        <dt>{copy.labels.ownerWebsite}</dt>
+                        <dd>{item.owner.websiteUrl || copy.labels.unknown}</dd>
+                      </div>
+                      <div>
+                        <dt>{copy.labels.ownerAddress}</dt>
+                        <dd>{item.owner.addressLine || copy.labels.unknown}</dd>
+                      </div>
+                      <div>
+                        <dt>{copy.labels.ownerBio}</dt>
+                        <dd>{item.owner.bio || copy.labels.unknown}</dd>
+                      </div>
+                    </dl>
+                  </section>
 
                   <div className="review-queue-item__note">
                     <span className="eyebrow-label">{copy.labels.reviewNote}</span>

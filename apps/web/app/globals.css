@@ -19152,3 +19152,252 @@ body {
   }
 }
 /* Step 85 — Add Cane Corso form-first UX reorder END */
+
+/* Step 86 — Owner identity profile + privacy-safe public owner display */
+.owner-identity-form {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(212, 175, 55, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+    rgba(6, 7, 9, 0.54);
+}
+
+.owner-identity-form__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.48fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.owner-identity-form__head h3 {
+  margin: 0;
+  color: var(--ivory);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.28rem, 1.75vw, 1.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.owner-identity-form__head p {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+  line-height: 1.56;
+}
+
+.owner-identity-form__privacy-card {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  padding: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.07);
+}
+
+.owner-identity-form__privacy-card strong {
+  color: var(--color-gold);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+.owner-identity-form__privacy-card span {
+  color: rgba(248, 245, 239, 0.72);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.owner-identity-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.owner-identity-form__grid label {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.owner-identity-form__grid label > span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 820;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.owner-identity-form__grid input,
+.owner-identity-form__grid textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(4, 5, 7, 0.62);
+  color: var(--ivory);
+  font: inherit;
+  line-height: 1.4;
+  outline: none;
+  padding: 0.78rem 0.9rem;
+  box-shadow: inset 0 1px 0 rgba(248, 245, 239, 0.035);
+}
+
+.owner-identity-form__grid textarea {
+  resize: vertical;
+}
+
+.owner-identity-form__grid input:focus,
+.owner-identity-form__grid textarea:focus {
+  border-color: rgba(212, 175, 55, 0.42);
+  box-shadow:
+    0 0 0 3px rgba(212, 175, 55, 0.12),
+    inset 0 1px 0 rgba(248, 245, 239, 0.04);
+}
+
+.owner-identity-form__wide {
+  grid-column: 1 / -1;
+}
+
+.owner-identity-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.owner-identity-form__message,
+.owner-identity-form__error {
+  padding: 0.62rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.owner-identity-form__message {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: rgba(212, 175, 55, 0.07);
+  color: rgba(248, 245, 239, 0.82);
+}
+
+.owner-identity-form__error {
+  border: 1px solid rgba(255, 116, 116, 0.24);
+  background: rgba(255, 116, 116, 0.08);
+  color: #ffd1d1;
+}
+
+.public-owner-badge,
+.review-owner-identity {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.public-owner-badge__avatar,
+.review-owner-identity__avatar {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.22), transparent 58%),
+    rgba(5, 6, 8, 0.88);
+  color: var(--color-gold);
+  font-size: 0.74rem;
+  font-weight: 860;
+  letter-spacing: 0.03em;
+}
+
+.public-owner-badge__avatar img,
+.review-owner-identity__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.public-owner-badge--compact .public-owner-badge__avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 0.66rem;
+}
+
+.review-owner-identity > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.review-owner-identity small {
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.review-owner-protected-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.1), transparent 36%),
+    rgba(212, 175, 55, 0.045);
+}
+
+.review-owner-protected-card p {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.48;
+}
+
+.review-owner-protected-card dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.review-owner-protected-card dt {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 820;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.review-owner-protected-card dd {
+  margin: 4px 0 0;
+  color: var(--ivory);
+  font-size: 0.86rem;
+  overflow-wrap: anywhere;
+}
+
+[data-theme='heritage'] .owner-identity-form,
+[data-theme='heritage'] .review-owner-protected-card {
+  border-color: rgba(170, 127, 39, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 239, 198, 0.07), rgba(255, 239, 198, 0.02)),
+    rgba(9, 10, 13, 0.86);
+}
+
+[data-theme='heritage'] .owner-identity-form__head h3,
+[data-theme='heritage'] .review-owner-protected-card dd {
+  color: #f7f0e2;
+}
+
+@media (max-width: 860px) {
+  .owner-identity-form__head,
+  .owner-identity-form__grid,
+  .review-owner-protected-card,
+  .review-owner-protected-card dl {
+    grid-template-columns: 1fr;
+  }
+}

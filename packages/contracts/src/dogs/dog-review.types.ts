@@ -51,9 +51,17 @@ export type ReviewDecisionIntent = 'approve' | 'needs_changes';
 export interface ReviewQueueOwner {
   profileId: EntityId;
   displayName: string;
+  firstName: string | null;
+  middleName: string | null;
+  lastName: string | null;
+  avatarUrl: string | null;
   email: string;
+  phone: string | null;
   city: string | null;
   country: string | null;
+  addressLine: string | null;
+  websiteUrl: string | null;
+  bio: string | null;
 }
 
 export interface ReviewQueueItem {

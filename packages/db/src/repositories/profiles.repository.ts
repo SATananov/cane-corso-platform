@@ -37,11 +37,14 @@ function mapProfileRow(row: ProfileRow): Profile {
     role: row.role as Profile['role'],
     displayName: row.displayName,
     firstName: row.firstName,
+    middleName: row.middleName,
     lastName: row.lastName,
     avatarUrl: row.avatarUrl,
     phone: row.phone,
     country: row.country,
     city: row.city,
+    addressLine: row.addressLine,
+    websiteUrl: row.websiteUrl,
     bio: row.bio,
     locale: row.locale,
     isActive: row.isActive,
@@ -96,6 +99,22 @@ class DrizzleProfilesRepository implements ProfilesRepository {
       }
     }
 
+    if ('firstName' in input) {
+      updates.firstName = input.firstName?.trim() || null;
+    }
+
+    if ('middleName' in input) {
+      updates.middleName = input.middleName?.trim() || null;
+    }
+
+    if ('lastName' in input) {
+      updates.lastName = input.lastName?.trim() || null;
+    }
+
+    if ('phone' in input) {
+      updates.phone = input.phone?.trim() || null;
+    }
+
     if ('avatarUrl' in input) {
       updates.avatarUrl = input.avatarUrl?.trim() || null;
     }
@@ -106,6 +125,14 @@ class DrizzleProfilesRepository implements ProfilesRepository {
 
     if ('country' in input) {
       updates.country = input.country?.trim() || null;
+    }
+
+    if ('addressLine' in input) {
+      updates.addressLine = input.addressLine?.trim() || null;
+    }
+
+    if ('websiteUrl' in input) {
+      updates.websiteUrl = input.websiteUrl?.trim() || null;
     }
 
     if ('bio' in input) {

@@ -4,6 +4,7 @@ import type { PublicRegistryDocument, PublicRegistryEntry } from '@cane-corso-pl
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { removeDogProfileAction, removeRegistryEntryAction, revokeCertificateAction } from '@/app/(admin)/admin/registry/actions';
 import { ImageLightbox } from '@/components/image-lightbox';
+import { PublicOwnerBadge } from '@/components/public-owner-badge';
 
 const copyByLocale = {
   en: {
@@ -12,8 +13,8 @@ const copyByLocale = {
       totalNote: 'live public records',
       certified: 'With certificate',
       certifiedNote: 'trust-marked entries',
-      countries: 'Countries',
-      countriesNote: 'registry coverage',
+      countries: 'Owners',
+      countriesNote: 'public name + avatar',
     },
     labels: {
       directory: 'Registered Cane Corso profiles',
@@ -39,7 +40,7 @@ const copyByLocale = {
       orientationDescription:
         'The registry shows public Cane Corso presence. The profile proves publication, the certificate confirms trust, and Verify lets visitors confirm the active public record.',
       orientationA: 'Published profile',
-      orientationACopy: 'Public identity, summary, location, and presentation layer for approved Cane Corso entries.',
+      orientationACopy: 'Public Cane Corso identity, summary, owner name, owner avatar, and presentation layer for approved entries.',
       orientationB: 'USG certificate',
       orientationBCopy: 'A separate trust signal that may appear on selected profiles and can be confirmed independently.',
       orientationC: 'Verify path',
@@ -87,8 +88,8 @@ const copyByLocale = {
       totalNote: 'активни публични записи',
       certified: 'Със сертификат',
       certifiedNote: 'доверени присъствия',
-      countries: 'Държави',
-      countriesNote: 'покритие на регистъра',
+      countries: 'Собственици',
+      countriesNote: 'име + аватар',
     },
     labels: {
       directory: 'Регистрирани Cane Corso профили',
@@ -114,7 +115,7 @@ const copyByLocale = {
       orientationDescription:
         'Регистърът показва публичното присъствие на Cane Corso. Профилът доказва публикацията, сертификатът добавя отделен знак за доверие, а Verify позволява на посетителя да потвърди активния публичен запис.',
       orientationA: 'Публикуван профил',
-      orientationACopy: 'Публична идентичност, кратко представяне, локация и премиум присъствие за одобрен профил на Cane Corso.',
+      orientationACopy: 'Публична Cane Corso идентичност, кратко представяне, име и аватар на собственика и премиум присъствие за одобрен профил.',
       orientationB: 'USG сертификат',
       orientationBCopy: 'Отделен знак за доверие, който може да присъства при избрани профили и се потвърждава самостоятелно.',
       orientationC: 'Път към проверка',
@@ -162,8 +163,8 @@ const copyByLocale = {
       totalNote: 'record pubblici attivi',
       certified: 'Con certificato',
       certifiedNote: 'presenze con fiducia',
-      countries: 'Paesi',
-      countriesNote: 'copertura del registro',
+      countries: 'Proprietari',
+      countriesNote: 'nome + avatar',
     },
     labels: {
       directory: 'Profili Cane Corso registrati',
@@ -336,7 +337,7 @@ function renderParentPhoto(profile: NonNullable<ReturnType<typeof getParentProfi
 export function PublicRegistryOverview({ document, locale, hasMemberAccess, isAdminViewer = false }: PublicRegistryOverviewProps) {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const certified = document.entries.filter((entry) => entry.certificate).length;
-  const countries = new Set(document.entries.map((entry) => entry.owner.country).filter(Boolean)).size;
+  const countries = new Set(document.entries.map((entry) => entry.owner.profileId)).size;
 
   return (
     <div className="member-route-stack">
@@ -561,11 +562,7 @@ export function PublicRegistryOverview({ document, locale, hasMemberAccess, isAd
                       <dl className="registry-card__meta">
                         <div>
                           <dt>{copy.labels.owner}</dt>
-                          <dd>{entry.owner.displayName}</dd>
-                        </div>
-                        <div>
-                          <dt>{copy.labels.location}</dt>
-                          <dd>{formatLocation(entry.owner.city, entry.owner.country, copy.labels.pending)}</dd>
+                          <dd><PublicOwnerBadge displayName={entry.owner.displayName} avatarUrl={entry.owner.avatarUrl} compact /></dd>
                         </div>
                         <div>
                           <dt>{copy.labels.published}</dt>

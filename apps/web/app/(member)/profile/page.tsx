@@ -3,6 +3,7 @@ import type { Dog, DogMedia } from '@cane-corso-platform/contracts';
 import { redirect } from 'next/navigation';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
+import { OwnerIdentityForm } from '@/components/owner-identity-form';
 import { OwnerProfilePhotoPanel } from '@/components/owner-profile-photo-panel';
 import { OwnerCaneCorsoSpotlight, type OwnerSpotlightDog } from '@/components/owner-cane-corso-spotlight';
 import { getCurrentProfileDocument } from '@/lib/member-profile.server';
@@ -66,6 +67,121 @@ function formatLocaleLabel(uiLocale: string, value?: string | null) {
   return localeMap[normalized as keyof typeof localeMap] ?? normalized.toUpperCase();
 }
 
+function getOwnerIdentityFormLabels(locale: string) {
+  const labels = {
+    en: {
+      eyebrow: 'Owner details',
+      title: 'Complete the owner identity',
+      description: 'Keep the full owner information here. Admins can review it, while the public Registry shows only the owner name and avatar.',
+      publicNotice: 'Public by default: name + avatar only',
+      privacyNotice: 'Address, phone, website, email, and biography stay private/admin-visible unless admin explicitly approves extra visibility later.',
+      fields: {
+        displayName: 'Public owner name',
+        firstName: 'First name',
+        middleName: 'Middle name',
+        lastName: 'Last name',
+        city: 'City',
+        country: 'Country',
+        addressLine: 'Address',
+        websiteUrl: 'Website',
+        phone: 'Phone',
+        bio: 'Short owner note',
+      },
+      placeholders: {
+        displayName: 'Stefan Tananov / kennel name',
+        firstName: 'Stefan',
+        middleName: 'Middle name',
+        lastName: 'Tananov',
+        city: 'Kardzhali',
+        country: 'Bulgaria',
+        addressLine: 'Private address for admin use only',
+        websiteUrl: 'https://example.com',
+        phone: '+359 ...',
+        bio: 'Short private/admin note about the owner or kennel.',
+      },
+      saveLabel: 'Save owner details',
+      savingLabel: 'Saving…',
+      savedMessage: 'Owner details saved.',
+      noChangesMessage: 'No owner detail changes to save.',
+      errorMessage: 'Owner details could not be saved.',
+    },
+    bg: {
+      eyebrow: 'Данни на собственика',
+      title: 'Попълни идентичността на собственика',
+      description: 'Пълните данни стоят тук. Админът ги вижда при преглед, а публичният Регистър показва само името и аватара на собственика.',
+      publicNotice: 'Публично по подразбиране: име + аватар',
+      privacyNotice: 'Адрес, телефон, сайт, имейл и биография остават лични/видими за админ, освен ако админ изрично не разреши друго публично показване.',
+      fields: {
+        displayName: 'Публично име на собственика',
+        firstName: 'Име',
+        middleName: 'Презиме',
+        lastName: 'Фамилия',
+        city: 'Град',
+        country: 'Държава',
+        addressLine: 'Адрес',
+        websiteUrl: 'Сайт',
+        phone: 'Телефон',
+        bio: 'Кратка бележка за собственика',
+      },
+      placeholders: {
+        displayName: 'Стефан Тананов / име на развъдник',
+        firstName: 'Стефан',
+        middleName: 'Презиме',
+        lastName: 'Тананов',
+        city: 'Кърджали',
+        country: 'България',
+        addressLine: 'Личен адрес само за админ',
+        websiteUrl: 'https://example.com',
+        phone: '+359 ...',
+        bio: 'Кратка лична/админ бележка за собственика или развъдника.',
+      },
+      saveLabel: 'Запази данните',
+      savingLabel: 'Запазване…',
+      savedMessage: 'Данните на собственика са запазени.',
+      noChangesMessage: 'Няма промени по данните за запис.',
+      errorMessage: 'Данните на собственика не можаха да бъдат запазени.',
+    },
+    it: {
+      eyebrow: 'Dati del proprietario',
+      title: 'Completa l’identità del proprietario',
+      description: 'Le informazioni complete restano qui. L’admin le vede in revisione, mentre il Registro pubblico mostra solo nome e avatar del proprietario.',
+      publicNotice: 'Pubblico di default: nome + avatar',
+      privacyNotice: 'Indirizzo, telefono, sito, email e biografia restano privati/visibili all’admin salvo approvazione esplicita dell’admin.',
+      fields: {
+        displayName: 'Nome pubblico proprietario',
+        firstName: 'Nome',
+        middleName: 'Secondo nome',
+        lastName: 'Cognome',
+        city: 'Città',
+        country: 'Paese',
+        addressLine: 'Indirizzo',
+        websiteUrl: 'Sito web',
+        phone: 'Telefono',
+        bio: 'Nota breve sul proprietario',
+      },
+      placeholders: {
+        displayName: 'Stefan Tananov / nome allevamento',
+        firstName: 'Stefan',
+        middleName: 'Secondo nome',
+        lastName: 'Tananov',
+        city: 'Kardzhali',
+        country: 'Bulgaria',
+        addressLine: 'Indirizzo privato solo per admin',
+        websiteUrl: 'https://example.com',
+        phone: '+359 ...',
+        bio: 'Breve nota privata/admin sul proprietario o allevamento.',
+      },
+      saveLabel: 'Salva dati proprietario',
+      savingLabel: 'Salvataggio…',
+      savedMessage: 'Dati proprietario salvati.',
+      noChangesMessage: 'Nessuna modifica ai dati da salvare.',
+      errorMessage: 'Impossibile salvare i dati del proprietario.',
+    },
+  } as const;
+
+  return labels[locale as keyof typeof labels] ?? labels.en;
+}
+
 
 async function enrichProfileDogsWithMedia(dogs: Dog[]): Promise<OwnerSpotlightDog[]> {
   return await Promise.all(
@@ -96,8 +212,9 @@ export default async function ProfilePage() {
     const t = getDictionary(locale);
     const displayName = session.user.displayName ?? session.user.email;
     const locationLabel = [profile.city, profile.country].filter(Boolean).join(', ') || t.common.pending;
-    const nameLabel = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || displayName;
+    const nameLabel = [profile.firstName, profile.middleName, profile.lastName].filter(Boolean).join(' ') || displayName;
 
+    const identityFormLabels = getOwnerIdentityFormLabels(locale);
     const dogsWithMedia = await enrichProfileDogsWithMedia(dogs);
 
     const totalDogs = dogsWithMedia.length;
@@ -626,6 +743,8 @@ export default async function ProfilePage() {
               labels={copy.photo}
             />
 
+            <OwnerIdentityForm profile={profile} labels={identityFormLabels} />
+
             <dl className="profile-page__identity-grid">
               <div>
                 <dt>{copy.labels.ownerName}</dt>
@@ -642,6 +761,18 @@ export default async function ProfilePage() {
               <div>
                 <dt>{copy.labels.location}</dt>
                 <dd>{locationLabel}</dd>
+              </div>
+              <div>
+                <dt>{identityFormLabels.fields.websiteUrl}</dt>
+                <dd>{profile.websiteUrl ?? t.common.pending}</dd>
+              </div>
+              <div>
+                <dt>{identityFormLabels.fields.phone}</dt>
+                <dd>{profile.phone ?? t.common.pending}</dd>
+              </div>
+              <div>
+                <dt>{identityFormLabels.fields.addressLine}</dt>
+                <dd>{profile.addressLine ?? t.common.pending}</dd>
               </div>
               <div>
                 <dt>{copy.labels.language}</dt>

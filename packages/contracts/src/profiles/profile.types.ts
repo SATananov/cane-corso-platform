@@ -7,11 +7,14 @@ export interface Profile {
   role: AppRole;
   displayName: string;
   firstName: string | null;
+  middleName: string | null;
   lastName: string | null;
   avatarUrl: string | null;
   phone: string | null;
   country: string | null;
   city: string | null;
+  addressLine: string | null;
+  websiteUrl: string | null;
   bio: string | null;
   locale: string | null;
   isActive: boolean;

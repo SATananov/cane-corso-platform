@@ -5,6 +5,7 @@ import { CommunityRatingPanel } from '@/components/community-rating-panel';
 import { ImageLightbox } from '@/components/image-lightbox';
 import { PedigreeTree } from '@/components/pedigree-tree';
 import { PublicRegistryTrustReadabilityPanel } from '@/components/public-registry-trust-readability-panel';
+import { PublicOwnerBadge } from '@/components/public-owner-badge';
 import { issueDogCertificateAction, removeDogProfileAction, removeRegistryEntryAction, revokeCertificateAction } from '@/app/(admin)/admin/registry/actions';
 
 const copyByLocale = {
@@ -632,11 +633,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
             <dl className="registry-profile-card__meta-grid">
               <div>
                 <dt>{copy.labels.owner}</dt>
-                <dd>{entry.owner.displayName}</dd>
-              </div>
-              <div>
-                <dt>{copy.labels.location}</dt>
-                <dd>{formatLocation(entry.owner.city, entry.owner.country, copy.labels.notAvailable)}</dd>
+                <dd><PublicOwnerBadge displayName={entry.owner.displayName} avatarUrl={entry.owner.avatarUrl} /></dd>
               </div>
               <div>
                 <dt>{copy.labels.publishedAt}</dt>
