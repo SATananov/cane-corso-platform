@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FriendlyPlacesMap } from '@/components/friendly-places-map';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import type { Locale } from '@/lib/i18n';
 import type { EcosystemDirectoryDocument, EcosystemListing } from '@cane-corso-platform/contracts';
@@ -45,6 +46,10 @@ const copyByLocale = {
         'Parks, walk zones, training fields, shops, cafés, hotels, clinics, and services that have passed review before public display.',
       placesEmpty: 'No approved places yet. Members can submit places from the owner workspace.',
       suitability: 'Large-breed suitability',
+      mapTitle: 'Cane Corso-friendly map',
+      mapEmpty: 'Approved places with coordinates will appear on the map after admin publication.',
+      mapManualMode: 'Google Maps key is not configured. Approved places remain available in the list.',
+      openMaps: 'Open in Google Maps',
     },
   },
   bg: {
@@ -83,6 +88,10 @@ const copyByLocale = {
         'Паркове, зони за разходка, тренировъчни полета, магазини, заведения, хотели, клиники и услуги, които са прегледани преди публично показване.',
       placesEmpty: 'Все още няма одобрени места. Членовете могат да изпращат места от личната си зона.',
       suitability: 'Подходящост за едри породи',
+      mapTitle: 'Карта с места, подходящи за Cane Corso',
+      mapEmpty: 'Одобрените места с координати ще се появят на картата след админ публикация.',
+      mapManualMode: 'Google Maps ключът не е настроен. Одобрените места остават достъпни като списък.',
+      openMaps: 'Отвори в Google Maps',
     },
   },
   it: {
@@ -121,6 +130,10 @@ const copyByLocale = {
         'Parchi, aree passeggio, campi training, negozi, locali, hotel, cliniche e servizi valutati prima della visibilità pubblica.',
       placesEmpty: 'Non ci sono ancora luoghi approvati. I membri possono inviarli dall’area proprietario.',
       suitability: 'Idoneità per razze grandi',
+      mapTitle: 'Mappa luoghi Cane Corso-friendly',
+      mapEmpty: 'I luoghi approvati con coordinate appariranno sulla mappa dopo la pubblicazione admin.',
+      mapManualMode: 'La chiave Google Maps non è configurata. I luoghi approvati restano disponibili in elenco.',
+      openMaps: 'Apri in Google Maps',
     },
   },
 } as const;
@@ -242,6 +255,15 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
   const typeLabels = getEcosystemListingTypeLabels(locale);
   const channelLabels = getEcosystemSubmissionChannelLabels(locale);
   const friendlyPlaces = document.items.filter(isFriendlyPlace);
+  const friendlyMapPlaces = friendlyPlaces.map((item) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    address: item.googleFormattedAddress || formatLocation(item, copy.labels.pending),
+    latitude: item.latitude,
+    longitude: item.longitude,
+    mapsUrl: item.googleMapsUrl,
+  }));
 
   return (
     <div className="member-route-stack">
@@ -265,6 +287,18 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
           </Link>
         </div>
 
+        <FriendlyPlacesMap
+          apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? null}
+          places={friendlyMapPlaces}
+          labels={{
+            title: copy.labels.mapTitle,
+            empty: copy.labels.mapEmpty,
+            manualMode: copy.labels.mapManualMode,
+            openDetail: copy.labels.openDetail,
+            openMaps: copy.labels.openMaps,
+          }}
+        />
+
         {friendlyPlaces.length === 0 ? (
           <div className="empty-state-panel empty-state-panel--compact">
             <p className="empty-state-panel__description">{copy.labels.placesEmpty}</p>
@@ -281,9 +315,16 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
                   <div><dt>{copy.labels.category}</dt><dd>{formatCategory(item.category, locale, copy.labels.pending)}</dd></div>
                   <div><dt>{copy.labels.suitability}</dt><dd>{localizeStandardText(item.rulesNote || item.coverageNote, locale, copy.labels.pending)}</dd></div>
                 </dl>
-                <Link className="button-primary small" href={getCommunityProfileHref(item.slug)}>
-                  {copy.labels.openDetail}
-                </Link>
+                <div className="ecosystem-card__actions ecosystem-card__actions--friendly">
+                  <Link className="button-primary small" href={getCommunityProfileHref(item.slug)}>
+                    {copy.labels.openDetail}
+                  </Link>
+                  {item.googleMapsUrl ? (
+                    <a className="button-secondary small" href={item.googleMapsUrl} target="_blank" rel="noreferrer">
+                      {copy.labels.openMaps}
+                    </a>
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>

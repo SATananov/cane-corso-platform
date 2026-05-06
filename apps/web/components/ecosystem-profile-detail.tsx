@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FriendlyPlacesMap } from '@/components/friendly-places-map';
 import type { EcosystemListing, EcosystemProfileDocument } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 import { getEcosystemListingTypeLabels, getEcosystemSubmissionChannelLabels, getEcosystemSubmissionChannelTone } from '@/lib/ecosystem-ui';
@@ -95,9 +96,40 @@ function categoryFor(item: EcosystemListing, locale: Locale, fallback: string) {
   return labels[item.category] ?? item.category.replace(/[_-]+/g, ' ');
 }
 
+function getMapLabels(locale: Locale) {
+  if (locale === 'bg') {
+    return {
+      title: 'Карта на мястото',
+      empty: 'Това място още няма координати от Google Maps.',
+      manualMode: 'Google Maps ключът не е настроен. Използвай адреса и детайлите от профила.',
+      openDetail: 'Детайли',
+      openMaps: 'Отвори в Google Maps',
+    };
+  }
+
+  if (locale === 'it') {
+    return {
+      title: 'Mappa del luogo',
+      empty: 'Questo luogo non ha ancora coordinate Google Maps.',
+      manualMode: 'La chiave Google Maps non è configurata. Usa indirizzo e dettagli della scheda.',
+      openDetail: 'Dettagli',
+      openMaps: 'Apri in Google Maps',
+    };
+  }
+
+  return {
+    title: 'Place map',
+    empty: 'This place does not have Google Maps coordinates yet.',
+    manualMode: 'Google Maps key is not configured. Use the address and listing details.',
+    openDetail: 'Details',
+    openMaps: 'Open in Google Maps',
+  };
+}
+
 export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDetailProps) {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const listing = document.listing;
+  const mapLabels = getMapLabels(locale);
   const typeLabels = getEcosystemListingTypeLabels(locale);
   const channelLabels = getEcosystemSubmissionChannelLabels(locale);
   const tone = getEcosystemSubmissionChannelTone(listing.submissionChannel);
@@ -157,6 +189,26 @@ export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDet
         </div>
 
         <aside className="stack-blocks">
+          <section className="content-card ecosystem-profile-section ecosystem-profile-map-section">
+            <span className="eyebrow-label">Google Maps</span>
+            <h2>{mapLabels.title}</h2>
+            <FriendlyPlacesMap
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? null}
+              places={[{
+                id: listing.id,
+                title: listing.title,
+                slug: listing.slug,
+                address: listing.googleFormattedAddress || locationFor(listing, copy.notSet),
+                latitude: listing.latitude,
+                longitude: listing.longitude,
+                mapsUrl: listing.googleMapsUrl,
+              }]}
+              labels={mapLabels}
+              className="friendly-places-map--detail"
+            />
+            {listing.googleMapsUrl ? <a className="button-secondary small" href={listing.googleMapsUrl} target="_blank" rel="noreferrer">{mapLabels.openMaps}</a> : null}
+          </section>
+
           <section className="content-card ecosystem-profile-section">
             <span className="eyebrow-label">{copy.contactEyebrow}</span>
             <h2>{copy.contactTitle}</h2>

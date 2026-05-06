@@ -100,3 +100,28 @@ https://cane-corso-platform.netlify.app/api/health/db
 ```
 
 Expected result: `status: ok` and all database fields point to `cane_corso_platform`.
+
+## Google Maps / Places integration
+
+Step 88 adds optional Google Maps and Places support for Cane Corso-friendly places.
+
+Required production variable:
+
+```txt
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+```
+
+The key is public by nature because it is used by the browser, but it must be restricted in Google Cloud by HTTP referrer, for example:
+
+```txt
+https://cane-corso-platform.netlify.app/*
+```
+
+Enable these Google Cloud APIs for the key:
+
+```txt
+Maps JavaScript API
+Places API
+```
+
+If the key is missing, the app does not crash. Friendly places remain visible as a list, and map surfaces show a manual-mode message.

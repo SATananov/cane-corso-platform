@@ -43,6 +43,12 @@ export interface EcosystemListing {
   rulesNote: string | null;
   logoUrl: string | null;
   coverImageUrl: string | null;
+  googlePlaceId: string | null;
+  googlePlaceName: string | null;
+  googleFormattedAddress: string | null;
+  googleMapsUrl: string | null;
+  latitude: string | null;
+  longitude: string | null;
   status: EcosystemListingStatus;
   isFeatured: boolean;
   submittedAt: ISODateTimeString | null;
@@ -71,6 +77,12 @@ export interface UpsertEcosystemListingInput {
   rulesNote?: string | null;
   logoUrl?: string | null;
   coverImageUrl?: string | null;
+  googlePlaceId?: string | null;
+  googlePlaceName?: string | null;
+  googleFormattedAddress?: string | null;
+  googleMapsUrl?: string | null;
+  latitude?: string | null;
+  longitude?: string | null;
 }
 
 export interface EcosystemOwnerWorkspaceDocument {

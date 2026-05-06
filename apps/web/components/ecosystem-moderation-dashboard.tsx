@@ -43,6 +43,8 @@ const copyByLocale = {
       needsChangesReadOnly: 'Returned for correction. Wait for the member to update and submit it again.',
       approvedSuggestionReadOnly: 'Approved as an internal suggestion. It cannot be published directly.',
       publishedReadOnly: 'Already published and visible in the public directory.',
+      googleMaps: 'Google Maps place',
+      openMaps: 'Open in Google Maps',
     },
   },
   bg: {
@@ -74,6 +76,8 @@ const copyByLocale = {
       needsChangesReadOnly: 'Върнато е за корекция. Изчакай членът да го редактира и изпрати отново.',
       approvedSuggestionReadOnly: 'Одобрено е като вътрешно предложение. Не се публикува директно.',
       publishedReadOnly: 'Вече е публичен запис и се вижда в директорията.',
+      googleMaps: 'Място в Google Maps',
+      openMaps: 'Отвори в Google Maps',
     },
   },
   it: {
@@ -105,6 +109,8 @@ const copyByLocale = {
       needsChangesReadOnly: 'Rimandata per correzione. Attendi che il membro la aggiorni e la invii di nuovo.',
       approvedSuggestionReadOnly: 'Approvata come suggerimento interno. Non può essere pubblicata direttamente.',
       publishedReadOnly: 'Già pubblicata e visibile nella directory pubblica.',
+      googleMaps: 'Luogo Google Maps',
+      openMaps: 'Apri in Google Maps',
     },
   },
 } as const;
@@ -287,6 +293,13 @@ export function EcosystemModerationDashboard({ document, locale }: EcosystemMode
                     <div>
                       <dt>{copy.labels.location}</dt>
                       <dd>{formatLocation(item, copy.labels.pending)}</dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.googleMaps}</dt>
+                      <dd>
+                        {item.listing.googlePlaceName || item.listing.googleFormattedAddress || copy.labels.pending}
+                        {item.listing.googleMapsUrl ? <a href={item.listing.googleMapsUrl} target="_blank" rel="noreferrer">{copy.labels.openMaps}</a> : null}
+                      </dd>
                     </div>
                     <div>
                       <dt>{copy.labels.publishState}</dt>

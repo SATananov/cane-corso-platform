@@ -19538,3 +19538,103 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Step 88 — Google Maps places integration */
+.google-place-picker {
+  display: grid;
+  gap: 1rem;
+  grid-column: 1 / -1;
+  border: 1px solid rgba(214, 178, 94, 0.22);
+  border-radius: 1.35rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(214, 178, 94, 0.1), rgba(255, 255, 255, 0.035));
+}
+
+.google-place-picker__head h3 {
+  margin: 0.15rem 0 0.35rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+.google-place-picker__head p,
+.google-place-picker__selection span,
+.field-help-text {
+  color: rgba(246, 238, 218, 0.72);
+}
+
+.google-place-picker__selection {
+  display: grid;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  padding: 0.85rem;
+  background: rgba(8, 6, 4, 0.28);
+}
+
+.google-place-picker__selection div:not(.google-place-picker__actions) {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.google-place-picker__selection strong {
+  color: rgba(214, 178, 94, 0.9);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.google-place-picker__actions,
+.ecosystem-card__actions--friendly {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.friendly-places-map {
+  min-height: 24rem;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(214, 178, 94, 0.22);
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at top left, rgba(214, 178, 94, 0.16), rgba(9, 7, 5, 0.72));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 1rem 2.5rem rgba(0, 0, 0, 0.18);
+}
+
+.friendly-places-map--detail {
+  min-height: 18rem;
+  margin: 0.85rem 0;
+}
+
+.friendly-places-map--fallback {
+  display: grid;
+  place-items: center;
+  gap: 0.45rem;
+  min-height: 15rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.friendly-places-map--fallback strong {
+  color: rgba(214, 178, 94, 0.95);
+}
+
+.friendly-places-map--fallback p {
+  max-width: 40rem;
+  margin: 0;
+  color: rgba(246, 238, 218, 0.72);
+}
+
+.ecosystem-profile-map-section .button-secondary {
+  width: fit-content;
+}
+
+@media (max-width: 720px) {
+  .friendly-places-map {
+    min-height: 18rem;
+    border-radius: 1.1rem;
+  }
+
+  .google-place-picker {
+    border-radius: 1.1rem;
+    padding: 0.85rem;
+  }
+}

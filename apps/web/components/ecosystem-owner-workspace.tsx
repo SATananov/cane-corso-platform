@@ -1,5 +1,6 @@
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { EcosystemSubmissionMatrix } from '@/components/ecosystem-submission-matrix';
+import { GooglePlacePicker } from '@/components/google-place-picker';
 import { LuxurySelect } from '@/components/luxury-select';
 import type { Locale } from '@/lib/i18n';
 import type {
@@ -56,6 +57,15 @@ const copyByLocale = {
       contactHelp: 'Add only reliable channels that can be shown publicly after approval.',
       locationSection: 'Location and reach',
       locationHelp: 'Describe where the listing applies and whether it is local, national, or cross-border.',
+      googleMapsSection: 'Google Maps location',
+      googleMapsHelp: 'Pick the real place from Google Maps. The marker becomes public only after admin approval.',
+      googleMapsSearch: 'Search in Google Maps',
+      googleMapsSelected: 'Selected place',
+      googleMapsAddress: 'Address',
+      googleMapsCoordinates: 'Coordinates',
+      googleMapsOpen: 'Open in Google Maps',
+      googleMapsManualMode: 'Google Maps key is not configured yet. Fill city, country, and rules manually; the listing will still work as a list entry.',
+      googleMapsClear: 'Clear place',
       conditionsSection: 'Rules and notes',
       conditionsHelp: 'Use this area for local rules, large-breed suitability, transport coverage, or conditions that matter for Cane Corso owners.',
       submissionChannel: 'Submission lane',
@@ -144,6 +154,15 @@ const copyByLocale = {
       contactHelp: 'Добави само надеждни канали, които могат да се показват публично след одобрение.',
       locationSection: 'Локация и обхват',
       locationHelp: 'Опиши къде важи записът и дали е локален, национален или международен.',
+      googleMapsSection: 'Локация в Google Maps',
+      googleMapsHelp: 'Избери реалното място от Google Maps. Маркерът става публичен само след админ одобрение.',
+      googleMapsSearch: 'Търси в Google Maps',
+      googleMapsSelected: 'Избрано място',
+      googleMapsAddress: 'Адрес',
+      googleMapsCoordinates: 'Координати',
+      googleMapsOpen: 'Отвори в Google Maps',
+      googleMapsManualMode: 'Google Maps ключът още не е настроен. Попълни град, държава и правила ръчно; записът ще работи като списък.',
+      googleMapsClear: 'Изчисти мястото',
       conditionsSection: 'Условия и уточнения',
       conditionsHelp: 'Използвай тази част за местни правила, подходящост за едри породи, транспортен обхват или важни условия за собственици на Cane Corso.',
       submissionChannel: 'Пътека за изпращане',
@@ -232,6 +251,15 @@ const copyByLocale = {
       contactHelp: 'Aggiungi solo canali affidabili che possono essere mostrati pubblicamente dopo l’approvazione.',
       locationSection: 'Località e copertura',
       locationHelp: 'Descrivi dove è valida la voce e se la copertura è locale, nazionale o internazionale.',
+      googleMapsSection: 'Posizione Google Maps',
+      googleMapsHelp: 'Seleziona il luogo reale da Google Maps. Il marker diventa pubblico solo dopo approvazione admin.',
+      googleMapsSearch: 'Cerca in Google Maps',
+      googleMapsSelected: 'Luogo selezionato',
+      googleMapsAddress: 'Indirizzo',
+      googleMapsCoordinates: 'Coordinate',
+      googleMapsOpen: 'Apri in Google Maps',
+      googleMapsManualMode: 'La chiave Google Maps non è ancora configurata. Inserisci città, paese e regole manualmente; la scheda resta valida come elenco.',
+      googleMapsClear: 'Cancella luogo',
       conditionsSection: 'Regole e note',
       conditionsHelp: 'Usa questa area per regole locali, idoneità a razze grandi, copertura trasporto o condizioni importanti per proprietari Cane Corso.',
       submissionChannel: 'Percorso di invio',
@@ -519,6 +547,29 @@ function EcosystemListingForm({ copy, locale, item, mode }: EcosystemListingForm
       <fieldset className="ecosystem-form-card">
         <legend>{copy.labels.locationSection}</legend>
         <p className="ecosystem-form-card__description">{copy.labels.locationHelp}</p>
+        <GooglePlacePicker
+          apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? null}
+          inputId={isEdit ? `google-place-${item?.id}` : 'google-place'}
+          labels={{
+            title: copy.labels.googleMapsSection,
+            help: copy.labels.googleMapsHelp,
+            search: copy.labels.googleMapsSearch,
+            selected: copy.labels.googleMapsSelected,
+            address: copy.labels.googleMapsAddress,
+            coordinates: copy.labels.googleMapsCoordinates,
+            openMaps: copy.labels.googleMapsOpen,
+            manualMode: copy.labels.googleMapsManualMode,
+            clear: copy.labels.googleMapsClear,
+          }}
+          defaults={{
+            googlePlaceId: item?.googlePlaceId ?? null,
+            googlePlaceName: item?.googlePlaceName ?? null,
+            googleFormattedAddress: item?.googleFormattedAddress ?? null,
+            googleMapsUrl: item?.googleMapsUrl ?? null,
+            latitude: item?.latitude ?? null,
+            longitude: item?.longitude ?? null,
+          }}
+        />
         <div className="ecosystem-form-card__fields">
           <div className="field-group">
             <label className="field-label" htmlFor={isEdit ? `country-${item?.id}` : 'country'}>{copy.labels.country}</label>

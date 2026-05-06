@@ -117,7 +117,8 @@
     "owner:form-polish:qa": "node scripts/qa-owner-form-polish.mjs",
     "owner:image-payload:qa": "node scripts/qa-owner-image-payload-guardrail.mjs",
     "owner:identity-privacy:qa": "node scripts/qa-owner-identity-privacy.mjs",
-    "ecosystem:friendly-places:qa": "node scripts/qa-cane-corso-friendly-places-foundation.mjs"
+    "ecosystem:friendly-places:qa": "node scripts/qa-cane-corso-friendly-places-foundation.mjs",
+    "ecosystem:google-maps:qa": "node scripts/qa-google-maps-places-integration.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

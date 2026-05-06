@@ -51,6 +51,12 @@ function parseListingInput(formData: FormData): UpsertEcosystemListingInput {
     email: optionalString(formData, 'email'),
     coverageNote: optionalString(formData, 'coverageNote'),
     rulesNote: optionalString(formData, 'rulesNote'),
+    googlePlaceId: optionalString(formData, 'googlePlaceId'),
+    googlePlaceName: optionalString(formData, 'googlePlaceName'),
+    googleFormattedAddress: optionalString(formData, 'googleFormattedAddress'),
+    googleMapsUrl: optionalString(formData, 'googleMapsUrl'),
+    latitude: optionalString(formData, 'latitude'),
+    longitude: optionalString(formData, 'longitude'),
   };
 }
 
