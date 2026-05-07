@@ -25,6 +25,14 @@ export type EcosystemListingStatus =
 
 export type EcosystemReviewDecision = 'approve' | 'needs_changes';
 
+export type EcosystemMatchRequestStatus =
+  | 'pending_review'
+  | 'approved_to_connect'
+  | 'declined'
+  | 'connected';
+
+export type EcosystemMatchReviewDecision = 'approve_to_connect' | 'decline' | 'mark_connected';
+
 export interface EcosystemListing {
   id: EntityId;
   ownerProfileId: EntityId;
@@ -86,6 +94,52 @@ export interface UpsertEcosystemListingInput {
   longitude?: string | null;
 }
 
+
+export interface EcosystemMatchRequest {
+  id: EntityId;
+  listingId: EntityId;
+  requesterProfileId: EntityId;
+  message: string;
+  contactPreference: string | null;
+  phone: string | null;
+  email: string | null;
+  status: EcosystemMatchRequestStatus;
+  adminNote: string | null;
+  reviewedAt: ISODateTimeString | null;
+  connectedAt: ISODateTimeString | null;
+  createdAt: ISODateTimeString;
+  updatedAt: ISODateTimeString;
+}
+
+export interface EcosystemMatchRequester {
+  profileId: EntityId;
+  displayName: string;
+  email: string;
+  city: string | null;
+  country: string | null;
+}
+
+export interface EcosystemModerationMatchRequest {
+  request: EcosystemMatchRequest;
+  listing: EcosystemListing;
+  listingOwner: EcosystemModerationOwner;
+  requester: EcosystemMatchRequester;
+}
+
+export interface SubmitEcosystemMatchRequestInput {
+  listingId: EntityId;
+  message: string;
+  contactPreference?: string | null;
+  phone?: string | null;
+  email?: string | null;
+}
+
+export interface ReviewEcosystemMatchRequestInput {
+  requestId: EntityId;
+  decision: EcosystemMatchReviewDecision;
+  adminNote?: string | null;
+}
+
 export interface EcosystemOwnerWorkspaceDocument {
   summary: {
     total: number;
@@ -140,6 +194,9 @@ export interface EcosystemModerationDocument {
     officialListings: number;
     communityListings: number;
     suggestions: number;
+    matchRequests: number;
+    pendingMatchRequests: number;
   };
   items: EcosystemModerationItem[];
+  matchRequests: EcosystemModerationMatchRequest[];
 }

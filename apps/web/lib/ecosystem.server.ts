@@ -1,5 +1,5 @@
 import { canManagePartners } from '@cane-corso-platform/auth';
-import type { EcosystemReviewDecision, UpsertEcosystemListingInput } from '@cane-corso-platform/contracts';
+import type { EcosystemReviewDecision, ReviewEcosystemMatchRequestInput, SubmitEcosystemMatchRequestInput, UpsertEcosystemListingInput } from '@cane-corso-platform/contracts';
 import { createEcosystemRepository } from '@cane-corso-platform/db';
 import { redirect } from 'next/navigation';
 import {
@@ -99,6 +99,26 @@ export async function publishEcosystemListing(input: { listingId: string }) {
   return repository.publishListing(session.user.profileId, input.listingId);
 }
 
+
+export async function submitCurrentMemberEcosystemMatchRequest(input: SubmitEcosystemMatchRequestInput) {
+  try {
+    const { session } = await requireEcosystemMemberSession();
+    const repository = createEcosystemRepository();
+    return repository.submitMatchRequest(session.user.profileId, input);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new EcosystemValidationError(error.message);
+    }
+    throw error;
+  }
+}
+
+export async function reviewEcosystemMatchRequest(input: ReviewEcosystemMatchRequestInput) {
+  const session = await requireEcosystemAdminSession();
+  const repository = createEcosystemRepository();
+  return repository.reviewMatchRequest(session.user.profileId, input);
+}
+
 export async function getOwnerEcosystemDocumentForApi() {
   const session = await requireRequestSessionCookie();
   const repository = createEcosystemRepository();
@@ -166,4 +186,29 @@ export async function publishEcosystemListingForApi(input: { listingId: string }
 
   const repository = createEcosystemRepository();
   return repository.publishListing(session.session.user.profileId, input.listingId);
+}
+
+
+export async function submitEcosystemMatchRequestForApi(input: SubmitEcosystemMatchRequestInput) {
+  try {
+    const session = await requireRequestSessionCookie();
+    const repository = createEcosystemRepository();
+    return repository.submitMatchRequest(session.session.user.profileId, input);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new EcosystemValidationError(error.message);
+    }
+    throw error;
+  }
+}
+
+export async function reviewEcosystemMatchRequestForApi(input: ReviewEcosystemMatchRequestInput) {
+  const session = await requireRequestSessionCookie();
+
+  if (!canManagePartners(session.session.user.role)) {
+    throw new SessionUnavailableError('Administrator session is required.');
+  }
+
+  const repository = createEcosystemRepository();
+  return repository.reviewMatchRequest(session.session.user.profileId, input);
 }

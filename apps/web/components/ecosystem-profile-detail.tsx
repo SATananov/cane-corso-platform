@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FriendlyPlacesMap } from '@/components/friendly-places-map';
+import { submitEcosystemMatchRequestAction } from '@/app/(public)/community/[slug]/actions';
 import type { EcosystemListing, EcosystemListingType, EcosystemProfileDocument } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 import { getEcosystemListingTypeLabels, getEcosystemSubmissionChannelLabels, getEcosystemSubmissionChannelTone } from '@/lib/ecosystem-ui';
@@ -16,7 +17,7 @@ const copyByLocale = {
     identityCopy: 'This page opens only for a real ecosystem listing that has been published after moderation. Drafts, pending records, approved-only records, and internal suggestions do not receive public detail pages.',
     detailsEyebrow: 'Owner-useful information', detailsTitle: 'Practical details', listingType: 'Layer', channel: 'Publication lane', category: 'Category', location: 'Location',
     contactEyebrow: 'Contact', contactTitle: 'Contact and access', coverageEyebrow: 'Before you go', coverageTitle: 'Coverage and local rules', coverage: 'Coverage', rules: 'Rules',
-    trustEyebrow: 'Release guardrail', trustTitle: 'Why this profile is public', trustA: 'Published-only route', trustACopy: 'The profile uses the same public visibility rules as the /community directory.', trustB: 'Suggestions stay internal', trustBCopy: 'Community suggestions stay private until converted and published.', trustC: 'Locked boundary', trustCCopy: 'The foundation does not unlock registry, certificate, partner, gallery, or admin review flows.', mediatedEyebrow: 'Admin-mediated contact', mediatedTitle: 'Protected connection through the platform', mediatedCopy: 'For breeding, puppies, adoption, and lost/found cases, private contact details are not exposed publicly. Send your proposal from the member workspace and an administrator can decide whether to connect the parties.', mediatedCta: 'I have an offer',
+    trustEyebrow: 'Release guardrail', trustTitle: 'Why this profile is public', trustA: 'Published-only route', trustACopy: 'The profile uses the same public visibility rules as the /community directory.', trustB: 'Suggestions stay internal', trustBCopy: 'Community suggestions stay private until converted and published.', trustC: 'Locked boundary', trustCCopy: 'The foundation does not unlock registry, certificate, partner, gallery, or admin review flows.', mediatedEyebrow: 'Admin-mediated contact', mediatedTitle: 'Protected connection through the platform', mediatedCopy: 'For breeding, puppies, adoption, and lost/found cases, private contact details are not exposed publicly. Send your proposal here and an administrator can decide whether to connect the parties.', mediatedCta: 'Send proposal', messageLabel: 'How can you help?', messagePlaceholder: 'Explain what you offer, why it is relevant, and which city/country you are in.', contactPreferenceLabel: 'Contact preference', phoneLabel: 'Phone for admin only', emailLabel: 'Email for admin only', submitMatch: 'Send to admin review', memberOnly: 'Members can send proposals. If you are not signed in, you will be redirected to access.',
   },
   bg: {
     back: 'Назад към общността', visitWebsite: 'Отвори сайта', email: 'Имейл', phone: 'Телефон', website: 'Уебсайт', notSet: 'Все още няма данни',
@@ -24,7 +25,7 @@ const copyByLocale = {
     identityCopy: 'Тази страница се отваря само за реален запис от екосистемата, който е публикуван след модерация. Чернови, чакащи записи, само одобрени записи и вътрешни предложения не получават публична детайлна страница.',
     detailsEyebrow: 'Информация за собственика', detailsTitle: 'Практични детайли', listingType: 'Слой', channel: 'Поток на публикуване', category: 'Категория', location: 'Локация',
     contactEyebrow: 'Контакт', contactTitle: 'Контакт и достъп', coverageEyebrow: 'Преди да отидеш', coverageTitle: 'Обхват и местни правила', coverage: 'Обхват', rules: 'Правила',
-    trustEyebrow: 'Граница на публикуване', trustTitle: 'Защо този профил е публичен', trustA: 'Само публикувани записи', trustACopy: 'Профилът използва същите правила за публична видимост като /community директорията.', trustB: 'Предложенията остават вътрешни', trustBCopy: 'Общностните предложения остават частни, докато не бъдат конвертирани и публикувани.', trustC: 'Заключена граница', trustCCopy: 'Тази стъпка не отключва регистър, сертификат, партньори, галерия или админ преглед потоци.', mediatedEyebrow: 'Връзка чрез админ', mediatedTitle: 'Защитено свързване през платформата', mediatedCopy: 'При разплод, малки, осиновяване и загубени/намерени случаи личните контакти не се показват публично. Подай предложението си от членската зона и администраторът може да реши дали да свърже страните.', mediatedCta: 'Имам предложение',
+    trustEyebrow: 'Граница на публикуване', trustTitle: 'Защо този профил е публичен', trustA: 'Само публикувани записи', trustACopy: 'Профилът използва същите правила за публична видимост като /community директорията.', trustB: 'Предложенията остават вътрешни', trustBCopy: 'Общностните предложения остават частни, докато не бъдат конвертирани и публикувани.', trustC: 'Заключена граница', trustCCopy: 'Тази стъпка не отключва регистър, сертификат, партньори, галерия или админ преглед потоци.', mediatedEyebrow: 'Връзка чрез админ', mediatedTitle: 'Защитено свързване през платформата', mediatedCopy: 'При разплод, малки, осиновяване и загубени/намерени случаи личните контакти не се показват публично. Подай предложението си тук и администраторът ще реши дали да свърже страните.', mediatedCta: 'Имам предложение', messageLabel: 'Как можеш да помогнеш?', messagePlaceholder: 'Опиши какво предлагаш, защо е подходящо и в кой град/държава се намираш.', contactPreferenceLabel: 'Предпочитан контакт', phoneLabel: 'Телефон само за админ', emailLabel: 'Имейл само за админ', submitMatch: 'Изпрати към админ преглед', memberOnly: 'Само членове могат да изпращат предложения. Ако не си влязъл, ще бъдеш насочен към вход.',
   },
   it: {
     back: 'Torna alla community', visitWebsite: 'Apri il sito', email: 'Email', phone: 'Telefono', website: 'Sito web', notSet: 'Non ancora disponibile',
@@ -32,7 +33,7 @@ const copyByLocale = {
     identityCopy: 'Questa pagina si apre solo per una scheda reale dell’ecosistema pubblicata dopo moderazione. Bozze, schede in revisione, approvate ma non pubblicate e suggerimenti interni non hanno una pagina detail pubblica.',
     detailsEyebrow: 'Informazioni utili', detailsTitle: 'Dettagli pratici', listingType: 'Layer', channel: 'Percorso pubblicazione', category: 'Categoria', location: 'Località',
     contactEyebrow: 'Contatto', contactTitle: 'Contatti e accesso', coverageEyebrow: 'Prima di andare', coverageTitle: 'Copertura e regole locali', coverage: 'Copertura', rules: 'Regole',
-    trustEyebrow: 'Guardrail rilascio', trustTitle: 'Perché questo profilo è pubblico', trustA: 'Solo pubblicate', trustACopy: 'Il profilo usa le stesse regole di visibilità pubblica della directory /community.', trustB: 'Suggerimenti interni', trustBCopy: 'I suggerimenti community restano privati finché non vengono convertiti e pubblicati.', trustC: 'Confine bloccato', trustCCopy: 'La foundation non sblocca registro, certificato, partner, galleria o revisione admin.', mediatedEyebrow: 'Contatto tramite admin', mediatedTitle: 'Collegamento protetto attraverso la piattaforma', mediatedCopy: 'Per riproduzione, cuccioli, adozione e smarriti/trovati, i contatti privati non sono esposti pubblicamente. Invia la tua proposta dall’area membro e l’amministratore può decidere se collegare le parti.', mediatedCta: 'Ho una proposta',
+    trustEyebrow: 'Guardrail rilascio', trustTitle: 'Perché questo profilo è pubblico', trustA: 'Solo pubblicate', trustACopy: 'Il profilo usa le stesse regole di visibilità pubblica della directory /community.', trustB: 'Suggerimenti interni', trustBCopy: 'I suggerimenti community restano privati finché non vengono convertiti e pubblicati.', trustC: 'Confine bloccato', trustCCopy: 'La foundation non sblocca registro, certificato, partner, galleria o revisione admin.', mediatedEyebrow: 'Contatto tramite admin', mediatedTitle: 'Collegamento protetto attraverso la piattaforma', mediatedCopy: 'Per riproduzione, cuccioli, adozione e smarriti/trovati, i contatti privati non sono esposti pubblicamente. Invia la tua proposta qui e l’amministratore può decidere se collegare le parti.', mediatedCta: 'Ho una proposta', messageLabel: 'Come puoi aiutare?', messagePlaceholder: 'Spiega cosa proponi, perché è rilevante e in quale città/paese ti trovi.', contactPreferenceLabel: 'Preferenza contatto', phoneLabel: 'Telefono solo per admin', emailLabel: 'Email solo per admin', submitMatch: 'Invia a revisione admin', memberOnly: 'Solo i membri possono inviare proposte. Se non hai effettuato l’accesso, verrai reindirizzato.',
   },
 } as const;
 
@@ -238,7 +239,27 @@ export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDet
                 <span className="eyebrow-label">{copy.mediatedEyebrow}</span>
                 <h2>{copy.mediatedTitle}</h2>
                 <p className="ecosystem-profile-section__copy">{copy.mediatedCopy}</p>
-                <Link href="/ecosystem" className="button-primary small">{copy.mediatedCta}</Link>
+                <form action={submitEcosystemMatchRequestAction} className="ecosystem-match-request-form">
+                  <input type="hidden" name="listingId" value={listing.id} />
+                  <label>
+                    <span>{copy.messageLabel}</span>
+                    <textarea name="message" rows={4} required minLength={10} placeholder={copy.messagePlaceholder} />
+                  </label>
+                  <label>
+                    <span>{copy.contactPreferenceLabel}</span>
+                    <input name="contactPreference" placeholder={copy.mediatedCta} />
+                  </label>
+                  <label>
+                    <span>{copy.emailLabel}</span>
+                    <input name="email" type="email" />
+                  </label>
+                  <label>
+                    <span>{copy.phoneLabel}</span>
+                    <input name="phone" />
+                  </label>
+                  <p className="submission-matrix-entry__meta">{copy.memberOnly}</p>
+                  <button type="submit" className="button-primary small">{copy.submitMatch}</button>
+                </form>
               </>
             ) : (
               <>

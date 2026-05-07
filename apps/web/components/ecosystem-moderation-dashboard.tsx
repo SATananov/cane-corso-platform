@@ -3,6 +3,9 @@ import type { Locale } from '@/lib/i18n';
 import type { EcosystemModerationDocument, EcosystemModerationItem } from '@cane-corso-platform/contracts';
 import {
   approveEcosystemListingAction,
+  approveEcosystemMatchRequestAction,
+  declineEcosystemMatchRequestAction,
+  markEcosystemMatchConnectedAction,
   publishEcosystemListingAction,
   requestEcosystemChangesAction,
 } from '@/app/(admin)/admin/ecosystem/actions';
@@ -45,6 +48,20 @@ const copyByLocale = {
       publishedReadOnly: 'Already published and visible in the public directory.',
       googleMaps: 'Google Maps place',
       openMaps: 'Open in Google Maps',
+      matchQueue: 'Admin-mediated connection requests',
+      matchQueueDescription: 'Review member offers before deciding whether to connect both sides privately.',
+      listingOwner: 'Listing owner',
+      requester: 'Requester',
+      requestMessage: 'Proposal',
+      contactPreference: 'Contact preference',
+      adminNote: 'Admin note',
+      approveConnection: 'Allow connection',
+      declineConnection: 'Decline',
+      markConnected: 'Mark connected',
+      matchPending: 'Pending admin review',
+      matchApproved: 'Approved to connect',
+      matchDeclined: 'Declined',
+      matchConnected: 'Connected',
     },
   },
   bg: {
@@ -78,6 +95,20 @@ const copyByLocale = {
       publishedReadOnly: 'Вече е публичен запис и се вижда в директорията.',
       googleMaps: 'Място в Google Maps',
       openMaps: 'Отвори в Google Maps',
+      matchQueue: 'Заявки за свързване през админ',
+      matchQueueDescription: 'Прегледай предложенията от членове, преди да решиш дали да свържеш двете страни лично.',
+      listingOwner: 'Собственик на обявата',
+      requester: 'Предлагащ член',
+      requestMessage: 'Предложение',
+      contactPreference: 'Предпочитан контакт',
+      adminNote: 'Бележка от админ',
+      approveConnection: 'Позволи свързване',
+      declineConnection: 'Откажи',
+      markConnected: 'Маркирай като свързани',
+      matchPending: 'Чака админ преглед',
+      matchApproved: 'Одобрено за свързване',
+      matchDeclined: 'Отказано',
+      matchConnected: 'Свързани',
     },
   },
   it: {
@@ -111,6 +142,20 @@ const copyByLocale = {
       publishedReadOnly: 'Già pubblicata e visibile nella directory pubblica.',
       googleMaps: 'Luogo Google Maps',
       openMaps: 'Apri in Google Maps',
+      matchQueue: 'Richieste di collegamento tramite admin',
+      matchQueueDescription: 'Valuta le proposte dei membri prima di decidere se collegare le parti in privato.',
+      listingOwner: 'Proprietario scheda',
+      requester: 'Membro proponente',
+      requestMessage: 'Proposta',
+      contactPreference: 'Preferenza contatto',
+      adminNote: 'Nota admin',
+      approveConnection: 'Consenti collegamento',
+      declineConnection: 'Rifiuta',
+      markConnected: 'Segna collegati',
+      matchPending: 'In revisione admin',
+      matchApproved: 'Approvata per collegamento',
+      matchDeclined: 'Rifiutata',
+      matchConnected: 'Collegati',
     },
   },
 } as const;
@@ -185,6 +230,14 @@ export function EcosystemModerationDashboard({ document, locale }: EcosystemMode
     return map[text] ?? text;
   }
 
+
+  function matchStatusLabel(status: string) {
+    if (status === 'approved_to_connect') return copy.labels.matchApproved;
+    if (status === 'declined') return copy.labels.matchDeclined;
+    if (status === 'connected') return copy.labels.matchConnected;
+    return copy.labels.matchPending;
+  }
+
   // Prefer slash-styled Bulgarian label for partner_service in this page's UI
   if (locale === 'bg') {
     (typeLabels as any).partner_service = 'Партньори / Услуги';
@@ -214,6 +267,11 @@ export function EcosystemModerationDashboard({ document, locale }: EcosystemMode
             <strong>{document.summary.pendingReview + document.summary.needsChanges}</strong>
             <p>{adminCopy.publishGateDescription}</p>
           </article>
+          <article className="admin-command-panel__lane">
+            <span>{copy.labels.matchQueue}</span>
+            <strong>{document.summary.pendingMatchRequests}</strong>
+            <p>{copy.labels.matchQueueDescription}</p>
+          </article>
         </div>
       </section>
 
@@ -224,6 +282,100 @@ export function EcosystemModerationDashboard({ document, locale }: EcosystemMode
         <OverviewStatCard label={copy.stats.community} value={String(document.summary.communityListings)} tone="ivory" />
         <OverviewStatCard label={copy.stats.suggestions} value={String(document.summary.suggestions)} tone="gold" />
       </div>
+
+      <section className="content-card ecosystem-moderation-card ecosystem-match-requests-panel">
+        <div className="section-head-row">
+          <div>
+            <span className="eyebrow-label">{copy.labels.matchQueue}</span>
+            <h2>{copy.labels.matchQueue}</h2>
+            <p className="section-card__description">{copy.labels.matchQueueDescription}</p>
+          </div>
+        </div>
+
+        {document.matchRequests.length === 0 ? (
+          <div className="empty-state-panel empty-state-panel--compact">
+            <h3>{copy.labels.matchQueue}</h3>
+            <p className="empty-state-panel__description">{copy.labels.matchQueueDescription}</p>
+          </div>
+        ) : (
+          <div className="ecosystem-moderation-list ecosystem-match-request-list">
+            {document.matchRequests.map((matchRequest) => {
+              const canReviewRequest = matchRequest.request.status === 'pending_review';
+              const canMarkConnected = matchRequest.request.status === 'approved_to_connect';
+              return (
+                <article className="ecosystem-moderation-item ecosystem-match-request-item" key={matchRequest.request.id}>
+                  <div className="ecosystem-moderation-item__head">
+                    <div>
+                      <div className="ecosystem-owner-item__title-row">
+                        <span className="submission-channel-chip submission-channel-chip--community">{copy.labels.matchQueue}</span>
+                        <span className="eyebrow-label">{typeLabels[matchRequest.listing.listingType]}</span>
+                      </div>
+                      <h3>{matchRequest.listing.title}</h3>
+                      <p className="section-card__description">{matchRequest.request.message}</p>
+                    </div>
+                    <span className="status-badge status-badge--pending-review">{matchStatusLabel(matchRequest.request.status)}</span>
+                  </div>
+
+                  <dl className="ecosystem-moderation-item__meta">
+                    <div>
+                      <dt>{copy.labels.listingOwner}</dt>
+                      <dd>
+                        <strong>{matchRequest.listingOwner.displayName}</strong>
+                        <span>{matchRequest.listingOwner.email}</span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.requester}</dt>
+                      <dd>
+                        <strong>{matchRequest.requester.displayName}</strong>
+                        <span>{matchRequest.requester.email}</span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.contactPreference}</dt>
+                      <dd>{matchRequest.request.contactPreference || copy.labels.pending}</dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.contact}</dt>
+                      <dd>{matchRequest.request.email || matchRequest.request.phone || copy.labels.pending}</dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.location}</dt>
+                      <dd>{[matchRequest.requester.city, matchRequest.requester.country].filter(Boolean).join(', ') || copy.labels.pending}</dd>
+                    </div>
+                    <div>
+                      <dt>{copy.labels.adminNote}</dt>
+                      <dd>{matchRequest.request.adminNote || copy.labels.pending}</dd>
+                    </div>
+                  </dl>
+
+                  <div className="ecosystem-moderation-item__actions">
+                    {canReviewRequest ? (
+                      <>
+                        <form action={approveEcosystemMatchRequestAction}>
+                          <input type="hidden" name="requestId" value={matchRequest.request.id} />
+                          <button type="submit" className="button-primary small">{copy.labels.approveConnection}</button>
+                        </form>
+                        <form action={declineEcosystemMatchRequestAction}>
+                          <input type="hidden" name="requestId" value={matchRequest.request.id} />
+                          <button type="submit" className="button-secondary small">{copy.labels.declineConnection}</button>
+                        </form>
+                      </>
+                    ) : null}
+
+                    {canMarkConnected ? (
+                      <form action={markEcosystemMatchConnectedAction}>
+                        <input type="hidden" name="requestId" value={matchRequest.request.id} />
+                        <button type="submit" className="button-ghost small">{copy.labels.markConnected}</button>
+                      </form>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </section>
 
       <section className="content-card ecosystem-moderation-card">
         <div className="section-head-row">

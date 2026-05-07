@@ -10,7 +10,7 @@ import {
   submissionReviews,
 } from './dogs';
 import { articles } from './knowledge';
-import { ecosystemListings, ecosystemReviews } from './ecosystem';
+import { ecosystemListings, ecosystemMatchRequests, ecosystemReviews } from './ecosystem';
 import { partnerApplications, partnerRatings, partners } from './partners';
 import { profiles, users } from './users';
 
@@ -37,6 +37,7 @@ export const profilesRelations = relations(profiles, ({ one, many }) => ({
   articles: many(articles),
   ecosystemListings: many(ecosystemListings),
   ecosystemReviews: many(ecosystemReviews),
+  ecosystemMatchRequests: many(ecosystemMatchRequests),
   auditLogs: many(auditLogs),
 }));
 
@@ -161,6 +162,7 @@ export const ecosystemListingsRelations = relations(ecosystemListings, ({ one, m
     references: [profiles.id],
   }),
   reviews: many(ecosystemReviews),
+  matchRequests: many(ecosystemMatchRequests),
 }));
 
 export const ecosystemReviewsRelations = relations(ecosystemReviews, ({ one }) => ({
@@ -170,6 +172,17 @@ export const ecosystemReviewsRelations = relations(ecosystemReviews, ({ one }) =
   }),
   reviewerProfile: one(profiles, {
     fields: [ecosystemReviews.reviewerProfileId],
+    references: [profiles.id],
+  }),
+}));
+
+export const ecosystemMatchRequestsRelations = relations(ecosystemMatchRequests, ({ one }) => ({
+  listing: one(ecosystemListings, {
+    fields: [ecosystemMatchRequests.listingId],
+    references: [ecosystemListings.id],
+  }),
+  requesterProfile: one(profiles, {
+    fields: [ecosystemMatchRequests.requesterProfileId],
     references: [profiles.id],
   }),
 }));

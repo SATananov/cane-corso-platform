@@ -38,6 +38,25 @@ export const ecosystemListings = pgTable('ecosystem_listings', {
   ...timestamps(),
 });
 
+export const ecosystemMatchRequests = pgTable('ecosystem_match_requests', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  listingId: uuid('listing_id')
+    .notNull()
+    .references(() => ecosystemListings.id, { onDelete: 'cascade' }),
+  requesterProfileId: uuid('requester_profile_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'restrict' }),
+  message: text('message').notNull(),
+  contactPreference: text('contact_preference'),
+  phone: text('phone'),
+  email: text('email'),
+  status: text('status').notNull().default('pending_review'),
+  adminNote: text('admin_note'),
+  reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
+  connectedAt: timestamp('connected_at', { withTimezone: true }),
+  ...timestamps(),
+});
+
 export const ecosystemReviews = pgTable('ecosystem_reviews', {
   id: uuid('id').defaultRandom().primaryKey(),
   listingId: uuid('listing_id')

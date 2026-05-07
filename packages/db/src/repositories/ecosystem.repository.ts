@@ -4,12 +4,16 @@ import type {
   EcosystemListing,
   EcosystemListingStatus,
   EcosystemListingType,
+  EcosystemMatchRequest,
+  EcosystemMatchRequestStatus,
   EcosystemModerationDocument,
   EcosystemModerationItem,
   EcosystemOwnerWorkspaceDocument,
   EcosystemProfileDocument,
   EcosystemReviewDecision,
   EcosystemSubmissionChannel,
+  ReviewEcosystemMatchRequestInput,
+  SubmitEcosystemMatchRequestInput,
   UpsertEcosystemListingInput,
 } from '@cane-corso-platform/contracts';
 import {
@@ -18,7 +22,7 @@ import {
   resolveDefaultEcosystemSubmissionChannel,
 } from '@cane-corso-platform/contracts';
 import { getDb, type CaneCorsoDb } from '../client';
-import { ecosystemListings, ecosystemReviews, profiles, users } from '../schema';
+import { ecosystemListings, ecosystemMatchRequests, ecosystemReviews, profiles, users } from '../schema';
 
 export interface EcosystemRepository {
   listOwnerWorkspace(ownerProfileId: string): Promise<EcosystemOwnerWorkspaceDocument>;
@@ -32,14 +36,24 @@ export interface EcosystemRepository {
     input: { listingId: string; decision: EcosystemReviewDecision; note?: string | null },
   ): Promise<EcosystemListing>;
   publishListing(reviewerProfileId: string, listingId: string): Promise<EcosystemListing>;
+  submitMatchRequest(requesterProfileId: string, input: SubmitEcosystemMatchRequestInput): Promise<EcosystemMatchRequest>;
+  reviewMatchRequest(reviewerProfileId: string, input: ReviewEcosystemMatchRequestInput): Promise<EcosystemMatchRequest>;
 }
 
 type ListingRow = typeof ecosystemListings.$inferSelect;
+type MatchRequestRow = typeof ecosystemMatchRequests.$inferSelect;
 type ModerationRow = {
   listing: typeof ecosystemListings.$inferSelect;
   ownerProfile: typeof profiles.$inferSelect;
   ownerUser: typeof users.$inferSelect;
 };
+
+const ADMIN_MEDIATED_TYPES: EcosystemListingType[] = [
+  'breeding_match',
+  'adoption_new_home',
+  'puppy_listing',
+  'lost_found',
+];
 
 const VALID_TYPES: EcosystemListingType[] = [
   'partner_service',
@@ -125,6 +139,29 @@ function mapListingRow(row: ListingRow): EcosystemListing {
     createdAt: toIsoDateTime(row.createdAt) ?? new Date(0).toISOString(),
     updatedAt: toIsoDateTime(row.updatedAt) ?? new Date(0).toISOString(),
   };
+}
+
+
+function mapMatchRequestRow(row: MatchRequestRow): EcosystemMatchRequest {
+  return {
+    id: row.id,
+    listingId: row.listingId,
+    requesterProfileId: row.requesterProfileId,
+    message: row.message,
+    contactPreference: row.contactPreference,
+    phone: row.phone,
+    email: row.email,
+    status: row.status as EcosystemMatchRequestStatus,
+    adminNote: row.adminNote,
+    reviewedAt: toIsoDateTime(row.reviewedAt),
+    connectedAt: toIsoDateTime(row.connectedAt),
+    createdAt: toIsoDateTime(row.createdAt) ?? new Date(0).toISOString(),
+    updatedAt: toIsoDateTime(row.updatedAt) ?? new Date(0).toISOString(),
+  };
+}
+
+function isAdminMediatedListingType(listingType: EcosystemListingType) {
+  return ADMIN_MEDIATED_TYPES.includes(listingType);
 }
 
 function mapModerationItem(row: ModerationRow): EcosystemModerationItem {
@@ -325,6 +362,69 @@ async function upsertOwnerListing(
   return mapListingRow(insertedRows[0]);
 }
 
+
+async function resolveProfileOwnerForModeration(db: CaneCorsoDb, profileId: string) {
+  const rows = await db
+    .select({ ownerProfile: profiles, ownerUser: users })
+    .from(profiles)
+    .innerJoin(users, eq(profiles.userId, users.id))
+    .where(eq(profiles.id, profileId))
+    .limit(1);
+
+  const row = rows[0];
+  if (!row) {
+    throw new Error(`Profile ${profileId} was not found.`);
+  }
+
+  return row;
+}
+
+async function resolveModerationMatchRequests(db: CaneCorsoDb) {
+  const requestRows = await db
+    .select()
+    .from(ecosystemMatchRequests)
+    .orderBy(desc(ecosystemMatchRequests.updatedAt), desc(ecosystemMatchRequests.createdAt));
+
+  const items = [];
+
+  for (const requestRow of requestRows) {
+    const listingRows = await db
+      .select()
+      .from(ecosystemListings)
+      .where(eq(ecosystemListings.id, requestRow.listingId))
+      .limit(1);
+
+    const listing = listingRows[0];
+    if (!listing) {
+      continue;
+    }
+
+    const listingOwner = await resolveProfileOwnerForModeration(db, listing.ownerProfileId);
+    const requester = await resolveProfileOwnerForModeration(db, requestRow.requesterProfileId);
+
+    items.push({
+      request: mapMatchRequestRow(requestRow),
+      listing: mapListingRow(listing),
+      listingOwner: {
+        profileId: listingOwner.ownerProfile.id,
+        displayName: listingOwner.ownerProfile.displayName,
+        email: listingOwner.ownerUser.email,
+        city: listingOwner.ownerProfile.city,
+        country: listingOwner.ownerProfile.country,
+      },
+      requester: {
+        profileId: requester.ownerProfile.id,
+        displayName: requester.ownerProfile.displayName,
+        email: requester.ownerUser.email,
+        city: requester.ownerProfile.city,
+        country: requester.ownerProfile.country,
+      },
+    });
+  }
+
+  return items;
+}
+
 class DrizzleEcosystemRepository implements EcosystemRepository {
   async listOwnerWorkspace(ownerProfileId: string): Promise<EcosystemOwnerWorkspaceDocument> {
     const db = getDb();
@@ -426,6 +526,8 @@ class DrizzleEcosystemRepository implements EcosystemRepository {
 
     const items = rows.map(mapModerationItem);
 
+    const matchRequests = await resolveModerationMatchRequests(db);
+
     return {
       summary: {
         total: items.length,
@@ -436,8 +538,11 @@ class DrizzleEcosystemRepository implements EcosystemRepository {
         officialListings: items.filter((item: EcosystemModerationItem) => item.listing.submissionChannel === 'official_listing').length,
         communityListings: items.filter((item: EcosystemModerationItem) => item.listing.submissionChannel === 'community_listing').length,
         suggestions: items.filter((item: EcosystemModerationItem) => item.listing.submissionChannel === 'community_suggestion').length,
+        matchRequests: matchRequests.length,
+        pendingMatchRequests: matchRequests.filter((item) => item.request.status === 'pending_review').length,
       },
       items,
+      matchRequests,
     };
   }
 
@@ -540,6 +645,117 @@ class DrizzleEcosystemRepository implements EcosystemRepository {
     });
 
     return mapListingRow(updatedRows[0]);
+  }
+
+  async submitMatchRequest(
+    requesterProfileId: string,
+    input: SubmitEcosystemMatchRequestInput,
+  ): Promise<EcosystemMatchRequest> {
+    const db = getDb();
+    await ensureOwnerProfile(db, requesterProfileId);
+
+    const listingId = normalizeText(input.listingId);
+    const message = normalizeText(input.message);
+
+    if (!listingId) {
+      throw new Error('Listing id is required for a connection request.');
+    }
+
+    if (!message || message.length < 10) {
+      throw new Error('Connection request message must contain at least 10 characters.');
+    }
+
+    const listingRows = await db
+      .select()
+      .from(ecosystemListings)
+      .where(eq(ecosystemListings.id, listingId))
+      .limit(1);
+
+    const listing = listingRows[0];
+    if (!listing || listing.status !== 'published' || listing.submissionChannel === 'community_suggestion') {
+      throw new Error('Connection requests are available only for published community listings.');
+    }
+
+    const listingType = listing.listingType as EcosystemListingType;
+    if (!isAdminMediatedListingType(listingType)) {
+      throw new Error('This listing does not require an admin-mediated connection request.');
+    }
+
+    if (listing.ownerProfileId === requesterProfileId) {
+      throw new Error('Owners cannot submit connection requests to their own listings.');
+    }
+
+    const now = new Date();
+    const insertedRows = await db
+      .insert(ecosystemMatchRequests)
+      .values({
+        listingId: listing.id,
+        requesterProfileId,
+        message,
+        contactPreference: normalizeText(input.contactPreference),
+        phone: normalizeText(input.phone),
+        email: normalizeText(input.email),
+        status: 'pending_review',
+        createdAt: now,
+        updatedAt: now,
+      })
+      .returning();
+
+    return mapMatchRequestRow(insertedRows[0]);
+  }
+
+  async reviewMatchRequest(
+    reviewerProfileId: string,
+    input: ReviewEcosystemMatchRequestInput,
+  ): Promise<EcosystemMatchRequest> {
+    const db = getDb();
+    await ensureOwnerProfile(db, reviewerProfileId);
+
+    const requestId = normalizeText(input.requestId);
+    if (!requestId) {
+      throw new Error('Connection request id is required.');
+    }
+
+    const currentRows = await db
+      .select()
+      .from(ecosystemMatchRequests)
+      .where(eq(ecosystemMatchRequests.id, requestId))
+      .limit(1);
+
+    const current = currentRows[0];
+    if (!current) {
+      throw new Error('Connection request was not found.');
+    }
+
+    const now = new Date();
+    const nextStatus: EcosystemMatchRequestStatus =
+      input.decision === 'approve_to_connect'
+        ? 'approved_to_connect'
+        : input.decision === 'mark_connected'
+          ? 'connected'
+          : 'declined';
+
+    const updatedRows = await db
+      .update(ecosystemMatchRequests)
+      .set({
+        status: nextStatus,
+        adminNote: normalizeText(input.adminNote) ?? current.adminNote,
+        reviewedAt: now,
+        connectedAt: input.decision === 'mark_connected' ? now : current.connectedAt,
+        updatedAt: now,
+      })
+      .where(eq(ecosystemMatchRequests.id, current.id))
+      .returning();
+
+    await db.insert(ecosystemReviews).values({
+      listingId: current.listingId,
+      reviewerProfileId,
+      decision: `match_request:${input.decision}`,
+      note: normalizeText(input.adminNote) ?? `Connection request ${nextStatus}.`,
+      createdAt: now,
+    });
+
+    return mapMatchRequestRow(updatedRows[0]);
   }
 }
 

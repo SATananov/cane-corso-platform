@@ -3,6 +3,7 @@ import {
   getAdminEcosystemModerationDocumentForApi,
   publishEcosystemListingForApi,
   reviewEcosystemListingForApi,
+  reviewEcosystemMatchRequestForApi,
 } from '@/lib/ecosystem.server';
 import { SessionUnavailableError } from '@/lib/session.server';
 
@@ -24,12 +25,37 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
-      intent?: 'approve' | 'needs_changes' | 'publish';
+      intent?: 'approve' | 'needs_changes' | 'publish' | 'approve_match' | 'decline_match' | 'mark_match_connected';
       listingId?: string;
+      requestId?: string;
+      adminNote?: string | null;
     };
 
-    if (!body?.intent || !body.listingId) {
-      return jsonError('INVALID_BODY', 'Expected moderation intent and listingId.', { status: 400 });
+    if (!body?.intent) {
+      return jsonError('INVALID_BODY', 'Expected moderation intent.', { status: 400 });
+    }
+
+    if (body.intent === 'approve_match' || body.intent === 'decline_match' || body.intent === 'mark_match_connected') {
+      if (!body.requestId) {
+        return jsonError('INVALID_BODY', 'Expected requestId for match moderation.', { status: 400 });
+      }
+
+      const result = await reviewEcosystemMatchRequestForApi({
+        requestId: body.requestId,
+        decision:
+          body.intent === 'approve_match'
+            ? 'approve_to_connect'
+            : body.intent === 'mark_match_connected'
+              ? 'mark_connected'
+              : 'decline',
+        adminNote: body.adminNote,
+      });
+
+      return jsonOk(result);
+    }
+
+    if (!body.listingId) {
+      return jsonError('INVALID_BODY', 'Expected listingId for listing moderation.', { status: 400 });
     }
 
     if (body.intent !== 'approve' && body.intent !== 'needs_changes' && body.intent !== 'publish') {

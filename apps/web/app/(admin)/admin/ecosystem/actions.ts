@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { publishEcosystemListing, reviewEcosystemListing } from '@/lib/ecosystem.server';
+import { publishEcosystemListing, reviewEcosystemListing, reviewEcosystemMatchRequest } from '@/lib/ecosystem.server';
 
 function revalidateEcosystemSurfaces() {
   revalidatePath('/ecosystem');
@@ -49,6 +49,57 @@ export async function publishEcosystemListingAction(formData: FormData) {
 
   await publishEcosystemListing({
     listingId,
+  });
+
+  revalidateEcosystemSurfaces();
+}
+
+function requiredString(formData: FormData, key: string) {
+  const value = formData.get(key);
+
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    throw new Error(`Missing required field: ${key}.`);
+  }
+
+  return value.trim();
+}
+
+function optionalString(formData: FormData, key: string) {
+  const value = formData.get(key);
+
+  if (typeof value !== 'string') {
+    return null;
+  }
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+export async function approveEcosystemMatchRequestAction(formData: FormData) {
+  await reviewEcosystemMatchRequest({
+    requestId: requiredString(formData, 'requestId'),
+    decision: 'approve_to_connect',
+    adminNote: optionalString(formData, 'adminNote'),
+  });
+
+  revalidateEcosystemSurfaces();
+}
+
+export async function declineEcosystemMatchRequestAction(formData: FormData) {
+  await reviewEcosystemMatchRequest({
+    requestId: requiredString(formData, 'requestId'),
+    decision: 'decline',
+    adminNote: optionalString(formData, 'adminNote'),
+  });
+
+  revalidateEcosystemSurfaces();
+}
+
+export async function markEcosystemMatchConnectedAction(formData: FormData) {
+  await reviewEcosystemMatchRequest({
+    requestId: requiredString(formData, 'requestId'),
+    decision: 'mark_connected',
+    adminNote: optionalString(formData, 'adminNote'),
   });
 
   revalidateEcosystemSurfaces();
