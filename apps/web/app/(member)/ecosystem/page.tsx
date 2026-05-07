@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { PageShell } from '@/components/page-shell';
 import { EcosystemOwnerWorkspace } from '@/components/ecosystem-owner-workspace';
 import { OwnerCenterWorkspace } from '@/components/owner-center-workspace';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
@@ -131,6 +132,7 @@ export default async function EcosystemPage() {
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >
+      <RoleAwareActionPanel locale={locale} surface="community" role={document.member.role} />
       <OwnerCenterWorkspace document={document} locale={locale} />
       <EcosystemOwnerWorkspace document={document.ecosystem} locale={locale} />
     </PageShell>

@@ -126,7 +126,8 @@
     "content:authority:qa": "node scripts/qa-content-authority-placeholder-removal.mjs",
     "docs:readme:qa": "node scripts/qa-canonical-readme-project-docs.mjs",
     "usg:identity-bulgarico:qa": "node scripts/qa-usg-identity-bulgarico-framework.mjs",
-    "platform:faq-trust:qa": "node scripts/qa-platform-faq-trust-clarity.mjs"
+    "platform:faq-trust:qa": "node scripts/qa-platform-faq-trust-clarity.mjs",
+    "platform:role-aware-action:qa": "node scripts/qa-platform-role-aware-action-ux.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

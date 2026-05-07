@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { PageShell } from '@/components/page-shell';
 import { PartnerApplicationWorkspace } from '@/components/partner-application-workspace';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPartnerUiCopy } from '@/lib/partner-copy';
 import { getCurrentPartnerWorkspaceDocument } from '@/lib/partners.server';
@@ -38,6 +39,7 @@ export default async function PartnerApplyPage({ searchParams }: PartnerApplyPag
       helpHref="/guide?topic=partners#partners"
       helpLabel={copy.labels.help ?? (locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help')}
     >
+      <RoleAwareActionPanel locale={locale} surface="partnerApply" role={currentSession.user.role} />
       <PartnerApplicationWorkspace document={document} locale={locale} showOnboardingNotice={showOnboardingNotice} />
     </PageShell>
   );

@@ -2,9 +2,13 @@ import { PageShell } from '@/components/page-shell';
 import type { PageShellCard } from '@/components/page-shell';
 import { SectionCard } from '@/components/section-card';
 import { EcosystemDirectory } from '@/components/ecosystem-directory';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { CommunityDiscoveryExperience } from '@/components/community-discovery-experience';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPublishedEcosystemDirectoryDocument } from '@/lib/ecosystem.server';
+import { getOptionalCookieMemberSession } from '@/lib/session.server';
+
+export const dynamic = 'force-dynamic';
 
 const copyByLocale = {
   en: {
@@ -268,6 +272,7 @@ export default async function CommunityPage() {
   const locale = await getCurrentLocale();
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const document = await getPublishedEcosystemDirectoryDocument();
+  const currentSession = await getOptionalCookieMemberSession();
 
   return (
     <PageShell
@@ -282,6 +287,7 @@ export default async function CommunityPage() {
       visualSrc="/brand/editorial-member-shadow-eye.jpg"
       visualAlt="Community and FUN editorial visual"
     >
+      <RoleAwareActionPanel locale={locale} surface="community" role={currentSession?.user.role ?? null} />
       <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
 
       <CommunityDiscoveryExperience

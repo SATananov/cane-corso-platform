@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { PageShell } from '@/components/page-shell';
 import { OwnerCenterWorkspace } from '@/components/owner-center-workspace';
 import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { buildAccessPath } from '@/lib/access-control';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
@@ -12,14 +13,14 @@ export const dynamic = 'force-dynamic';
 const copyByLocale = {
   en: {
     eyebrow: 'Member Command Center',
-    title: 'Owner journey, registry preparation, and public trust in one place',
+    title: 'Your Cane Corso center: action, status, and next step',
     description:
-      'A calm member home: see what needs action first, then open My Cane Corso when you need to edit or submit.',
+      'Start with what needs action: add a profile, finish a draft, check review status, or continue to your owner workspace.',
     accentLabel: 'USG member command center',
     helpLabel: 'Owner guide',
     heroChips: ['Private owner workspace', 'Review status clarity', 'Public trust readiness'],
     heroNote:
-      'This page is a read-only orchestration layer. It does not publish, certify, revoke, verify, moderate, or change backend state.',
+      'Use this page as your personal starting point. Public Registry, Certificate, Verify, Gallery, and Admin decisions remain protected approval layers.',
     cards: [
       {
         eyebrow: 'My Cane Corso',
@@ -46,14 +47,14 @@ const copyByLocale = {
   },
   bg: {
     eyebrow: 'Команден център на члена',
-    title: 'Пътят на собственика, подготовката за регистъра и публичното доверие на едно място',
+    title: 'Твоят Cane Corso център: действие, статус и следваща стъпка',
     description:
-      'Спокойна членска начална зона: първо виж какво чака действие, после отвори Моите Cane Corso за редакция или изпращане.',
+      'Започни от това, което има смисъл сега: добави профил, довърши чернова, провери статус или продължи в личната зона.',
     accentLabel: 'USG команден център на члена',
     helpLabel: 'Наръчник за собственика',
     heroChips: ['Лична зона на собственика', 'Ясен статус на прегледа', 'Готовност за публично доверие'],
     heroNote:
-      'Тази страница е read-only orchestration слой. Тя не публикува, не сертифицира, не отнема сертификат, не променя проверката, модерацията или backend състояние.',
+      'Използвай тази страница като личен старт. Публичният Регистър, Сертификатът, Проверка, Галерия и админ решенията остават защитени слоеве за одобрение.',
     cards: [
       {
         eyebrow: 'Моите Cane Corso',
@@ -80,14 +81,14 @@ const copyByLocale = {
   },
   it: {
     eyebrow: 'Centro comando membro',
-    title: 'Percorso owner, preparazione registro e fiducia pubblica in un solo posto',
+    title: 'Il tuo centro Cane Corso: azione, stato e prossimo passo',
     description:
-      'Una home membro più calma: vedi prima cosa richiede azione, poi apri I miei Cane Corso per modificare o inviare.',
+      'Inizia da ciò che serve ora: aggiungi un profilo, completa una bozza, controlla lo stato o continua nel workspace owner.',
     accentLabel: 'Centro comando membro USG',
     helpLabel: 'Guida owner',
     heroChips: ['Workspace owner privato', 'Chiarezza stato review', 'Prontezza fiducia pubblica'],
     heroNote:
-      'Questa pagina è un layer di orchestrazione read-only. Non pubblica, certifica, revoca, verifica, modera o cambia stato backend.',
+      'Usa questa pagina come punto di partenza personale. Registro pubblico, Certificato, Verify, Gallery e decisioni admin restano layer protetti.',
     cards: [
       {
         eyebrow: 'I miei Cane Corso',
@@ -131,6 +132,7 @@ export default async function MemberCommandCenterPage() {
         heroChips={copy.heroChips}
         heroNote={copy.heroNote}
       >
+        <RoleAwareActionPanel locale={locale} surface="member" role={document.member.role} />
         <OwnerOnboardingFinalPanel locale={locale} surface="member" />
         <OwnerCenterWorkspace document={document} locale={locale} />
       </PageShell>

@@ -1,6 +1,10 @@
 import { PageShell } from '@/components/page-shell';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import type { PageShellCard } from '@/components/page-shell';
 import { getCurrentLocale } from '@/lib/locale.server';
+import { getOptionalCookieMemberSession } from '@/lib/session.server';
+
+export const dynamic = 'force-dynamic';
 
 type FaqItem = { question: string; answer: string; href?: string; hrefLabel?: string };
 type FaqSection = { id: string; eyebrow: string; title: string; description: string; items: readonly FaqItem[] };
@@ -224,9 +228,11 @@ export default async function FaqPage() {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const actionLabel = locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open';
   const helpLabel = locale === 'bg' ? 'Наръчник' : locale === 'it' ? 'Guida' : 'Guide';
+  const currentSession = await getOptionalCookieMemberSession();
 
   return (
     <PageShell eyebrow={copy.eyebrow} title={copy.title} description={copy.description} cards={copy.cards} actionLabel={actionLabel} accentLabel={copy.eyebrow} helpHref="/guide?topic=overview#overview" helpLabel={helpLabel} visualSrc="/brand/icons/brand-icon.png" visualAlt="USG FAQ clarity symbol" visualFit="contain" heroChips={copy.chips} variant="knowledge">
+      <RoleAwareActionPanel locale={locale} surface="faq" role={currentSession?.user.role ?? null} />
       <section className="content-card platform-faq-priority" aria-labelledby="faq-priority-title">
         <div className="platform-faq-heading"><span className="eyebrow-label">{copy.eyebrow}</span><h2 id="faq-priority-title">{copy.priorityTitle}</h2><p>{copy.priorityDescription}</p></div>
         <div className="platform-faq-priority-grid">{copy.priorityItems.map((item) => <article className="platform-faq-priority-card" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p>{item.href ? <a href={item.href}>{item.hrefLabel ?? actionLabel}</a> : null}</article>)}</div>

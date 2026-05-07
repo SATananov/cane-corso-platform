@@ -6,6 +6,7 @@ import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-p
 import { OwnerIdentityForm } from '@/components/owner-identity-form';
 import { OwnerProfilePhotoPanel } from '@/components/owner-profile-photo-panel';
 import { OwnerCaneCorsoSpotlight, type OwnerSpotlightDog } from '@/components/owner-cane-corso-spotlight';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentProfileDocument } from '@/lib/member-profile.server';
 import { getCurrentMemberDogsDocument } from '@/lib/my-dogs.server';
 import { getCurrentMemberDogMediaDocument } from '@/lib/my-dog-media.server';
@@ -651,6 +652,7 @@ export default async function ProfilePage() {
 
     return (
       <div className="member-route-stack profile-page">
+        <RoleAwareActionPanel locale={locale} surface="profile" role={session.user.role} />
         <section className="route-hero-card route-hero-card--member profile-page__hero">
           <div className="profile-page__hero-copy">
             <span className="eyebrow-label">{copy.eyebrow}</span>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { SectionCard } from '@/components/section-card';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { UsgIdentityBulgaricoPanel } from '@/components/usg-identity-bulgarico-panel';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
@@ -356,14 +357,30 @@ export default async function PlatformPage() {
             <span className="hero-badge">{t.home.badgeD}</span>
           </div>
 
-          <h1 className="hero__title">{t.home.title}</h1>
-          <p className="hero__subtitle">{t.home.subtitle}</p>
+          <h1 className="hero__title">
+            {currentSession
+              ? locale === 'bg'
+                ? 'Добре дошъл обратно в USG'
+                : locale === 'it'
+                  ? 'Bentornato in USG'
+                  : 'Welcome back to USG'
+              : t.home.title}
+          </h1>
+          <p className="hero__subtitle">
+            {currentSession
+              ? locale === 'bg'
+                ? 'Продължи от личната си зона: добави Cane Corso, провери статус, довърши профил или отвори знанията, които ти трябват сега.'
+                : locale === 'it'
+                  ? 'Continua dalla tua area personale: aggiungi Cane Corso, controlla lo stato, completa un profilo o apri la conoscenza utile ora.'
+                  : 'Continue from your private area: add a Cane Corso, check status, finish a profile, or open the knowledge you need now.'
+              : t.home.subtitle}
+          </p>
 
           <div className="hero__actions">
             {currentSession ? (
               <>
                 <Link className="btn btn--primary" href="/my-dogs">
-                  {t.common.enterMemberArea}
+                  {locale === 'bg' ? 'Към моите Cane Corso' : locale === 'it' ? 'I miei Cane Corso' : 'My Cane Corso'}
                 </Link>
                 <Link className="btn btn--secondary" href="/registry">
                   {t.common.exploreRegistry}
@@ -382,8 +399,8 @@ export default async function PlatformPage() {
                 </Link>
               </>
             )}
-            <Link className="btn button-ghost" href="#platform-help">
-              {roleGuidance.helpAction}
+            <Link className="btn button-ghost" href={currentSession ? '/faq' : '#platform-help'}>
+              {currentSession ? (locale === 'bg' ? 'FAQ и помощ' : locale === 'it' ? 'FAQ e aiuto' : 'FAQ and help') : roleGuidance.helpAction}
             </Link>
           </div>
 
@@ -412,42 +429,46 @@ export default async function PlatformPage() {
         </div>
 
         <div className="hero__fullwidth hero__fullwidth--platform">
-          <div className="platform-role-guide">
-            <div className="platform-role-guide__header">
-              <span className="eyebrow-label">{roleGuidance.rolesEyebrow}</span>
-              <h2>{roleGuidance.rolesTitle}</h2>
-              <p>{roleGuidance.rolesDescription}</p>
+          {currentSession ? (
+            <RoleAwareActionPanel locale={locale} surface="platform" role={currentSession.user.role} className="platform-member-focus" />
+          ) : (
+            <div className="platform-role-guide">
+              <div className="platform-role-guide__header">
+                <span className="eyebrow-label">{roleGuidance.rolesEyebrow}</span>
+                <h2>{roleGuidance.rolesTitle}</h2>
+                <p>{roleGuidance.rolesDescription}</p>
+              </div>
+
+              <div className="platform-role-guide__grid">
+                <article className="platform-role-guide__card">
+                  <span className="eyebrow-label">{roleGuidance.guest.eyebrow}</span>
+                  <h3>{roleGuidance.guest.title}</h3>
+                  <p>{roleGuidance.guest.description}</p>
+                  <Link className="button-ghost small" href={roleGuidance.guest.href}>
+                    {roleGuidance.guest.action}
+                  </Link>
+                </article>
+
+                <article className="platform-role-guide__card">
+                  <span className="eyebrow-label">{roleGuidance.member.eyebrow}</span>
+                  <h3>{roleGuidance.member.title}</h3>
+                  <p>{roleGuidance.member.description}</p>
+                  <Link className="button-ghost small" href={memberActionHref}>
+                    {memberActionLabel}
+                  </Link>
+                </article>
+
+                <article className="platform-role-guide__card">
+                  <span className="eyebrow-label">{roleGuidance.partner.eyebrow}</span>
+                  <h3>{roleGuidance.partner.title}</h3>
+                  <p>{roleGuidance.partner.description}</p>
+                  <Link className="button-ghost small" href={roleGuidance.partner.href}>
+                    {roleGuidance.partner.action}
+                  </Link>
+                </article>
+              </div>
             </div>
-
-            <div className="platform-role-guide__grid">
-              <article className="platform-role-guide__card">
-                <span className="eyebrow-label">{roleGuidance.guest.eyebrow}</span>
-                <h3>{roleGuidance.guest.title}</h3>
-                <p>{roleGuidance.guest.description}</p>
-                <Link className="button-ghost small" href={roleGuidance.guest.href}>
-                  {roleGuidance.guest.action}
-                </Link>
-              </article>
-
-              <article className={`platform-role-guide__card${currentSession ? ' is-current' : ''}`}>
-                <span className="eyebrow-label">{roleGuidance.member.eyebrow}</span>
-                <h3>{roleGuidance.member.title}</h3>
-                <p>{roleGuidance.member.description}</p>
-                <Link className="button-ghost small" href={memberActionHref}>
-                  {memberActionLabel}
-                </Link>
-              </article>
-
-              <article className="platform-role-guide__card">
-                <span className="eyebrow-label">{roleGuidance.partner.eyebrow}</span>
-                <h3>{roleGuidance.partner.title}</h3>
-                <p>{roleGuidance.partner.description}</p>
-                <Link className="button-ghost small" href={roleGuidance.partner.href}>
-                  {roleGuidance.partner.action}
-                </Link>
-              </article>
-            </div>
-          </div>
+          )}
 
           <div className="hero-stats" aria-label="Platform highlights">
             <article className="hero-stat-card">
@@ -494,6 +515,8 @@ export default async function PlatformPage() {
 
       <UsgIdentityBulgaricoPanel locale={locale} variant="platform" />
 
+      {!currentSession ? (
+        <>
       <section className="section-block section-block--support section-block--support-home" id="platform-help" aria-label="Platform help and role guidance">
         <div className="section-block__header">
           <div className="section-block__eyebrow">{roleGuidance.help.eyebrow}</div>
@@ -618,6 +641,8 @@ export default async function PlatformPage() {
           ))}
         </div>
       </section>
+        </>
+      ) : null}
     </main>
   );
 }

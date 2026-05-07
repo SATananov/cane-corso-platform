@@ -1,6 +1,7 @@
 import { PageShell } from '@/components/page-shell';
 import { EcosystemModerationDashboard } from '@/components/ecosystem-moderation-dashboard';
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getEcosystemModerationDocument } from '@/lib/ecosystem.server';
 
@@ -50,6 +51,7 @@ export default async function AdminEcosystemPage() {
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >
+      <RoleAwareActionPanel locale={locale} surface="adminEcosystem" role="admin" />
       <EcosystemModerationDashboard document={document} locale={locale} />
       <AdminOperationalClarityPanel locale={locale} surface="ecosystem" />
     </PageShell>

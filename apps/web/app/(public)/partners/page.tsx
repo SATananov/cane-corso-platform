@@ -2,8 +2,10 @@ import { PageShell } from '@/components/page-shell';
 import type { PageShellCard } from '@/components/page-shell';
 import { PartnerDirectoryOverview } from '@/components/partner-directory-overview';
 import { PartnersServicesExperience } from '@/components/partners-services-experience';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPartnerDirectoryDocument } from '@/lib/partners.server';
+import { getOptionalCookieMemberSession } from '@/lib/session.server';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,6 +32,7 @@ export default async function PartnersPage({ searchParams }: PartnersPageProps) 
   const resolvedSearchParams = await Promise.resolve(searchParams);
   const category = typeof resolvedSearchParams?.category === 'string' ? resolvedSearchParams.category : null;
   const document = await getPartnerDirectoryDocument({ category });
+  const currentSession = await getOptionalCookieMemberSession();
 
   const copyByLocale: Record<string, PartnersPageCopy> = {
     en: {
@@ -157,6 +160,7 @@ export default async function PartnersPage({ searchParams }: PartnersPageProps) 
       heroChips={copy.heroChips}
     >
       <div className="partners-page-flow">
+        <RoleAwareActionPanel locale={locale} surface="partners" role={currentSession?.user.role ?? null} />
         <PartnersServicesExperience
           locale={locale}
           totalVisible={document.total}

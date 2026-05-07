@@ -5,6 +5,8 @@ import { getUsgGalleryDocument } from '@/lib/registry.server';
 import { ImageLightbox } from '@/components/image-lightbox';
 import { GalleryCertifiedShowcaseTrustPanel } from '@/components/gallery-certified-showcase-trust-panel';
 import { InfoPanelGrid } from '@/components/info-panel-grid';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
+import { getOptionalCookieMemberSession } from '@/lib/session.server';
 
 export const dynamic = 'force-dynamic';
 
@@ -178,6 +180,7 @@ export default async function GalleryPage() {
   const locale = await getCurrentLocale();
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const galleryDocument = await getUsgGalleryDocument();
+  const currentSession = await getOptionalCookieMemberSession();
 
   return (
     <PageShell
@@ -192,6 +195,7 @@ export default async function GalleryPage() {
       heroChips={locale === 'bg' ? ['Само отличени', 'Подкрепа от общността', 'USG сертификат'] : locale === 'it' ? ['Solo distinti', 'Trazione community', 'Certificato USG'] : ['Curated only', 'Community traction', 'USG certificate']}
       heroNote={copy.noteBody}
     >
+      <RoleAwareActionPanel locale={locale} surface="gallery" role={currentSession?.user.role ?? null} />
       <section className="content-card usg-gallery-showcase">
         <div className="section-head-row">
           <div>

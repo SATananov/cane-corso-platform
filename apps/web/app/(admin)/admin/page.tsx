@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { desc, eq } from 'drizzle-orm';
 import { PageShell } from '@/components/page-shell';
 import { OverviewStatCard } from '@/components/overview-stat-card';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getReviewQueueDocument, requireReviewAdminSession } from '@/lib/review.server';
 import { getPublishedRegistryDocument } from '@/lib/registry.server';
@@ -278,6 +279,7 @@ export default async function AdminHomePage() {
       ]}
     >
       <div className="member-route-stack">
+        <RoleAwareActionPanel locale={locale} surface="admin" role="admin" />
         <div className="stats-grid five-up">
           <OverviewStatCard label={copy.stats.queue} value={String(queueCount)} tone="gold" />
           <OverviewStatCard label={copy.stats.registry} value={String(registryCount)} tone="ivory" />

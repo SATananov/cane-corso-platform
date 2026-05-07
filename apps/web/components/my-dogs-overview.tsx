@@ -6,6 +6,7 @@ import { EmptyStatePanel } from '@/components/empty-state-panel';
 import { OwnerCaneCorsoSpotlight } from '@/components/owner-cane-corso-spotlight';
 import { OwnerPhotoGuidePanel } from '@/components/owner-photo-guide-panel';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
@@ -47,7 +48,7 @@ const supportCopy = {
       'The USG certificate is a separate official decision.',
     ],
     nextEyebrow: 'Clear next step',
-    nextTitle: 'How to use this page',
+    nextTitle: 'What to do next',
     nextBullets: [
       'Look first at the large Cane Corso card.',
       'Check the three photo slots and profile status.',
@@ -67,7 +68,7 @@ const supportCopy = {
       'USG сертификатът е отделно официално решение.',
     ],
     nextEyebrow: 'Ясна следваща стъпка',
-    nextTitle: 'Как да използваш тази страница',
+    nextTitle: 'Какво да направиш сега',
     nextBullets: [
       'Първо гледай голямата карта на Cane Corso.',
       'Провери трите места за снимки и статуса на профила.',
@@ -87,7 +88,7 @@ const supportCopy = {
       'Il certificato USG è una decisione ufficiale separata.',
     ],
     nextEyebrow: 'Prossimo passo chiaro',
-    nextTitle: 'Come usare questa pagina',
+    nextTitle: 'Cosa fare ora',
     nextBullets: [
       'Guarda prima la grande scheda del Cane Corso.',
       'Controlla i tre spazi foto e lo stato del profilo.',
@@ -163,6 +164,7 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
 
   return (
     <div className="member-route-stack">
+      <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
       <section className="route-hero-card route-hero-card--member">
         <div>
           <span className="eyebrow-label">{t.pages.myDogs.eyebrow}</span>

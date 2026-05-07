@@ -1,6 +1,7 @@
 import { PageShell } from '@/components/page-shell';
 import { ReviewQueueDashboard } from '@/components/review-queue-dashboard';
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getDictionary } from '@/lib/i18n';
 import { getReviewQueueDocument } from '@/lib/review.server';
@@ -42,6 +43,7 @@ export default async function ReviewQueuePage() {
       heroChips={pageCopy.heroChips}
       heroNote={pageCopy.heroNote}
     >
+      <RoleAwareActionPanel locale={locale} surface="review" role="admin" />
       <ReviewQueueDashboard document={document} locale={locale} />
       <AdminOperationalClarityPanel locale={locale} surface="review" />
     </PageShell>

@@ -323,3 +323,10 @@ Admin:
 ## Current continuation point
 
 Use the latest clean checkpoint created after Step 93.3 as the stable continuation point. If a future branch or ZIP is created, it should preserve the same authority boundaries and clean documentation structure described here.
+
+
+## Step 94 — Platform-wide Role-aware Action UX
+
+Step 94 changes the platform-wide signed-in experience from section explanations to action, status, and next-step clarity. Guests still see public orientation, while members, partners, and admins see role-aware action panels for the surfaces they use. This is a presentation/UX layer only and does not change Registry, Certificate, Verify, Gallery, Ecosystem, Auth/session, Admin moderation, or Netlify authority logic.
+
+QA: `pnpm platform:role-aware-action:qa`, `pnpm platform:faq-trust:qa`, `pnpm usg:identity-bulgarico:qa`, `pnpm content:authority:qa`, `pnpm workspace:syntax`, `pnpm typecheck`.

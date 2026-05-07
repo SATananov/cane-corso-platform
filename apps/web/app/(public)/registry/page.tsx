@@ -1,6 +1,7 @@
 import { PageShell } from '@/components/page-shell';
 import { PublicRegistryOverview } from '@/components/public-registry-overview';
 import { RegistryCertificateReleaseFlowPanel } from '@/components/registry-certificate-release-flow-panel';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { canAccessAdminArea } from '@/lib/access-control';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
@@ -31,6 +32,7 @@ export default async function RegistryPage() {
       heroChips={[t.pages.registry.heroChipPublished, t.pages.registry.heroChipCertificate, t.pages.registry.heroChipVerify]}
       heroNote={t.pages.registry.heroNote}
     >
+      <RoleAwareActionPanel locale={locale} surface="registry" role={currentSession?.user.role ?? null} />
       <PublicRegistryOverview
         document={document}
         locale={locale}
