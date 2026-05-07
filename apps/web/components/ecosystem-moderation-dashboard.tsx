@@ -120,31 +120,31 @@ const ecosystemAdminPolishCopy = {
     commandEyebrow: 'Ecosystem moderation',
     commandTitle: 'One queue for the full Cane Corso ecosystem',
     commandDescription:
-      'Use this surface to separate official listings, community listings, and internal suggestions before anything becomes public.',
+      'Use this surface to separate official listings, community listings, internal suggestions, and sensitive member-to-member connection requests before anything becomes public.',
     official: 'Official listings',
     community: 'Community entries',
     publishGate: 'Publish gate',
-    publishGateDescription: 'Only approved real listings can be published. Suggestions stay internal until converted.',
+    publishGateDescription: 'Only approved real listings can be published. Sensitive matches stay admin-mediated before people are connected.',
   },
   bg: {
     commandEyebrow: 'Модерация на екосистемата',
     commandTitle: 'Една опашка за цялата Cane Corso екосистема',
     commandDescription:
-      'Тук разделяш официални записи, общностни записи и вътрешни предложения преди нещо да стане публично.',
+      'Тук разделяш официални записи, общностни записи, вътрешни предложения и чувствителни заявки за свързване преди нещо да стане публично.',
     official: 'Официални записи',
     community: 'Общностни записи',
     publishGate: 'Контрол преди публикуване',
-    publishGateDescription: 'Само одобрени реални записи могат да се публикуват. Предложенията остават вътрешни, докато не се превърнат в запис.',
+    publishGateDescription: 'Само одобрени реални записи могат да се публикуват. Чувствителните съвпадения остават през админ преди хората да бъдат свързани.',
   },
   it: {
     commandEyebrow: 'Moderazione ecosystem',
     commandTitle: 'Una coda per tutto l’ecosistema Cane Corso',
     commandDescription:
-      'Usa questa superficie per separare schede ufficiali, community e suggerimenti interni prima della pubblicazione.',
+      'Usa questa superficie per separare schede ufficiali, community, suggerimenti interni e richieste sensibili di collegamento prima della pubblicazione.',
     official: 'Schede ufficiali',
     community: 'Schede community',
     publishGate: 'Gate pubblicazione',
-    publishGateDescription: 'Solo schede reali approvate possono essere pubblicate. I suggerimenti restano interni finché non vengono convertiti.',
+    publishGateDescription: 'Solo schede reali approvate possono essere pubblicate. I match sensibili restano mediati dall’admin prima di collegare le persone.',
   },
 } as const;
 

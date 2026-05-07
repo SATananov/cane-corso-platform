@@ -609,6 +609,7 @@ function formatListingType(type: EcosystemListing['listingType']) {
     puppy_listing: 'Puppies',
     adoption_new_home: 'New home',
     breeding_match: 'Match',
+    lost_found: 'Lost / found',
     event: 'Event',
   };
 

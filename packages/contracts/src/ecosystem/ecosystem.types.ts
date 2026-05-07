@@ -10,6 +10,7 @@ export const ECOSYSTEM_LISTING_TYPES = [
   'puppy_listing',
   'adoption_new_home',
   'breeding_match',
+  'lost_found',
   'event',
 ] as const;
 

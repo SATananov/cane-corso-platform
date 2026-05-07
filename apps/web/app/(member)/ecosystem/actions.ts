@@ -51,6 +51,8 @@ function parseListingInput(formData: FormData): UpsertEcosystemListingInput {
     email: optionalString(formData, 'email'),
     coverageNote: optionalString(formData, 'coverageNote'),
     rulesNote: optionalString(formData, 'rulesNote'),
+    logoUrl: optionalString(formData, 'logoUrl'),
+    coverImageUrl: optionalString(formData, 'coverImageUrl'),
     googlePlaceId: optionalString(formData, 'googlePlaceId'),
     googlePlaceName: optionalString(formData, 'googlePlaceName'),
     googleFormattedAddress: optionalString(formData, 'googleFormattedAddress'),

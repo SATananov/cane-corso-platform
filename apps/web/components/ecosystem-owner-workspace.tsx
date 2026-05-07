@@ -116,6 +116,24 @@ const copyByLocale = {
         'Water, shade, space, parking',
       ],
       placeDefaults: 'Default path: community listing • walk/play place',
+      intentEyebrow: 'Cane Corso needs',
+      intentTitle: 'Cane Corso is looking for:',
+      intentDescription:
+        'Choose the real intent first: breeding partner, new home, puppies, lost/found help, friendly place, service, transport, or boarding. Public visibility and any connection between members stay under administrator control.',
+      intentAdminNoticeTitle: 'No direct public matching',
+      intentAdminNoticeBody:
+        'Another member can send a proposal, but private contact is not exposed publicly. The administrator reviews the case and decides whether to connect both sides.',
+      intentCards: [
+        'Female seeks male / male seeks female',
+        'Cane Corso seeks home',
+        'Cane Corso puppies',
+        'Lost / found Cane Corso',
+        'Friendly places and services',
+      ],
+      imageSection: 'Photos and visual identity',
+      imageHelp: 'Add optional image URLs for the public card. Use clear photos only; the administrator decides what becomes visible.',
+      coverImage: 'Main photo / cover image URL',
+      logoImage: 'Logo or secondary photo URL',
     },
   },
   bg: {
@@ -213,6 +231,24 @@ const copyByLocale = {
         'Вода, сянка, пространство, паркинг',
       ],
       placeDefaults: 'Стартова настройка: общностен запис • място за разходка/игра',
+      intentEyebrow: 'Нужди на общността',
+      intentTitle: 'Cane Corso търси:',
+      intentDescription:
+        'Първо избери реалното намерение: партньор за разплод, нов дом, малки, загубен/намерен Cane Corso, подходящо място, услуга, транспорт или престой. Публичната видимост и всяко свързване между хората остават под админ контрол.',
+      intentAdminNoticeTitle: 'Без директно публично свързване',
+      intentAdminNoticeBody:
+        'Друг член може да подаде предложение, но личният контакт не се показва публично. Администраторът преглежда случая и решава дали да свърже двете страни.',
+      intentCards: [
+        'Женско търси мъжко / мъжко търси женско',
+        'Cane Corso търси дом',
+        'Малки Cane Corso',
+        'Загубени / намерени Cane Corso',
+        'Подходящи места и услуги',
+      ],
+      imageSection: 'Снимки и визуална идентичност',
+      imageHelp: 'Добави по желание URL към снимки за публичната карта. Използвай ясни снимки; администраторът решава кое става видимо.',
+      coverImage: 'Основна снимка / корица URL',
+      logoImage: 'Лого или втора снимка URL',
     },
   },
   it: {
@@ -310,6 +346,24 @@ const copyByLocale = {
         'Acqua, ombra, spazio, parcheggio',
       ],
       placeDefaults: 'Percorso iniziale: scheda community • luogo passeggio/gioco',
+      intentEyebrow: 'Bisogni della community',
+      intentTitle: 'Cane Corso cerca:',
+      intentDescription:
+        'Scegli prima l’intento reale: partner di riproduzione, nuova casa, cuccioli, smarrito/trovato, luogo adatto, servizio, trasporto o boarding. La visibilità pubblica e ogni collegamento tra persone restano sotto controllo admin.',
+      intentAdminNoticeTitle: 'Nessun matching pubblico diretto',
+      intentAdminNoticeBody:
+        'Un altro membro può inviare una proposta, ma il contatto privato non viene mostrato pubblicamente. L’amministratore valuta il caso e decide se collegare le parti.',
+      intentCards: [
+        'Femmina cerca maschio / maschio cerca femmina',
+        'Cane Corso cerca casa',
+        'Cuccioli Cane Corso',
+        'Cane Corso smarriti / trovati',
+        'Luoghi e servizi adatti',
+      ],
+      imageSection: 'Foto e identità visiva',
+      imageHelp: 'Aggiungi URL immagine opzionali per la scheda pubblica. Usa foto chiare; l’amministratore decide cosa diventa visibile.',
+      coverImage: 'Foto principale / copertina URL',
+      logoImage: 'Logo o seconda foto URL',
     },
   },
 } as const;
@@ -375,6 +429,28 @@ function getOwnerActionHint(copy: EcosystemOwnerCopy, status: EcosystemListingSt
   return copy.labels.publishedActionHint;
 }
 
+
+
+function CommunityIntentQuickStart({ copy }: { copy: EcosystemOwnerCopy }) {
+  return (
+    <section className="content-card community-intent-start" id="community-intent-form">
+      <div className="community-intent-start__copy">
+        <span className="eyebrow-label">{copy.labels.intentEyebrow}</span>
+        <h2>{copy.labels.intentTitle}</h2>
+        <p>{copy.labels.intentDescription}</p>
+      </div>
+      <div className="community-intent-start__grid">
+        {copy.labels.intentCards.map((item) => (
+          <span key={item}>{item}</span>
+        ))}
+      </div>
+      <div className="community-intent-start__notice">
+        <strong>{copy.labels.intentAdminNoticeTitle}</strong>
+        <p>{copy.labels.intentAdminNoticeBody}</p>
+      </div>
+    </section>
+  );
+}
 
 function FriendlyPlaceQuickStart({ copy }: { copy: EcosystemOwnerCopy }) {
   return (
@@ -500,6 +576,34 @@ function EcosystemListingForm({ copy, locale, item, mode }: EcosystemListingForm
               id={isEdit ? `longDescription-${item?.id}` : 'longDescription'}
               rows={4}
               defaultValue={item?.longDescription ?? ''}
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="ecosystem-form-card ecosystem-form-card--images">
+        <legend>{copy.labels.imageSection}</legend>
+        <p className="ecosystem-form-card__description">{copy.labels.imageHelp}</p>
+        <div className="ecosystem-form-card__fields ecosystem-form-card__fields--two">
+          <div className="field-group">
+            <label className="field-label" htmlFor={isEdit ? `coverImageUrl-${item?.id}` : 'coverImageUrl'}>{copy.labels.coverImage}</label>
+            <input
+              className="field-input"
+              type="url"
+              name="coverImageUrl"
+              id={isEdit ? `coverImageUrl-${item?.id}` : 'coverImageUrl'}
+              defaultValue={item?.coverImageUrl ?? ''}
+            />
+          </div>
+
+          <div className="field-group">
+            <label className="field-label" htmlFor={isEdit ? `logoUrl-${item?.id}` : 'logoUrl'}>{copy.labels.logoImage}</label>
+            <input
+              className="field-input"
+              type="url"
+              name="logoUrl"
+              id={isEdit ? `logoUrl-${item?.id}` : 'logoUrl'}
+              defaultValue={item?.logoUrl ?? ''}
             />
           </div>
         </div>
@@ -660,6 +764,8 @@ export function EcosystemOwnerWorkspace({ document, locale }: EcosystemOwnerWork
         <OverviewStatCard label={copy.stats.suggestions} value={String(document.summary.suggestions)} tone="ivory" />
         <OverviewStatCard label={copy.stats.published} value={String(document.summary.published)} tone="gold" />
       </div>
+
+      <CommunityIntentQuickStart copy={copy} />
 
       <FriendlyPlaceQuickStart copy={copy} />
 

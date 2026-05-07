@@ -50,6 +50,7 @@ const VALID_TYPES: EcosystemListingType[] = [
   'puppy_listing',
   'adoption_new_home',
   'breeding_match',
+  'lost_found',
   'event',
 ];
 

@@ -29,6 +29,7 @@ const ALL_ECOSYSTEM_LISTING_TYPES: readonly EcosystemListingType[] = [
   'puppy_listing',
   'adoption_new_home',
   'breeding_match',
+  'lost_found',
   'event',
 ];
 
@@ -45,6 +46,7 @@ export const ECOSYSTEM_SUBMISSION_RULES: readonly EcosystemSubmissionRule[] = [
       'puppy_listing',
       'adoption_new_home',
       'breeding_match',
+      'lost_found',
       'event',
     ],
   },
@@ -56,8 +58,10 @@ export const ECOSYSTEM_SUBMISSION_RULES: readonly EcosystemSubmissionRule[] = [
     allowedListingTypes: [
       'walk_play_place',
       'pet_friendly_place',
+      'puppy_listing',
       'adoption_new_home',
       'breeding_match',
+      'lost_found',
       'event',
     ],
   },
@@ -107,8 +111,10 @@ export function resolveDefaultEcosystemSubmissionChannel(
   if (
     listingType === 'walk_play_place' ||
     listingType === 'pet_friendly_place' ||
+    listingType === 'puppy_listing' ||
     listingType === 'adoption_new_home' ||
     listingType === 'breeding_match' ||
+    listingType === 'lost_found' ||
     listingType === 'event'
   ) {
     return 'community_listing';

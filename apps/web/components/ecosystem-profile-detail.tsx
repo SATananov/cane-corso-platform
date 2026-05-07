@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FriendlyPlacesMap } from '@/components/friendly-places-map';
-import type { EcosystemListing, EcosystemProfileDocument } from '@cane-corso-platform/contracts';
+import type { EcosystemListing, EcosystemListingType, EcosystemProfileDocument } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 import { getEcosystemListingTypeLabels, getEcosystemSubmissionChannelLabels, getEcosystemSubmissionChannelTone } from '@/lib/ecosystem-ui';
 
@@ -16,7 +16,7 @@ const copyByLocale = {
     identityCopy: 'This page opens only for a real ecosystem listing that has been published after moderation. Drafts, pending records, approved-only records, and internal suggestions do not receive public detail pages.',
     detailsEyebrow: 'Owner-useful information', detailsTitle: 'Practical details', listingType: 'Layer', channel: 'Publication lane', category: 'Category', location: 'Location',
     contactEyebrow: 'Contact', contactTitle: 'Contact and access', coverageEyebrow: 'Before you go', coverageTitle: 'Coverage and local rules', coverage: 'Coverage', rules: 'Rules',
-    trustEyebrow: 'Release guardrail', trustTitle: 'Why this profile is public', trustA: 'Published-only route', trustACopy: 'The profile uses the same public visibility rules as the /community directory.', trustB: 'Suggestions stay internal', trustBCopy: 'Community suggestions stay private until converted and published.', trustC: 'Locked boundary', trustCCopy: 'The foundation does not unlock registry, certificate, partner, gallery, or admin review flows.',
+    trustEyebrow: 'Release guardrail', trustTitle: 'Why this profile is public', trustA: 'Published-only route', trustACopy: 'The profile uses the same public visibility rules as the /community directory.', trustB: 'Suggestions stay internal', trustBCopy: 'Community suggestions stay private until converted and published.', trustC: 'Locked boundary', trustCCopy: 'The foundation does not unlock registry, certificate, partner, gallery, or admin review flows.', mediatedEyebrow: 'Admin-mediated contact', mediatedTitle: 'Protected connection through the platform', mediatedCopy: 'For breeding, puppies, adoption, and lost/found cases, private contact details are not exposed publicly. Send your proposal from the member workspace and an administrator can decide whether to connect the parties.', mediatedCta: 'I have an offer',
   },
   bg: {
     back: 'Назад към общността', visitWebsite: 'Отвори сайта', email: 'Имейл', phone: 'Телефон', website: 'Уебсайт', notSet: 'Все още няма данни',
@@ -24,7 +24,7 @@ const copyByLocale = {
     identityCopy: 'Тази страница се отваря само за реален запис от екосистемата, който е публикуван след модерация. Чернови, чакащи записи, само одобрени записи и вътрешни предложения не получават публична детайлна страница.',
     detailsEyebrow: 'Информация за собственика', detailsTitle: 'Практични детайли', listingType: 'Слой', channel: 'Поток на публикуване', category: 'Категория', location: 'Локация',
     contactEyebrow: 'Контакт', contactTitle: 'Контакт и достъп', coverageEyebrow: 'Преди да отидеш', coverageTitle: 'Обхват и местни правила', coverage: 'Обхват', rules: 'Правила',
-    trustEyebrow: 'Граница на публикуване', trustTitle: 'Защо този профил е публичен', trustA: 'Само публикувани записи', trustACopy: 'Профилът използва същите правила за публична видимост като /community директорията.', trustB: 'Предложенията остават вътрешни', trustBCopy: 'Общностните предложения остават частни, докато не бъдат конвертирани и публикувани.', trustC: 'Заключена граница', trustCCopy: 'Тази стъпка не отключва Registry, Certificate, Partners, Gallery или админ review потоци.',
+    trustEyebrow: 'Граница на публикуване', trustTitle: 'Защо този профил е публичен', trustA: 'Само публикувани записи', trustACopy: 'Профилът използва същите правила за публична видимост като /community директорията.', trustB: 'Предложенията остават вътрешни', trustBCopy: 'Общностните предложения остават частни, докато не бъдат конвертирани и публикувани.', trustC: 'Заключена граница', trustCCopy: 'Тази стъпка не отключва регистър, сертификат, партньори, галерия или админ преглед потоци.', mediatedEyebrow: 'Връзка чрез админ', mediatedTitle: 'Защитено свързване през платформата', mediatedCopy: 'При разплод, малки, осиновяване и загубени/намерени случаи личните контакти не се показват публично. Подай предложението си от членската зона и администраторът може да реши дали да свърже страните.', mediatedCta: 'Имам предложение',
   },
   it: {
     back: 'Torna alla community', visitWebsite: 'Apri il sito', email: 'Email', phone: 'Telefono', website: 'Sito web', notSet: 'Non ancora disponibile',
@@ -32,7 +32,7 @@ const copyByLocale = {
     identityCopy: 'Questa pagina si apre solo per una scheda reale dell’ecosistema pubblicata dopo moderazione. Bozze, schede in revisione, approvate ma non pubblicate e suggerimenti interni non hanno una pagina detail pubblica.',
     detailsEyebrow: 'Informazioni utili', detailsTitle: 'Dettagli pratici', listingType: 'Layer', channel: 'Percorso pubblicazione', category: 'Categoria', location: 'Località',
     contactEyebrow: 'Contatto', contactTitle: 'Contatti e accesso', coverageEyebrow: 'Prima di andare', coverageTitle: 'Copertura e regole locali', coverage: 'Copertura', rules: 'Regole',
-    trustEyebrow: 'Guardrail rilascio', trustTitle: 'Perché questo profilo è pubblico', trustA: 'Solo pubblicate', trustACopy: 'Il profilo usa le stesse regole di visibilità pubblica della directory /community.', trustB: 'Suggerimenti interni', trustBCopy: 'I suggerimenti community restano privati finché non vengono convertiti e pubblicati.', trustC: 'Confine bloccato', trustCCopy: 'La foundation non sblocca registry, certificate, partners, gallery o admin review flows.',
+    trustEyebrow: 'Guardrail rilascio', trustTitle: 'Perché questo profilo è pubblico', trustA: 'Solo pubblicate', trustACopy: 'Il profilo usa le stesse regole di visibilità pubblica della directory /community.', trustB: 'Suggerimenti interni', trustBCopy: 'I suggerimenti community restano privati finché non vengono convertiti e pubblicati.', trustC: 'Confine bloccato', trustCCopy: 'La foundation non sblocca registro, certificato, partner, galleria o revisione admin.', mediatedEyebrow: 'Contatto tramite admin', mediatedTitle: 'Collegamento protetto attraverso la piattaforma', mediatedCopy: 'Per riproduzione, cuccioli, adozione e smarriti/trovati, i contatti privati non sono esposti pubblicamente. Invia la tua proposta dall’area membro e l’amministratore può decidere se collegare le parti.', mediatedCta: 'Ho una proposta',
   },
 } as const;
 
@@ -50,6 +50,11 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     transport: 'Transport',
     training: 'Training',
     shop: 'Shop',
+    female_seeks_male: 'Female seeks male',
+    male_seeks_female: 'Male seeks female',
+    looking_for_home: 'Looking for home',
+    lost_dog: 'Lost Cane Corso',
+    found_dog: 'Found Cane Corso',
     other: 'Other',
   },
   bg: {
@@ -64,6 +69,11 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     transport: 'Транспорт',
     training: 'Обучение',
     shop: 'Магазин',
+    female_seeks_male: 'Женско търси мъжко',
+    male_seeks_female: 'Мъжко търси женско',
+    looking_for_home: 'Търси дом',
+    lost_dog: 'Загубен Cane Corso',
+    found_dog: 'Намерен Cane Corso',
     other: 'Друго',
   },
   it: {
@@ -78,6 +88,11 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
     transport: 'Trasporto',
     training: 'Addestramento',
     shop: 'Negozio',
+    female_seeks_male: 'Femmina cerca maschio',
+    male_seeks_female: 'Maschio cerca femmina',
+    looking_for_home: 'Cerca casa',
+    lost_dog: 'Cane Corso smarrito',
+    found_dog: 'Cane Corso trovato',
     other: 'Altro',
   },
 };
@@ -94,6 +109,13 @@ function categoryFor(item: EcosystemListing, locale: Locale, fallback: string) {
 
   const labels = categoryLabelsByLocale[locale] ?? categoryLabelsByLocale.en;
   return labels[item.category] ?? item.category.replace(/[_-]+/g, ' ');
+}
+
+
+const adminMediatedTypes = ['breeding_match', 'adoption_new_home', 'puppy_listing', 'lost_found'] as const satisfies readonly EcosystemListingType[];
+
+function isAdminMediatedListing(item: EcosystemListing) {
+  return (adminMediatedTypes as readonly EcosystemListingType[]).includes(item.listingType);
 }
 
 function getMapLabels(locale: Locale) {
@@ -134,6 +156,7 @@ export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDet
   const channelLabels = getEcosystemSubmissionChannelLabels(locale);
   const tone = getEcosystemSubmissionChannelTone(listing.submissionChannel);
   const description = listing.longDescription || listing.shortDescription || copy.notSet;
+  const isMediated = isAdminMediatedListing(listing);
 
   return (
     <div className="member-route-stack">
@@ -152,7 +175,7 @@ export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDet
           </div>
         </div>
         <div className="route-hero-actions ecosystem-profile-hero__actions">
-          {listing.websiteUrl ? <a href={listing.websiteUrl} target="_blank" rel="noreferrer" className="button-primary" aria-label={`${copy.visitWebsite}: ${listing.title}`}>{copy.visitWebsite}</a> : null}
+          {listing.websiteUrl && !isMediated ? <a href={listing.websiteUrl} target="_blank" rel="noreferrer" className="button-primary" aria-label={`${copy.visitWebsite}: ${listing.title}`}>{copy.visitWebsite}</a> : null}
           <Link href="/community" className="button-secondary" aria-label={`${copy.back}: /community`}>{copy.back}</Link>
         </div>
       </section>
@@ -210,13 +233,24 @@ export function EcosystemProfileDetail({ document, locale }: EcosystemProfileDet
           </section>
 
           <section className="content-card ecosystem-profile-section">
-            <span className="eyebrow-label">{copy.contactEyebrow}</span>
-            <h2>{copy.contactTitle}</h2>
-            <dl className="partner-contact-list">
-              <div><dt>{copy.email}</dt><dd>{listing.email ? <a href={`mailto:${listing.email}`}>{listing.email}</a> : copy.notSet}</dd></div>
-              <div><dt>{copy.phone}</dt><dd>{listing.phone || copy.notSet}</dd></div>
-              <div><dt>{copy.website}</dt><dd>{listing.websiteUrl ? <a href={listing.websiteUrl} target="_blank" rel="noreferrer">{listing.websiteUrl}</a> : copy.notSet}</dd></div>
-            </dl>
+            {isMediated ? (
+              <>
+                <span className="eyebrow-label">{copy.mediatedEyebrow}</span>
+                <h2>{copy.mediatedTitle}</h2>
+                <p className="ecosystem-profile-section__copy">{copy.mediatedCopy}</p>
+                <Link href="/ecosystem" className="button-primary small">{copy.mediatedCta}</Link>
+              </>
+            ) : (
+              <>
+                <span className="eyebrow-label">{copy.contactEyebrow}</span>
+                <h2>{copy.contactTitle}</h2>
+                <dl className="partner-contact-list">
+                  <div><dt>{copy.email}</dt><dd>{listing.email ? <a href={`mailto:${listing.email}`}>{listing.email}</a> : copy.notSet}</dd></div>
+                  <div><dt>{copy.phone}</dt><dd>{listing.phone || copy.notSet}</dd></div>
+                  <div><dt>{copy.website}</dt><dd>{listing.websiteUrl ? <a href={listing.websiteUrl} target="_blank" rel="noreferrer">{listing.websiteUrl}</a> : copy.notSet}</dd></div>
+                </dl>
+              </>
+            )}
           </section>
 
           <section className="content-card ecosystem-profile-section">

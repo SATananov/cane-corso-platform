@@ -20,7 +20,7 @@ assert(owner.includes('Подходящо ли е за едри породи?'),
 assert(owner.includes('Правила за повод или намордник'), 'Bulgarian place checklist includes leash/muzzle rules');
 assert(directory.includes('friendlyPlaces = document.items.filter(isFriendlyPlace)'), 'Public directory computes friendly-place items');
 assert(directory.includes('friendly-places-public-card'), 'Public directory renders friendly places spotlight card');
-assert(directory.includes("item.listingType === 'walk_play_place' || item.listingType === 'pet_friendly_place'"), 'Friendly places are limited to walk/play and pet-friendly listing types');
+assert(directory.includes("const friendlyPlaceTypes = ['walk_play_place', 'pet_friendly_place']"), 'Friendly places are limited to walk/play and pet-friendly listing types');
 assert(directory.includes('Одобрени места за ежедневието с Cane Corso'), 'Bulgarian public copy explains approved daily Cane Corso places');
 assert(directory.includes('Парк / зона за разходка'), 'Public category labels include park/walking areas');
 assert(directory.includes('Заведение, подходящо за кучета'), 'Public category labels include dog-friendly venues');

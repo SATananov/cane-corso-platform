@@ -16,6 +16,7 @@ export function getEcosystemListingTypeLabels(locale: Locale): Record<EcosystemL
       puppy_listing: 'Cane Corso puppies',
       adoption_new_home: 'Adoption & new home',
       breeding_match: 'Breeding / match',
+      lost_found: 'Lost / found Cane Corso',
       event: 'Events & activities',
     },
     bg: {
@@ -27,6 +28,7 @@ export function getEcosystemListingTypeLabels(locale: Locale): Record<EcosystemL
       puppy_listing: 'Малки Cane Corso',
       adoption_new_home: 'Осиновяване / търси дом',
       breeding_match: 'Разплод / търси партньор',
+      lost_found: 'Загубени / намерени Cane Corso',
       event: 'Събития и активности',
     },
     it: {
@@ -38,6 +40,7 @@ export function getEcosystemListingTypeLabels(locale: Locale): Record<EcosystemL
       puppy_listing: 'Cuccioli Cane Corso',
       adoption_new_home: 'Adozione / nuova casa',
       breeding_match: 'Riproduzione / match',
+      lost_found: 'Cane Corso smarriti / trovati',
       event: 'Eventi e attività',
     },
   } as const;
