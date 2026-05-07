@@ -4,6 +4,7 @@ import { getCurrentLocale } from '@/lib/locale.server';
 import { getUsgGalleryDocument } from '@/lib/registry.server';
 import { ImageLightbox } from '@/components/image-lightbox';
 import { GalleryCertifiedShowcaseTrustPanel } from '@/components/gallery-certified-showcase-trust-panel';
+import { InfoPanelGrid } from '@/components/info-panel-grid';
 
 export const dynamic = 'force-dynamic';
 
@@ -85,13 +86,13 @@ const copyByLocale = {
         meta: 'Сертификат • проверка • официално одобрение',
       },
     ],
-    noteTitle: 'Как да разбираш USG Галерията',
+    noteTitle: 'Как работи USG Галерията',
     noteBody:
-      'Мисли за Регистъра като за официалния публичен списък, а за Галерията като за подбраната сцена за най-силните профили. Това е витрина на отличените, не дублиран каталог.',
-    showcaseEyebrow: 'Избрано от админ',
-    showcaseTitle: 'Текуща USG селекция за Галерията',
+      'Регистърът е официалният публичен списък, а Галерията е подбраната сцена за отличени профили със силно присъствие и активен USG сертификат.',
+    showcaseEyebrow: 'Подбрана витрина',
+    showcaseTitle: 'USG Галерия',
     showcaseDescription:
-      'Тук се показват само снимките, които админът изрично е избрал за USG Галерията, и само за профили с активен USG сертификат.',
+      'Първо показваме избраните снимки. Тук влизат само кадри, одобрени за Галерията от администратор, и само профили с активен USG сертификат.',
     emptyShowcase: 'Все още няма Cane Corso, избрани за USG Галерията.',
     openProfile: 'Отвори профила',
     verify: 'Провери',
@@ -183,8 +184,7 @@ export default async function GalleryPage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      cards={copy.cards}
-      accentLabel="USG gallery layer"
+      accentLabel={locale === 'bg' ? 'Слой на USG Галерията' : locale === 'it' ? 'Layer Galleria USG' : 'USG gallery layer'}
       helpHref="/guide?topic=community#community"
       helpLabel={locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help'}
       visualSrc="/brand/editorial-member-shadow-eye.jpg"
@@ -192,14 +192,6 @@ export default async function GalleryPage() {
       heroChips={locale === 'bg' ? ['Само отличени', 'Подкрепа от общността', 'USG сертификат'] : locale === 'it' ? ['Solo distinti', 'Trazione community', 'Certificato USG'] : ['Curated only', 'Community traction', 'USG certificate']}
       heroNote={copy.noteBody}
     >
-      <section className="section-block section-block--compact">
-      <GalleryCertifiedShowcaseTrustPanel variant="gallery" locale={locale} />
-        <div className="section-block__eyebrow">{copy.noteTitle}</div>
-        <div className="section-block__panel">
-          <p>{copy.noteBody}</p>
-        </div>
-      </section>
-
       <section className="content-card usg-gallery-showcase">
         <div className="section-head-row">
           <div>
@@ -284,6 +276,17 @@ export default async function GalleryPage() {
           </div>
         )}
       </section>
+
+      <GalleryCertifiedShowcaseTrustPanel variant="gallery" locale={locale} />
+
+      <InfoPanelGrid
+        eyebrow={copy.noteTitle}
+        title={copy.noteTitle}
+        description={copy.noteBody}
+        cards={copy.cards}
+        actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'}
+        ariaLabel={copy.noteTitle}
+      />
     </PageShell>
   );
 }

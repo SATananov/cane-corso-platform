@@ -121,7 +121,8 @@
     "ecosystem:google-maps:qa": "node scripts/qa-google-maps-places-integration.mjs",
     "community:intent-hub:qa": "node scripts/qa-intent-first-community-hub.mjs",
     "community:hub-polish:qa": "node scripts/qa-community-hub-hierarchy-bg-copy-polish.mjs",
-    "community:match-requests:qa": "node scripts/qa-admin-mediated-match-requests.mjs"
+    "community:match-requests:qa": "node scripts/qa-admin-mediated-match-requests.mjs",
+    "platform:intent-release:qa": "node scripts/qa-platform-intent-first-release-pass.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

@@ -55,10 +55,10 @@ export default async function RegistryProfilePage({ params, searchParams }: Regi
         locale === 'bg' ? 'Детайлен профил' : locale === 'it' ? 'Profilo dettagliato' : 'Detailed profile',
       ]}
       heroNote={locale === 'bg'
-        ? 'Тук старият project spirit се връща като по-богат публичен профил, но без да смесва registry и certificate.'
+        ? 'Публичният профил показва най-важното първо: Cane Corso, статус в Регистъра, сертификат при наличие и защитена информация за собственика.'
         : locale === 'it'
-          ? 'Qui lo spirito del vecchio progetto ritorna come profilo pubblico più ricco, senza confondere registro e certificato.'
-          : 'The older project spirit returns here as a richer public profile without mixing registry and certificate.'}
+          ? 'Il profilo pubblico mostra prima ciò che conta: Cane Corso, stato nel registro, certificato se presente e informazioni proprietario protette.'
+          : 'The public profile shows the essentials first: Cane Corso, registry status, certificate when available, and protected owner identity.'}
     >
       <PublicRegistryProfile
         document={document}

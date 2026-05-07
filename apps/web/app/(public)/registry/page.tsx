@@ -31,17 +31,17 @@ export default async function RegistryPage() {
       heroChips={[t.pages.registry.heroChipPublished, t.pages.registry.heroChipCertificate, t.pages.registry.heroChipVerify]}
       heroNote={t.pages.registry.heroNote}
     >
-      <RegistryCertificateReleaseFlowPanel
-        locale={locale}
-        variant="public"
-        publishedCount={document.entries.length}
-        certifiedCount={certifiedCount}
-      />
       <PublicRegistryOverview
         document={document}
         locale={locale}
         hasMemberAccess={Boolean(currentSession)}
         isAdminViewer={isAdminViewer}
+      />
+      <RegistryCertificateReleaseFlowPanel
+        locale={locale}
+        variant="public"
+        publishedCount={document.entries.length}
+        certifiedCount={certifiedCount}
       />
     </PageShell>
   );

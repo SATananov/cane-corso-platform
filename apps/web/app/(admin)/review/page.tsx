@@ -14,9 +14,9 @@ const reviewPageCopy = {
       'Registry approval and USG certification stay separate. Publish only the profile first, then issue a certificate only when the admin decision is clear.',
   },
   bg: {
-    heroChips: ['Registry преглед', 'Контрол на снимки', 'USG сертификат'],
+    heroChips: ['Преглед за Регистър', 'Контрол на снимки', 'USG сертификат'],
     heroNote:
-      'Одобрението на Registry и USG сертификатът остават отделни решения. Първо публикувай профила, след това издай сертификат само при ясна админ преценка.',
+      'Одобрението за Регистъра и USG сертификатът остават отделни решения. Първо прегледай заявката, после публикувай профила и издай сертификат само при ясна администраторска преценка.',
   },
   it: {
     heroChips: ['Revisione Registry', 'Controllo foto', 'Certificato USG'],
@@ -42,8 +42,8 @@ export default async function ReviewQueuePage() {
       heroChips={pageCopy.heroChips}
       heroNote={pageCopy.heroNote}
     >
-      <AdminOperationalClarityPanel locale={locale} surface="review" />
       <ReviewQueueDashboard document={document} locale={locale} />
+      <AdminOperationalClarityPanel locale={locale} surface="review" />
     </PageShell>
   );
 }

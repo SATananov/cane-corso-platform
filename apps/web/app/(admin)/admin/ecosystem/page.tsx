@@ -50,8 +50,8 @@ export default async function AdminEcosystemPage() {
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >
-      <AdminOperationalClarityPanel locale={locale} surface="ecosystem" />
       <EcosystemModerationDashboard document={document} locale={locale} />
+      <AdminOperationalClarityPanel locale={locale} surface="ecosystem" />
     </PageShell>
   );
 }
