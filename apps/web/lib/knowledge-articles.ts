@@ -153,6 +153,18 @@ const sharedSources = {
     label: "CCAA Judge's Manual 2022",
     href: 'https://www.canecorso.org/uploads/1/1/8/2/118210967/2022_ccaa_judges_manual.pdf',
   },
+  akcHistory: {
+    label: 'AKC Cane Corso history — ancient Italy, decline, and revival',
+    href: 'https://www.akc.org/expert-advice/dog-breeds/cane-corso-history/',
+  },
+  enciStandard: {
+    label: 'ENCI Italian Cane Corso standard PDF',
+    href: 'https://www.enci.it/media/2603/343.pdf',
+  },
+  iccgbHistory: {
+    label: 'Italian Cane Corso Club of Great Britain — breed history',
+    href: 'https://www.iccgb.co.uk/about-the-breed/history-of-the-cane-corso/',
+  },
   akcBreed: {
     label: 'American Kennel Club — Cane Corso breed information',
     href: 'https://www.akc.org/dog-breeds/cane-corso/',

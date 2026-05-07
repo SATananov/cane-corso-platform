@@ -6,13 +6,14 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with the post-Step 93 product state:
+This repository is currently aligned with the post-Step 93.3 product state:
 
 - **Step 91:** Admin-mediated match requests for sensitive community listings.
 - **Step 92:** Platform-wide intent-first page hierarchy.
 - **Step 93:** Content authority and placeholder removal across public knowledge/content surfaces.
 - **Step 93.1:** Canonical README and project documentation cleanup.
 - **Step 93.2:** USG identity, USG Certificate evidence levels, and USG Bulgarico observational framework.
+- **Step 93.3:** Platform-wide FAQ and trust clarity center with official Cane Corso source links and revival-history reading path. This platform-wide FAQ is the main clarity center for first-time visitors.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -29,7 +30,7 @@ Legacy patch notes are archived under `docs/archive/package-notes/`. They are pr
 - **Community** — intent-first community hub: “Cane Corso търси:” for help, home, partner, puppies, friendly places, services, and lost/found cases.
 - **Partners / Services** — moderated partner and service ecosystem.
 - **Knowledge** — educational Cane Corso content, history, breed identity, owner guidance, and responsible ownership.
-- **FAQ / Manifesto** — platform orientation and trust boundaries.
+- **FAQ / Manifesto** — platform orientation, trust boundaries, USG Certificate clarity, admin-mediated community explanation, and official Cane Corso source links.
 
 ### Member surfaces
 
@@ -227,6 +228,7 @@ The expected healthy production/main target is:
 Common verification commands:
 
 ```powershell
+pnpm platform:faq-trust:qa
 pnpm usg:identity-bulgarico:qa
 pnpm content:authority:qa
 pnpm platform:intent-release:qa
@@ -294,6 +296,7 @@ Public:
 - `/verify` focuses on the certificate lookup first.
 - `/knowledge` reads as complete educational content, not placeholder text.
 - `/knowledge` includes USG identity, USG Certificate evidence levels, and USG Bulgarico as an observational framework, not an official standard.
+- `/faq` works as the platform-wide clarity center and links to FCI, ENCI, AKC, UKC, CCAA, and breed-history reference sources.
 
 Member:
 
@@ -319,4 +322,4 @@ Admin:
 
 ## Current continuation point
 
-Use the latest clean checkpoint created after Step 93.1 as the stable continuation point. If a future branch or ZIP is created, it should preserve the same authority boundaries and clean documentation structure described here.
+Use the latest clean checkpoint created after Step 93.3 as the stable continuation point. If a future branch or ZIP is created, it should preserve the same authority boundaries and clean documentation structure described here.
