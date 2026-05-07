@@ -28,7 +28,7 @@ const copyByLocale = {
           'The official layer protects trust. The community layer expands usefulness. They must work together, but they should never be confused with each other.',
         bullets: [
           'Official layer: registry, verification, review decisions, publication status, and the strongest trust signals.',
-          'Community layer: useful visibility for places, services, transport, boarding, pet-friendly locations, and future activity or suggestions.',
+          'Community layer: useful visibility for places, services, transport, boarding, pet-friendly locations, and moderated activity or suggestions.',
           'Everything public still passes through review before it appears to visitors.',
         ],
         ctaHref: '/community',
@@ -144,7 +144,7 @@ const copyByLocale = {
       {
         id: 'activity',
         eyebrow: 'Активност',
-        title: 'Activity is the future living pulse of the platform',
+        title: 'Activity is the living pulse of the platform',
         description:
           'Activity can later include meetups, events, walks, training fields, gatherings, and other real-world movement inside the Cane Corso ecosystem.',
         bullets: [
@@ -180,7 +180,7 @@ const copyByLocale = {
           'Официалният слой пази доверието. Общностният слой разширява полезността. Те трябва да работят заедно, но никога да не се бъркат един с друг.',
         bullets: [
           'Официален слой: регистър, проверка, решения след преглед, статус на публикация и най-силните сигнали за доверие.',
-          'Общностен слой: полезна видимост за места, услуги, транспорт, хотели за кучета, обекти, подходящи за Cane Corso, и бъдещи предложения или активности.',
+          'Общностен слой: полезна видимост за места, услуги, транспорт, хотели за кучета, обекти, подходящи за Cane Corso, и модерирани предложения или активности.',
           'Всичко публично пак минава през преглед, преди да се покаже на посетителите.',
         ],
         ctaHref: '/community',
@@ -296,7 +296,7 @@ const copyByLocale = {
       {
         id: 'activity',
         eyebrow: 'Активност',
-        title: 'Активността е бъдещият жив пулс на платформата',
+        title: 'Активността е живият пулс на платформата',
         description:
           'Активността по-късно може да включва срещи, събития, разходки, тренировъчни терени и друга реална активност вътре в Cane Corso екосистемата.',
         bullets: [

@@ -168,7 +168,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
         {
           eyebrow: 'Editorial system',
           title: 'Ready to become a multilingual knowledge base',
-          description: 'The structure is prepared for articles, source references, reviewed dates, categories, and future admin-managed content.',
+          description: 'The structure uses published articles, source references, reviewed labels, categories, and multilingual editorial discipline.',
           meta: 'BG • EN • IT ready',
         },
       ],
@@ -324,7 +324,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       eyebrow: 'Owner guide',
       title: 'The practical topics that make the platform useful every day',
       description:
-        'A complete Cane Corso platform should help users before and after registration. These topics can become article categories, onboarding cards, and contextual help links.',
+        'The Cane Corso platform helps users before and after registration through clear articles, onboarding cards, and contextual help links.',
       sections: [
         { eyebrow: 'Daily care', title: 'Feeding, weight, movement, rest, coat, heat, and cold', description: 'Keep the guidance practical, realistic, and age-aware. The goal is owner confidence, not medical overreach.', meta: 'Care • routine • condition' },
         { eyebrow: 'Training', title: 'Leash work, recall, calm exposure, home rules, and professional help', description: 'Training content should be firm but respectful, with clear emphasis on early work and controlled socialization.', meta: 'Training • boundaries • handler' },
@@ -335,10 +335,10 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       ],
     },
     editorialModel: {
-      eyebrow: 'Future content model',
-      title: 'The static page is now ready to become an admin-managed knowledge system',
+      eyebrow: 'Editorial content model',
+      title: 'The Knowledge layer is structured as a reviewed editorial system',
       description:
-        'Step 28 keeps the release safe by using static content, but the structure is prepared for a future database-backed editorial workflow.',
+        'The public Knowledge layer uses reviewed content, clear categories, source references, and publishing status so visitors see complete information instead of placeholders.',
       fields: [
         'Title',
         'Slug',
@@ -546,7 +546,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       eyebrow: 'Практически справочник',
       title: 'Темите, които правят платформата полезна всеки ден',
       description:
-        'Пълната Cane Corso платформа трябва да помага преди и след регистрация. Тези теми могат да станат статии, въвеждащи карти и контекстна помощ.',
+        'Cane Corso платформата помага преди и след регистрация чрез ясни статии, въвеждащи карти и контекстна помощ.',
       sections: [
         { eyebrow: 'Ежедневна грижа', title: 'Хранене, тегло, движение, почивка, козина, жега и студ', description: 'Насоките са практични, реалистични и съобразени с възрастта. Целта е увереност на собственика, не медицински контрол.', meta: 'Грижа • рутина • кондиция' },
         { eyebrow: 'Обучение', title: 'Повод, връщане при повикване, спокойна експозиция и домашни правила', description: 'Съдържанието за обучение трябва да е ясно и уважително, с акцент върху ранна работа, граници и контролирана социализация.', meta: 'Обучение • граници • водач' },
@@ -557,10 +557,10 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       ],
     },
     editorialModel: {
-      eyebrow: 'Бъдещ модел на съдържание',
-      title: 'Страницата е готова за знание, управлявано от админ',
+      eyebrow: 'Редакционен модел на съдържание',
+      title: 'Слоят Знания е подреден като прегледана редакционна система',
       description:
-        'Step 28 пази версията безопасна чрез статично съдържание, но структурата е подготвена за бъдещ редакционен процес с база данни.',
+        'Публичният слой Знания използва прегледано съдържание, ясни категории, източници и статус на публикация, така че посетителят вижда завършена информация, а не празни полета.',
       fields: [
         'Заглавие',
         'Slug / адрес',
@@ -687,9 +687,9 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       ],
     },
     editorialModel: {
-      eyebrow: 'Future content model',
+      eyebrow: 'Editorial content model',
       title: 'La pagina statica è pronta per diventare un sistema knowledge gestito da admin',
-      description: 'Step 28 mantiene il release sicuro con contenuto statico, ma la struttura è pronta per un futuro workflow editoriale database-backed.',
+      description: 'Il layer pubblico Knowledge usa contenuti revisionati, categorie chiare, fonti e stato di pubblicazione, così il visitatore vede informazioni complete e non placeholder.',
       fields: [
         'Title',
         'Slug',

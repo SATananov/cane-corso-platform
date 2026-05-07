@@ -64,7 +64,7 @@ export const dictionary: Record<Locale, any> = {
       signIn: 'Sign in',
       help: 'Help',
       learnMore: 'Learn more',
-      futureLabel: 'Future label',
+      futureLabel: 'Trust label',
       premiumStatement: 'ONE OF A KIND',
       publicationPath: 'Publication path',
       currentBuildSlice: 'Current build slice',
@@ -103,7 +103,7 @@ export const dictionary: Record<Locale, any> = {
       statBValue: '03',
       statBLabel: 'Core platform layers online',
       statCValue: '∞',
-      statCLabel: 'Room for future ecosystem growth',
+      statCLabel: 'Ecosystem growth',
       pillarsEyebrow: 'Platform pillars',
       pillarsTitle: 'Designed as a full Cane Corso ecosystem',
       pillarsDescription:
@@ -163,7 +163,7 @@ export const dictionary: Record<Locale, any> = {
           eyebrow: 'Moderation',
           title: 'Review & publish',
           description:
-            'Admin surfaces for publication quality, partner approvals, trust decisions, and future audit-friendly moderation.',
+            'Admin surfaces for publication quality, partner approvals, trust decisions, and audit-friendly moderation.',
           href: '/review',
           meta: 'Опашка за преглед • партньорски преглед • проверки за доверие',
         },
@@ -188,7 +188,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Published layer',
             title: 'Registry listings',
             description:
-              'Public-ready Cane Corso cards with premium presentation, trust-oriented summaries, and future search and filtering.',
+              'Public-ready Cane Corso cards with premium presentation, trust-oriented summaries, and clear public discovery.',
             meta: 'Публичен каталог • откриване • премиум визуален език',
           },
           {
@@ -232,7 +232,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Health & training',
             title: 'Applied knowledge',
             description:
-              'Future practical sections for health awareness, socialization, training, and real-life everyday Cane Corso support.',
+              'Practical sections for health awareness, socialization, training, and real-life everyday Cane Corso support.',
             meta: 'Здраве • тренировки • социализация',
           },
         ],
@@ -248,13 +248,13 @@ export const dictionary: Record<Locale, any> = {
             title: 'Partner directory',
             description:
               'A curated network of clinics, handlers, trainers, breeders, photographers, and other Cane Corso-relevant services.',
-            meta: 'Каталог • категории • бъдещо търсене по локация',
+            meta: 'Каталог • категории • локация',
           },
           {
             eyebrow: 'Visibility',
             title: 'Professional presence',
             description:
-              'Approved partners will have a stronger presence with brand assets, business details, and future featured visibility.',
+              'Approved partners will have a stronger presence with brand assets, business details, and featured visibility.',
             meta: 'Профили • материали • партньорски слой на доверие',
           },
           {
@@ -284,7 +284,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Feedback',
             title: 'Review notes',
             description:
-              'Reviewers will leave change requests, approval context, and future audit-friendly moderation notes here.',
+              'Reviewers will leave change requests, approval context, and audit-friendly moderation notes here.',
             meta: 'Нужни промени • одобряване • отказ',
           },
           {
@@ -742,7 +742,7 @@ export const dictionary: Record<Locale, any> = {
           eyebrow: 'Модерация',
           title: 'Преглед и публикуване',
           description:
-            'Админ повърхности за качество на публикацията, одобрение на партньори, решения за доверие и бъдеща модерация с проследимост.',
+            'Админ повърхности за качество на публикацията, одобрение на партньори, решения за доверие и проследима модерация.',
           href: '/review',
           meta: 'Опашка за преглед • партньорски преглед • проверки за доверие',
         },
@@ -765,14 +765,14 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Публикуван слой',
             title: 'Списък с профили',
             description:
-              'Готови за публика Cane Corso карти с премиум представяне, обобщения, ориентирани към доверие, и бъдещи търсене и филтри.',
+              'Публикувани Cane Corso карти с премиум представяне, ясни trust обобщения и удобна ориентация за посетителя.',
             meta: 'Публичен каталог • откриване • премиум визуален език',
           },
           {
             eyebrow: 'Дълбочина на профила',
             title: 'Детайлна страница за Cane Corso',
             description:
-              'Всеки запис в регистъра ще се развие в богата публична страница с галерия, идентичност, статус и сигнали за верификация.',
+              'Всеки запис в регистъра има публична страница с идентичност, снимки, статус, собственик и връзка към проверка.',
             meta: 'Hero изображение • профилни данни • галерия • сертификатен слой',
           },
           {
@@ -809,7 +809,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Здраве и тренировки',
             title: 'Приложно знание',
             description:
-              'Бъдещи практични секции за здравна информираност, социализация, тренировки и ежедневна подкрепа за Cane Corso.',
+              'Практични насоки за здравна информираност, социализация, тренировки и ежедневна подкрепа за Cane Corso.',
             meta: 'Здраве • тренировки • социализация',
           },
         ],
@@ -825,13 +825,13 @@ export const dictionary: Record<Locale, any> = {
             title: 'Каталог с партньори',
             description:
               'Кураторска мрежа от клиники, хендлъри, треньори, развъдници, фотографи и други услуги, релевантни за Cane Corso.',
-            meta: 'Каталог • категории • бъдещо търсене по локация',
+            meta: 'Каталог • категории • локация',
           },
           {
             eyebrow: 'Видимост',
             title: 'Професионално присъствие',
             description:
-              'Одобрените партньори ще имат по-силно присъствие с брандови материали, бизнес данни и бъдеща подчертана видимост.',
+              'Одобрените партньори имат подредено присъствие с брандови материали, бизнес данни и ясна публична видимост.',
             meta: 'Профили • материали • партньорски слой на доверие',
           },
           {
@@ -1010,13 +1010,13 @@ export const dictionary: Record<Locale, any> = {
         foundationTitleCreate: 'Основа на профила',
         foundationTitleEdit: 'Данни за профила',
         foundationDescription:
-          'Попълни най-важните данни за профила. Оттук започват името, идентичността и основата на бъдещия публичен запис.',
+          'Попълни най-важните данни за профила. Оттук започват името, идентичността и основата на публичния запис.',
         registryTitle: 'Информация за регистъра',
         registryDescription:
           'Тук подреждаш регистрационните данни, класа в регистъра и всичко важно за по-ясно и достоверно присъствие.',
         presentationTitle: 'Представяне',
         presentationDescription:
-          'Краткото и дългото описание оформят представянето на твоето Cane Corso в картата и в бъдещата публична страница.',
+          'Краткото и дългото описание оформят представянето на твоето Cane Corso в картата и в публичната страница.',
         locationTitle: 'Локация',
         locationDescription:
           'Локацията помага профилът да бъде подреден ясно и полезно за бъдещи търсения, филтри и регионално присъствие.',
@@ -1110,10 +1110,10 @@ export const dictionary: Record<Locale, any> = {
         newCover: 'Нова корица на профила',
         currentCover: 'Текуща корица на профила',
         unnamed: 'Cane Corso без име',
-        shortFallback: 'Тук ще се появи подреден преглед на Cane Corso профила.',
+        shortFallback: 'Прегледът ще се подреди автоматично, докато попълваш профила.',
         readiness: 'Състояние',
         validated: 'Профилът е готов за следваща стъпка',
-        awaiting: 'Очаква попълване',
+        awaiting: 'Попълни, когато е налично',
         issuesToFix: 'полета за преглед',
         slug: 'Адрес',
         sex: 'Пол',
@@ -1122,9 +1122,9 @@ export const dictionary: Record<Locale, any> = {
         visibility: 'Видимост',
         country: 'Държава',
         registryStory: 'Представяне на профила',
-        longFallback: 'Тук ще се появи по-дългото представяне на профила и историята на Cane Corso.',
+        longFallback: 'Добави спокойно описание: произход, характер, линия, ежедневие и най-важното за този Cane Corso.',
         persistenceTitle: 'Текущо състояние',
-        persistenceFallback: 'След като запазиш, тук ще виждаш последното записване на профила и готовността му за следващата стъпка.',
+        persistenceFallback: 'След запазване тук ще виждаш последното записване и готовността на профила за преглед.',
       },
       status: {
         draft: 'Чернова',
@@ -1160,12 +1160,12 @@ export const dictionary: Record<Locale, any> = {
         countryRequired: 'Държавата е задължителна за контекста на регистъра.',
       },
       dogCard: {
-        pedigreePending: 'Родословието предстои',
+        pedigreePending: 'Родословието може да се добави по-късно',
         age: 'Възраст',
         visibility: 'Видимост',
         descriptionFallback: 'Представянето на профила се подготвя за личната работна зона.',
         manageMedia: 'Медии',
-        birthDatePending: 'Рождената дата предстои',
+        birthDatePending: 'Добави рождената дата, когато е налична',
         months: 'месеца',
         years: 'години',
       },
@@ -1220,7 +1220,7 @@ export const dictionary: Record<Locale, any> = {
       signIn: 'Accedi',
       help: 'Aiuto',
       learnMore: 'Scopri di più',
-      futureLabel: 'Etichetta futura',
+      futureLabel: 'Etichetta trust',
       premiumStatement: 'ONE OF A KIND',
       publicationPath: 'Percorso di pubblicazione',
       currentBuildSlice: 'Stato corrente',
@@ -1342,7 +1342,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Livello pubblicato',
             title: 'Elenco del registro',
             description:
-              'Dog card pronte al pubblico con presentazione premium, riassunti orientati alla fiducia e future funzioni di ricerca e filtro.',
+              'Dog card pronte al pubblico con presentazione premium, riassunti orientati alla fiducia e discovery pubblica chiara.',
             meta: 'Публичен каталог • откриване • премиум визуален език',
           },
           {
@@ -1386,7 +1386,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Salute e training',
             title: 'Conoscenza applicata',
             description:
-              'Future sezioni pratiche su salute, socializzazione, addestramento e supporto quotidiano per Cane Corso.',
+              'Sezioni pratiche su salute, socializzazione, addestramento e supporto quotidiano per Cane Corso.',
             meta: 'Здраве • тренировки • социализация',
           },
         ],
@@ -1402,7 +1402,7 @@ export const dictionary: Record<Locale, any> = {
             title: 'Directory dei partner',
             description:
               'Una rete curata di cliniche, handler, trainer, allevatori, fotografi e altri servizi rilevanti per Cane Corso.',
-            meta: 'Каталог • категории • бъдещо търсене по локация',
+            meta: 'Каталог • категории • локация',
           },
           {
             eyebrow: 'Visibilità',
@@ -1438,7 +1438,7 @@ export const dictionary: Record<Locale, any> = {
             eyebrow: 'Feedback',
             title: 'Note di revisione',
             description:
-              'I revisori lasceranno richieste di modifica, contesto di approvazione e future note audit-friendly qui.',
+              'I revisori lasceranno richieste di modifica, contesto di approvazione e note audit-friendly qui.',
             meta: 'Нужни промени • одобряване • отказ',
           },
           {

@@ -26,13 +26,13 @@ const copyByLocale = {
     eyebrow: 'Breed education experience',
     title: 'Learn the Cane Corso before using the trust layers',
     description:
-      'Step 47 turns the public Knowledge page into a guided education experience: first understand the breed, then prepare ownership, then use Registry, Certificate, Verify, and Gallery with the right expectations.',
+      'The public Knowledge page works as a guided education experience: first understand the breed, then prepare responsible ownership, then use Registry, Certificate, Verify, and Gallery with the right expectations.',
     publicLabel: 'Public education layer',
     featuredLabel: 'Featured reading',
     sourcesLabel: 'Source-backed references',
     categoryLabel: 'Reading zones',
     openZone: 'Open reading zone',
-    emptyZone: 'No public article yet',
+    emptyZone: 'Guided reading zone',
     pathEyebrow: 'Recommended learning path',
     boundariesEyebrow: 'Trust boundaries',
     boundariesTitle: 'Knowledge explains. Registry, Certificate, Verify, and Gallery remain separate authority layers.',
@@ -70,13 +70,13 @@ const copyByLocale = {
     eyebrow: 'Образователно преживяване за породата',
     title: 'Първо разбери Cane Corso, после използвай слоевете на доверие',
     description:
-      'Step 47 превръща публичната страница Знания в водено образователно преживяване: първо породата, после отговорното притежание, и чак след това Регистър, Сертификат, Проверка и Галерия с правилни очаквания.',
+      'Публичната страница Знания води посетителя спокойно: първо произход и характер на породата, после отговорно притежание, и чак след това Регистър, Сертификат, Проверка и Галерия с правилни очаквания.',
     publicLabel: 'Публичен образователен слой',
     featuredLabel: 'Отличени четива',
     sourcesLabel: 'Източници към статиите',
     categoryLabel: 'Зони за четене',
     openZone: 'Отвори зона',
-    emptyZone: 'Още няма публична статия',
+    emptyZone: 'Зона за насоки',
     pathEyebrow: 'Препоръчан път за учене',
     boundariesEyebrow: 'Граници на доверие',
     boundariesTitle: 'Знанията обясняват. Регистър, Сертификат, Проверка и Галерия остават отделни авторитетни слоеве.',
@@ -114,13 +114,13 @@ const copyByLocale = {
     eyebrow: 'Esperienza educativa di razza',
     title: 'Impara il Cane Corso prima di usare i livelli di fiducia',
     description:
-      'Step 47 trasforma la pagina pubblica Knowledge in un percorso educativo guidato: prima la razza, poi la responsabilità, poi Registro, Certificato, Verifica e Galleria con aspettative corrette.',
+      'La pagina pubblica Knowledge guida il visitatore: prima origine e carattere della razza, poi proprietà responsabile, poi Registro, Certificato, Verifica e Galleria con aspettative corrette.',
     publicLabel: 'Layer educativo pubblico',
     featuredLabel: 'Letture in evidenza',
     sourcesLabel: 'Fonti collegate',
     categoryLabel: 'Zone lettura',
     openZone: 'Apri zona',
-    emptyZone: 'Nessun articolo pubblico ancora',
+    emptyZone: 'Zona di lettura guidata',
     pathEyebrow: 'Percorso consigliato',
     boundariesEyebrow: 'Confini di fiducia',
     boundariesTitle: 'Knowledge spiega. Registro, Certificato, Verifica e Galleria restano layer autoritativi separati.',
@@ -198,7 +198,7 @@ export function KnowledgeEducationExperience({ articles, locale, actionLabel }: 
       </div>
 
       <div className="knowledge-reading-zone-grid" aria-label={copy.categoryLabel}>
-        {priorityCategories.map((category) => {
+        {availableCategories.map((category) => {
           const article = firstArticleByCategory(articles, category);
           const count = articles.filter((item) => item.category === category).length;
           return article ? (

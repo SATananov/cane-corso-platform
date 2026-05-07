@@ -131,7 +131,7 @@ const entryCopy: Record<Locale, EntryCopy> = {
       {
         title: 'За собственици на Cane Corso',
         description:
-          'Създай свое членско присъствие, управлявай профила на своя Cane Corso, следи статуса в регистъра и разглеждай доверени услуги, места, полезна информация и бъдещи общностни секции.'
+          'Създай свое членско присъствие, управлявай профила на своя Cane Corso, следи статуса в регистъра и разглеждай доверени услуги, места, полезна информация и общностни секции.'
       },
       {
         title: 'За партньори и бизнеси',
@@ -200,7 +200,7 @@ const entryCopy: Record<Locale, EntryCopy> = {
       {
         title: 'Per i proprietari di Cane Corso',
         description:
-          'Crea la tua presenza come membro, gestisci il profilo del tuo Cane Corso, segui lo stato nel registro ed esplora servizi affidabili, luoghi, contenuti utili e future sezioni della comunità.'
+          'Crea la tua presenza come membro, gestisci il profilo del tuo Cane Corso, segui lo stato nel registro ed esplora servizi affidabili, luoghi, contenuti utili e sezioni della comunità.'
       },
       {
         title: 'Per partner e attività',

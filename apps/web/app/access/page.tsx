@@ -50,7 +50,7 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
           { eyebrow: 'Step 1', title: 'Explore as a guest first', description: 'The public platform, registry, verification, knowledge, partners, and community areas can be explored before registration.', href: '/platform', meta: 'Guest • public orientation', icon: 'platform' as const },
           { eyebrow: 'Step 2', title: 'Create a personal member account', description: 'Every deeper path starts with a real person and a personal identity inside the platform.', href: '/access?intent=member', meta: 'Member • personal identity', icon: 'member' as const },
           { eyebrow: 'Step 3', title: 'Apply as a partner after the personal account exists', description: 'Businesses and professionals stay connected to the person responsible for the application.', href: '/access?intent=partner', meta: 'Partner • application • review', icon: 'partners' as const },
-          { eyebrow: 'Step 4', title: 'Public visibility always waits for review', description: 'Cane Corso profiles, partner pages, and future ecosystem listings are reviewed before visitors see them.', href: '/guide?topic=access#access', meta: 'Review • publication • trust', icon: 'verify' as const },
+          { eyebrow: 'Step 4', title: 'Public visibility always waits for review', description: 'Cane Corso profiles, partner pages, and community listings are reviewed before visitors see them.', href: '/guide?topic=access#access', meta: 'Review • publication • trust', icon: 'verify' as const },
         ],
       },
       contract: {
@@ -77,7 +77,7 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
           { eyebrow: 'Стъпка 1', title: 'Първо разгледай като гост', description: 'Публичната платформа, регистърът, проверката, знанията, партньорите и общността могат да се разглеждат и преди регистрация.', href: '/platform', meta: 'Гост • публична ориентация', icon: 'platform' as const },
           { eyebrow: 'Стъпка 2', title: 'Създай личен членски акаунт', description: 'Всеки по-дълбок път започва с реален човек и лична идентичност в платформата.', href: '/access?intent=member', meta: 'Член • лична идентичност', icon: 'member' as const },
           { eyebrow: 'Стъпка 3', title: 'Партньорски път след личния акаунт', description: 'Бизнесът или услугата остават свързани с човека, който отговаря за кандидатурата.', href: '/access?intent=partner', meta: 'Партньор • кандидатура • преглед', icon: 'partners' as const },
-          { eyebrow: 'Стъпка 4', title: 'Публикуване само след преглед', description: 'Cane Corso профили, партньорски страници и бъдещи обяви стават публични само след преглед.', href: '/guide?topic=access#access', meta: 'Преглед • публикация • доверие', icon: 'verify' as const },
+          { eyebrow: 'Стъпка 4', title: 'Публикуване само след преглед', description: 'Cane Corso профили, партньорски страници и общностни обяви стават публични само след преглед.', href: '/guide?topic=access#access', meta: 'Преглед • публикация • доверие', icon: 'verify' as const },
         ],
       },
       contract: {
@@ -104,7 +104,7 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
           { eyebrow: 'Passo 1', title: 'Esplora come ospite', description: 'La piattaforma pubblica, il registro, la verifica, la conoscenza, i partner e la comunità possono essere esplorati anche prima della registrazione.', href: '/platform', meta: 'Ospite • orientamento pubblico', icon: 'platform' as const },
           { eyebrow: 'Passo 2', title: 'Crea un account membro', description: 'Ogni percorso riservato inizia da una persona reale e da un’identità chiara nella piattaforma.', href: '/access?intent=member', meta: 'Membro • identità personale', icon: 'member' as const },
           { eyebrow: 'Passo 3', title: 'Candidati come partner', description: 'Attività e professionisti restano collegati alla persona responsabile della candidatura.', href: '/access?intent=partner', meta: 'Partner • candidatura • revisione', icon: 'partners' as const },
-          { eyebrow: 'Passo 4', title: 'Pubblicazione dopo revisione', description: 'Profili Cane Corso, pagine partner e annunci futuri vengono revisionati prima della visibilità pubblica.', href: '/guide?topic=access#access', meta: 'Revisione • pubblicazione • fiducia', icon: 'verify' as const },
+          { eyebrow: 'Passo 4', title: 'Pubblicazione dopo revisione', description: 'Profili Cane Corso, pagine partner e annunci community vengono revisionati prima della visibilità pubblica.', href: '/guide?topic=access#access', meta: 'Revisione • pubblicazione • fiducia', icon: 'verify' as const },
         ],
       },
       contract: {

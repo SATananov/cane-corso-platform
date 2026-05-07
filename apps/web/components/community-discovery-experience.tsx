@@ -15,16 +15,16 @@ const copyByLocale = {
     intro:
       'Community is the discovery layer: useful public routes, owner suggestions, partner services, places, events, transport, new home paths, and editorial activity. It stays clearly outside the official Registry and Certificate authority.',
     stats: ['Published after review', 'Countries represented', 'Featured by admin'],
-    submit: 'Submit through member workspace',
+    submit: 'Submit a moderated request',
     guide: 'Read community rules',
     lanes: [
       ['Adoption / New Home', 'A calm, moderated path when a Cane Corso needs a safer and better environment.'],
-      ['Lost & Found', 'A future public signal layer for urgent community help without replacing admin verification.'],
+      ['Lost & Found', 'A visible community-help lane for urgent signals, still protected by admin review.'],
       ['Events & Training', 'Training fields, events, workshops, and breed-specific educational opportunities.'],
       ['Transport & Relocation', 'Local and cross-border Cane Corso transport with clear service context and review.'],
       ['Boarding & Large-breed stays', 'Hotels and boarding options suitable for strong large-breed handling.'],
       ['Pet-friendly places', 'Restaurants, shops, parks, and public places that can safely welcome Cane Corso.'],
-      ['Puppies / Breeding / Match', 'Future moderated discovery for breeding and match paths without mixing with certificates.'],
+      ['Puppies / Breeding / Match', 'Moderated discovery for puppies, breeding, and match paths without mixing with certificates.'],
       ['Partner services', 'Approved services and operators connected to the public partner directory.'],
     ],
     boundaries: [
@@ -63,16 +63,16 @@ const copyByLocale = {
     intro:
       'La community è il layer discovery: percorsi pubblici utili, suggerimenti owner, servizi partner, luoghi, eventi, trasporto, new home e attività editoriale. Resta separata dal Registro ufficiale e dalla certificate authority.',
     stats: ['Pubblicati dopo revisione', 'Paesi presenti', 'Featured da admin'],
-    submit: 'Invia dal workspace membro',
+    submit: 'Invia richiesta moderata',
     guide: 'Leggi le regole community',
     lanes: [
       ['Adozione / New Home', 'Un percorso moderato quando un Cane Corso ha bisogno di un ambiente più sicuro.'],
-      ['Lost & Found', 'Futuro layer di segnale pubblico per aiuto urgente senza sostituire la verifica admin.'],
+      ['Lost & Found', 'Lane visibile per aiuto urgente della community senza sostituire la revisione admin.'],
       ['Eventi e training', 'Campi training, eventi, workshop e opportunità educative specifiche per la razza.'],
       ['Trasporto e relocation', 'Trasporto locale e cross-border Cane Corso con contesto servizio e review.'],
       ['Boarding e soggiorni large-breed', 'Opzioni di boarding adatte alla gestione sicura di razze grandi e forti.'],
       ['Luoghi pet-friendly', 'Ristoranti, negozi, parchi e luoghi pubblici adatti al Cane Corso.'],
-      ['Puppies / breeding / match', 'Futuro discovery moderato per breeding e match senza confondere i certificati.'],
+      ['Puppies / breeding / match', 'Discovery moderata per breeding e match senza confondere i certificati.'],
       ['Servizi partner', 'Servizi approvati collegati alla directory partner pubblica.'],
     ],
     boundaries: [
