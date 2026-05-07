@@ -1,0 +1,31 @@
+# Step 82 — Admin language consistency cleanup
+
+Apply only over:
+C:\Users\stana\Desktop\cane-corso-platform-netlify
+
+Purpose:
+- Remove visible BG/EN and IT/EN language mixing in the admin navigation/review/user-control surfaces touched by Step 80/81.
+- Keep brand/technical terms that should stay stable: Cane Corso, USG, route paths, package commands, and locked backend product names in QA boundary notes.
+
+Changed UI areas:
+- Admin task dropdown
+- Admin workflow strip
+- Admin center page
+- Admin members page
+- Review queue dashboard
+
+No backend changes:
+- No Registry / Certificate / Verify / Gallery / Ecosystem backend logic changed.
+- No database migration.
+- No env/secrets.
+
+Verified in sandbox:
+- node scripts/qa-admin-navigation-clarity.mjs
+- node scripts/qa-admin-real-netlify-flow.mjs
+- node scripts/check-workshop-syntax.mjs
+
+Run locally after applying:
+pnpm admin:navigation-clarity:qa
+pnpm admin:real-netlify-flow:qa
+pnpm workspace:syntax
+pnpm typecheck

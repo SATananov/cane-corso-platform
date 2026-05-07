@@ -1,0 +1,14 @@
+Step 8.8 — Profile BG copy polish
+
+Scope:
+- apps/web/app/(member)/profile/page.tsx
+
+Changes:
+- Polished Bulgarian copy only on /profile.
+- Replaced awkward wording around media, next step, owner center, knowledge, and community cards.
+- No Registry, Certificate, Verify, My Cane Corso, Gallery, Community, Partners, Review, Admin Partner, or Admin Ecosystem files touched.
+
+Sandbox checks run:
+- node scripts/qa-full-stack-requirements.mjs — PASS
+- node scripts/qa-ecosystem-engine.mjs — PASS
+- node scripts/qa-review-publish-workflow.mjs — PASS

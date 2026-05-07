@@ -1,0 +1,20 @@
+Step 7.1 — Mobile typecheck fix
+
+Scope:
+- apps/mobile/App.tsx only
+
+Fix:
+- PartnerPreview now uses the canonical CommunityRatingSummary contract fields:
+  averageRating and totalRatings.
+- Removed the invalid average / totalVotes references that caused mobile typecheck failure.
+- Handles empty ratings safely with "Community rating: no votes yet".
+
+Locked flows untouched:
+- Registry
+- Certificate
+- My Cane Corso
+- Gallery
+- Community web
+- Partners web
+- Admin review/moderation
+- DB/migrations/repositories

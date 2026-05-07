@@ -123,7 +123,8 @@
     "community:hub-polish:qa": "node scripts/qa-community-hub-hierarchy-bg-copy-polish.mjs",
     "community:match-requests:qa": "node scripts/qa-admin-mediated-match-requests.mjs",
     "platform:intent-release:qa": "node scripts/qa-platform-intent-first-release-pass.mjs",
-    "content:authority:qa": "node scripts/qa-content-authority-placeholder-removal.mjs"
+    "content:authority:qa": "node scripts/qa-content-authority-placeholder-removal.mjs",
+    "docs:readme:qa": "node scripts/qa-canonical-readme-project-docs.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
