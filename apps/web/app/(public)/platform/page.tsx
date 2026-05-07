@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { SectionCard } from '@/components/section-card';
+import { UsgIdentityBulgaricoPanel } from '@/components/usg-identity-bulgarico-panel';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
@@ -491,6 +492,7 @@ export default async function PlatformPage() {
         </div>
       </section>
 
+      <UsgIdentityBulgaricoPanel locale={locale} variant="platform" />
 
       <section className="section-block section-block--support section-block--support-home" id="platform-help" aria-label="Platform help and role guidance">
         <div className="section-block__header">

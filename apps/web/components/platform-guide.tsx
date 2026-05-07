@@ -153,6 +153,49 @@ const copyByLocale = {
           'The product should feel alive, but still controlled and premium.',
         ],
       },
+
+      {
+        id: 'usg-identity',
+        eyebrow: 'USG identity',
+        title: 'Unico Suo Genere explains why the platform exists',
+        description:
+          'USG is the premium trust and education layer around Cane Corso profiles. It respects official kennel systems while giving owners a careful way to present evidence, family history, and reviewed platform identity.',
+        bullets: [
+          'USG does not replace FCI, pedigrees, clubs, judges, veterinarians, or official kennel organizations.',
+          'USG separates Registry, Certificate, Verify, Gallery, Community, and Knowledge so users understand what each surface means.',
+          'A Cane Corso without full paperwork is not automatically false; the platform should show the evidence level honestly.',
+        ],
+        ctaHref: '/knowledge/usg-identity-and-platform-trust',
+        ctaLabel: 'Read USG identity',
+      },
+      {
+        id: 'usg-certificate',
+        eyebrow: 'USG Certificate',
+        title: 'Certificate is a platform trust document, not a pedigree',
+        description:
+          'The USG Certificate shows reviewed profile identity, available evidence, admin notes, Registry connection, and Verify path. It must never pretend to be an official pedigree or kennel-club document.',
+        bullets: [
+          'It can record pedigree evidence when available.',
+          'It can also record documented family line or observational profile evidence.',
+          'Its purpose is clarity and trust, not replacing official documentation.',
+        ],
+        ctaHref: '/knowledge/usg-certificate-evidence-levels',
+        ctaLabel: 'Read certificate boundary',
+      },
+      {
+        id: 'usg-bulgarico',
+        eyebrow: 'USG Bulgarico',
+        title: 'Bulgarico is an observational framework, not an official standard',
+        description:
+          'USG Bulgarico documents possible local phenotype directions in Bulgaria carefully and respectfully. It does not create a new breed, national variant, or official standard.',
+        bullets: [
+          'Officially, Cane Corso remains Cane Corso Italiano.',
+          'Approximately three working phenotype directions may be documented as a hypothesis based on long-term observation.',
+          'Color, line, origin, structure, and selection can be read together, but color alone proves nothing.',
+        ],
+        ctaHref: '/knowledge/usg-bulgarico-observational-framework',
+        ctaLabel: 'Read USG Bulgarico',
+      },
       {
         id: 'premium',
         eyebrow: 'Premium direction',
@@ -305,6 +348,49 @@ const copyByLocale = {
           'Продуктът трябва да изглежда жив, но пак контролиран и премиум.',
         ],
       },
+
+      {
+        id: 'usg-identity',
+        eyebrow: 'USG идентичност',
+        title: 'Unico Suo Genere обяснява защо съществува платформата',
+        description:
+          'USG е премиум слой за доверие и знание около Cane Corso профилите. Той уважава официалните киноложки системи и дава внимателен начин собствениците да представят доказуемост, семейна история и прегледана платформена идентичност.',
+        bullets: [
+          'USG не заменя FCI, родословия, клубове, съдии, ветеринари или официални киноложки организации.',
+          'USG разделя Регистър, Сертификат, Проверка, Галерия, Общност и Знания, за да разбира потребителят какво означава всеки слой.',
+          'Cane Corso без пълни документи не е автоматично неистинско; платформата трябва да показва нивото на доказуемост честно.',
+        ],
+        ctaHref: '/knowledge/usg-identity-and-platform-trust',
+        ctaLabel: 'Прочети за USG',
+      },
+      {
+        id: 'usg-certificate',
+        eyebrow: 'USG сертификат',
+        title: 'Сертификатът е платформен документ за доверие, не родословие',
+        description:
+          'USG сертификатът показва прегледана профилна идентичност, налична доказуемост, админ бележки, връзка с Регистъра и път за Проверка. Той не трябва да се представя като официално родословие или клубен документ.',
+        bullets: [
+          'Може да отбележи родословна доказуемост, когато такава е налична.',
+          'Може да отбележи документирана семейна линия или наблюдателен профил.',
+          'Целта му е яснота и доверие, не замяна на официална документация.',
+        ],
+        ctaHref: '/knowledge/usg-certificate-evidence-levels',
+        ctaLabel: 'Прочети за сертификата',
+      },
+      {
+        id: 'usg-bulgarico',
+        eyebrow: 'USG Bulgarico',
+        title: 'Bulgarico е наблюдателна рамка, не официален стандарт',
+        description:
+          'USG Bulgarico документира възможни локални фенотипни посоки в България внимателно и уважително. Това не създава нова порода, национален вариант или официален стандарт.',
+        bullets: [
+          'Официално Cane Corso остава Cane Corso Italiano.',
+          'Приблизително три работни фенотипни посоки могат да се документират като хипотеза на база дългогодишно наблюдение.',
+          'Цвят, линия, произход, структура и селекция могат да се четат заедно, но цветът сам по себе си не доказва нищо.',
+        ],
+        ctaHref: '/knowledge/usg-bulgarico-observational-framework',
+        ctaLabel: 'Прочети USG Bulgarico',
+      },
       {
         id: 'premium',
         eyebrow: 'Премиум посока',
@@ -456,6 +542,49 @@ const copyByLocale = {
           'La visibilità location-based conta molto qui.',
           'Il prodotto deve sembrare vivo, ma sempre controllato e premium.',
         ],
+      },
+
+      {
+        id: 'usg-identity',
+        eyebrow: 'Identità USG',
+        title: 'Unico Suo Genere spiega perché esiste la piattaforma',
+        description:
+          'USG è il layer premium di fiducia e conoscenza intorno ai profili Cane Corso. Rispetta i sistemi cinofili ufficiali e offre ai proprietari un modo prudente per presentare evidenza, storia familiare e identità revisionata.',
+        bullets: [
+          'USG non sostituisce FCI, pedigree, club, giudici, veterinari o organizzazioni cinofile ufficiali.',
+          'USG separa Registro, Certificato, Verifica, Galleria, Community e Knowledge per spiegare il significato di ogni superficie.',
+          'Un Cane Corso senza documenti completi non è automaticamente falso; la piattaforma deve mostrare il livello di evidenza con onestà.',
+        ],
+        ctaHref: '/knowledge/usg-identity-and-platform-trust',
+        ctaLabel: 'Leggi identità USG',
+      },
+      {
+        id: 'usg-certificate',
+        eyebrow: 'Certificato USG',
+        title: 'Il certificato è un documento trust della piattaforma, non un pedigree',
+        description:
+          'Il Certificato USG mostra identità profilo revisionata, evidenza disponibile, note admin, collegamento Registro e percorso Verifica. Non deve presentarsi come pedigree ufficiale o documento di club.',
+        bullets: [
+          'Può registrare evidenza pedigree quando disponibile.',
+          'Può registrare linea familiare documentata o profilo osservativo.',
+          'Il suo scopo è chiarezza e fiducia, non sostituzione della documentazione ufficiale.',
+        ],
+        ctaHref: '/knowledge/usg-certificate-evidence-levels',
+        ctaLabel: 'Leggi confine certificato',
+      },
+      {
+        id: 'usg-bulgarico',
+        eyebrow: 'USG Bulgarico',
+        title: 'Bulgarico è un framework osservativo, non uno standard ufficiale',
+        description:
+          'USG Bulgarico documenta possibili direzioni fenotipiche locali in Bulgaria con prudenza e rispetto. Non crea nuova razza, variante nazionale o standard ufficiale.',
+        bullets: [
+          'Ufficialmente il Cane Corso resta Cane Corso Italiano.',
+          'Circa tre direzioni fenotipiche operative possono essere documentate come ipotesi da osservazione a lungo termine.',
+          'Colore, linea, origine, struttura e selezione possono essere letti insieme, ma il colore da solo non prova nulla.',
+        ],
+        ctaHref: '/knowledge/usg-bulgarico-observational-framework',
+        ctaLabel: 'Leggi USG Bulgarico',
       },
       {
         id: 'premium',

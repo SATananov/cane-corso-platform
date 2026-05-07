@@ -12,6 +12,7 @@ This repository is currently aligned with the post-Step 93 product state:
 - **Step 92:** Platform-wide intent-first page hierarchy.
 - **Step 93:** Content authority and placeholder removal across public knowledge/content surfaces.
 - **Step 93.1:** Canonical README and project documentation cleanup.
+- **Step 93.2:** USG identity, USG Certificate evidence levels, and USG Bulgarico observational framework.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -78,12 +79,27 @@ The expected flow is:
 4. Another member may submit an offer/help request.
 5. Admin reviews the match request and decides whether to connect the parties.
 
+## USG identity and Bulgarico observational framework
+
+USG means **Unico Suo Genere** — one of a kind. In product terms, USG is a premium trust, education, presentation, and community ecosystem for Cane Corso profiles. It respects official kennel systems while giving owners a clear way to present available evidence, family history, photographs, and reviewed platform identity.
+
+USG does not replace FCI, pedigree documents, official clubs, kennel organizations, judges, veterinarians, or formal breeding records. It adds a transparent platform layer that explains what was reviewed, what is documented, and what remains observational.
+
+The platform should use evidence levels, not value levels:
+
+- **Officially documented profile** — recognized pedigree or formal documents are available.
+- **Documented family line** — known parents, generations, photos, or owner history exist, but the official chain may be incomplete.
+- **Observed Cane Corso profile** — type, photos, structure, story, and admin observation are used as a presentation layer.
+- **Pending / unconfirmed profile** — not enough information yet, or still waiting for review.
+
+**USG Bulgarico** is the Bulgarian observational reading of possible local Cane Corso phenotype directions. It is not a new breed, not an official standard, and not a replacement for Cane Corso Italiano, FCI, pedigree systems, clubs, or judges. It may document approximately three working phenotype directions in Bulgaria as a hypothesis based on long-term owner observation. Color, line, origin, structure, and selection can be considered together, but color alone does not prove type, origin, quality, health, or value.
+
 ## Registry and certificate boundaries
 
 Registry and certificate are separate trust layers.
 
 - Registry publication means the dog profile is publicly listed after admin review.
-- USG Certificate is a separate trust decision and can be issued or revoked by admin.
+- USG Certificate is a separate platform trust decision and can be issued or revoked by admin. It is not a pedigree, FCI document, club evaluation, judge report, veterinary certificate, health clearance, or official kennel registration.
 - Verify checks certificate status by code.
 - Gallery is a curated showcase layer, not the official registry itself.
 - Community listings are not registry records unless intentionally connected by future product work.
@@ -99,6 +115,7 @@ The current content direction includes:
 - Guardian/utility role and modern responsible ownership.
 - Breed standard education, proportions, owner photo guidance, and trusted references.
 - Clear USG boundaries: education and trust support, not uncontrolled promotion.
+- USG identity, Certificate evidence levels, and USG Bulgarico observational framework.
 
 Public-facing copy should avoid internal development language such as “step”, “placeholder”, “future module”, “working platform”, or raw implementation terms unless shown in developer-only documentation.
 
@@ -210,6 +227,7 @@ The expected healthy production/main target is:
 Common verification commands:
 
 ```powershell
+pnpm usg:identity-bulgarico:qa
 pnpm content:authority:qa
 pnpm platform:intent-release:qa
 pnpm community:match-requests:qa
@@ -275,6 +293,7 @@ Public:
 - `/gallery` focuses on visual showcase first.
 - `/verify` focuses on the certificate lookup first.
 - `/knowledge` reads as complete educational content, not placeholder text.
+- `/knowledge` includes USG identity, USG Certificate evidence levels, and USG Bulgarico as an observational framework, not an official standard.
 
 Member:
 

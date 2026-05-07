@@ -19876,3 +19876,260 @@ body {
 .ecosystem-match-request-item {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(14, 14, 16, 0.72));
 }
+
+/* Step 93.2 — USG Identity & Bulgarico Observational Framework. */
+.usg-identity-framework {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  margin: clamp(28px, 4vw, 56px) auto;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(212, 175, 55, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+    rgba(4, 5, 7, 0.82);
+  box-shadow:
+    0 28px 88px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.usg-identity-framework::before {
+  content: 'USG';
+  position: absolute;
+  right: clamp(18px, 4vw, 52px);
+  top: -0.28em;
+  color: rgba(212, 175, 55, 0.045);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(6rem, 18vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+.usg-identity-framework > * {
+  position: relative;
+  z-index: 1;
+}
+
+.usg-identity-framework--knowledge {
+  max-width: min(1180px, 100%);
+}
+
+.usg-identity-framework__hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(220px, 0.28fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.usg-identity-framework__seal {
+  display: grid;
+  place-items: center;
+  width: clamp(92px, 9vw, 132px);
+  height: clamp(92px, 9vw, 132px);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(212, 175, 55, 0.16), rgba(255, 255, 255, 0.024) 62%, transparent 68%),
+    rgba(0, 0, 0, 0.28);
+  box-shadow: inset 0 0 28px rgba(212, 175, 55, 0.1);
+}
+
+.usg-identity-framework__seal img {
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
+}
+
+.usg-identity-framework__intro {
+  display: grid;
+  gap: 10px;
+}
+
+.usg-identity-framework__intro h2,
+.usg-identity-card h3 {
+  margin: 0;
+  color: var(--ivory);
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.usg-identity-framework__intro h2 {
+  max-width: 16ch;
+  font-size: clamp(2.15rem, 4vw, 4.8rem);
+  line-height: 0.94;
+}
+
+.usg-identity-framework__intro p,
+.usg-identity-card p,
+.usg-identity-card li,
+.usg-surface-item span,
+.usg-proof-list span,
+.usg-identity-framework__seal-note span {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.64;
+}
+
+.usg-identity-framework__intro p {
+  max-width: 78ch;
+  font-size: clamp(1rem, 1.05vw, 1.12rem);
+}
+
+.usg-identity-framework__seal-note {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 24px;
+  background: rgba(212, 175, 55, 0.07);
+}
+
+.usg-identity-framework__seal-note strong,
+.usg-surface-item strong,
+.usg-proof-list strong {
+  color: var(--gold-bright);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.usg-identity-framework__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.usg-identity-framework__grid--surfaces {
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+}
+
+.usg-identity-card {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: clamp(18px, 2vw, 24px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.016)),
+    rgba(5, 6, 8, 0.54);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.usg-identity-card--gold {
+  border-color: rgba(212, 175, 55, 0.24);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(212, 175, 55, 0.08), rgba(255, 255, 255, 0.018)),
+    rgba(7, 7, 8, 0.66);
+}
+
+.usg-identity-card__eyebrow {
+  color: rgba(244, 217, 124, 0.94);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.usg-identity-card h3 {
+  font-size: clamp(1.32rem, 1.8vw, 2rem);
+  line-height: 1.08;
+}
+
+.usg-identity-card ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 1.12rem;
+}
+
+.usg-surface-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.usg-surface-item,
+.usg-proof-list div {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.032);
+}
+
+.usg-proof-list {
+  display: grid;
+  gap: 10px;
+}
+
+.usg-identity-framework__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+[data-theme='heritage'] .usg-identity-framework {
+  background:
+    radial-gradient(circle at 16% 12%, rgba(212, 175, 55, 0.19), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 232, 0.66)),
+    rgba(255, 251, 244, 0.92);
+  border-color: rgba(128, 89, 22, 0.22);
+  box-shadow: 0 26px 74px rgba(80, 58, 18, 0.16);
+}
+
+[data-theme='heritage'] .usg-identity-framework::before {
+  color: rgba(107, 73, 16, 0.06);
+}
+
+[data-theme='heritage'] .usg-identity-card,
+[data-theme='heritage'] .usg-identity-framework__seal-note,
+[data-theme='heritage'] .usg-surface-item,
+[data-theme='heritage'] .usg-proof-list div,
+[data-theme='heritage'] .usg-identity-framework__seal {
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(128, 89, 22, 0.18);
+}
+
+[data-theme='heritage'] .usg-identity-framework__intro h2,
+[data-theme='heritage'] .usg-identity-card h3 {
+  color: #20170d;
+}
+
+[data-theme='heritage'] .usg-identity-framework__intro p,
+[data-theme='heritage'] .usg-identity-card p,
+[data-theme='heritage'] .usg-identity-card li,
+[data-theme='heritage'] .usg-surface-item span,
+[data-theme='heritage'] .usg-proof-list span,
+[data-theme='heritage'] .usg-identity-framework__seal-note span {
+  color: #514532;
+}
+
+[data-theme='heritage'] .usg-identity-framework__seal-note strong,
+[data-theme='heritage'] .usg-surface-item strong,
+[data-theme='heritage'] .usg-proof-list strong,
+[data-theme='heritage'] .usg-identity-card__eyebrow {
+  color: #7a5618;
+}
+
+@media (max-width: 980px) {
+  .usg-identity-framework__hero,
+  .usg-identity-framework__grid,
+  .usg-identity-framework__grid--surfaces,
+  .usg-surface-list {
+    grid-template-columns: 1fr;
+  }
+
+  .usg-identity-framework__seal {
+    width: 96px;
+    height: 96px;
+  }
+}

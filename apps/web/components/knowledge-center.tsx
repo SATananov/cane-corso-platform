@@ -1,6 +1,7 @@
 import { SectionCard } from '@/components/section-card';
 import { KnowledgeEducationExperience } from '@/components/knowledge-education-experience';
 import { KnowledgeArticleDirectory } from '@/components/knowledge-article-directory';
+import { UsgIdentityBulgaricoPanel } from '@/components/usg-identity-bulgarico-panel';
 import type { KnowledgeArticle } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 import type { KnowledgeCenterCard, KnowledgeCenterCopy, KnowledgeFact, KnowledgeSource } from '@/lib/knowledge-center-content';
@@ -63,6 +64,8 @@ export function KnowledgeCenter({
           ))}
         </div>
       </section>
+
+      <UsgIdentityBulgaricoPanel locale={locale} variant="knowledge" />
 
       <section className="knowledge-section knowledge-section--timeline" aria-label={copy.timeline.title}>
         <div className="section-block__header">
