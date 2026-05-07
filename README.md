@@ -330,3 +330,7 @@ Use the latest clean checkpoint created after Step 93.3 as the stable continuati
 Step 94 changes the platform-wide signed-in experience from section explanations to action, status, and next-step clarity. Guests still see public orientation, while members, partners, and admins see role-aware action panels for the surfaces they use. This is a presentation/UX layer only and does not change Registry, Certificate, Verify, Gallery, Ecosystem, Auth/session, Admin moderation, or Netlify authority logic.
 
 QA: `pnpm platform:role-aware-action:qa`, `pnpm platform:faq-trust:qa`, `pnpm usg:identity-bulgarico:qa`, `pnpm content:authority:qa`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+### Step 94.1 — Intent-first Authenticated Experience
+
+Step 94.1 refines the post-login product behavior: signed-in users see intent-first actions, status, and a Cane Corso information compass instead of dense public section explanations. Guest presentation remains public and explanatory; authenticated surfaces prioritize what to do now, where to continue, and where to learn more.

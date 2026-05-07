@@ -344,6 +344,40 @@ export default async function PlatformPage() {
   } as const;
   const publicTrust = publicTrustByLocale[locale] ?? publicTrustByLocale.en;
 
+  const memberCompassByLocale = {
+    en: {
+      eyebrow: 'Information compass',
+      title: 'Need Cane Corso information?',
+      description: 'Use Knowledge and FAQ when you need history, standard, care, certificate boundaries, community rules, or USG explanations.',
+      cards: [
+        { href: '/knowledge', label: 'Breed knowledge', text: 'History, standard, care, health, behavior, and ownership.' },
+        { href: '/faq', label: 'Quick answers', text: 'Registry, certificate, profile, community, and partner questions.' },
+        { href: '/platform', label: 'USG idea', text: 'How Registry, Certificate, Verify, Gallery, Knowledge, and Community stay separate.' },
+      ],
+    },
+    bg: {
+      eyebrow: 'Информационен компас',
+      title: 'Търсиш информация за Cane Corso?',
+      description: 'Когато не знаеш откъде да започнеш, отвори Knowledge или FAQ — история, стандарт, грижа, здраве, сертификат, общност и USG обяснения.',
+      cards: [
+        { href: '/knowledge', label: 'Знания за породата', text: 'История, стандарт, грижа, здраве, поведение и отговорно притежание.' },
+        { href: '/faq', label: 'Бързи отговори', text: 'Профил, Registry, сертификат, общност, партньори и видимост.' },
+        { href: '/platform', label: 'Идеята на USG', text: 'Как Registry, Certificate, Verify, Gallery, Knowledge и Community остават ясни.' },
+      ],
+    },
+    it: {
+      eyebrow: 'Bussola informativa',
+      title: 'Cerchi informazioni sul Cane Corso?',
+      description: 'Apri Knowledge o FAQ per storia, standard, cura, salute, certificato, community e spiegazioni USG.',
+      cards: [
+        { href: '/knowledge', label: 'Conoscenza razza', text: 'Storia, standard, cura, salute, comportamento e proprietà responsabile.' },
+        { href: '/faq', label: 'Risposte rapide', text: 'Profilo, registro, certificato, community, partner e visibilità.' },
+        { href: '/platform', label: 'Idea USG', text: 'Come Registry, Certificate, Verify, Gallery, Knowledge e Community restano separati.' },
+      ],
+    },
+  } as const;
+  const memberCompass = memberCompassByLocale[locale] ?? memberCompassByLocale.en;
+
   return (
     <main className="home-shell home-shell--platform">
       <section className="hero hero--signature hero--platform-home">
@@ -470,50 +504,72 @@ export default async function PlatformPage() {
             </div>
           )}
 
-          <div className="hero-stats" aria-label="Platform highlights">
-            <article className="hero-stat-card">
-              <div className="hero-stat-card__value">{t.home.statAValue}</div>
-              <div className="hero-stat-card__label">{t.home.statALabel}</div>
-            </article>
-            <article className="hero-stat-card">
-              <div className="hero-stat-card__value">{t.home.statBValue}</div>
-              <div className="hero-stat-card__label">{t.home.statBLabel}</div>
-            </article>
-            <article className="hero-stat-card">
-              <div className="hero-stat-card__value">{t.home.statCValue}</div>
-              <div className="hero-stat-card__label">{t.home.statCLabel}</div>
-            </article>
-          </div>
+          {!currentSession ? (
+            <div className="hero-stats" aria-label="Platform highlights">
+              <article className="hero-stat-card">
+                <div className="hero-stat-card__value">{t.home.statAValue}</div>
+                <div className="hero-stat-card__label">{t.home.statALabel}</div>
+              </article>
+              <article className="hero-stat-card">
+                <div className="hero-stat-card__value">{t.home.statBValue}</div>
+                <div className="hero-stat-card__label">{t.home.statBLabel}</div>
+              </article>
+              <article className="hero-stat-card">
+                <div className="hero-stat-card__value">{t.home.statCValue}</div>
+                <div className="hero-stat-card__label">{t.home.statCLabel}</div>
+              </article>
+            </div>
+          ) : null}
         </div>
       </section>
 
 
-      <section className="section-block section-block--public-experience" aria-label={publicTrust.title}>
-        <div className="public-experience-band">
-          <div className="public-experience-band__seal" aria-hidden="true">
-            <Image src="/brand/seal/usg-official-seal-compact.png" alt="" width={128} height={128} />
+      {currentSession ? (
+        <section className="section-block section-block--member-compass" aria-label={memberCompass.title}>
+          <div className="section-block__header">
+            <div className="section-block__eyebrow">{memberCompass.eyebrow}</div>
+            <h2 className="section-block__title">{memberCompass.title}</h2>
+            <p className="section-block__description">{memberCompass.description}</p>
           </div>
-          <div className="public-experience-band__copy">
-            <span className="eyebrow-label">{publicTrust.eyebrow}</span>
-            <h2>{publicTrust.title}</h2>
-            <p>{publicTrust.description}</p>
-          </div>
-          <div className="public-experience-band__seal-copy">
-            <strong>{publicTrust.sealTitle}</strong>
-            <span>{publicTrust.sealText}</span>
-          </div>
-          <div className="public-experience-band__links">
-            {publicTrust.cards.map((card) => (
-              <Link href={card.href} className="public-experience-link" key={card.href}>
+          <div className="member-intent-compass-grid">
+            {memberCompass.cards.map((card) => (
+              <Link href={card.href} className="member-intent-compass-card" key={card.href}>
                 <strong>{card.label}</strong>
                 <span>{card.text}</span>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <>
+          <section className="section-block section-block--public-experience" aria-label={publicTrust.title}>
+            <div className="public-experience-band">
+              <div className="public-experience-band__seal" aria-hidden="true">
+                <Image src="/brand/seal/usg-official-seal-compact.png" alt="" width={128} height={128} />
+              </div>
+              <div className="public-experience-band__copy">
+                <span className="eyebrow-label">{publicTrust.eyebrow}</span>
+                <h2>{publicTrust.title}</h2>
+                <p>{publicTrust.description}</p>
+              </div>
+              <div className="public-experience-band__seal-copy">
+                <strong>{publicTrust.sealTitle}</strong>
+                <span>{publicTrust.sealText}</span>
+              </div>
+              <div className="public-experience-band__links">
+                {publicTrust.cards.map((card) => (
+                  <Link href={card.href} className="public-experience-link" key={card.href}>
+                    <strong>{card.label}</strong>
+                    <span>{card.text}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
 
-      <UsgIdentityBulgaricoPanel locale={locale} variant="platform" />
+          <UsgIdentityBulgaricoPanel locale={locale} variant="platform" />
+        </>
+      )}
 
       {!currentSession ? (
         <>

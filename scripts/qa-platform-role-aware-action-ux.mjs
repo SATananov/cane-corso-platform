@@ -30,9 +30,9 @@ const component = read('apps/web/components/role-aware-action-panel.tsx');
   'Към моите Cane Corso',
   'Добави Cane Corso',
   'Виж статус',
-  'Добре дошъл обратно',
-  'Какво търсиш или какво искаш да подадеш?',
-  'Първо действие, после информация.',
+  'Какво искаш да направиш сега?',
+  'Какво търсиш днес?',
+  'Първо действие и статус. Обясненията са в Knowledge и FAQ.',
   'role-aware-action-panel',
 ].forEach((text) => expect(component.includes(text), `Role-aware panel includes action-first copy: ${text}`));
 
@@ -56,7 +56,7 @@ const pageExpectations = [
 pageExpectations.forEach(([file, marker]) => includes(file, marker, `${file} renders role-aware action panel ${marker}`));
 
 includes('apps/web/app/(public)/platform/page.tsx', 'Добре дошъл обратно в USG', 'Platform signed-in hero uses member-focused welcome');
-includes('apps/web/app/(public)/platform/page.tsx', '!currentSession ? (', 'Platform hides dense guest orientation blocks for authenticated sessions');
+includes('apps/web/app/(public)/platform/page.tsx', 'memberCompass', 'Platform replaces dense public explanation with concise member information compass for authenticated sessions');
 includes('apps/web/app/(public)/platform/page.tsx', 'Избери правилния вход, преди да продължиш по-надълбоко', 'Guest public orientation copy still exists for anonymous users');
 includes('apps/web/app/(member)/member/page.tsx', 'Твоят Cane Corso център: действие, статус и следваща стъпка', 'Member dashboard hero is action/status oriented');
 includes('apps/web/components/my-dogs-overview.tsx', 'Какво да направиш сега', 'My Cane Corso page uses next-action language');
