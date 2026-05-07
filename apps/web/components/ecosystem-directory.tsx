@@ -142,13 +142,13 @@ const copyByLocale = {
       featured: 'Отличени',
     },
     labels: {
-      eyebrow: 'Доверена екосистема',
-      title: 'Одобрена Cane Corso екосистема',
-      intro: 'Публичен каталог за партньори, услуги, места и полезни предложения, които минават през преглед.',
-      emptyTitle: 'Екосистемната директория все още е празна',
+      eyebrow: 'Услуги и партньори',
+      title: 'Одобрени услуги и партньори',
+      intro: 'Публичен каталог за проверени услуги, партньори и полезни предложения, които минават през преглед.',
+      emptyTitle: 'Директорията все още е празна',
       emptyDescription:
         'Това е публичният слой за официални услуги, одобрени места, полезни обекти и бъдеща общностна видимост.',
-      apply: 'Изпрати запис',
+      apply: 'Изпрати заявка',
       listingType: 'Тип',
       lane: 'Поток',
       category: 'Категория',
@@ -160,27 +160,27 @@ const copyByLocale = {
       pending: 'Все още няма данни',
       visitWebsite: 'Отвори сайта',
       openDetail: 'Отвори детайли',
-      joinHeadline: 'Официални и общностни записи в един ясен поток',
+      joinHeadline: 'Официалните партньори и общностните предложения са разделени',
       joinCopy:
-        'Официалните записи са реални услуги и партньори. Общностните записи са полезни места и предложения от членовете. Нищо не става публично без преглед и одобрение.',
+        'Официалните записи са проверени услуги и партньори. Общностните записи са места и предложения от членовете. Нищо не става публично без преглед и одобрение.',
       intentEyebrow: 'Нужди на общността',
       intentTitle: 'Cane Corso търси:',
       intentIntro:
-        'Ясен общностен център за собственици, които търсят, предлагат помощ или подават спешен сигнал. Публичната видимост остава модерирана, а връзката между хората се контролира от администратор.',
+        'Първо избери реалната нужда: дом, партньор, малки, спешен сигнал, подходящо място или услуга. Публичната видимост остава модерирана, а връзката между хората се контролира от администратор.',
       intentCount: 'публикувани',
       intentAdminBridge: 'Връзка чрез админ',
       intentAdminBridgeCopy:
         'При разплод, малки, осиновяване и загубени/намерени случаи публичните контакти са защитени. Членовете подават интерес, а администраторът решава дали да свърже страните.',
       intentListingsEyebrow: 'Текущи нужди от общността',
-      intentListingsTitle: 'Одобрени Cane Corso търсения и сигнали',
+      intentListingsTitle: 'Активни търсения и сигнали',
       intentListingsIntro:
         'Това са видимите записи от чувствителните общностни слоеве. Показват се само след преглед и не излагат лични контакти публично.',
       intentListingsEmpty: 'Все още няма одобрени Cane Corso търсения или спешни сигнали.',
       adminConnection: 'Връзка чрез администратор',
       adminConnectionShort: 'Защитено чрез админ преглед',
-      offerHelp: 'Имам предложение',
-      placesEyebrow: 'Cane Corso-friendly места',
-      placesTitle: 'Одобрени места за ежедневието с Cane Corso',
+      offerHelp: 'Предложи помощ',
+      placesEyebrow: 'Подходящи места',
+      placesTitle: 'Места, подходящи за Cane Corso',
       placesIntro:
         'Паркове, зони за разходка, тренировъчни полета, магазини, заведения, хотели, клиники и услуги, които са прегледани преди публично показване.',
       placesEmpty: 'Все още няма одобрени места. Членовете могат да изпращат места от личната си зона.',
@@ -191,12 +191,13 @@ const copyByLocale = {
       openMaps: 'Отвори в Google Maps',
       intentCards: [
         {
-          eyebrow: 'Разплод',
-          title: 'Търси партньор за разплод',
-          description: 'Женско търси мъжко или мъжко търси женско, с видимост само след админ преглед.',
-          meta: 'женско ⇄ мъжко • админ преглед',
+          eyebrow: 'Спешен сигнал',
+          title: 'Загубен / намерен Cane Corso',
+          description: 'Спешен сигнал за загубен или намерен Cane Corso, видим само след админ преглед.',
+          meta: 'спешно • град • последно видян',
           href: '#cane-corso-intent-listings',
-          types: ['breeding_match'],
+          types: ['lost_found'],
+          urgent: true,
         },
         {
           eyebrow: 'Нов дом',
@@ -207,6 +208,14 @@ const copyByLocale = {
           types: ['adoption_new_home'],
         },
         {
+          eyebrow: 'Разплод',
+          title: 'Търси партньор за разплод',
+          description: 'Женско търси мъжко или мъжко търси женско, с видимост само след админ преглед.',
+          meta: 'женско ⇄ мъжко • админ преглед',
+          href: '#cane-corso-intent-listings',
+          types: ['breeding_match'],
+        },
+        {
           eyebrow: 'Малки',
           title: 'Малки Cane Corso',
           description: 'Поколения и записи за малки Cane Corso, видими публично само след преглед.',
@@ -215,17 +224,8 @@ const copyByLocale = {
           types: ['puppy_listing'],
         },
         {
-          eyebrow: 'Спешен сигнал',
-          title: 'Загубени / намерени Cane Corso',
-          description: 'Силно видими спешни сигнали за загубени или намерени Cane Corso, отново защитени чрез админ преглед.',
-          meta: 'спешно • град • последно видян',
-          href: '#cane-corso-intent-listings',
-          types: ['lost_found'],
-          urgent: true,
-        },
-        {
           eyebrow: 'Места',
-          title: 'Cane Corso-friendly места',
+          title: 'Места, подходящи за Cane Corso',
           description: 'Одобрени места за разходка, игра, тренировки, хотели, магазини, заведения и ежедневие с едра порода.',
           meta: 'места • правила • карта/списък',
           href: '#cane-corso-friendly-places',
@@ -513,14 +513,6 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
 
   return (
     <div className="member-route-stack">
-      <div className="stats-grid five-up">
-        <OverviewStatCard label={copy.stats.total} value={String(document.summary.total)} tone="gold" />
-        <OverviewStatCard label={copy.stats.official} value={String(document.summary.officialPublished)} tone="ivory" />
-        <OverviewStatCard label={copy.stats.community} value={String(document.summary.communityPublished)} tone="gold" />
-        <OverviewStatCard label={copy.stats.countries} value={String(document.summary.countries)} tone="ivory" />
-        <OverviewStatCard label={copy.stats.featured} value={String(document.summary.featured)} tone="gold" />
-      </div>
-
       <section className="content-card community-intent-hub" id="cane-corso-intent-hub">
         <div className="section-head-row">
           <div>
@@ -607,6 +599,14 @@ export function EcosystemDirectory({ document, locale, applyHref }: EcosystemDir
           </div>
         )}
       </section>
+
+      <div className="stats-grid five-up community-summary-stats">
+        <OverviewStatCard label={copy.stats.total} value={String(document.summary.total)} tone="gold" />
+        <OverviewStatCard label={copy.stats.official} value={String(document.summary.officialPublished)} tone="ivory" />
+        <OverviewStatCard label={copy.stats.community} value={String(document.summary.communityPublished)} tone="gold" />
+        <OverviewStatCard label={copy.stats.countries} value={String(document.summary.countries)} tone="ivory" />
+        <OverviewStatCard label={copy.stats.featured} value={String(document.summary.featured)} tone="gold" />
+      </div>
 
       <section className="content-card friendly-places-public-card" id="cane-corso-friendly-places">
         <div className="section-head-row">

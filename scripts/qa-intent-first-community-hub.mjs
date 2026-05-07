@@ -26,10 +26,10 @@ assert(submissions.includes("listingType === 'lost_found'"), 'Lost/found default
 assert(repo.includes("'lost_found'"), 'DB repository accepts lost/found listing type');
 assert(ui.includes("lost_found: 'Загубени / намерени Cane Corso'"), 'Bulgarian UI labels include lost/found Cane Corso');
 assert(mobile.includes("lost_found: 'Lost / found'"), 'Mobile listing type labels include lost/found');
-assert(communityPage.includes('Cane Corso търси: помощ, дом, партньор, места и услуги'), 'Community page hero is intent-first in Bulgarian');
+assert(communityPage.includes('Cane Corso търси: дом, партньор, помощ и места'), 'Community page hero is intent-first in Bulgarian');
 assert(directory.includes('community-intent-hub'), 'Public community directory renders intent hub');
 assert(directory.includes('Cane Corso търси:'), 'Public community hub uses Cane Corso търси headline');
-assert(directory.includes('Загубени / намерени Cane Corso'), 'Public hub includes lost/found card');
+assert(directory.includes('Загубен / намерен Cane Corso') || directory.includes('Загубени / намерени Cane Corso'), 'Public hub includes lost/found card');
 assert(directory.includes('Женско търси мъжко'), 'Public hub includes female/male breeding intent');
 assert(directory.includes('adminConnection'), 'Public directory uses admin-mediated contact label');
 assert(directory.includes('isAdminMediatedContactType'), 'Public directory protects sensitive contact fields');

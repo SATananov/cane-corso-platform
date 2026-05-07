@@ -9,7 +9,7 @@ import { getPublishedEcosystemDirectoryDocument } from '@/lib/ecosystem.server';
 const copyByLocale = {
   en: {
     eyebrow: 'Community hub',
-    title: 'Cane Corso is looking for: help, home, match, places, and services',
+    title: 'Cane Corso is looking for: help, home, match, and places',
     description:
       'Start from the real need: breeding match, new home, puppies, lost or found Cane Corso, friendly places, and trusted services. Every public listing stays reviewed, and sensitive connections go through the administrator.',
     cards: [
@@ -94,7 +94,7 @@ const copyByLocale = {
   },
   bg: {
     eyebrow: 'Общност',
-    title: 'Cane Corso търси: помощ, дом, партньор, места и услуги',
+    title: 'Cane Corso търси: дом, партньор, помощ и места',
     description:
       'Започваме от реалната нужда: разплод, нов дом, малки Cane Corso, загубени или намерени, подходящи места и доверени услуги. Всяка публична обява минава през преглед, а чувствителното свързване става чрез администратор.',
     cards: [
@@ -179,7 +179,7 @@ const copyByLocale = {
   },
   it: {
     eyebrow: 'Community hub',
-    title: 'Cane Corso cerca: aiuto, casa, match, luoghi e servizi',
+    title: 'Cane Corso cerca: casa, match, aiuto e luoghi',
     description:
       'Si parte dal bisogno reale: match, nuova casa, cuccioli, Cane Corso smarriti o trovati, luoghi adatti e servizi fidati. Ogni annuncio pubblico resta revisionato e i collegamenti sensibili passano dall’amministratore.',
     cards: [
@@ -282,14 +282,14 @@ export default async function CommunityPage() {
       visualSrc="/brand/editorial-member-shadow-eye.jpg"
       visualAlt="Community and FUN editorial visual"
     >
+      <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
+
       <CommunityDiscoveryExperience
         locale={locale}
         publishedCount={document.summary.total}
         countryCount={document.summary.countries}
         featuredCount={document.summary.featured}
       />
-
-      <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
 
       <section className="section-block section-block--support community-worlds-section" id="community-worlds" aria-label="Community worlds">
         <div className="section-block__header">

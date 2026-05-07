@@ -119,7 +119,8 @@
     "owner:identity-privacy:qa": "node scripts/qa-owner-identity-privacy.mjs",
     "ecosystem:friendly-places:qa": "node scripts/qa-cane-corso-friendly-places-foundation.mjs",
     "ecosystem:google-maps:qa": "node scripts/qa-google-maps-places-integration.mjs",
-    "community:intent-hub:qa": "node scripts/qa-intent-first-community-hub.mjs"
+    "community:intent-hub:qa": "node scripts/qa-intent-first-community-hub.mjs",
+    "community:hub-polish:qa": "node scripts/qa-community-hub-hierarchy-bg-copy-polish.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
