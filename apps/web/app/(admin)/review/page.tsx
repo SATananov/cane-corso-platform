@@ -20,9 +20,9 @@ const reviewPageCopy = {
       'Одобрението за Регистъра и USG сертификатът остават отделни решения. Първо прегледай заявката, после публикувай профила и издай сертификат само при ясна администраторска преценка.',
   },
   it: {
-    heroChips: ['Revisione Registry', 'Controllo foto', 'Certificato USG'],
+    heroChips: ['Revisione Registro', 'Controllo foto', 'Certificato USG'],
     heroNote:
-      'Approvazione Registry e certificazione USG restano decisioni separate. Prima pubblica il profilo, poi emetti il certificato solo con decisione admin chiara.',
+      'Approvazione del Registro e certificazione USG restano decisioni separate. Prima pubblica il profilo, poi emetti il certificato solo con una decisione amministrativa chiara.',
   },
 } as const;
 

@@ -77,7 +77,7 @@ const copyByLocale = {
     },
     lanes: {
       registry: {
-        title: 'Registry',
+        title: 'Registro',
         description: 'Approve/publish only when identity, owner story, and public media are ready.',
       },
       certificate: {
@@ -103,7 +103,7 @@ const copyByLocale = {
       certificateIssued: 'Certificate issued',
       galleryReady: 'Curated media selected',
       galleryPending: 'No curated Gallery media',
-      ownerProtected: 'Owner-controlled source data',
+      ownerProtected: 'Данни от собственика под негов контрол',
     },
   },
   bg: {
@@ -118,7 +118,7 @@ const copyByLocale = {
     photosCount: 'снимки от собственика',
     registryCount: 'снимки видими в Registry',
     galleryCount: 'снимки избрани за Галерия',
-    openPublic: 'Отвори публичния Registry профил',
+    openPublic: 'Отвори публичния профил в Регистъра',
     openVerify: 'Отвори Verify резултата',
     items: {
       identity: {
@@ -135,33 +135,33 @@ const copyByLocale = {
       },
       registryMedia: {
         label: 'Видимост на снимки в Registry',
-        description: 'Поне една снимка трябва да е изрично одобрена за публичния Registry профил.',
+        description: 'Поне една снимка трябва да е изрично одобрена за публичния профил в Регистъра.',
       },
       pedigree: {
         label: 'Родословна опора',
-        description: 'Родословието помага за оценката, но може да остане optional, ако данните са неизвестни.',
+        description: 'Родословието помага за оценката, но може да остане по избор, ако данните са неизвестни.',
       },
       assessment: {
-        label: 'Админ оценка',
-        description: 'Официалната админ оценка трябва да обяснява готовността за Registry и посоката за USG сертификат.',
+        label: 'Администраторска оценка',
+        description: 'Официалната администраторска оценка трябва да обяснява готовността за Регистъра и посоката за USG сертификат.',
       },
     },
     lanes: {
       registry: {
-        title: 'Registry',
+        title: 'Registro',
         description: 'Одобрявай/публикувай само когато идентичността, описанието и публичните снимки са готови.',
       },
       certificate: {
         title: 'USG сертификат',
-        description: 'Сертификатът остава отделно админ решение след публикация в Registry.',
+        description: 'Сертификатът остава отделно администраторско решение след публикация в Регистъра.',
       },
       gallery: {
         title: 'USG Галерия',
-        description: 'Галерията е curated слой. Снимките от собственика не стават showcase автоматично.',
+        description: 'Галерията е подбран слой. Снимките от собственика не стават представителни автоматично.',
       },
       owner: {
-        title: 'Owner граница',
-        description: 'Личният owner профил и публичното Registry представяне остават отделни слоеве.',
+        title: 'Граница на собственика',
+        description: 'Личният профил на собственика и публичното представяне в Регистъра остават отделни слоеве.',
       },
     },
     states: {
@@ -174,23 +174,23 @@ const copyByLocale = {
       certificateIssued: 'Сертификатът е издаден',
       galleryReady: 'Има избрани Gallery снимки',
       galleryPending: 'Няма избрани Gallery снимки',
-      ownerProtected: 'Owner-controlled source data',
+      ownerProtected: 'Данни от собственика под негов контрол',
     },
   },
   it: {
-    eyebrow: 'Supporto decisione admin',
+    eyebrow: 'Supporto decisione amministrativa',
     title: 'Evidenze prima dell’azione pubblica',
     description:
-      'Usa questo pannello come checklist prima di approvare Registry, emettere un certificato USG o curare media per USG Gallery.',
+      'Usa questo pannello come checklist prima di approvare il Registro, emettere un certificato USG o curare foto per la Galleria USG.',
     evidenceTitle: 'Checklist evidenze',
     ready: 'Pronto',
     missing: 'Da rivedere',
     optional: 'Opzionale',
     photosCount: 'foto proprietario',
-    registryCount: 'foto visibili nel Registry',
-    galleryCount: 'foto selezionate Gallery',
-    openPublic: 'Apri profilo pubblico Registry',
-    openVerify: 'Apri risultato Verify',
+    registryCount: 'foto visibili nel Registro',
+    galleryCount: 'foto selezionate per la Galleria',
+    openPublic: 'Apri profilo pubblico nel Registro',
+    openVerify: 'Apri risultato verifica',
     items: {
       identity: {
         label: 'Identità e dati principali',
@@ -205,26 +205,26 @@ const copyByLocale = {
         description: 'Almeno tre foto caricate dal proprietario sono preferibili per una revisione seria.',
       },
       registryMedia: {
-        label: 'Visibilità media Registry',
-        description: 'Almeno una foto dovrebbe essere approvata per la visibilità pubblica nel Registry.',
+        label: 'Visibilità foto nel Registro',
+        description: 'Almeno una foto dovrebbe essere approvata per la visibilità pubblica nel Registro.',
       },
       pedigree: {
         label: 'Supporto pedigree',
         description: 'Il pedigree supporta la valutazione, ma può restare opzionale se sconosciuto.',
       },
       assessment: {
-        label: 'Valutazione admin',
-        description: 'La valutazione ufficiale admin dovrebbe spiegare Registry readiness e direzione certificato USG.',
+        label: 'Valutazione amministrativa',
+        description: 'La valutazione ufficiale amministrativa dovrebbe spiegare la prontezza per il Registro e direzione certificato USG.',
       },
     },
     lanes: {
       registry: {
-        title: 'Registry',
+        title: 'Registro',
         description: 'Approva/pubblica solo quando identità, descrizione e media pubblici sono pronti.',
       },
       certificate: {
         title: 'Certificato USG',
-        description: 'Il certificato resta una decisione admin separata dopo la pubblicazione Registry.',
+        description: 'Il certificato resta una decisione amministrativa separata dopo la pubblicazione Registry.',
       },
       gallery: {
         title: 'USG Gallery',

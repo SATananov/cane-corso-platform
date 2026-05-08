@@ -1,9 +1,9 @@
 const lanes = [
   {
-    title: 'Registry публикация',
+    title: 'Публикация в Регистъра',
     state: 'Официален публичен слой',
     description:
-      'Registry показва одобрената публична идентичност на Cane Corso. Публикацията не е автоматичен USG сертификат.',
+      'Регистърът показва одобрената публична идентичност на Cane Corso. Публикацията не е автоматичен USG сертификат.',
   },
   {
     title: 'USG сертификат',
@@ -12,42 +12,42 @@ const lanes = [
       'Сертификатът се издава отделно след преглед. Verify и certificate документът трябва да останат синхронизирани.',
   },
   {
-    title: 'USG Gallery',
-    state: 'Curated showcase',
+    title: 'USG Галерия',
+    state: 'Подбрано представяне',
     description:
-      'Галерията е избран showcase слой. Owner снимките не влизат автоматично там без админ селекция.',
+      'Галерията е подбран слой за представяне. Снимките от собственика не влизат автоматично там без администраторски избор.',
   },
   {
-    title: 'Owner source data',
+    title: 'Данни от собственика',
     state: 'Източник, не публичен финал',
     description:
-      'Данните от собственика са база за review. Админът решава кое става публично и кое остава вътрешно.',
+      'Данните от собственика са база за преглед. Администраторът решава кое става публично и кое остава вътрешно.',
   },
 ];
 
 const checklist = [
-  'Провери дали Registry профилът има ясна идентичност и публична снимка.',
-  'Провери дали admin assessment обяснява решението преди сертификат.',
-  'Провери дали Verify пътят е логичен само при наличен certificate/verification code.',
-  'Провери дали Gallery изборът е отделен от Registry снимките.',
+  'Провери дали профилът в Регистъра има ясна идентичност и публична снимка.',
+  'Провери дали администраторската оценка обяснява решението преди сертификат.',
+  'Провери дали пътят за проверка е логичен само при наличен сертификат или код за проверка.',
+  'Провери дали изборът за Галерията е отделен от снимките в Регистъра.',
 ];
 
 export function AdminRegistryEvidencePolishPanel() {
   return (
-    <section className="admin-registry-evidence-polish" aria-label="Admin Registry evidence clarity">
+    <section className="admin-registry-evidence-polish" aria-label="Яснота на доказателствата в админ Регистъра">
       <div className="admin-registry-evidence-polish__head">
         <div>
-          <span className="eyebrow-label">Admin Registry evidence</span>
-          <h2>Контролен слой за Registry, сертификат и Gallery</h2>
+          <span className="eyebrow-label">Доказателства в админ Регистъра</span>
+          <h2>Контролен слой за Регистър, сертификат и Галерия</h2>
           <p>
-            Този панел е визуален guardrail за админ работа. Той не променя логиката, а напомня
-            кои решения са отделни: Registry публикация, USG сертификат, Verify и USG Gallery.
+            Този панел е визуална защитна рамка за администраторска работа. Той не променя логиката, а напомня
+            кои решения са отделни: публикация в Регистъра, USG сертификат, проверка и USG Галерия.
           </p>
         </div>
         <div className="admin-registry-evidence-polish__seal">
           <span>USG</span>
-          <strong>Review Control</strong>
-          <small>presentation-only</small>
+          <strong>Контрол на прегледа</strong>
+          <small>само представяне</small>
         </div>
       </div>
 

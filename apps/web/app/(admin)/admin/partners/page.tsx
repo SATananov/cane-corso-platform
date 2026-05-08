@@ -21,7 +21,7 @@ const adminPartnerPageCopy = {
   it: {
     heroChips: ['Revisione candidature', 'Catalogo pubblico', 'Sync ecosystem'],
     heroNote:
-      'L’approvazione partner resta ufficiale e separata dalla popolarità community. I servizi approvati si sincronizzano anche nell’ecosystem.',
+      'L’approvazione dei partner resta ufficiale e separata dalla popolarità della comunità. I servizi approvati si sincronizzano anche nell’ecosistema.',
   },
 } as const;
 

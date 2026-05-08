@@ -15,12 +15,12 @@ const copyByLocale = {
   en: {
     label: 'Admin workflow',
     hint: 'Approve Cane Corso profiles in Review first.',
-    review: 'Revisione',
+    review: 'Review',
     members: 'Members',
-    registry: 'Регистър',
+    registry: 'Registry',
     partners: 'Partners',
-    ecosystem: 'Ecosistema',
-    knowledge: 'Conoscenza',
+    ecosystem: 'Ecosystem',
+    knowledge: 'Knowledge',
     center: 'Center',
   },
   bg: {

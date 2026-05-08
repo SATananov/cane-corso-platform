@@ -20,18 +20,18 @@ const copyByLocale = {
     eyebrow: 'Архив на сертификати',
     title: 'USG Сертифицирани',
     description:
-      'Отделен архив за Cane Corso, които имат официално издаден USG сертификат от админ. Това е различно от Registry списъка и различно от curated USG Галерия.',
-    note: 'Всеки сертификат пази snapshot от момента на издаване и има собствен Verify път.',
-    chips: ['Издадено от админ', 'Certificate snapshot', 'Verify път'],
+      'Отделен архив за Cane Corso, които имат официално издаден USG сертификат от администратор. Това е различно от списъка в Регистъра и различно от подбраната USG Галерия.',
+    note: 'Всеки сертификат пази запис от момента на издаване и има собствен път за проверка.',
+    chips: ['Издадено от администратор', 'Запис на сертификата', 'Път за проверка'],
     helpLabel: 'Проверка',
   },
   it: {
     eyebrow: 'Archivio certificati',
     title: 'USG Certificati',
     description:
-      'Archivio dedicato ai Cane Corso che hanno ricevuto un certificato USG ufficiale emesso da admin. È separato dal Registro e dalla USG Gallery curata.',
-    note: 'Ogni certificato conserva uno snapshot del momento di emissione e apre il proprio percorso Verify.',
-    chips: ['Emesso da admin', 'Snapshot certificato', 'Percorso Verify'],
+      'Archivio dedicato ai Cane Corso che hanno ricevuto un certificato USG ufficiale emesso da un amministratore. È separato dal Registro e dalla Galleria USG curata.',
+    note: 'Ogni certificato conserva uno record del momento di emissione e apre il proprio percorso di verifica.',
+    chips: ['Emesso da un amministratore', 'Record del certificato', 'Percorso di verifica'],
     helpLabel: 'Verifica',
   },
 } as const;
@@ -46,9 +46,9 @@ export default async function CertifiedPage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      accentLabel="USG certified archive"
+      accentLabel={locale === 'bg' ? 'Архив USG Сертифицирани' : locale === 'it' ? 'Archivio USG Certificati' : 'USG certified archive'}
       visualSrc="/brand/seal/usg-seal-wide.png"
-      visualAlt="USG certified seal"
+      visualAlt={locale === 'bg' ? 'USG сертифициран печат' : locale === 'it' ? 'Sigillo USG certificato' : 'USG certified seal'}
       visualFit="contain"
       heroChips={copy.chips}
       heroNote={copy.note}

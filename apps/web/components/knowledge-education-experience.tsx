@@ -115,7 +115,7 @@ const copyByLocale = {
     title: 'Impara il Cane Corso prima di usare i livelli di fiducia',
     description:
       'La pagina pubblica Knowledge guida il visitatore: prima origine e carattere della razza, poi proprietà responsabile, poi Registro, Certificato, Verifica e Galleria con aspettative corrette.',
-    publicLabel: 'Layer educativo pubblico',
+    publicLabel: 'Livello educativo pubblico',
     featuredLabel: 'Letture in evidenza',
     sourcesLabel: 'Fonti collegate',
     categoryLabel: 'Zone lettura',
@@ -123,9 +123,9 @@ const copyByLocale = {
     emptyZone: 'Zona di lettura guidata',
     pathEyebrow: 'Percorso consigliato',
     boundariesEyebrow: 'Confini di fiducia',
-    boundariesTitle: 'Knowledge spiega. Registro, Certificato, Verifica e Galleria restano layer autoritativi separati.',
+    boundariesTitle: 'Knowledge spiega. Registro, Certificato, Verifica e Galleria restano livelli autoritativi separati.',
     boundariesDescription:
-      'Questa sezione è educativa e read-only. Non pubblica profili Cane Corso, non emette certificati, non cambia Verify, non seleziona immagini Gallery e non modifica moderazione admin.',
+      'Questa sezione è educativa e solo in lettura. Non pubblica profili Cane Corso, non emette certificati, non modifica la verifica, non seleziona immagini per la Galleria e non cambia la moderazione amministrativa.',
     path: [
       {
         title: 'Prima identità',
@@ -149,7 +149,7 @@ const copyByLocale = {
       },
     ],
     boundaries: [
-      'Knowledge è guida educativa, non consiglio veterinario, legale, giudicante o approvazione allevamento.',
+      'Le Conoscenze sono una guida educativa, non consiglio veterinario, legale, giudicante o approvazione allevamento.',
       'Visibilità Registro e decisioni certificato USG restano nei propri livelli di revisione bloccati.',
       'Solo record Knowledge pubblicati appaiono pubblicamente; bozze e manutenzione restano protette.',
     ],

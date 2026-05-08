@@ -14,7 +14,7 @@ const copyByLocale = {
     summary: 'How it works: complete the profile, add your Cane Corso, then follow the review and public trust status.',
     openLabel: 'How this works',
     actions: ['Open member center', 'Open My Dogs', 'Read the guide'],
-    steps: ['Account', 'Profile', 'Cane Corso profile', 'Review readiness', 'Registry publication', 'USG certificate', 'Gallery / showcase'],
+    steps: ['Account', 'Profile', 'Cane Corso profile', 'Готовност за преглед', 'Registry publication', 'USG certificate', 'Галерия / представяне'],
   },
   bg: {
     eyebrow: 'Ясен път на собственика',
@@ -22,7 +22,7 @@ const copyByLocale = {
     body: 'Пътят на собственика остава прост: създай акаунт, попълни профила, добави Cane Corso, подготви профила, изпрати за преглед и следи Registry, Certificate, Verify и Gallery статусите без смесване на слоевете.',
     summary: 'Как се работи: попълни профила, добави Cane Corso и следи прегледа и публичния статус.',
     openLabel: 'Как работи това',
-    actions: ['Отвори центъра', 'Отвори My Dogs', 'Виж наръчника'],
+    actions: ['Отвори центъра', 'Отвори Моите Cane Corso', 'Виж наръчника'],
     steps: ['Акаунт', 'Профил', 'Cane Corso профил', 'Готовност за преглед', 'Публикация в регистъра', 'USG сертификат', 'Галерия / showcase'],
   },
   it: {
@@ -31,8 +31,8 @@ const copyByLocale = {
     body: 'Il percorso owner resta semplice: crea account, completa profilo, aggiungi Cane Corso, prepara il profilo, invia in review e segui Registry, Certificate, Verify e Gallery senza confondere i layer.',
     summary: 'Come funziona: completa il profilo, aggiungi il Cane Corso e segui review e stato pubblico.',
     openLabel: 'Come funziona',
-    actions: ['Apri centro membro', 'Apri My Dogs', 'Leggi la guida'],
-    steps: ['Account', 'Profilo', 'Profilo Cane Corso', 'Review readiness', 'Pubblicazione Registry', 'Certificato USG', 'Gallery / showcase'],
+    actions: ['Apri centro membri', 'Apri I miei Cane Corso', 'Leggi la guida'],
+    steps: ['Account', 'Profilo', 'Profilo Cane Corso', 'Готовност за преглед', 'Pubblicazione Registry', 'Certificato USG', 'Галерия / представяне'],
   },
 } as const;
 

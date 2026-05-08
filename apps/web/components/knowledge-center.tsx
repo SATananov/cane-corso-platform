@@ -161,9 +161,9 @@ export function KnowledgeCenter({
         }
         description={
           locale === 'bg'
-            ? 'Step 30 добавя първата структура за статии, готова за админ управление: публично се показват само публикувани записи, а черновите остават само в админ слоя.'
+            ? 'Първата структура за статии е готова за администраторско управление: публично се показват само публикувани записи, а черновите остават само в администраторския слой.'
             : locale === 'it'
-              ? 'Step 30 aggiunge la prima struttura admin-ready per articoli: solo i record pubblicati appaiono nel pubblico, mentre le bozze restano nel livello admin.'
+              ? 'La prima struttura degli articoli è pronta per la gestione amministrativa: solo i record pubblicati appaiono pubblicamente, mentre le bozze restano nel livello amministrativo.'
               : 'Step 30 adds the first admin-ready article structure: only published records are shown publicly, while drafts stay in the admin layer.'
         }
         actionLabel={actionLabel}

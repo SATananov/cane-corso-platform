@@ -1253,7 +1253,7 @@ export const dictionary: Record<Locale, any> = {
       heroCardEyebrow: 'Presenza ufficiale del brand',
       heroCardTitle: 'Un’interfaccia premium oltre le directory kennel generiche',
       heroCardText:
-        'USG sta prendendo forma come un’esperienza premium in nero e oro, con un raffinato trust layer, profondità editoriale e strumenti membri degni della razza.',
+        'USG sta prendendo forma come un’esperienza premium in nero e oro, con un raffinato livello di fiducia, profondità editoriale e strumenti membri degni della razza.',
       statAValue: '01',
       statALabel: 'Identità premium distinta',
       statBValue: '03',

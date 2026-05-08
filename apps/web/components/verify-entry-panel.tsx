@@ -70,14 +70,14 @@ const copyByLocale = {
       trustEyebrow: 'Cosa conferma Verify',
       trustTitle: 'La fiducia pubblica funziona per passaggi chiari',
       trustBullets: [
-        'Verify conferma un record certificato pubblico attivo, non una bozza privata o una voce dello spazio owner.',
+        'La verifica conferma un record certificato pubblico attivo, non una bozza privata o una voce dello spazio del proprietario.',
         'Il certificato deve essere attivo e collegato a un profilo pubblico pubblicato per apparire qui.',
         'L’obiettivo è fiducia e chiarezza per visitatori, allevatori e futuri proprietari.',
       ],
       distinctionEyebrow: 'Distinzione importante',
       distinctionTitle: 'Pubblicazione nel registro e fiducia del certificato non sono la stessa cosa',
       distinctionBody:
-        'Un Cane Corso può essere visibile pubblicamente nel registro senza ricevere automaticamente un certificato. Verify dovrebbe restare riservato alla fiducia certificata attiva.',
+        'Un Cane Corso può essere visibile pubblicamente nel registro senza ricevere automaticamente un certificato. La verifica dovrebbe restare riservata alla fiducia certificata attiva.',
       guide: 'Apri guida',
     },
   },

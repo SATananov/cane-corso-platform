@@ -27,13 +27,13 @@ const copyByLocale = {
       'Тази опашка пази публичната платформа: нищо от екосистемата не става видимо преди админ преглед.',
   },
   it: {
-    eyebrow: 'Moderazione admin',
-    title: 'Revisione ecosystem official vs community',
+    eyebrow: 'Moderazione amministrativa',
+    title: 'Revisione ecosistema: ufficiale o comunità',
     description:
-      'Superficie di moderazione per decidere se un elemento ecosystem è una scheda ufficiale, una scheda community o solo un segnale interno.',
-    heroChips: ['Scheda ufficiale', 'Scheda community', 'Suggerimento'],
+      'Area di moderazione per decidere se un elemento dell’ecosistema è una scheda ufficiale, una scheda della comunità o solo un segnale interno.',
+    heroChips: ['Scheda ufficiale', 'Scheda comunità', 'Suggerimento'],
     heroNote:
-      'Questa coda protegge la piattaforma pubblica: niente diventa visibile senza revisione admin.',
+      'Questa coda protegge la piattaforma pubblica: niente diventa visibile senza revisione amministrativa.',
   },
 } as const;
 

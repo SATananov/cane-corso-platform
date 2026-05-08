@@ -113,7 +113,7 @@ const copyByLocale: Record<'en' | 'bg' | 'it', FaqCopy> = {
   bg: {
     eyebrow: 'FAQ / Център за яснота',
     title: 'Едно спокойно място, което обяснява цялата USG Cane Corso екосистема',
-    description: 'FAQ за цялата платформа: Registry, Certificate, Verify, Gallery, Community, Partners, Knowledge, USG Bulgarico, поверителност и знание за Cane Corso с проверени източници.',
+    description: 'FAQ за цялата платформа: Регистър, Сертификат, Проверка, Галерия, Общност, Партньори, Знания, USG Bulgarico, поверителност и знание за Cane Corso с проверени източници.',
     cards: [
       { eyebrow: 'Карта на платформата', title: 'Всяка публична част има отделна роля', description: 'Registry, Certificate, Verify, Gallery, Community, Partners и Knowledge са свързани, но не означават едно и също нещо.', href: '#platform-map', meta: 'USG • Registry • Knowledge', icon: 'platform' },
       { eyebrow: 'Граница на доверие', title: 'USG Certificate не е родословие', description: 'Сертификатът е платформен документ за доверие с нива на доказуемост. Той не заменя FCI, клубове, съдии или официални родословия.', href: '#certificate-verify', meta: 'Сертификат • проверка • доказуемост', icon: 'verify' },
@@ -169,7 +169,7 @@ const copyByLocale: Record<'en' | 'bg' | 'it', FaqCopy> = {
   it: {
     eyebrow: 'FAQ / Centro chiarezza',
     title: 'Un luogo calmo per capire tutto l’ecosistema USG Cane Corso',
-    description: 'FAQ per tutta la piattaforma: Registry, Certificate, Verify, Gallery, Community, Partners, Knowledge, USG Bulgarico, privacy ed educazione Cane Corso con fonti affidabili.',
+    description: 'FAQ per tutta la piattaforma: Registro, Certificato, Verifica, Galleria, Comunità, Partner, Conoscenze, USG Bulgarico, privacy ed educazione Cane Corso con fonti affidabili.',
     cards: [
       { eyebrow: 'Mappa piattaforma', title: 'Ogni superficie pubblica ha un ruolo separato', description: 'Registry, Certificate, Verify, Gallery, Community, Partners e Knowledge sono collegati, ma non significano la stessa cosa.', href: '#platform-map', meta: 'USG • Registry • Knowledge', icon: 'platform' },
       { eyebrow: 'Confine di fiducia', title: 'USG Certificate non è un pedigree', description: 'Il certificato è un documento di fiducia della piattaforma con livelli di evidenza. Non sostituisce FCI, club, giudici o pedigree ufficiali.', href: '#certificate-verify', meta: 'Certificato • verifica • evidenza', icon: 'verify' },

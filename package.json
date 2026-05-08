@@ -128,7 +128,8 @@
     "usg:identity-bulgarico:qa": "node scripts/qa-usg-identity-bulgarico-framework.mjs",
     "platform:faq-trust:qa": "node scripts/qa-platform-faq-trust-clarity.mjs",
     "platform:role-aware-action:qa": "node scripts/qa-platform-role-aware-action-ux.mjs",
-    "platform:intent-first-auth:qa": "node scripts/qa-intent-first-authenticated-experience.mjs"
+    "platform:intent-first-auth:qa": "node scripts/qa-intent-first-authenticated-experience.mjs",
+    "platform:bg-it-language:qa": "node scripts/qa-bg-it-language-consistency.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

@@ -21,21 +21,21 @@ const copyByLocale = {
     eyebrow: 'Админ основа за знания',
     title: 'Статии в знанията',
     description:
-      'Основа само за преглед за бъдещата админ управлявана система за знания. Step 30 добавя записи за статии, статуси, дисциплина на източниците и публична граница само за публикувани статии, без записи към базата данни.',
+      'Основа само за преглед за бъдещата администраторски управлявана система за знания. Този етап добавя записи за статии, статуси, дисциплина на източниците и публична граница само за публикувани статии, без записи към базата данни.',
     helpLabel: 'Помощ',
     note:
-      'Тази страница умишлено е само за преглед в Step 30. Тя подготвя модела преди бъдещия редактор, миграция към база данни и действия за запис.',
+      'Тази страница умишлено е само за преглед. Тя подготвя модела преди бъдещия редактор, миграция към база данни и действия за запис.',
     chips: ['Статии', 'Статуси', 'Източници', 'Защита на чернови'],
   },
   it: {
     eyebrow: 'Fondazione Admin Knowledge',
     title: 'Articoli Knowledge',
     description:
-      'Fondazione read-only per la futura Knowledge CMS gestita da admin. Step 30 introduce record articolo, stati, disciplina fonti e confine pubblico solo per pubblicati, senza database writes.',
+      'Fondazione solo in lettura per la futura gestione amministrativa delle Conoscenze. Questo passaggio introduce record articolo, stati, disciplina delle fonti e confine pubblico solo per gli articoli pubblicati, senza scritture nel database.',
     helpLabel: 'Aiuto',
     note:
-      'Questa pagina è volutamente read-only nello Step 30. Prepara il modello prima del futuro editor, database migration e write actions.',
-    chips: ['Articoli', 'Stati', 'Fonti', 'Draft guardrail'],
+      'Questa pagina è volutamente solo in lettura. Prepara il modello prima del futuro editor, della migrazione del database e delle azioni di scrittura.',
+    chips: ['Articoli', 'Stati', 'Fonti', 'Protezione bozze'],
   },
 } as const;
 

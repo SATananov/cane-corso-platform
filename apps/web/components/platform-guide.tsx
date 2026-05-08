@@ -28,7 +28,7 @@ const copyByLocale = {
           'The official layer protects trust. The community layer expands usefulness. They must work together, but they should never be confused with each other.',
         bullets: [
           'Official layer: registry, verification, review decisions, publication status, and the strongest trust signals.',
-          'Community layer: useful visibility for places, services, transport, boarding, pet-friendly locations, and moderated activity or suggestions.',
+          'Community layer: useful visibility for places, services, transport, boarding, dog-friendly locations, and moderated activity or suggestions.',
           'Everything public still passes through review before it appears to visitors.',
         ],
         ctaHref: '/community',
@@ -120,7 +120,7 @@ const copyByLocale = {
         eyebrow: 'Общност',
         title: 'Community expands the ecosystem without weakening trust',
         description:
-          'Community is where broader usefulness lives: walk places, play areas, pet-friendly places, boarding, transport, and other approved ecosystem visibility.',
+          'Community is where broader usefulness lives: walk places, play areas, dog-friendly places, boarding, transport, and other approved ecosystem visibility.',
         bullets: [
           'This is where official vs community becomes visible to the user.',
           'Community content may be practical and local, but still reviewed before publishing.',
@@ -418,7 +418,7 @@ const copyByLocale = {
           'Il layer ufficiale protegge la fiducia. Il layer community amplia l’utilità. Devono lavorare insieme, ma non devono mai essere confusi.',
         bullets: [
           'Layer ufficiale: registry, verify, decisioni review, stato di pubblicazione e segnali di fiducia più forti.',
-          'Layer community: visibilità utile per luoghi, servizi, trasporto, boarding, venue pet-friendly e futura logica activity o suggestions.',
+          'Livello comunità: visibilità utile per luoghi, servizi, trasporto, pensione, luoghi adatti ai cani e future attività o suggerimenti.',
           'Ogni contenuto pubblico passa comunque da una revisione prima di apparire ai visitatori.',
         ],
         ctaHref: '/community',
@@ -510,7 +510,7 @@ const copyByLocale = {
         eyebrow: 'Общност',
         title: 'La community amplia l’ecosistema senza indebolire la fiducia',
         description:
-          'La community è il luogo dell’utilità più ampia: posti per passeggiare, aree gioco, luoghi pet-friendly, boarding, transport e altra visibilità approvata dell’ecosistema.',
+          'La community è il luogo dell’utilità più ampia: posti per passeggiare, aree gioco, luoghi adatti ai cani, pensione, trasporto e altra visibilità approvata dell’ecosistema.',
         bullets: [
           'Qui official vs community diventa visibile per l’utente.',
           'Il contenuto community può essere pratico e locale, ma passa comunque dalla revisione prima della pubblicazione.',

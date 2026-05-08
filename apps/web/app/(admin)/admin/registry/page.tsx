@@ -59,8 +59,8 @@ const copyByLocale = {
     eyebrow: 'Админ управление на регистъра',
     title: 'Управление на регистъра',
     description:
-      'Дръж своите Cane Corso в My Dogs, а всички изпратени, публикувани и сертифицирани профили управлявай от отделния админ слой.',
-    chips: ['My Dogs = моите', 'Преглед = модерация', 'Регистър = всички профили'],
+      'Дръж своите Cane Corso в Моите Cane Corso, а всички изпратени, публикувани и сертифицирани профили управлявай от отделния администраторски слой.',
+    chips: ['Моите Cane Corso = моите', 'Преглед = модерация', 'Регистър = всички профили'],
     note:
       'Публикацията в регистъра и USG сертификатът са отделни нива. Cane Corso може да е публичен в регистъра, без автоматично да получи сертификат.',
     stats: {
@@ -73,7 +73,7 @@ const copyByLocale = {
       mine: 'Моите публикувани Cane Corso',
       published: 'Всички публикувани профили в регистъра',
       queue: 'Профили в админ потока',
-      noneMine: 'Твоите публикувани Cane Corso ще продължат да се виждат в My Dogs веднага щом станат активни в регистъра.',
+      noneMine: 'Твоите публикувани Cane Corso ще продължат да се виждат в Моите Cane Corso веднага щом станат активни в регистъра.',
       nonePublished: 'Все още няма публикувани профили в регистъра.',
       noneQueue: 'В момента няма профили в модерация.',
       owner: 'Собственик',
@@ -88,7 +88,7 @@ const copyByLocale = {
       removeFromRegistry: 'Свали от регистъра',
       issueCertificate: 'Издай USG сертификат',
       revokeCertificate: 'Отмени сертификата',
-      myDogs: 'Отвори My Dogs',
+      myDogs: 'Отвори Моите Cane Corso',
       review: 'Отвори прегледа',
       status: 'Статус',
       pending: 'В изчакване',
@@ -101,8 +101,8 @@ const copyByLocale = {
     eyebrow: 'Controllo admin del registro',
     title: 'Gestione del registro',
     description:
-      'Tieni i tuoi Cane Corso in My Dogs e gestisci tutti i profili inviati, pubblicati e certificati da un layer admin separato.',
-    chips: ['My Dogs = i miei', 'Review = moderazione', 'Registro = tutti i profili'],
+      'Tieni i tuoi Cane Corso in I miei Cane Corso e gestisci tutti i profili inviati, pubblicati e certificati da un livello amministrativo separato.',
+    chips: ['I miei Cane Corso = i miei', 'Revisione = moderazione', 'Registro = tutti i profili'],
     note:
       'La pubblicazione nel registro e il certificato USG sono livelli separati. Un Cane Corso può essere pubblico nel registro senza ricevere automaticamente un certificato.',
     stats: {
@@ -115,7 +115,7 @@ const copyByLocale = {
       mine: 'I miei Cane Corso pubblicati',
       published: 'Tutti i profili pubblicati nel registro',
       queue: 'Profili nel flusso admin',
-      noneMine: 'I tuoi Cane Corso pubblicati continueranno ad apparire in My Dogs appena saranno attivi nel registro.',
+      noneMine: 'I tuoi Cane Corso pubblicati continueranno ad apparire in I miei Cane Corso appena saranno attivi nel registro.',
       nonePublished: 'Non ci sono ancora profili pubblicati nel registro.',
       noneQueue: 'Al momento non ci sono profili in moderazione.',
       owner: 'Proprietario',
@@ -130,8 +130,8 @@ const copyByLocale = {
       removeFromRegistry: 'Rimuovi dal Registro',
       issueCertificate: 'Emetti certificato USG',
       revokeCertificate: 'Revoca certificato',
-      myDogs: 'Apri My Dogs',
-      review: 'Apri review',
+      myDogs: 'Apri I miei Cane Corso',
+      review: 'Apri revisione',
       status: 'Stato',
       pending: 'In attesa',
       notIssued: 'Non ancora emesso',
@@ -216,7 +216,7 @@ export default async function AdminRegistryManagementPage() {
         <section className="content-card admin-management-card">
           <div className="section-head-row">
             <div>
-              <span className="eyebrow-label">My Dogs</span>
+              <span className="eyebrow-label">{locale === 'bg' ? 'Моите Cane Corso' : locale === 'it' ? 'I miei Cane Corso' : 'My Dogs'}</span>
               <h2>{copy.sections.mine}</h2>
             </div>
           </div>

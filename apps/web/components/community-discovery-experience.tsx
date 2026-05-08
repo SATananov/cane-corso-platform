@@ -71,7 +71,7 @@ const copyByLocale = {
       ['Eventi e training', 'Campi training, eventi, workshop e opportunità educative specifiche per la razza.'],
       ['Trasporto e relocation', 'Trasporto locale e cross-border Cane Corso con contesto servizio e review.'],
       ['Boarding e soggiorni large-breed', 'Opzioni di boarding adatte alla gestione sicura di razze grandi e forti.'],
-      ['Luoghi pet-friendly', 'Ristoranti, negozi, parchi e luoghi pubblici adatti al Cane Corso.'],
+      ['Luoghi adatti ai cani', 'Ristoranti, negozi, parchi e luoghi pubblici adatti al Cane Corso.'],
       ['Puppies / breeding / match', 'Discovery moderata per breeding e match senza confondere i certificati.'],
       ['Servizi partner', 'Servizi approvati collegati alla directory partner pubblica.'],
     ],

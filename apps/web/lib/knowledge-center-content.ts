@@ -350,7 +350,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
         'Key facts',
         'Warnings / important notes',
         'Source references',
-        'Reviewed by admin',
+        'Прегледано от администратор',
         'Last reviewed date',
         'Public status: Draft / Pending / Published / Archived',
         'Featured flag',
@@ -593,7 +593,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       eyebrow: 'Cane Corso Knowledge Center',
       title: 'Una guida seria della razza per proprietari, ospiti ed ecosistema USG',
       description:
-        'Questo layer trasforma Knowledge in un riferimento premium per il Cane Corso: storia, contesto dello standard ufficiale, temperamento, consapevolezza salute, cura, training, allevamento responsabile e proprietà sicura — separati da Registry, Certificate e Gallery.',
+        'Questo livello trasforma le Conoscenze in un riferimento premium per il Cane Corso: storia, contesto dello standard ufficiale, temperamento, consapevolezza salute, cura, addestramento, allevamento responsabile e proprietà sicura — separati da Registro, Certificato e Galleria.',
       chips: ['Storia', 'Standard FCI', 'Temperamento', 'Salute', 'Owner guide', 'Allevamento responsabile'],
       note: 'Informazione educativa. I contenuti salute aiutano la consapevolezza e non sostituiscono veterinari, trainer qualificati o standard cinofili ufficiali.',
       cards: [
@@ -701,7 +701,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
         'Key facts',
         'Warnings / important notes',
         'Source references',
-        'Reviewed by admin',
+        'Прегледано от администратор',
         'Last reviewed date',
         'Public status: Draft / Pending / Published / Archived',
         'Featured flag',

@@ -58,7 +58,7 @@ const bg: SurfaceMap = {
     secondary: [
       { href: '/my-dogs', label: 'Всички профили', meta: 'Преглед' },
       { href: '/profile', label: 'Профил', meta: 'Собственик' },
-      { href: '/registry', label: 'Публичен Registry', meta: 'Публикувани' },
+      { href: '/registry', label: 'Публичен Регистър', meta: 'Публикувани' },
       { href: '/knowledge', label: 'Подготовка за преглед', meta: 'Какво е важно' },
     ],
   },
@@ -127,13 +127,13 @@ const bg: SurfaceMap = {
     ],
   },
   registry: {
-    eyebrow: 'Публичен Registry',
+    eyebrow: 'Публичен Регистър',
     title: 'Търсиш профил или статус?',
     description: 'Разгледай публикуваните Cane Corso или отвори личната зона, за да видиш дали твоят профил е чернова, в преглед или публикуван.',
     status: 'Регистърът показва само одобрени и публикувани профили.',
     primary: { href: '/my-dogs', label: 'Виж статус', meta: 'Моите Cane Corso' },
     secondary: [
-      { href: '/registry', label: 'Публичен Registry', meta: 'Одобрени профили' },
+      { href: '/registry', label: 'Публичен Регистър', meta: 'Одобрени профили' },
       { href: '/verify', label: 'Провери сертификат', meta: 'Verify' },
       { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'Нов профил' },
       { href: '/knowledge', label: 'Как се подготвя профил?', meta: 'Knowledge' },
@@ -168,11 +168,11 @@ const bg: SurfaceMap = {
   admin: {
     eyebrow: 'Админ задачи',
     title: 'Какво чака решение?',
-    description: 'Отвори опашката за преглед, Registry контрол, партньори или екосистемна модерация.',
+    description: 'Отвори опашката за преглед, контрол на Регистъра, партньори или екосистемна модерация.',
     status: 'Първо чакащи задачи, после детайл и решение.',
     primary: { href: '/review', label: 'Към Преглед', meta: 'Чакащи профили' },
     secondary: [
-      { href: '/admin/registry', label: 'Registry контрол', meta: 'Публикувани' },
+      { href: '/admin/registry', label: 'контрол на Регистъра', meta: 'Публикувани' },
       { href: '/admin/ecosystem', label: 'Екосистема', meta: 'Модерация' },
       { href: '/admin/partners', label: 'Партньори', meta: 'Кандидатури' },
       { href: '/admin/members', label: 'Потребители', meta: 'Данни' },
@@ -185,7 +185,7 @@ const bg: SurfaceMap = {
     status: 'Регистър и сертификат остават отделни решения.',
     primary: { href: '/review', label: 'Прегледай чакащите', meta: 'Опашка' },
     secondary: [
-      { href: '/admin/registry', label: 'Registry контрол', meta: 'След публикация' },
+      { href: '/admin/registry', label: 'контрол на Регистъра', meta: 'След публикация' },
       { href: '/admin/members', label: 'Потребители', meta: 'Проверка' },
       { href: '/admin/ecosystem', label: 'Екосистема', meta: 'Модерация' },
     ],
@@ -264,7 +264,7 @@ const guestCopyByLocale: Record<Locale, SurfaceCopy> = {
   it: {
     eyebrow: 'Ingresso pubblico',
     title: 'Esplora prima, poi scegli un’azione',
-    description: 'Gli ospiti possono navigare i layer pubblici. Accedi o registrati per profilo privato, richiesta o candidatura partner.',
+    description: 'Gli ospiti possono navigare i livelli pubblici. Accedi o registrati per profilo privato, richiesta o candidatura partner.',
     status: 'Gli ospiti vedono orientamento; gli utenti loggati vedono azioni e stato.',
     primary: { href: '/access?intent=member', label: 'Accedi / registrati', meta: 'Area privata' },
     secondary: [

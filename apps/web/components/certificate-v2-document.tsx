@@ -20,9 +20,9 @@ const copyByLocale = {
   },
   bg: {
     actionsTitle: 'USG сертификат',
-    actionsNote: 'Официален сертификат за печат, генериран от snapshot-а при издаване.',
+    actionsNote: 'Официален сертификат за печат, генериран от записа от момента на издаване.',
     print: 'Печат / запази PDF',
-    verify: 'Отвори Verify',
+    verify: 'Отвори проверката',
     registry: 'Отвори профила',
     qrAlt: 'QR код за проверка на сертификата',
   },
@@ -30,7 +30,7 @@ const copyByLocale = {
     actionsTitle: 'Certificato USG',
     actionsNote: 'Certificato ufficiale stampabile generato dallo snapshot emesso.',
     print: 'Stampa / salva PDF',
-    verify: 'Apri Verify',
+    verify: 'Apri verifica',
     registry: 'Apri profilo',
     qrAlt: 'Codice QR per la verifica del certificato',
   },
@@ -200,7 +200,7 @@ export function CertificateV2Document({ document, locale, code }: CertificateV2D
             <div className="usgCertPhotoCaption">Certified Cane Corso</div>
             <div className="usgCertQrPanel">
               <QrCodeSvg value={verifyAbsoluteUrl} title={copy.qrAlt} />
-              <span>Scan to verify</span>
+              <span>{locale === 'bg' ? 'Сканирай за проверка' : locale === 'it' ? 'Scansiona per verificare' : 'Scan to verify'}</span>
               <span>Сканирай за проверка</span>
               <span>Scansiona per verifica</span>
             </div>
@@ -229,7 +229,7 @@ export function CertificateV2Document({ document, locale, code }: CertificateV2D
           </section>
 
           <img className="usgCertSeal" src="/brand/seal/usg-official-seal.png" alt="Official UNICO SUO GENERE certificate seal" />
-          <div className="usgCertVerifyUrl">Verify: {verifyAbsoluteUrl}</div>
+          <div className="usgCertVerifyUrl">{locale === 'bg' ? 'Проверка' : locale === 'it' ? 'Verifica' : 'Verify'}: {verifyAbsoluteUrl}</div>
         </article>
       </div>
     </div>
