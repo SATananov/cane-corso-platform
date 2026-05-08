@@ -15,6 +15,7 @@ import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { buildAccessPath } from '@/lib/access-control';
 import { SessionUnavailableError } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -653,6 +654,7 @@ export default async function ProfilePage() {
     return (
       <div className="member-route-stack profile-page">
         <RoleAwareActionPanel locale={locale} surface="profile" role={session.user.role} />
+        <SectionContentGuidePanel locale={locale} surface="profile" />
         <section className="route-hero-card route-hero-card--member profile-page__hero">
           <div className="profile-page__hero-copy">
             <span className="eyebrow-label">{copy.eyebrow}</span>

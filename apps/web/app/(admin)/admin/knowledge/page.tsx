@@ -3,6 +3,7 @@ import { PageShell } from '@/components/page-shell';
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
 import { getAdminKnowledgeArticles } from '@/lib/knowledge-articles';
 import { getCurrentLocale } from '@/lib/locale.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,6 +61,7 @@ export default async function AdminKnowledgePage() {
       variant="knowledge"
     >
       <AdminOperationalClarityPanel locale={locale} surface="knowledge" />
+      <SectionContentGuidePanel locale={locale} surface="adminKnowledge" />
       <KnowledgeAdminDashboard articles={articles} locale={locale} />
     </PageShell>
   );

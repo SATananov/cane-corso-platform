@@ -4,6 +4,7 @@ import { InfoPanelGrid } from '@/components/info-panel-grid';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getVerificationDocument } from '@/lib/registry.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 interface VerifyPageProps {
   params: Promise<{ code: string }>;
@@ -67,6 +68,7 @@ export default async function VerifyPage({ params }: VerifyPageProps) {
       heroNote={document ? (locale === 'bg' ? 'Активният сертификатен запис е свързан с публикуван Cane Corso профил.' : locale === 'it' ? 'Il record certificato attivo è collegato a un profilo Cane Corso pubblicato.' : 'The active certificate record is tied to a published Cane Corso profile.') : (locale === 'bg' ? 'Кодът не съвпадна с активен публичен сертификатен запис.' : locale === 'it' ? 'Il codice non corrisponde a un record certificato pubblico attivo.' : 'The code did not match an active public certificate record.')}
     >
       <VerificationResultPanel document={document} locale={locale} code={code} />
+      <SectionContentGuidePanel locale={locale} surface="verify" />
       <InfoPanelGrid eyebrow={t.pages.verify.eyebrow} title={copy.title} description={copy.description} cards={copy.cards} actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'} ariaLabel={copy.title} />
     </PageShell>
   );

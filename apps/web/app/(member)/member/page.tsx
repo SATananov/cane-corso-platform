@@ -7,6 +7,7 @@ import { buildAccessPath } from '@/lib/access-control';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
 import { SessionUnavailableError } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -133,6 +134,7 @@ export default async function MemberCommandCenterPage() {
         heroNote={copy.heroNote}
       >
         <RoleAwareActionPanel locale={locale} surface="member" role={document.member.role} />
+        <SectionContentGuidePanel locale={locale} surface="member" />
         <OwnerOnboardingFinalPanel locale={locale} surface="member" />
         <OwnerCenterWorkspace document={document} locale={locale} />
       </PageShell>

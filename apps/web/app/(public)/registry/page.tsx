@@ -7,6 +7,7 @@ import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPublishedRegistryDocument } from '@/lib/registry.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,6 +34,7 @@ export default async function RegistryPage() {
       heroNote={t.pages.registry.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="registry" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="registry" />
       <PublicRegistryOverview
         document={document}
         locale={locale}

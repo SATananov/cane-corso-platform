@@ -14,6 +14,7 @@ import { canAccessAdminArea } from '@/lib/access-control';
 import { getCurrentMemberDogMediaDocument } from '@/lib/my-dog-media.server';
 import { getPublishedRegistryProfileDocument } from '@/lib/registry.server';
 import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigree';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 interface MyDogsOverviewProps {
   dogs: Dog[];
@@ -165,6 +166,7 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
   return (
     <div className="member-route-stack">
       <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
+      <SectionContentGuidePanel locale={locale} surface="myDogs" />
       <section className="route-hero-card route-hero-card--member">
         <div>
           <span className="eyebrow-label">{t.pages.myDogs.eyebrow}</span>

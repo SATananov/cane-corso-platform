@@ -3,6 +3,7 @@ import { PageShell } from '@/components/page-shell';
 import { PublicCertifiedOverview } from '@/components/public-certified-overview';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getUsgCertifiedDocument } from '@/lib/registry.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +31,7 @@ const copyByLocale = {
     title: 'USG Certificati',
     description:
       'Archivio dedicato ai Cane Corso che hanno ricevuto un certificato USG ufficiale emesso da un amministratore. È separato dal Registro e dalla Galleria USG curata.',
-    note: 'Ogni certificato conserva uno record del momento di emissione e apre il proprio percorso di verifica.',
+    note: 'Ogni certificato conserva un record del momento di emissione e apre il proprio percorso di verifica.',
     chips: ['Emesso da un amministratore', 'Record del certificato', 'Percorso di verifica'],
     helpLabel: 'Verifica',
   },
@@ -56,6 +57,7 @@ export default async function CertifiedPage() {
       helpLabel={copy.helpLabel}
     >
       <GalleryCertifiedShowcaseTrustPanel variant="certified" locale={locale} />
+      <SectionContentGuidePanel locale={locale} surface="certified" />
       <PublicCertifiedOverview document={document} locale={locale} />
     </PageShell>
   );

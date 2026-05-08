@@ -6,6 +6,7 @@ import { getCurrentLocale } from '@/lib/locale.server';
 import { getPartnerUiCopy } from '@/lib/partner-copy';
 import { getCurrentPartnerWorkspaceDocument } from '@/lib/partners.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,6 +41,7 @@ export default async function PartnerApplyPage({ searchParams }: PartnerApplyPag
       helpLabel={copy.labels.help ?? (locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help')}
     >
       <RoleAwareActionPanel locale={locale} surface="partnerApply" role={currentSession.user.role} />
+      <SectionContentGuidePanel locale={locale} surface="partnerApply" />
       <PartnerApplicationWorkspace document={document} locale={locale} showOnboardingNotice={showOnboardingNotice} />
     </PageShell>
   );

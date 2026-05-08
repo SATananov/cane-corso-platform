@@ -6,6 +6,7 @@ import { getKnowledgeCenterContent } from '@/lib/knowledge-center-content';
 import { getPublishedKnowledgeArticles } from '@/lib/knowledge-articles';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,6 +42,7 @@ export default async function KnowledgePage() {
       variant="knowledge"
     >
       <RoleAwareActionPanel locale={locale} surface="knowledge" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="knowledge" />
       <section id="knowledge-center" aria-label="Cane Corso Knowledge Center">
         <KnowledgeCenter copy={copy} actionLabel={actionLabel} articles={articles} locale={locale} />
       </section>

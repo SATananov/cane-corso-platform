@@ -3,6 +3,7 @@ import { VerifyEntryPanel } from '@/components/verify-entry-panel';
 import { InfoPanelGrid } from '@/components/info-panel-grid';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,9 +18,9 @@ export default async function VerifyLandingPage() {
       contractDescription:
         'This page should make the trust path simple: registry publication, certificate issuance, and verify are related but not identical steps.',
       contractCards: [
-        { eyebrow: 'Registro', title: 'A profile can be published without becoming a certificate record', description: 'Publication is the official public profile step, but certificate trust is a later decision.', href: '/registry', meta: 'Published profile • official visibility', icon: 'registry' as const },
+        { eyebrow: 'Registry', title: 'A profile can be published without becoming a certificate record', description: 'Publication is the official public profile step, but certificate trust is a later decision.', href: '/registry', meta: 'Published profile • official visibility', icon: 'registry' as const },
         { eyebrow: 'Certificate', title: 'Certificate trust exists only when it is actively issued', description: 'Verify checks the active certificate layer, not private drafts and not every published profile.', href: '/guide?topic=registry#registry', meta: 'Issued certificate • active trust', icon: 'verify' as const },
-        { eyebrow: 'Area di lavoro del proprietario', title: 'Owners prepare long before Verify becomes relevant', description: 'Profile work, review, and publication happen first in the member area.', href: '/my-dogs', meta: 'Owner prep • review • publish', icon: 'member' as const },
+        { eyebrow: 'Owner workspace', title: 'Owners prepare long before Verify becomes relevant', description: 'Profile work, review, and publication happen first in the member area.', href: '/my-dogs', meta: 'Owner preparation • review • publish', icon: 'member' as const },
         { eyebrow: 'Guide', title: 'The guide explains how the trust layers connect', description: 'Use the guide whenever you need the full picture of registry vs certificate vs community visibility.', href: '/guide?topic=registry#registry', meta: 'Guide • trust clarity', icon: 'guide' as const },
       ],
       journeyEyebrow: 'How to use Verify',
@@ -40,7 +41,7 @@ export default async function VerifyLandingPage() {
       contractCards: [
         { eyebrow: 'Регистър', title: 'Един профил може да е публикуван, без да е сертификатен запис', description: 'Публикацията е официалната публична стъпка за профила, а сертификатното доверие е отделно по-късно решение.', href: '/registry', meta: 'Публикуван профил • официална видимост', icon: 'registry' as const },
         { eyebrow: 'Сертификат', title: 'Сертификатното доверие съществува само когато е активно издадено', description: 'Проверката проверява активния сертификатен слой, не частните чернови и не всеки публикуван профил.', href: '/guide?topic=registry#registry', meta: 'Издаден сертификат • активно доверие', icon: 'verify' as const },
-        { eyebrow: 'Area di lavoro del proprietario', title: 'Собствениците подготвят профила много преди проверката да стане важна', description: 'Работата по профила, прегледът и публикацията започват първо в членската зона.', href: '/my-dogs', meta: 'Подготовка • преглед • публикация', icon: 'member' as const },
+        { eyebrow: 'Работна зона на собственика', title: 'Собствениците подготвят профила много преди проверката да стане важна', description: 'Работата по профила, прегледът и публикацията започват първо в членската зона.', href: '/my-dogs', meta: 'Подготовка • преглед • публикация', icon: 'member' as const },
         { eyebrow: 'Наръчник', title: 'Наръчникът обяснява как се свързват слоевете на доверие', description: 'Ползвай наръчника, когато ти трябва цялата картина за Регистър, сертификат и общностна видимост.', href: '/guide?topic=registry#registry', meta: 'Наръчник • ясно доверие', icon: 'guide' as const },
       ],
       journeyEyebrow: 'Как да използваш проверката',
@@ -65,7 +66,7 @@ export default async function VerifyLandingPage() {
         { eyebrow: 'Guida', title: 'La guida spiega come si collegano i livelli di fiducia', description: 'Usa la guida quando ti serve il quadro completo di Registro, certificato e visibilità comunitaria.', href: '/guide?topic=registry#registry', meta: 'Guida • chiarezza fiducia', icon: 'guide' as const },
       ],
       journeyEyebrow: 'Come usare la verifica',
-      journeyTitle: 'Un ordine semplice per leggere il livelli di fiducia pubblica',
+      journeyTitle: 'Un ordine semplice per leggere i livelli di fiducia pubblica',
       journeyDescription: 'La verifica ha più senso dopo che l’utente ha già capito la pubblicazione nel Registro e la preparazione del proprietario.',
       journeyCards: [
         { eyebrow: 'Passo 1', title: 'Inizia dal Registro pubblico', description: 'Comprendi il livello del profilo ufficiale prima di controllare la fiducia del certificato.', href: '/registry', meta: 'Prima il Registro', icon: 'registry' as const },
@@ -93,6 +94,7 @@ export default async function VerifyLandingPage() {
       heroNote={locale === 'bg' ? 'Тук се проверява само активен публичен сертификатен запис.' : locale === 'it' ? 'Qui viene verificato solo un record certificato pubblico attivo.' : 'Only an active public certificate record is verified here.'}
     >
       <VerifyEntryPanel locale={locale} />
+      <SectionContentGuidePanel locale={locale} surface="verify" />
       <InfoPanelGrid eyebrow={copy.contractEyebrow} title={copy.contractTitle} description={copy.contractDescription} cards={copy.contractCards} actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'} ariaLabel={copy.contractTitle} />
       <InfoPanelGrid eyebrow={copy.journeyEyebrow} title={copy.journeyTitle} description={copy.journeyDescription} cards={copy.journeyCards} actionLabel={locale === 'bg' ? 'Отвори' : locale === 'it' ? 'Apri' : 'Open'} ariaLabel={copy.journeyTitle} />
     </PageShell>

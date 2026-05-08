@@ -7,6 +7,7 @@ import { GalleryCertifiedShowcaseTrustPanel } from '@/components/gallery-certifi
 import { InfoPanelGrid } from '@/components/info-panel-grid';
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -111,27 +112,27 @@ const copyByLocale = {
     eyebrow: 'Vetrina curata',
     title: 'Galleria',
     description:
-      'La Galleria USG non è il registro. È il layer showcase curato per Cane Corso che hanno raccolto reale trazione community e hanno anche ricevuto un certificato emesso attraverso il percorso trust ufficiale USG.',
+      'La Galleria USG non è il Registro. È una vetrina curata per Cane Corso che hanno raccolto reale sostegno dalla comunità e hanno anche ricevuto un certificato emesso attraverso il percorso ufficiale di fiducia USG.',
     cards: [
       {
         eyebrow: 'Separata dal registro',
         title: 'Registro e galleria non coincidono',
         description:
-          'Un profilo pubblicato può restare nel registro ufficiale senza entrare nella galleria. La galleria è un layer showcase più selettivo, non l’elenco di tutti i Cane Corso pubblicati.',
-        meta: 'Registro • lista pubblica • showcase separato',
+          'Un profilo pubblicato può restare nel Registro ufficiale senza entrare nella Galleria. La Galleria è un livello di vetrina più selettivo, non l’elenco di tutti i Cane Corso pubblicati.',
+        meta: 'Registro • lista pubblica • vetrina separata',
       },
       {
-        eyebrow: 'Trazione community',
+        eyebrow: 'Sostegno della comunità',
         title: 'I like contano, ma non bastano da soli',
         description:
-          'La visibilità in galleria è pensata per Cane Corso che hanno raccolto la risposta community richiesta. Questo segnale aiuta a riconoscere una presenza forte, ma non è sufficiente da solo.',
-        meta: 'Like community • trazione • visibilità',
+          'La visibilità in Galleria è pensata per Cane Corso che hanno raccolto la risposta richiesta dalla comunità. Questo segnale aiuta a riconoscere una presenza forte, ma non è sufficiente da solo.',
+        meta: 'Like della comunità • sostegno • visibilità',
       },
       {
-        eyebrow: 'Decisione trust finale',
+        eyebrow: 'Decisione finale di fiducia',
         title: 'Il certificato USG resta obbligatorio',
         description:
-          'Anche con un forte supporto pubblico, un Cane Corso entra in galleria solo quando esiste anche il certificato ufficiale concesso da admin. La decisione finale resta nel layer trust, non solo nell’energia community.',
+          'Anche con un forte sostegno pubblico, un Cane Corso entra in Galleria solo quando esiste anche il certificato ufficiale concesso da un amministratore. La decisione finale resta nel livello di fiducia, non solo nell’energia della comunità.',
         href: '/certified',
         meta: 'Certificato • verifica • approvazione ufficiale',
       },
@@ -139,20 +140,20 @@ const copyByLocale = {
     noteTitle: 'Come leggere la Galleria USG',
     noteBody:
       'Considera il registro come la lista pubblica ufficiale e la galleria come il palco curato per i profili più forti. È una vetrina di distinzione, non un catalogo duplicato.',
-    showcaseEyebrow: 'Selezionato da admin',
-    showcaseTitle: 'Selezione USG Gallery attuale',
+    showcaseEyebrow: 'Selezionato da un amministratore',
+    showcaseTitle: 'Selezione attuale della Galleria USG',
     showcaseDescription:
-      'Qui compaiono solo le foto selezionate esplicitamente per USG Gallery da admin, e solo per profili con certificato USG attivo.',
-    emptyShowcase: 'Nessun Cane Corso è ancora stato selezionato per la USG Gallery.',
+      'Qui compaiono solo le foto selezionate esplicitamente per la Galleria USG da un amministratore, e solo per profili con certificato USG attivo.',
+    emptyShowcase: 'Nessun Cane Corso è ancora stato selezionato per la Galleria USG.',
     openProfile: 'Apri profilo',
     verify: 'Verifica',
     photos: 'foto',
     certificate: 'Certificato',
-    communityRating: 'Valutazione community',
-    adminAssessment: 'Valutazione admin',
+    communityRating: 'Valutazione della comunità',
+    adminAssessment: 'Valutazione amministrativa',
     activeCertificate: 'Certificato USG attivo',
-    awaitingAdminAssessment: 'In attesa della valutazione admin',
-    noCommunityVotes: 'Nessun voto della community',
+    awaitingAdminAssessment: 'In attesa della valutazione amministrativa',
+    noCommunityVotes: 'Nessun voto della comunità',
     votes: 'voti',
   },
 } as const;
@@ -192,10 +193,11 @@ export default async function GalleryPage() {
       helpLabel={locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help'}
       visualSrc="/brand/editorial-member-shadow-eye.jpg"
       visualAlt="USG gallery Cane Corso"
-      heroChips={locale === 'bg' ? ['Само отличени', 'Подкрепа от общността', 'USG сертификат'] : locale === 'it' ? ['Solo distinti', 'Trazione community', 'Certificato USG'] : ['Curated only', 'Community traction', 'USG certificate']}
+      heroChips={locale === 'bg' ? ['Само отличени', 'Подкрепа от общността', 'USG сертификат'] : locale === 'it' ? ['Solo distinti', 'Sostegno della comunità', 'Certificato USG'] : ['Curated only', 'Community traction', 'USG certificate']}
       heroNote={copy.noteBody}
     >
       <RoleAwareActionPanel locale={locale} surface="gallery" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="gallery" />
       <section className="content-card usg-gallery-showcase">
         <div className="section-head-row">
           <div>

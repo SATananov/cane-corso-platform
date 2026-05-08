@@ -8,6 +8,7 @@ import { ImageLightbox } from '@/components/image-lightbox';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { requireReviewAdminSession } from '@/lib/review.server';
 import { canAccessAdminArea } from '@/lib/access-control';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 import {
   certificates,
   dogMedia,
@@ -373,6 +374,7 @@ export default async function AdminMembersPage() {
       heroNote={copy.note}
     >
       <div className="member-route-stack">
+        <SectionContentGuidePanel locale={locale} surface="adminMembers" />
         <div className="stats-grid admin-four-up">
           <OverviewStatCard label={copy.stats.active} value={String(identities.length)} tone="gold" />
           <OverviewStatCard label={copy.stats.admins} value={String(adminCount)} tone="ivory" />

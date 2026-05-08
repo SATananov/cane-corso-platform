@@ -4,6 +4,7 @@ import { AdminOperationalClarityPanel } from '@/components/admin-operational-cla
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPartnerModerationDocument } from '@/lib/partners.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +20,7 @@ const adminPartnerPageCopy = {
       'Одобрението на партньор остава официално и отделно от оценките на общността. Одобрените услуги се синхронизират и към екосистемата.',
   },
   it: {
-    heroChips: ['Revisione candidature', 'Catalogo pubblico', 'Sync ecosystem'],
+    heroChips: ['Revisione candidature', 'Catalogo pubblico', 'Sincronizzazione ecosistema'],
     heroNote:
       'L’approvazione dei partner resta ufficiale e separata dalla popolarità della comunità. I servizi approvati si sincronizzano anche nell’ecosistema.',
   },
@@ -47,6 +48,7 @@ export default async function AdminPartnersPage() {
       heroNote={pageCopy.heroNote}
     >
       <AdminOperationalClarityPanel locale={locale} surface="partners" />
+      <SectionContentGuidePanel locale={locale} surface="adminPartners" />
       <PartnerModerationDashboard document={document} locale={locale} />
     </PageShell>
   );

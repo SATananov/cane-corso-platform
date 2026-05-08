@@ -6,6 +6,7 @@ import { UsgIdentityBulgaricoPanel } from '@/components/usg-identity-bulgarico-p
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export default async function PlatformPage() {
   const locale = await getCurrentLocale();
@@ -463,6 +464,7 @@ export default async function PlatformPage() {
         </div>
 
         <div className="hero__fullwidth hero__fullwidth--platform">
+          <SectionContentGuidePanel locale={locale} surface="platform" />
           {currentSession ? (
             <RoleAwareActionPanel locale={locale} surface="platform" role={currentSession.user.role} className="platform-member-focus" />
           ) : (

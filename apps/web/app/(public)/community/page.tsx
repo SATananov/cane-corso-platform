@@ -7,6 +7,7 @@ import { CommunityDiscoveryExperience } from '@/components/community-discovery-e
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPublishedEcosystemDirectoryDocument } from '@/lib/ecosystem.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -288,6 +289,7 @@ export default async function CommunityPage() {
       visualAlt="Community and FUN editorial visual"
     >
       <RoleAwareActionPanel locale={locale} surface="community" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="community" />
       <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
 
       <CommunityDiscoveryExperience

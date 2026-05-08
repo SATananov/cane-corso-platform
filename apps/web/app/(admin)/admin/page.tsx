@@ -9,6 +9,7 @@ import { getPublishedRegistryDocument } from '@/lib/registry.server';
 import { getPartnerModerationDocument } from '@/lib/partners.server';
 import { getEcosystemModerationDocument } from '@/lib/ecosystem.server';
 import { getDb, profiles, users } from '@cane-corso-platform/db';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -280,6 +281,7 @@ export default async function AdminHomePage() {
     >
       <div className="member-route-stack">
         <RoleAwareActionPanel locale={locale} surface="admin" role="admin" />
+        <SectionContentGuidePanel locale={locale} surface="adminDashboard" />
         <div className="stats-grid five-up">
           <OverviewStatCard label={copy.stats.queue} value={String(queueCount)} tone="gold" />
           <OverviewStatCard label={copy.stats.registry} value={String(registryCount)} tone="ivory" />

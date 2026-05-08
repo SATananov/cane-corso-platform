@@ -9,6 +9,7 @@ import { issueDogCertificateAction, removeDogProfileAction, removeRegistryEntryA
 import { AdminRegistryEvidencePolishPanel } from '@/components/admin-registry-evidence-polish-panel';
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
 import { RegistryCertificateReleaseFlowPanel } from '@/components/registry-certificate-release-flow-panel';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -194,6 +195,7 @@ export default async function AdminRegistryManagementPage() {
           certifiedCount={certifiedCount}
           queueCount={moderationItems.length}
         />
+        <SectionContentGuidePanel locale={locale} surface="adminRegistry" />
 
         <section className="content-card admin-guide-card">
       <AdminOperationalClarityPanel locale={locale} surface="registry" />

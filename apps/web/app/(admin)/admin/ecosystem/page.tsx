@@ -4,6 +4,7 @@ import { AdminOperationalClarityPanel } from '@/components/admin-operational-cla
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getEcosystemModerationDocument } from '@/lib/ecosystem.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -47,11 +48,12 @@ export default async function AdminEcosystemPage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      accentLabel={locale === 'bg' ? 'Модерация на екосистемата' : 'Ecosystem moderation'}
+      accentLabel={locale === 'bg' ? 'Модерация на екосистемата' : locale === 'it' ? 'Moderazione ecosistema' : 'Ecosystem moderation'}
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="adminEcosystem" role="admin" />
+      <SectionContentGuidePanel locale={locale} surface="adminEcosystem" />
       <EcosystemModerationDashboard document={document} locale={locale} />
       <AdminOperationalClarityPanel locale={locale} surface="ecosystem" />
     </PageShell>

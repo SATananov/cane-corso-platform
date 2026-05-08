@@ -5,6 +5,7 @@ import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getDictionary } from '@/lib/i18n';
 import { getReviewQueueDocument } from '@/lib/review.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,6 +45,7 @@ export default async function ReviewQueuePage() {
       heroNote={pageCopy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="review" role="admin" />
+      <SectionContentGuidePanel locale={locale} surface="review" />
       <ReviewQueueDashboard document={document} locale={locale} />
       <AdminOperationalClarityPanel locale={locale} surface="review" />
     </PageShell>

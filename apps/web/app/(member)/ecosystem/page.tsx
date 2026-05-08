@@ -6,6 +6,7 @@ import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,7 +85,7 @@ const copyByLocale = {
     accentLabel: 'Gestione area proprietario',
     heroChips: ['Profili proprietario', 'Preparazione registro', 'Voci ecosistema'],
     heroNote:
-      'Questa area serve per preparare e seguire il lavoro. Registro, Gallery, Certificate, Verify, Review e Admin restano livelli separati di approvazione e pubblicazione.',
+      'Questa area serve per preparare e seguire il lavoro. Registro, Galleria, Certificato, Verifica, Revisione e Amministrazione restano livelli separati di approvazione e pubblicazione.',
     cards: [
       {
         eyebrow: 'Livello privato',
@@ -97,7 +98,7 @@ const copyByLocale = {
         eyebrow: 'Livello ecosistema',
         title: 'Invia voci utili alla piattaforma',
         description:
-          'Suggerisci servizi affidabili, luoghi, trasporto, eventi, cuccioli, adozione o opportunità di riproduzione per la community Cane Corso.',
+          'Suggerisci servizi affidabili, luoghi, trasporto, eventi, cuccioli, adozione o opportunità di riproduzione per la comunità Cane Corso.',
         meta: 'Servizi • luoghi • opportunità',
       },
       {
@@ -133,6 +134,7 @@ export default async function EcosystemPage() {
       heroNote={copy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="community" role={document.member.role} />
+      <SectionContentGuidePanel locale={locale} surface="ecosystemWorkspace" />
       <OwnerCenterWorkspace document={document} locale={locale} />
       <EcosystemOwnerWorkspace document={document.ecosystem} locale={locale} />
     </PageShell>

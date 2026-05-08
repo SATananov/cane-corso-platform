@@ -6,6 +6,7 @@ import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getPartnerDirectoryDocument } from '@/lib/partners.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
+import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -161,6 +162,7 @@ export default async function PartnersPage({ searchParams }: PartnersPageProps) 
     >
       <div className="partners-page-flow">
         <RoleAwareActionPanel locale={locale} surface="partners" role={currentSession?.user.role ?? null} />
+        <SectionContentGuidePanel locale={locale} surface="partners" />
         <PartnersServicesExperience
           locale={locale}
           totalVisible={document.total}
