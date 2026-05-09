@@ -139,7 +139,8 @@
     "step100:owner-dog-privacy:qa": "node scripts/qa-step100-owner-dog-privacy-boundary.mjs",
     "step101:usg-standard-knowledge:qa": "node scripts/qa-step101-usg-standard-knowledge-layer.mjs",
     "step102:language-purity:qa": "node scripts/qa-step102-language-purity-terminology-lock.mjs",
-    "step103:growth-measurement:qa": "node scripts/qa-step103-growth-measurement-assistant.mjs"
+    "step103:growth-measurement:qa": "node scripts/qa-step103-growth-measurement-assistant.mjs",
+    "step104:growth-archive:qa": "node scripts/qa-step104-owner-growth-measurement-archive.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

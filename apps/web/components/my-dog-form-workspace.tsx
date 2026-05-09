@@ -653,6 +653,7 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
         <div className="dog-form-guidance-stack">
           <UsgMeasurementAssistantPanel
             locale={locale}
+            dogId={activeDogId}
             dogName={values.name}
             sex={values.sex}
             dateOfBirth={values.dateOfBirth}

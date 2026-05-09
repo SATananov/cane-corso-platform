@@ -21239,3 +21239,195 @@ body {
     font-size: 1rem;
   }
 }
+
+/* Step 104 — Owner Measurement Archive */
+.measurement-input--date,
+.measurement-input--note {
+  grid-column: span 1;
+}
+
+.measurement-save-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.measurement-save-row span,
+.measurement-message {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.72);
+  font-size: 0.9rem;
+}
+
+.measurement-message {
+  margin-top: 0.8rem;
+  border-radius: 0.9rem;
+  padding: 0.75rem 0.85rem;
+}
+
+.measurement-message--success {
+  border: 1px solid rgba(96, 190, 144, 0.3);
+  background: rgba(96, 190, 144, 0.1);
+  color: rgba(218, 255, 236, 0.92);
+}
+
+.measurement-message--error {
+  border: 1px solid rgba(227, 117, 93, 0.3);
+  background: rgba(227, 117, 93, 0.1);
+  color: rgba(255, 224, 216, 0.94);
+}
+
+.measurement-archive-card {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.2rem;
+  border: 1px solid rgba(214, 173, 73, 0.18);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 1rem;
+}
+
+.measurement-archive-card h3 {
+  margin: 0.2rem 0 0;
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+}
+
+.measurement-trend-card {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  border: 1px solid rgba(214, 173, 73, 0.16);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.13);
+  padding: 0.85rem;
+}
+
+.measurement-trend-card strong {
+  color: var(--color-gold);
+}
+
+.measurement-trend-card p {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.7);
+}
+
+.measurement-trend-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.measurement-trend-grid span,
+.measurement-archive-status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(214, 173, 73, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.35rem 0.55rem;
+  color: rgba(248, 245, 239, 0.84);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.measurement-archive-table-wrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(214, 173, 73, 0.12);
+  border-radius: 1rem;
+}
+
+.measurement-archive-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.measurement-archive-table th,
+.measurement-archive-table td {
+  border-bottom: 1px solid rgba(214, 173, 73, 0.1);
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.measurement-archive-table th {
+  color: rgba(248, 245, 239, 0.58);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.measurement-archive-table td {
+  color: rgba(248, 245, 239, 0.82);
+}
+
+.measurement-archive-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.measurement-archive-status--within {
+  border-color: rgba(96, 190, 144, 0.34);
+  background: rgba(96, 190, 144, 0.12);
+  color: rgba(218, 255, 236, 0.96);
+}
+
+.measurement-archive-status--watch {
+  border-color: rgba(214, 173, 73, 0.34);
+  background: rgba(214, 173, 73, 0.12);
+  color: rgba(255, 238, 182, 0.96);
+}
+
+.measurement-archive-status--attention {
+  border-color: rgba(227, 117, 93, 0.34);
+  background: rgba(227, 117, 93, 0.12);
+  color: rgba(255, 224, 216, 0.96);
+}
+
+[data-theme='heritage'] .measurement-save-row span,
+[data-theme='heritage'] .measurement-trend-card p,
+[data-theme='heritage'] .measurement-archive-table td {
+  color: rgba(69, 49, 21, 0.78);
+}
+
+[data-theme='heritage'] .measurement-archive-card,
+[data-theme='heritage'] .measurement-trend-card,
+[data-theme='heritage'] .measurement-archive-table-wrap,
+[data-theme='heritage'] .measurement-trend-grid span,
+[data-theme='heritage'] .measurement-archive-status {
+  background: rgba(255, 255, 255, 0.66);
+  border-color: rgba(158, 123, 38, 0.18);
+}
+
+[data-theme='heritage'] .measurement-archive-card h3 {
+  color: rgba(46, 34, 18, 0.96);
+}
+
+[data-theme='heritage'] .measurement-archive-table th {
+  color: rgba(69, 49, 21, 0.56);
+}
+
+[data-theme='heritage'] .measurement-message--success {
+  color: rgba(32, 92, 63, 0.98);
+}
+
+[data-theme='heritage'] .measurement-message--error {
+  color: rgba(137, 55, 38, 0.98);
+}
+
+@media (max-width: 640px) {
+  .measurement-save-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .measurement-save-row .button-primary {
+    width: 100%;
+  }
+}

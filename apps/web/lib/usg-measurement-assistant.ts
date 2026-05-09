@@ -10,6 +10,7 @@ export interface MeasurementRange {
 export interface UsgMeasurementInput {
   sex: DogSex;
   dateOfBirth?: string | null;
+  measurementDate?: string | null;
   weightKg?: number | null;
   heightWithersCm?: number | null;
   bodyLengthCm?: number | null;
@@ -79,16 +80,19 @@ function toRange(value: readonly [number, number] | null): MeasurementRange | nu
   return value ? { low: value[0], high: value[1] } : null;
 }
 
-function calculateAgeMonths(dateOfBirth?: string | null): number | null {
+function calculateAgeMonths(dateOfBirth?: string | null, measurementDate?: string | null): number | null {
   if (!dateOfBirth) return null;
 
   const birthDate = new Date(`${dateOfBirth}T00:00:00`);
-  if (Number.isNaN(birthDate.getTime())) return null;
+  const referenceDate = measurementDate ? new Date(`${measurementDate}T00:00:00`) : new Date();
 
-  const now = new Date();
-  let months = (now.getFullYear() - birthDate.getFullYear()) * 12 + (now.getMonth() - birthDate.getMonth());
+  if (Number.isNaN(birthDate.getTime()) || Number.isNaN(referenceDate.getTime()) || referenceDate < birthDate) {
+    return null;
+  }
 
-  if (now.getDate() < birthDate.getDate()) {
+  let months = (referenceDate.getFullYear() - birthDate.getFullYear()) * 12 + (referenceDate.getMonth() - birthDate.getMonth());
+
+  if (referenceDate.getDate() < birthDate.getDate()) {
     months -= 1;
   }
 
@@ -178,7 +182,7 @@ function scoreChecks(checks: UsgMeasurementCheck[]): number {
 }
 
 export function evaluateUsgMeasurementAssistant(input: UsgMeasurementInput): UsgMeasurementResult {
-  const ageMonths = calculateAgeMonths(input.dateOfBirth);
+  const ageMonths = calculateAgeMonths(input.dateOfBirth, input.measurementDate);
   const referenceMonth = getReferenceMonth(ageMonths);
   const lifeStage = getLifeStage(ageMonths);
   const adultStandard = adultStandardBySex[input.sex];

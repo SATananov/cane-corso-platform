@@ -736,3 +736,28 @@ pnpm step103:growth-measurement:qa
 pnpm workspace:syntax
 pnpm typecheck
 ```
+
+### Step 104 — Owner Growth Measurement Archive
+
+Step 104 upgrades the USG measurement assistant into a real owner-private archive. After a Cane Corso profile is saved, the owner can add dated measurements, keep history, see a table of weight/height/body/head/muzzle records, and compare each saved entry with the same age-aware USG orientation model.
+
+What it adds:
+
+- `dog_measurement_records` Neon/Postgres table and migration;
+- member-only API route for listing, saving, and deleting measurements for the owner’s own Cane Corso;
+- client API and server validation layer;
+- private archive table inside the Cane Corso form;
+- latest movement summary between the two newest records;
+- stable age calculation by measurement date, not only by today.
+
+Scope boundary: Step 104 adds owner-private measurement persistence only. It does not change Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Auth/session mechanics, Admin moderation backend decisions, Ecosystem authority logic, or Netlify deployment configuration.
+
+Recommended local checks after applying Step 104:
+
+```bash
+pnpm step104:growth-archive:qa
+pnpm step103:growth-measurement:qa
+pnpm db:migrate
+pnpm workspace:syntax
+pnpm typecheck
+```

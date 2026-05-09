@@ -3,6 +3,7 @@ import {
   date,
   integer,
   jsonb,
+  numeric,
   pgTable,
   unique,
   text,
@@ -57,6 +58,28 @@ export const dogMedia = pgTable('dog_media', {
     .notNull()
     .references(() => profiles.id, { onDelete: 'restrict' }),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+});
+
+
+export const dogMeasurementRecords = pgTable('dog_measurement_records', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  dogId: uuid('dog_id')
+    .notNull()
+    .references(() => dogs.id, { onDelete: 'cascade' }),
+  recordedByProfileId: uuid('recorded_by_profile_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'restrict' }),
+  measuredAt: date('measured_at').notNull(),
+  ageMonths: integer('age_months'),
+  weightKg: numeric('weight_kg', { precision: 6, scale: 2 }),
+  heightWithersCm: numeric('height_withers_cm', { precision: 6, scale: 2 }),
+  bodyLengthCm: numeric('body_length_cm', { precision: 6, scale: 2 }),
+  chestCircumferenceCm: numeric('chest_circumference_cm', { precision: 6, scale: 2 }),
+  headLengthCm: numeric('head_length_cm', { precision: 6, scale: 2 }),
+  muzzleLengthCm: numeric('muzzle_length_cm', { precision: 6, scale: 2 }),
+  skullLengthCm: numeric('skull_length_cm', { precision: 6, scale: 2 }),
+  note: text('note'),
+  ...timestamps(),
 });
 
 export const dogSubmissions = pgTable('dog_submissions', {

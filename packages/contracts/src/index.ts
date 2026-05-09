@@ -20,6 +20,7 @@ export * from './dogs/dog-submission.types';
 export * from './dogs/dog-review.types';
 export * from './dogs/dog-action.types';
 export * from './dogs/dog-api.types';
+export * from './dogs/dog-measurement.types';
 export * from './dogs/dog-registry.types';
 
 export * from './partners/partner.types';

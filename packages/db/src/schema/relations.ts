@@ -3,6 +3,7 @@ import { auditLogs } from './audit';
 import {
   certificates,
   dogMedia,
+  dogMeasurementRecords,
   dogs,
   dogSubmissions,
   registryEntries,
@@ -28,6 +29,7 @@ export const profilesRelations = relations(profiles, ({ one, many }) => ({
   }),
   dogs: many(dogs),
   uploadedDogMedia: many(dogMedia),
+  dogMeasurementRecords: many(dogMeasurementRecords),
   dogSubmissions: many(dogSubmissions),
   submissionReviews: many(submissionReviews),
   partners: many(partners),
@@ -47,6 +49,7 @@ export const dogsRelations = relations(dogs, ({ one, many }) => ({
     references: [profiles.id],
   }),
   media: many(dogMedia),
+  measurementRecords: many(dogMeasurementRecords),
   submissions: many(dogSubmissions),
   registryEntry: one(registryEntries, {
     fields: [dogs.id],
@@ -62,6 +65,18 @@ export const dogMediaRelations = relations(dogMedia, ({ one }) => ({
   }),
   uploadedByProfile: one(profiles, {
     fields: [dogMedia.uploadedByProfileId],
+    references: [profiles.id],
+  }),
+}));
+
+
+export const dogMeasurementRecordsRelations = relations(dogMeasurementRecords, ({ one }) => ({
+  dog: one(dogs, {
+    fields: [dogMeasurementRecords.dogId],
+    references: [dogs.id],
+  }),
+  recordedByProfile: one(profiles, {
+    fields: [dogMeasurementRecords.recordedByProfileId],
     references: [profiles.id],
   }),
 }));

@@ -52,8 +52,8 @@ assertIncludes('Panel calls evaluator', panel, 'evaluateUsgMeasurementAssistant'
 assertIncludes('Panel has Bulgarian safety copy', panel, 'не е ветеринарна диагноза');
 assertIncludes('Panel has Italian safety copy', panel, 'Non è diagnosi veterinaria');
 assertIncludes('Panel has English safety copy', panel, 'not a veterinary diagnosis');
-assertIncludes('Panel states temporary/local behavior', panel, 'Нищо не се запазва още');
-assertIncludes('Panel keeps saved-field migration as future layer', panel, 'след миграция на базата');
+assertIncludes('Panel states private archive behavior', panel, 'Личен архив с измервания');
+assertIncludes('Panel keeps non-automatic authority boundary', panel, 'не сертифицира автоматично');
 
 const workspace = read('apps/web/components/my-dog-form-workspace.tsx');
 assertIncludes('Member dog form imports assistant panel', workspace, "@/components/usg-measurement-assistant-panel");
