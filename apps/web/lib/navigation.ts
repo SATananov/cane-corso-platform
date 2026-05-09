@@ -7,18 +7,18 @@ export interface NavItem {
   description?: string;
 }
 
-const publicNavigationLabels: Record<Locale, { gallery: string; community: string }> = {
+const publicNavigationLabels: Record<Locale, { community: string; verify: string }> = {
   en: {
-    gallery: 'Gallery',
     community: 'Community',
+    verify: 'Verify',
   },
   bg: {
-    gallery: 'Галерия',
     community: 'Общност',
+    verify: 'Проверка',
   },
   it: {
-    gallery: 'Galleria',
     community: 'Comunità',
+    verify: 'Verifica',
   },
 };
 
@@ -29,10 +29,9 @@ export function getPublicNavigation(locale: Locale): NavItem[] {
   return [
     { label: t.navigation.home, href: '/platform' },
     { label: t.navigation.registry, href: '/registry' },
-    { label: labels.gallery, href: '/gallery' },
     { label: t.navigation.knowledge, href: '/knowledge' },
-    { label: t.navigation.partners, href: '/partners' },
     { label: labels.community, href: '/community' },
+    { label: labels.verify, href: '/verify' },
   ];
 }
 
@@ -40,8 +39,8 @@ export function getMemberNavigation(locale: Locale): NavItem[] {
   const t = getDictionary(locale);
   return [
     { label: t.navigation.myDogs, href: '/my-dogs' },
-    { label: t.navigation.ecosystem, href: '/ecosystem' },
     { label: t.navigation.profile, href: '/profile' },
+    { label: t.navigation.ecosystem, href: '/ecosystem' },
   ];
 }
 

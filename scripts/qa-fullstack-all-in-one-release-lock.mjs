@@ -27,6 +27,7 @@ const requiredFiles = [
   'docs/qa/step103-usg-growth-measurement-assistant.md',
   'docs/qa/step104-owner-growth-measurement-archive.md',
   'docs/qa/step105-production-clarity-user-first.md',
+  'docs/qa/step106-full-product-structure-reset.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -41,6 +42,7 @@ const requiredFiles = [
   'scripts/qa-step103-growth-measurement-assistant.mjs',
   'scripts/qa-step104-owner-growth-measurement-archive.mjs',
   'scripts/qa-step105-production-clarity-user-first.mjs',
+  'scripts/qa-step106-full-product-structure-reset.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -66,6 +68,7 @@ const requiredPackageScripts = [
   'step103:growth-measurement:qa',
   'step104:growth-archive:qa',
   'step105:production-clarity:qa',
+  'step106:product-structure:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -98,6 +101,7 @@ const qaScripts = [
   ['Step 103 USG growth/measurement assistant', 'scripts/qa-step103-growth-measurement-assistant.mjs'],
   ['Step 104 owner growth measurement archive', 'scripts/qa-step104-owner-growth-measurement-archive.mjs'],
   ['Step 105 production clarity/user-first pass', 'scripts/qa-step105-production-clarity-user-first.mjs'],
+  ['Step 106 full product structure reset', 'scripts/qa-step106-full-product-structure-reset.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

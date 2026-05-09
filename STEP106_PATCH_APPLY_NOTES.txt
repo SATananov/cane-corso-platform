@@ -1,0 +1,17 @@
+Step 106 — Full Product Structure Reset
+
+Apply from repo root with:
+Expand-Archive -Path "$env:USERPROFILE\Desktop\ccp_step106_full_product_structure_reset_patch.zip" -DestinationPath . -Force
+
+Then run:
+pnpm step106:product-structure:qa
+pnpm step105:production-clarity:qa
+pnpm step104:growth-archive:qa
+pnpm step103:growth-measurement:qa
+pnpm release:all:qa
+pnpm workspace:syntax
+pnpm typecheck
+
+No DB migration is added in Step 106.
+This patch changes only product structure, navigation, page clarity, env examples, QA docs/scripts, and copy/CSS.
+Locked authority boundaries are preserved: Registry / Certificate / Verify / Gallery / Auth / DB authority routes.

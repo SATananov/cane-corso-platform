@@ -57,12 +57,12 @@ assertIncludes('globals.css', globals, '.role-aware-action-panel__info-link', 'i
 assertIncludes('globals.css', globals, '.role-aware-action-panel__secondary-label', 'secondary action label CSS');
 
 const memberPage = read('apps/web/app/(member)/member/page.tsx');
-assertBefore('member/page.tsx', memberPage, '<OwnerCenterWorkspace document={document} locale={locale} />', '<OwnerOnboardingFinalPanel locale={locale} surface="member" />', 'Member Center shows live owner workspace before onboarding explanation');
-assertBefore('member/page.tsx', memberPage, '<OwnerCenterWorkspace document={document} locale={locale} />', '<SectionContentGuidePanel locale={locale} surface="member" />', 'Member Center keeps section guidance after owner workspace');
+assertIncludes('member/page.tsx', memberPage, 'member-home-reset', 'Step 106 member start layout');
+assertBefore('member/page.tsx', memberPage, '<section className="member-start-grid"', '<OwnerCenterWorkspace document={document} locale={locale} />', 'Member Center shows user actions before live owner workspace');
 
 const myDogs = read('apps/web/components/my-dogs-overview.tsx');
-assertBefore('my-dogs-overview.tsx', myDogs, '<section className="route-hero-card route-hero-card--member">', '<RoleAwareActionPanel locale={locale} surface="myDogs"', 'My Dogs starts with the active section hero before routing support');
-assertBefore('my-dogs-overview.tsx', myDogs, '<RoleAwareActionPanel locale={locale} surface="myDogs"', '<SectionContentGuidePanel locale={locale} surface="myDogs" />', 'My Dogs supporting information stays after main section context');
+assertBefore('my-dogs-overview.tsx', myDogs, '<section className="route-hero-card route-hero-card--member">', '<OwnerCaneCorsoSpotlight', 'My Dogs starts with the active section hero before dog workspace');
+assertIncludes('my-dogs-overview.tsx', myDogs, 'owner-secondary-help', 'My Dogs keeps extra guidance collapsed');
 
 const profile = read('apps/web/app/(member)/profile/page.tsx');
 assertBefore('profile/page.tsx', profile, '<section className="route-hero-card route-hero-card--member profile-page__hero">', '<RoleAwareActionPanel locale={locale} surface="profile"', 'Profile starts with the active profile section before routing support');
@@ -70,9 +70,9 @@ assertBefore('profile/page.tsx', profile, '<div className="stats-grid four-up pr
 
 const publicRoutes = [
   ['apps/web/app/(public)/registry/page.tsx', '<PublicRegistryOverview', '<SectionContentGuidePanel locale={locale} surface="registry" />', 'Registry list/content appears before supporting guide'],
-  ['apps/web/app/(public)/community/page.tsx', '<EcosystemDirectory document={document}', '<SectionContentGuidePanel locale={locale} surface="community" />', 'Community intent directory appears before supporting guide'],
+  ['apps/web/app/(public)/community/page.tsx', '<EcosystemDirectory document={document}', 'community-secondary-details', 'Community intent directory appears before secondary orientation'],
   ['apps/web/app/(public)/partners/page.tsx', '<PartnerDirectoryOverview document={document}', '<SectionContentGuidePanel locale={locale} surface="partners" />', 'Partners directory appears before supporting guide'],
-  ['apps/web/app/(public)/knowledge/page.tsx', '<KnowledgeCenter copy={copy}', '<SectionContentGuidePanel locale={locale} surface="knowledge" />', 'Knowledge content appears before supporting guide'],
+  ['apps/web/app/(public)/knowledge/page.tsx', '<KnowledgeCenter copy={copy}', '</PageShell>', 'Knowledge content remains the page focus'],
   ['apps/web/app/(public)/faq/page.tsx', '<section className="content-card platform-faq-priority"', '<SectionContentGuidePanel locale={locale} surface="faq" />', 'FAQ answers appear before supporting guide'],
 ];
 

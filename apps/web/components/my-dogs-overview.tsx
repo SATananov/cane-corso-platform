@@ -6,7 +6,6 @@ import { EmptyStatePanel } from '@/components/empty-state-panel';
 import { OwnerCaneCorsoSpotlight } from '@/components/owner-cane-corso-spotlight';
 import { OwnerPhotoGuidePanel } from '@/components/owner-photo-guide-panel';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
-import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
@@ -14,7 +13,6 @@ import { canAccessAdminArea } from '@/lib/access-control';
 import { getCurrentMemberDogMediaDocument } from '@/lib/my-dog-media.server';
 import { getPublishedRegistryProfileDocument } from '@/lib/registry.server';
 import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigree';
-import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 import { UsgOwnerPhotoChecklistPanel } from '@/components/usg-standard-knowledge-panel';
 
 interface MyDogsOverviewProps {
@@ -196,9 +194,6 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
         </div>
       </section>
 
-      <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
-
-      <UsgOwnerPhotoChecklistPanel locale={locale} />
 
       <div className="stats-grid five-up">
         <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />
@@ -327,7 +322,10 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
           </aside>
         </div>
       )}
-      <SectionContentGuidePanel locale={locale} surface="myDogs" />
+      <details className="owner-secondary-help">
+        <summary>{locale === 'bg' ? 'Снимки и насоки за преглед' : locale === 'it' ? 'Foto e guida per revisione' : 'Photos and review guidance'}</summary>
+        <UsgOwnerPhotoChecklistPanel locale={locale} />
+      </details>
     </div>
   );
 }

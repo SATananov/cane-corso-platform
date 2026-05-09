@@ -1,118 +1,55 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { PageShell } from '@/components/page-shell';
 import { OwnerCenterWorkspace } from '@/components/owner-center-workspace';
-import { OwnerOnboardingFinalPanel } from '@/components/owner-onboarding-final-panel';
-import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { buildAccessPath } from '@/lib/access-control';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
 import { SessionUnavailableError } from '@/lib/session.server';
-import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 
 export const dynamic = 'force-dynamic';
 
 const copyByLocale = {
   en: {
-    eyebrow: 'Member Command Center',
-    title: 'Your Cane Corso center: action, status, and next step',
-    description:
-      'Start with what needs action: add a profile, finish a draft, check review status, or continue to your owner workspace.',
-    accentLabel: 'USG member command center',
-    helpLabel: 'Owner guide',
-    heroChips: ['Private owner workspace', 'Review status clarity', 'Public trust readiness'],
-    heroNote:
-      'Use this page as your personal starting point. Public Registry, Certificate, Verify, Gallery, and Admin decisions remain protected approval layers.',
-    cards: [
-      {
-        eyebrow: 'My Cane Corso',
-        title: 'Manage private profiles and readiness',
-        description: 'Open My Dogs when you need to edit profile data, media, pedigree, and preparation quality.',
-        href: '/my-dogs',
-        meta: 'Private preparation',
-      },
-      {
-        eyebrow: 'Review path',
-        title: 'Understand what happens before public trust',
-        description: 'Review, publication, registry visibility, certificate trust, and gallery selection remain separate steps.',
-        href: '/guide?topic=member-workspace#member-workspace',
-        meta: 'Guide and status logic',
-      },
-      {
-        eyebrow: 'Ecosystem',
-        title: 'Track places, services, and community entries',
-        description: 'Use the ecosystem workspace for trusted Cane Corso services, places, transport, events, and opportunities.',
-        href: '/ecosystem',
-        meta: 'Reviewed submissions',
-      },
+    eyebrow: 'Private start',
+    title: 'What do you want to do now?',
+    description: 'This is your working area. Start with your Cane Corso profile, owner data, requests, or the knowledge you need.',
+    primary: { href: '/my-dogs', label: 'Open My Cane Corso', meta: 'profiles, photos, measurements, status' },
+    secondary: [
+      { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'new private profile' },
+      { href: '/profile', label: 'Owner profile', meta: 'your details' },
+      { href: '/ecosystem', label: 'My requests', meta: 'community and services' },
+      { href: '/knowledge', label: 'Learn first', meta: 'standard, care, USG' },
     ],
+    statusTitle: 'Current status',
+    statusText: 'Below you see real next actions from your account. Long explanations are kept in Knowledge and FAQ.',
   },
   bg: {
-    eyebrow: 'Команден център на члена',
-    title: 'Твоят Cane Corso център: действие, статус и следваща стъпка',
-    description:
-      'Започни от това, което има смисъл сега: добави профил, довърши чернова, провери статус или продължи в личната зона.',
-    accentLabel: 'USG команден център на члена',
-    helpLabel: 'Наръчник за собственика',
-    heroChips: ['Лична зона на собственика', 'Ясен статус на прегледа', 'Готовност за публично доверие'],
-    heroNote:
-      'Използвай тази страница като личен старт. Публичният Регистър, Сертификатът, Проверка, Галерия и админ решенията остават защитени слоеве за одобрение.',
-    cards: [
-      {
-        eyebrow: 'Моите Cane Corso',
-        title: 'Управлявай личните профили и готовността',
-        description: 'Отвори „Моите Cane Corso“, когато трябва да редактираш данни, снимки, родословие и качеството на подготовката.',
-        href: '/my-dogs',
-        meta: 'Лична подготовка',
-      },
-      {
-        eyebrow: 'Път на прегледа',
-        title: 'Разбери какво се случва преди публичното доверие',
-        description: 'Прегледът, публикацията, регистърът, сертификатът и галерията остават отделни стъпки.',
-        href: '/guide?topic=member-workspace#member-workspace',
-        meta: 'Наръчник и статус логика',
-      },
-      {
-        eyebrow: 'Екосистема',
-        title: 'Следи места, услуги и общностни записи',
-        description: 'Използвай екосистемната зона за доверени Cane Corso услуги, места, транспорт, събития и възможности.',
-        href: '/ecosystem',
-        meta: 'Прегледани заявки',
-      },
+    eyebrow: 'Личен старт',
+    title: 'Какво искаш да направиш сега?',
+    description: 'Това е работната ти зона. Започни от профила на твоето Cane Corso, данните за собственика, заявките или нужната информация.',
+    primary: { href: '/my-dogs', label: 'Към моето Cane Corso', meta: 'профили, снимки, измервания, статус' },
+    secondary: [
+      { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'нов личен профил' },
+      { href: '/profile', label: 'Профил на собственика', meta: 'твоите данни' },
+      { href: '/ecosystem', label: 'Моите заявки', meta: 'общност и услуги' },
+      { href: '/knowledge', label: 'Научи първо', meta: 'стандарт, грижа, USG' },
     ],
+    statusTitle: 'Текущ статус',
+    statusText: 'По-долу виждаш реалните следващи действия от твоя акаунт. Дългите обяснения са в Знания и Помощ.',
   },
   it: {
-    eyebrow: 'Centro comando membro',
-    title: 'Il tuo centro Cane Corso: azione, stato e prossimo passo',
-    description:
-      'Inizia da ciò che serve ora: aggiungi un profilo, completa una bozza, controlla lo stato o continua nello spazio del proprietario.',
-    accentLabel: 'Centro comando membro USG',
-    helpLabel: 'Guida proprietario',
-    heroChips: ['Spazio privato del proprietario', 'Chiarezza dello stato di revisione', 'Prontezza fiducia pubblica'],
-    heroNote:
-      'Usa questa pagina come punto di partenza personale. Registro pubblico, Certificato, Verifica, Galleria e decisioni amministrative restano livelli protetti.',
-    cards: [
-      {
-        eyebrow: 'I miei Cane Corso',
-        title: 'Gestisci profili privati e prontezza',
-        description: 'Apri I miei Cane Corso quando devi modificare dati, foto, pedigree e qualità della preparazione.',
-        href: '/my-dogs',
-        meta: 'Preparazione privata',
-      },
-      {
-        eyebrow: 'Percorso revisione',
-        title: 'Capisci cosa avviene prima della fiducia pubblica',
-        description: 'Revisione, pubblicazione, registro, certificato e galleria restano passaggi separati.',
-        href: '/guide?topic=member-workspace#member-workspace',
-        meta: 'Guida e logica dello stato',
-      },
-      {
-        eyebrow: 'Ecosistema',
-        title: 'Segui luoghi, servizi e voci della comunità',
-        description: 'Usa il spazio ecosistema per servizi, luoghi, trasporto, eventi e opportunità Cane Corso affidabili.',
-        href: '/ecosystem',
-        meta: 'Richieste revisionate',
-      },
+    eyebrow: 'Start privato',
+    title: 'Cosa vuoi fare adesso?',
+    description: 'Questa è la tua area di lavoro. Inizia dal profilo del tuo Cane Corso, dai dati proprietario, dalle richieste o dalle informazioni utili.',
+    primary: { href: '/my-dogs', label: 'Vai al mio Cane Corso', meta: 'profili, foto, misure, stato' },
+    secondary: [
+      { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'nuovo profilo privato' },
+      { href: '/profile', label: 'Profilo proprietario', meta: 'i tuoi dati' },
+      { href: '/ecosystem', label: 'Le mie richieste', meta: 'comunità e servizi' },
+      { href: '/knowledge', label: 'Prima informati', meta: 'standard, cura, USG' },
     ],
+    statusTitle: 'Stato attuale',
+    statusText: 'Sotto trovi le prossime azioni reali del tuo account. Le spiegazioni lunghe restano in Conoscenze e Aiuto.',
   },
 } as const;
 
@@ -123,21 +60,37 @@ export default async function MemberCommandCenterPage() {
     const copy = copyByLocale[locale] ?? copyByLocale.en;
 
     return (
-      <PageShell
-        eyebrow={copy.eyebrow}
-        title={copy.title}
-        description={copy.description}
-        accentLabel={copy.accentLabel}
-        helpHref="/guide?topic=member-workspace#member-workspace"
-        helpLabel={copy.helpLabel}
-        heroChips={copy.heroChips}
-        heroNote={copy.heroNote}
-      >
-        <RoleAwareActionPanel locale={locale} surface="member" role={document.member.role} />
+      <main className="member-route-stack member-home-reset">
+        <section className="route-hero-card route-hero-card--member route-hero-card--user-first">
+          <div>
+            <span className="eyebrow-label">{copy.eyebrow}</span>
+            <h1 className="route-title">{copy.title}</h1>
+            <p className="route-copy">{copy.description}</p>
+          </div>
+          <div className="route-hero-actions route-hero-actions--vertical">
+            <Link href={copy.primary.href} className="button-primary">
+              {copy.primary.label}
+              <small>{copy.primary.meta}</small>
+            </Link>
+          </div>
+        </section>
+
+        <section className="member-start-grid" aria-label={copy.title}>
+          {copy.secondary.map((item) => (
+            <Link href={item.href} className="member-start-card" key={item.href}>
+              <strong>{item.label}</strong>
+              <span>{item.meta}</span>
+            </Link>
+          ))}
+        </section>
+
+        <section className="content-card member-status-card">
+          <span className="eyebrow-label">{copy.statusTitle}</span>
+          <p>{copy.statusText}</p>
+        </section>
+
         <OwnerCenterWorkspace document={document} locale={locale} />
-        <OwnerOnboardingFinalPanel locale={locale} surface="member" />
-        <SectionContentGuidePanel locale={locale} surface="member" />
-      </PageShell>
+      </main>
     );
   } catch (error) {
     if (error instanceof SessionUnavailableError) {

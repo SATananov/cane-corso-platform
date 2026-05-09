@@ -33,6 +33,15 @@ function resolveHeaderIdentityName(currentSession: Awaited<ReturnType<typeof get
   return emailAlias || null;
 }
 
+type HeaderWorkspaceLink = {
+  href: string;
+  label: string;
+  accent?: boolean;
+  quiet?: boolean;
+  soft?: boolean;
+  tone?: 'workspace' | 'account' | 'support';
+};
+
 function resolveHeaderIdentityStatement(locale: Locale, statement: string, brandEyebrow: string) {
   if (locale === 'it') {
     return brandEyebrow;
@@ -51,20 +60,20 @@ export async function SiteHeader() {
   const identityStatement = resolveHeaderIdentityStatement(locale, t.site.brandStatement, t.site.brandEyebrow);
   const primaryNavigationLabel = locale === 'bg' ? 'Основна навигация' : locale === 'it' ? 'Navigazione principale' : 'Primary navigation';
   const workspaceControlsLabel = locale === 'bg' ? 'Контроли на профила' : locale === 'it' ? 'Controlli area personale' : 'Workspace controls';
-  const memberCenterLabel = locale === 'bg' ? 'Център' : locale === 'it' ? 'Centro' : 'Center';
+  const memberCenterLabel = locale === 'bg' ? 'Старт' : locale === 'it' ? 'Start' : 'Start';
+  const memberRequestsLabel = locale === 'bg' ? 'Заявки' : locale === 'it' ? 'Richieste' : 'Requests';
 
-  const workspaceLinks = currentSession
+  const workspaceLinks: HeaderWorkspaceLink[] = currentSession
     ? [
-        { href: '/member', label: memberCenterLabel, accent: true, tone: 'workspace' },
-        { href: '/my-dogs', label: t.navigation.myDogs, tone: 'workspace' },
-        { href: '/profile', label: t.navigation.profile, tone: 'account' },
-        { href: '/guide', label: t.common.help, quiet: true, tone: 'support' },
+        { href: '/my-dogs', label: t.navigation.myDogs, accent: true, tone: 'workspace' },
+        { href: '/member', label: memberCenterLabel, tone: 'workspace' },
+        { href: '/ecosystem', label: memberRequestsLabel, tone: 'workspace' },
+        { href: '/profile', label: t.navigation.profile, quiet: true, tone: 'account' },
       ]
     : [
         { href: '/access?intent=member', label: t.common.signIn, soft: true, tone: 'support' },
         { href: '/access?intent=member', label: t.common.joinMember, accent: true, tone: 'workspace' },
-        { href: '/access?intent=partner', label: t.common.joinPartner, tone: 'workspace' },
-        { href: '/guide', label: t.common.help, quiet: true, tone: 'support' },
+        { href: '/knowledge', label: t.navigation.knowledge, quiet: true, tone: 'support' },
       ];
 
   return (
