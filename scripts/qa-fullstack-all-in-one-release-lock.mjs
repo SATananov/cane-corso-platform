@@ -24,6 +24,7 @@ const requiredFiles = [
   'docs/qa/step100-owner-dog-privacy-boundary.md',
   'docs/qa/step101-usg-standard-knowledge-layer.md',
   'docs/qa/step102-language-purity-terminology-lock.md',
+  'docs/qa/step103-usg-growth-measurement-assistant.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -35,6 +36,7 @@ const requiredFiles = [
   'scripts/qa-step100-owner-dog-privacy-boundary.mjs',
   'scripts/qa-step101-usg-standard-knowledge-layer.mjs',
   'scripts/qa-step102-language-purity-terminology-lock.mjs',
+  'scripts/qa-step103-growth-measurement-assistant.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -57,6 +59,7 @@ const requiredPackageScripts = [
   'step100:owner-dog-privacy:qa',
   'step101:usg-standard-knowledge:qa',
   'step102:language-purity:qa',
+  'step103:growth-measurement:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -86,6 +89,7 @@ const qaScripts = [
   ['Step 100 owner/dog privacy boundary', 'scripts/qa-step100-owner-dog-privacy-boundary.mjs'],
   ['Step 101 USG standard knowledge layer', 'scripts/qa-step101-usg-standard-knowledge-layer.mjs'],
   ['Step 102 language purity/terminology lock', 'scripts/qa-step102-language-purity-terminology-lock.mjs'],
+  ['Step 103 USG growth/measurement assistant', 'scripts/qa-step103-growth-measurement-assistant.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

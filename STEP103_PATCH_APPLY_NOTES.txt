@@ -1,0 +1,20 @@
+Step 103 — USG Growth & Measurement Assistant PATCH
+
+Apply on top of Step 102 clean/local verified project.
+
+PowerShell from project root:
+Expand-Archive -Path "$env:USERPROFILE\Desktop\ccp_step103_usg_growth_measurement_assistant_patch.zip" -DestinationPath . -Force
+
+git status --short
+pnpm step103:growth-measurement:qa
+pnpm workspace:syntax
+pnpm typecheck
+
+Patch contents:
+- Adds USG measurement helper and owner UI panel.
+- Integrates the panel into the Cane Corso add/edit form workspace.
+- Adds BG/EN/IT educational copy and CSS.
+- Adds Step 103 QA/doc/package script and release QA registration.
+
+Safety boundary:
+No DB migration. No Registry/Certificate/Verify/Gallery/Auth/Ecosystem authority logic changes intended.

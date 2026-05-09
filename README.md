@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 102 — Language Purity & Terminology Lock**.
+This repository is currently aligned with **Step 103 — USG Growth & Measurement Assistant**.
 
 Recent locked product state:
 
@@ -28,6 +28,7 @@ Recent locked product state:
 - **Step 100:** Owner and Cane Corso privacy boundary: owner profile means the human owner, My Dogs means the Cane Corso records, owner/admin can see the full data, and public Registry shows only the approved safe public core.
 - **Step 101:** USG standard knowledge layer: Knowledge now includes a branded USG guide for structure, proportions, photo preparation, and official-reading boundaries, with direct helper shortcuts from My Dogs, Review, and FAQ.
 - **Step 102:** Language purity and terminology lock: visible UI text should follow the active locale, while brand/domain terms like USG, Cane Corso, FCI, ENCI, AKC, CCAA, Neon, and Netlify remain original.
+- **Step 103:** USG growth and measurement assistant: the member Cane Corso form now has a safe local helper for age-aware growth orientation, key measurements, and core proportions without changing database schema or authority flows.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -49,7 +50,7 @@ Legacy patch notes are archived under `docs/archive/package-notes/`. They are pr
 ### Member surfaces
 
 - **Profile** — member identity and owner profile data.
-- **My Dogs** — create and manage Cane Corso profiles, photos, pedigree data, submission readiness, and quick access to the USG photo-preparation guide.
+- **My Dogs** — create and manage Cane Corso profiles, photos, pedigree data, submission readiness, the USG measurement assistant, and quick access to the USG photo-preparation guide.
 - **Member Ecosystem Workspace** — submit community listings and offers through moderated flows.
 - **Partner Application** — request partner/service visibility through admin review.
 
@@ -714,3 +715,24 @@ Bulgarian UI should prefer `Знания`, `Регистър`, `Галерия`,
 Scope boundary: Step 102 is a copy, docs, and QA guardrail pass only. It does not change Neon schema/migrations, Auth/session, Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend logic, Ecosystem authority logic, or Netlify deployment configuration.
 
 QA: `pnpm step102:language-purity:qa`, `pnpm step101:usg-standard-knowledge:qa`, `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+### Step 103 — USG Growth & Measurement Assistant
+
+Step 103 converts the Cane Corso notebook experiments into a safe platform function. The member Cane Corso form now includes a USG measurement assistant where the owner can enter temporary measurements and immediately see age-aware growth orientation and core proportion checks.
+
+What it adds:
+
+- deterministic helper for age, growth, weight, height, body length, chest, head, and muzzle/skull orientation;
+- USG-styled client panel in the owner Cane Corso form;
+- BG/EN/IT copy with clear safety boundaries;
+- QA guardrail and documentation for the new layer.
+
+Scope boundary: Step 103 does not save these measurement values yet and does not add Neon schema/migration changes. It does not change Auth/session, Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend logic, Ecosystem authority logic, or Netlify deployment configuration.
+
+Recommended local checks after applying Step 103:
+
+```bash
+pnpm step103:growth-measurement:qa
+pnpm workspace:syntax
+pnpm typecheck
+```

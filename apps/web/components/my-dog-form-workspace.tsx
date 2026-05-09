@@ -26,6 +26,7 @@ import { ApiRequestError } from '@/lib/api/fetcher';
 import { useLocale } from '@/components/locale-provider';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
 import { OwnerSubmissionHappyPathPanel } from '@/components/owner-submission-happy-path-panel';
+import { UsgMeasurementAssistantPanel } from '@/components/usg-measurement-assistant-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 interface MyDogFormWorkspaceProps {
@@ -650,6 +651,14 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
         />
 
         <div className="dog-form-guidance-stack">
+          <UsgMeasurementAssistantPanel
+            locale={locale}
+            dogName={values.name}
+            sex={values.sex}
+            dateOfBirth={values.dateOfBirth}
+            color={values.color}
+          />
+
           <OwnerReviewReadinessPanel
             locale={locale}
             context="form"
