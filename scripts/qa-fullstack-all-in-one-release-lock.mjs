@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
@@ -82,14 +82,16 @@ function walk(dir, results = []) {
     const full = path.join(dir, entry);
     const rel = path.relative(root, full).replaceAll(path.sep, '/');
     const st = statSync(full);
-    if (st.isDirectory()) walk(full, results);
-    else results.push(rel);
+    if (st.isDirectory()) {
+      const skippedDirs = new Set(['node_modules', '.next', '.turbo', '.expo', '.git', 'dist', 'build', 'coverage']);
+      if (!skippedDirs.has(entry)) walk(full, results);
+    } else results.push(rel);
   }
   return results;
 }
 
 console.log('\n========================================');
-console.log('Cane Corso Platform — Full-Stack All-in-One Release Lock QA');
+console.log('Cane Corso Platform вЂ” Full-Stack All-in-One Release Lock QA');
 console.log('========================================\n');
 
 for (const file of requiredFiles) assertFile(file);
@@ -100,7 +102,25 @@ for (const scriptName of requiredPackageScripts) {
   else pass(`Package script exists: ${scriptName}`);
 }
 
-const files = walk(root);
+function collectProjectFiles() {
+  const git = spawnSync('git', ['ls-files'], {
+    cwd: root,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+
+  if (git.status === 0 && git.stdout.trim()) {
+    return git.stdout
+      .split(/\r?\n/)
+      .map((file) => file.trim())
+      .filter(Boolean)
+      .map((file) => file.replaceAll('\\', '/'));
+  }
+
+  return walk(root);
+}
+
+const files = collectProjectFiles();
 const forbiddenPatterns = [
   /(^|\/)node_modules\//,
   /(^|\/)\.next\//,
@@ -156,3 +176,4 @@ console.log('\nNext local commands:');
 console.log('  pnpm workspace:verify');
 console.log('  pnpm workspace:syntax');
 console.log('  pnpm typecheck');
+
