@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 96 — README Visual Architecture & Neon Database Schema**.
+This repository is currently aligned with **Step 97 — Product Presentation & Browser Smoke Evidence**.
 
 Recent locked product state:
 
@@ -22,6 +22,7 @@ Recent locked product state:
 - **Step 94.3:** Content completeness cleanup and intent balance across current platform surfaces.
 - **Step 95:** Repository root cleanup, README checkpoint refresh, accidental nested patch artifact removal, and final release QA gate repair for the current Neon/Netlify state.
 - **Step 96:** README visual architecture overview and simplified Neon database schema using Mermaid diagrams for clearer project handoff.
+- **Step 97:** Product presentation and browser smoke evidence layer: route-by-route guest/member/admin review checklist, evidence capture format, and demo narrative for project handoff.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -399,6 +400,7 @@ Common verification commands:
 
 ```powershell
 pnpm step95:repo-hygiene:qa
+pnpm step97:browser-smoke:evidence:qa
 pnpm docs:readme:qa
 pnpm platform:content-completeness:qa
 pnpm platform:bg-it-language:qa
@@ -479,6 +481,83 @@ Admin:
 - `/admin/ecosystem` shows moderation and match request queues.
 - Admin can review and decide on match requests.
 
+
+## Product presentation and browser smoke evidence
+
+Step 97 makes the project handoff presentation-ready. It does not replace real browser testing, and it does not claim screenshots are already captured. Instead, it defines the exact route map, evidence format, and demo narrative that should be used when reviewing the deployed Netlify site or a local production-like build.
+
+### Presentation narrative
+
+The recommended demo story is:
+
+1. **Public trust layer:** open the public surfaces and show how a visitor understands the platform, Registry, Gallery, Knowledge, FAQ, Partners, and Community without needing internal explanations.
+2. **Member journey:** sign in as a member and show the intent-first path from profile to Cane Corso profile creation, submission readiness, and moderated community requests.
+3. **Admin authority:** sign in as an admin and show that review, Registry, partners, ecosystem moderation, and knowledge administration are separated from public/member access.
+4. **Verification layer:** show that Registry, Certificate, Verify, Gallery, and Community remain separate trust surfaces with their own authority boundaries.
+5. **Runtime proof:** open `/api/health/db` and confirm the expected Neon database target before treating a browser review as production-valid.
+
+### Guest/public smoke routes
+
+| Route | What must be visible | Evidence to capture |
+| --- | --- | --- |
+| `/` | Premium platform entry and clear navigation into the ecosystem | Screenshot of first fold and header |
+| `/platform` | Public explanation of the platform purpose and USG trust direction | Screenshot of platform overview |
+| `/registry` | Published Cane Corso registry orientation before helper content | Screenshot of registry list/empty state |
+| `/registry/[published-slug]` | Public dog profile detail when published data exists | Screenshot of dog identity/trust block |
+| `/gallery` | Curated visual showcase distinct from Registry | Screenshot of gallery hero/list |
+| `/knowledge` | Complete Cane Corso education surface, not placeholder copy | Screenshot of article/category overview |
+| `/faq` | Platform-wide clarity center with trust and source guidance | Screenshot of FAQ trust section |
+| `/community` | “Cane Corso търси:” intent hub and moderated community model | Screenshot of intent cards and sensitive listing behavior |
+| `/partners` | Services/partners discovery with moderated trust framing | Screenshot of partners/service overview |
+| `/access` | Clear sign-in/sign-up entry without confusing public explanation | Screenshot of access form |
+| `/verify` | Certificate lookup is primary and understandable | Screenshot of verify lookup panel |
+| `/api/health/db` | Runtime DB target reports expected Neon database | JSON capture showing `activeDatabase` and `status` |
+
+### Member smoke routes
+
+| Route | What must be visible | Evidence to capture |
+| --- | --- | --- |
+| `/member` | Owner command center / intent-first next actions | Screenshot after member login |
+| `/profile` | Member identity and profile photo/profile data area | Screenshot of profile surface |
+| `/my-dogs` | Owner dog profiles and clear next action | Screenshot of dog list or empty state |
+| `/my-dogs/new` | Form-first Cane Corso profile creation with guidance | Screenshot of main form area |
+| `/community` | Member-friendly path to submit or offer help through moderation | Screenshot of member-visible community action |
+| `/partners/apply` | Partner application path remains separate from public partner list | Screenshot of application surface |
+
+### Admin smoke routes
+
+| Route | What must be visible | Evidence to capture |
+| --- | --- | --- |
+| `/review` | Review queue and decision authority before helper panels | Screenshot of review queue/control area |
+| `/admin/registry` | Registry evidence/admin controls without changing public trust rules | Screenshot of admin registry overview |
+| `/admin/partners` | Partner review/publishing controls | Screenshot of partner admin surface |
+| `/admin/ecosystem` | Ecosystem moderation and admin-mediated match request queues | Screenshot of moderation queues |
+| `/admin/knowledge` | Knowledge/admin content foundation with appropriate authority framing | Screenshot of admin knowledge overview |
+
+### Evidence capture format
+
+When doing manual browser review, store screenshots or notes outside the clean ZIP unless they are intentionally added as documentation. Recommended local folder:
+
+```txt
+docs/qa/evidence/step97-browser-smoke/
+  01-public-home.png
+  02-public-registry.png
+  03-public-community.png
+  04-member-center.png
+  05-member-my-dogs.png
+  06-admin-review.png
+  07-admin-ecosystem.png
+  08-runtime-db-health.txt
+```
+
+A browser smoke review is considered presentable when the reviewer can answer:
+
+- What does a guest see and understand first?
+- What does a member do next after login?
+- What can only an admin decide?
+- Which surfaces are public trust surfaces and which are moderated workflows?
+- Which Neon database is the runtime connected to?
+
 ## Development principles
 
 - Prefer intent-first UX: show the thing the user came for before explanatory panels.
@@ -491,7 +570,7 @@ Admin:
 
 ## Current continuation point
 
-Use the latest clean checkpoint created after **Step 96 — README Visual Architecture & Neon Database Schema** as the stable continuation point. It preserves the Step 91–94.3 product behavior, keeps Step 95 repository hygiene/release gate repairs, and adds README-level visual architecture and Neon schema documentation.
+Use the latest clean checkpoint created after **Step 97 — Product Presentation & Browser Smoke Evidence** as the stable continuation point. It preserves the Step 91–94.3 product behavior, keeps Step 95 repository hygiene/release gate repairs, keeps Step 96 visual architecture/Neon schema documentation, and adds a route-by-route product presentation and browser smoke evidence layer.
 
 ## Step 94 — Platform-wide Role-aware Action UX
 
@@ -523,3 +602,10 @@ Scope boundary: Step 95 does not change Registry, Certificate, Verify, Gallery, 
 Step 96 makes the canonical README more presentation-ready by adding Mermaid-based visual diagrams for the full-stack architecture, runtime responsibility map, simplified Neon database relationships, and core member-to-admin-to-public data flow.
 
 Scope boundary: Step 96 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member product UI behavior.
+
+
+### Step 97 — Product Presentation & Browser Smoke Evidence
+
+Step 97 makes the repository easier to present and review by adding a route-by-route browser smoke evidence layer for public, member, admin, trust, and runtime database surfaces. It defines what should be visible on each route, what evidence should be captured, and how the project should be demoed as a real full-stack Next.js product rather than only a code package.
+
+Scope boundary: Step 97 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member/admin product UI behavior. Actual screenshots remain a manual/browser task after local or Netlify deployment.

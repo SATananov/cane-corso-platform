@@ -18,9 +18,11 @@ const requiredFiles = [
   'docs/qa/final-fullstack-nextjs-product-release-lock.md',
   'docs/qa/step95-repository-hygiene-release-gate.md',
   'docs/qa/step96-readme-visual-architecture-neon-schema.md',
+  'docs/qa/step97-product-presentation-browser-smoke-evidence.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
   'scripts/qa-step95-repository-hygiene-release-gate.mjs',
   'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs',
+  'scripts/qa-step97-product-presentation-browser-smoke-evidence.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -37,6 +39,7 @@ const requiredPackageScripts = [
   'docs:readme:qa',
   'step95:repo-hygiene:qa',
   'step96:readme-visuals:qa',
+  'step97:browser-smoke:evidence:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -60,6 +63,7 @@ const qaScripts = [
   ['Canonical README/project docs', 'scripts/qa-canonical-readme-project-docs.mjs'],
   ['Step 95 repository hygiene/release gate', 'scripts/qa-step95-repository-hygiene-release-gate.mjs'],
   ['Step 96 README visual architecture/Neon schema', 'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs'],
+  ['Step 97 product presentation/browser smoke evidence', 'scripts/qa-step97-product-presentation-browser-smoke-evidence.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],
