@@ -137,7 +137,8 @@
     "step98:real-browser:evidence:qa": "node scripts/qa-step98-real-browser-evidence-capture.mjs",
     "step99:active-section-routing:qa": "node scripts/qa-step99-platform-active-section-intent-routing.mjs",
     "step100:owner-dog-privacy:qa": "node scripts/qa-step100-owner-dog-privacy-boundary.mjs",
-    "step101:usg-standard-knowledge:qa": "node scripts/qa-step101-usg-standard-knowledge-layer.mjs"
+    "step101:usg-standard-knowledge:qa": "node scripts/qa-step101-usg-standard-knowledge-layer.mjs",
+    "step102:language-purity:qa": "node scripts/qa-step102-language-purity-terminology-lock.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

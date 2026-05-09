@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 101 — USG Standard Knowledge Layer**.
+This repository is currently aligned with **Step 102 — Language Purity & Terminology Lock**.
 
 Recent locked product state:
 
@@ -27,6 +27,7 @@ Recent locked product state:
 - **Step 99:** Platform-wide active section priority and intent routing: every major section now shows the active section, the primary action, and the correct information/help path with main content before supporting explanations.
 - **Step 100:** Owner and Cane Corso privacy boundary: owner profile means the human owner, My Dogs means the Cane Corso records, owner/admin can see the full data, and public Registry shows only the approved safe public core.
 - **Step 101:** USG standard knowledge layer: Knowledge now includes a branded USG guide for structure, proportions, photo preparation, and official-reading boundaries, with direct helper shortcuts from My Dogs, Review, and FAQ.
+- **Step 102:** Language purity and terminology lock: visible UI text should follow the active locale, while brand/domain terms like USG, Cane Corso, FCI, ENCI, AKC, CCAA, Neon, and Netlify remain original.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -615,6 +616,7 @@ Step 98 is evidence workflow documentation only. It does not change application 
 
 - Prefer intent-first UX: show the thing the user came for before explanatory panels.
 - Keep public copy polished, localized, and non-technical.
+- Visible UI text should follow the active locale; do not mix BG/EN/IT product terms unless the term is a brand, breed, organization, or technology name.
 - Keep sensitive contacts private until admin mediation.
 - Do not mix Registry, Certificate, Verify, Gallery, and Community authority layers.
 - Do not expose secrets in chat, commits, screenshots, or ZIPs.
@@ -701,3 +703,14 @@ The same thinking now reaches the working flows too: **My Dogs** includes a dire
 Scope boundary: Step 101 is a content, presentation, and clarity pass only. It does not change Neon schema/migrations, Auth/session, Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend logic, Ecosystem authority logic, or Netlify deployment configuration.
 
 QA: `pnpm step101:usg-standard-knowledge:qa`, `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+
+### Step 102 — Language Purity & Terminology Lock
+
+Step 102 locks the visible-language rule for the platform: user-facing UI copy should follow the active locale, while brand, breed, organization, and technology terms remain original when appropriate. The first protected pass focuses on the newest high-risk surfaces: the Step 101 USG standard guide, the shared role-aware action panel, and the shared section guide panel.
+
+Bulgarian UI should prefer `Знания`, `Регистър`, `Галерия`, `Проверка`, `Преглед`, `Моите Cane Corso`, `Собственик`, `Публичен`, and `Насоки / Наръчник` instead of mixed English product terms such as Knowledge, Registry, Gallery, Verify, Review, My Dogs, Owner, Public, and Guide.
+
+Scope boundary: Step 102 is a copy, docs, and QA guardrail pass only. It does not change Neon schema/migrations, Auth/session, Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend logic, Ecosystem authority logic, or Netlify deployment configuration.
+
+QA: `pnpm step102:language-purity:qa`, `pnpm step101:usg-standard-knowledge:qa`, `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
