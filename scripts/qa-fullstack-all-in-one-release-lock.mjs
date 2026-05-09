@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
@@ -17,8 +17,10 @@ const requiredFiles = [
   'docs/release/fullstack-nextjs-product-release-final-lock.md',
   'docs/qa/final-fullstack-nextjs-product-release-lock.md',
   'docs/qa/step95-repository-hygiene-release-gate.md',
+  'docs/qa/step96-readme-visual-architecture-neon-schema.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
   'scripts/qa-step95-repository-hygiene-release-gate.mjs',
+  'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -34,6 +36,7 @@ const requiredPackageScripts = [
   'submission:qna:qa',
   'docs:readme:qa',
   'step95:repo-hygiene:qa',
+  'step96:readme-visuals:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -56,6 +59,7 @@ const qaScripts = [
   ['Submission Q&A package', 'scripts/qa-submission-qna-package.mjs'],
   ['Canonical README/project docs', 'scripts/qa-canonical-readme-project-docs.mjs'],
   ['Step 95 repository hygiene/release gate', 'scripts/qa-step95-repository-hygiene-release-gate.mjs'],
+  ['Step 96 README visual architecture/Neon schema', 'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],
@@ -78,28 +82,16 @@ function assertFile(file) {
 
 function walk(dir, results = []) {
   if (!existsSync(dir)) return results;
+  const skippedDirs = new Set(['node_modules', '.next', '.turbo', '.expo', '.git', 'dist', 'build', 'coverage']);
   for (const entry of readdirSync(dir)) {
+    if (skippedDirs.has(entry)) continue;
     const full = path.join(dir, entry);
     const rel = path.relative(root, full).replaceAll(path.sep, '/');
     const st = statSync(full);
-    if (st.isDirectory()) {
-      const skippedDirs = new Set(['node_modules', '.next', '.turbo', '.expo', '.git', 'dist', 'build', 'coverage']);
-      if (!skippedDirs.has(entry)) walk(full, results);
-    } else results.push(rel);
+    if (st.isDirectory()) walk(full, results);
+    else results.push(rel);
   }
   return results;
-}
-
-console.log('\n========================================');
-console.log('Cane Corso Platform вЂ” Full-Stack All-in-One Release Lock QA');
-console.log('========================================\n');
-
-for (const file of requiredFiles) assertFile(file);
-
-const pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
-for (const scriptName of requiredPackageScripts) {
-  if (!pkg.scripts?.[scriptName]) fail(`Package script missing: ${scriptName}`);
-  else pass(`Package script exists: ${scriptName}`);
 }
 
 function collectProjectFiles() {
@@ -118,6 +110,19 @@ function collectProjectFiles() {
   }
 
   return walk(root);
+}
+
+
+console.log('\n========================================');
+console.log('Cane Corso Platform — Full-Stack All-in-One Release Lock QA');
+console.log('========================================\n');
+
+for (const file of requiredFiles) assertFile(file);
+
+const pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
+for (const scriptName of requiredPackageScripts) {
+  if (!pkg.scripts?.[scriptName]) fail(`Package script missing: ${scriptName}`);
+  else pass(`Package script exists: ${scriptName}`);
 }
 
 const files = collectProjectFiles();
@@ -176,4 +181,3 @@ console.log('\nNext local commands:');
 console.log('  pnpm workspace:verify');
 console.log('  pnpm workspace:syntax');
 console.log('  pnpm typecheck');
-

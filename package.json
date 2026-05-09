@@ -131,7 +131,8 @@
     "platform:intent-first-auth:qa": "node scripts/qa-intent-first-authenticated-experience.mjs",
     "platform:bg-it-language:qa": "node scripts/qa-bg-it-language-consistency.mjs",
     "platform:content-completeness:qa": "node scripts/qa-platform-content-completeness.mjs",
-    "step95:repo-hygiene:qa": "node scripts/qa-step95-repository-hygiene-release-gate.mjs"
+    "step95:repo-hygiene:qa": "node scripts/qa-step95-repository-hygiene-release-gate.mjs",
+    "step96:readme-visuals:qa": "node scripts/qa-step96-readme-visual-architecture-neon-schema.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

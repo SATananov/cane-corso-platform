@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 95 — Repository Hygiene & Release Gate Repair**.
+This repository is currently aligned with **Step 96 — README Visual Architecture & Neon Database Schema**.
 
 Recent locked product state:
 
@@ -21,6 +21,7 @@ Recent locked product state:
 - **Step 94.2:** BG/IT language consistency pass across visible platform copy.
 - **Step 94.3:** Content completeness cleanup and intent balance across current platform surfaces.
 - **Step 95:** Repository root cleanup, README checkpoint refresh, accidental nested patch artifact removal, and final release QA gate repair for the current Neon/Netlify state.
+- **Step 96:** README visual architecture overview and simplified Neon database schema using Mermaid diagrams for clearer project handoff.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -135,6 +136,168 @@ Public-facing copy should avoid internal development language such as “step”
 - **Database:** PostgreSQL with Drizzle ORM; Neon is the production database target.
 - **Shared packages:** `@cane-corso-platform/auth`, `config`, `contracts`, `db`, `storage`, `ui`.
 - **Deployment:** Netlify for the web app, with SSR/API route support.
+
+## Visual architecture overview
+
+The platform is a full-stack Next.js product deployed on Netlify, with Drizzle ORM talking to Neon PostgreSQL and shared TypeScript packages keeping the web, mobile, auth, contracts, storage, and database layers aligned.
+
+```mermaid
+flowchart LR
+    User[User / Owner / Admin] --> Netlify[Netlify Deploy]
+    Netlify --> Next[Next.js App Router]
+    Next --> Pages[Pages / Layouts / React Server Components]
+    Next --> Api[API Routes / Server Actions]
+    Pages --> UI[Tailwind CSS UI Layer]
+    Api --> Auth[Session / Role Guards]
+    Api --> Drizzle[Drizzle ORM]
+    Drizzle --> Neon[(Neon PostgreSQL)]
+    Next --> Packages[Shared TS Packages]
+    Packages --> Contracts[Contracts]
+    Packages --> Storage[Storage]
+    Packages --> DbPkg[DB Repositories]
+```
+
+### Runtime responsibility map
+
+| Layer | Responsibility | Main location |
+| --- | --- | --- |
+| Netlify | Production hosting, SSR/API runtime, environment variables | `netlify.toml`, Netlify project settings |
+| Next.js App Router | Public/member/admin routes, layouts, SSR, route handlers | `apps/web/app/` |
+| React UI + Tailwind | Premium USG interface, role-aware actions, responsive surfaces | `apps/web/components/`, `apps/web/app/globals.css` |
+| Auth/session | Cookie session, role separation, member/admin boundaries | `packages/auth/`, `apps/web/app/api/session/` |
+| Drizzle ORM | Typed database access and schema mapping | `packages/db/` |
+| Neon PostgreSQL | Production database target | `DATABASE_URL`, `DATABASE_URL_DIRECT` |
+| Shared contracts | API and document shapes shared across apps | `packages/contracts/` |
+
+## Neon database overview
+
+This diagram is intentionally simplified. It shows the core product relationships used for owner profiles, Cane Corso profiles, registry publication, USG certificate verification, moderated community listings, partner visibility, and knowledge content. The real schema can contain additional support fields, indexes, status enums, audit values, and media tables.
+
+```mermaid
+erDiagram
+    profiles ||--o{ dogs : owns
+    profiles ||--o{ ecosystem_listings : creates
+    profiles ||--o{ partner_applications : submits
+
+    dogs ||--o{ dog_media : has
+    dogs ||--o{ dog_submissions : enters_review
+    dogs ||--o| registry_entries : published_as
+
+    dog_submissions ||--o{ review_decisions : receives
+    registry_entries ||--o| certificates : may_receive
+    certificates ||--o{ verification_events : checked_by_code
+
+    ecosystem_listings ||--o{ ecosystem_match_requests : receives
+    partner_applications ||--o| partner_profiles : approved_as
+
+    knowledge_articles }o--|| profiles : authored_or_reviewed_by
+
+    profiles {
+        uuid id
+        string email
+        string role
+        string displayName
+        string avatarUrl
+    }
+
+    dogs {
+        uuid id
+        uuid ownerId
+        string name
+        string sex
+        string color
+        string lifecycleStatus
+    }
+
+    dog_media {
+        uuid id
+        uuid dogId
+        string mediaType
+        string storagePath
+        string visibility
+    }
+
+    dog_submissions {
+        uuid id
+        uuid dogId
+        string reviewStatus
+        datetime submittedAt
+    }
+
+    registry_entries {
+        uuid id
+        uuid dogId
+        string slug
+        string publicationStatus
+        datetime publishedAt
+    }
+
+    certificates {
+        uuid id
+        uuid registryEntryId
+        string verificationCode
+        string certificateStatus
+        datetime issuedAt
+    }
+
+    ecosystem_listings {
+        uuid id
+        uuid ownerId
+        string category
+        string status
+        string contactPolicy
+    }
+
+    ecosystem_match_requests {
+        uuid id
+        uuid listingId
+        uuid requesterProfileId
+        string status
+    }
+
+    partner_applications {
+        uuid id
+        uuid profileId
+        string serviceCategory
+        string reviewStatus
+    }
+
+    partner_profiles {
+        uuid id
+        uuid applicationId
+        string publicSlug
+        string publicationStatus
+    }
+
+    knowledge_articles {
+        uuid id
+        string slug
+        string locale
+        string status
+    }
+```
+
+### Core data flow
+
+```mermaid
+sequenceDiagram
+    participant Member
+    participant Next as Next.js App Router
+    participant API as API Route / Server Action
+    participant ORM as Drizzle ORM
+    participant DB as Neon PostgreSQL
+    participant Admin
+
+    Member->>Next: Create or edit Cane Corso profile
+    Next->>API: Save draft / submit for review
+    API->>ORM: Validate ownership and role
+    ORM->>DB: Persist dog profile and submission
+    Admin->>Next: Review submission
+    Next->>API: Approve / request changes / publish
+    API->>ORM: Revalidate admin authority
+    ORM->>DB: Publish registry entry or issue certificate
+    DB-->>Next: Registry / Verify data available publicly
+```
 
 ## Repository structure
 
@@ -328,7 +491,7 @@ Admin:
 
 ## Current continuation point
 
-Use the latest clean checkpoint created after **Step 95 — Repository Hygiene & Release Gate Repair** as the stable continuation point. It preserves the Step 91–94.3 product behavior and changes only documentation, repository hygiene, and release QA gate alignment.
+Use the latest clean checkpoint created after **Step 96 — README Visual Architecture & Neon Database Schema** as the stable continuation point. It preserves the Step 91–94.3 product behavior, keeps Step 95 repository hygiene/release gate repairs, and adds README-level visual architecture and Neon schema documentation.
 
 ## Step 94 — Platform-wide Role-aware Action UX
 
@@ -353,3 +516,10 @@ Step 94.3 verifies that public/member/admin surfaces are not left with placehold
 Step 95 cleans the repository handoff layer after the Step 94.x content and UX passes. It removes legacy root patch clutter after archiving, removes accidental nested patch artifact folders under `packages/`, refreshes this README checkpoint, and repairs the all-in-one release QA gate so it validates the current Neon/Netlify production state instead of re-running the historical pre-Neon lock.
 
 Scope boundary: Step 95 does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member product UI behavior.
+
+
+### Step 96 — README Visual Architecture & Neon Database Schema
+
+Step 96 makes the canonical README more presentation-ready by adding Mermaid-based visual diagrams for the full-stack architecture, runtime responsibility map, simplified Neon database relationships, and core member-to-admin-to-public data flow.
+
+Scope boundary: Step 96 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member product UI behavior.
