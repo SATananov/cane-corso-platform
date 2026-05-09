@@ -288,9 +288,9 @@ export default async function CommunityPage() {
       visualSrc="/brand/editorial-member-shadow-eye.jpg"
       visualAlt="Community and FUN editorial visual"
     >
+      <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
       <RoleAwareActionPanel locale={locale} surface="community" role={currentSession?.user.role ?? null} />
       <SectionContentGuidePanel locale={locale} surface="community" />
-      <EcosystemDirectory document={document} locale={locale} applyHref="/ecosystem" />
 
       <CommunityDiscoveryExperience
         locale={locale}

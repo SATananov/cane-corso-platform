@@ -626,13 +626,66 @@ function getRoleLabel(locale: Locale, role?: string | null) {
   return locale === 'bg' ? 'Член' : locale === 'it' ? 'Membro' : 'Member';
 }
 
+function getPriorityLabels(locale: Locale) {
+  if (locale === 'bg') {
+    return {
+      active: 'Активна секция',
+      primary: 'Основно действие',
+      supporting: 'Още действия',
+      info: 'Информация и помощ',
+    } as const;
+  }
+
+  if (locale === 'it') {
+    return {
+      active: 'Sezione attiva',
+      primary: 'Azione principale',
+      supporting: 'Altre azioni',
+      info: 'Informazioni e aiuto',
+    } as const;
+  }
+
+  return {
+    active: 'Active section',
+    primary: 'Primary action',
+    supporting: 'More actions',
+    info: 'Information and help',
+  } as const;
+}
+
+function getInfoAction(surface: RoleAwareActionSurface, locale: Locale): PanelAction {
+  const label = locale === 'bg' ? 'Къде да разбера повече' : locale === 'it' ? 'Dove capire di più' : 'Where to learn more';
+  const faqMeta = locale === 'bg' ? 'FAQ и ясни правила' : locale === 'it' ? 'FAQ e regole chiare' : 'FAQ and clear rules';
+  const knowledgeMeta = locale === 'bg' ? 'Знания за Cane Corso' : locale === 'it' ? 'Conoscenze Cane Corso' : 'Cane Corso knowledge';
+
+  if (surface === 'knowledge') {
+    return { href: '/faq', label, meta: faqMeta };
+  }
+
+  if (surface === 'member' || surface === 'myDogs' || surface === 'profile') {
+    return { href: '/knowledge', label, meta: knowledgeMeta };
+  }
+
+  if (surface === 'review' || surface === 'admin' || surface === 'adminEcosystem') {
+    return { href: '/faq', label, meta: locale === 'bg' ? 'Граници и доверие' : locale === 'it' ? 'Confini e fiducia' : 'Boundaries and trust' };
+  }
+
+  return { href: '/faq', label, meta: faqMeta };
+}
+
 export function RoleAwareActionPanel({ locale, surface, role, className }: RoleAwareActionPanelProps) {
   const isGuest = !role;
   const copy = isGuest ? guestCopyByLocale[locale] ?? guestCopyByLocale.en : (copyByLocale[locale] ?? copyByLocale.en)[surface];
+  const priorityLabels = getPriorityLabels(locale);
+  const infoAction = getInfoAction(surface, locale);
 
   return (
     <section className={`role-aware-action-panel${isGuest ? ' role-aware-action-panel--guest' : ''}${className ? ` ${className}` : ''}`} aria-label={copy.title}>
       <div className="role-aware-action-panel__intro">
+        <div className="role-aware-action-panel__location" aria-label={priorityLabels.active}>
+          <span>{priorityLabels.active}</span>
+          <strong>{copy.eyebrow}</strong>
+        </div>
         <span className="role-aware-action-panel__eyebrow">{copy.eyebrow}</span>
         <h2>{copy.title}</h2>
         <p>{copy.description}</p>
@@ -643,9 +696,11 @@ export function RoleAwareActionPanel({ locale, surface, role, className }: RoleA
       </div>
       <div className="role-aware-action-panel__actions">
         <Link className="role-aware-action-panel__primary" href={copy.primary.href}>
+          <small className="role-aware-action-panel__action-label">{priorityLabels.primary}</small>
           <span>{copy.primary.label}</span>
           {copy.primary.meta ? <small>{copy.primary.meta}</small> : null}
         </Link>
+        <span className="role-aware-action-panel__secondary-label">{priorityLabels.supporting}</span>
         <div className="role-aware-action-panel__secondary-grid">
           {copy.secondary.map((action) => (
             <Link href={action.href} className="role-aware-action-panel__secondary" key={`${surface}-${action.href}-${action.label}`}>
@@ -654,6 +709,11 @@ export function RoleAwareActionPanel({ locale, surface, role, className }: RoleA
             </Link>
           ))}
         </div>
+        <Link href={infoAction.href} className="role-aware-action-panel__info-link">
+          <span>{priorityLabels.info}</span>
+          <strong>{infoAction.label}</strong>
+          {infoAction.meta ? <small>{infoAction.meta}</small> : null}
+        </Link>
       </div>
     </section>
   );

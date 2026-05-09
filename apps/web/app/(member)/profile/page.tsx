@@ -653,8 +653,6 @@ export default async function ProfilePage() {
 
     return (
       <div className="member-route-stack profile-page">
-        <RoleAwareActionPanel locale={locale} surface="profile" role={session.user.role} />
-        <SectionContentGuidePanel locale={locale} surface="profile" />
         <section className="route-hero-card route-hero-card--member profile-page__hero">
           <div className="profile-page__hero-copy">
             <span className="eyebrow-label">{copy.eyebrow}</span>
@@ -687,6 +685,8 @@ export default async function ProfilePage() {
           </div>
         </section>
 
+        <RoleAwareActionPanel locale={locale} surface="profile" role={session.user.role} />
+
         <OwnerCaneCorsoSpotlight
           locale={locale}
           dog={workingDog}
@@ -704,6 +704,8 @@ export default async function ProfilePage() {
           <OverviewStatCard label={t.pages.myDogs.labels.inReview} value={String(inReview)} tone="gold" />
           <OverviewStatCard label={t.pages.myDogs.labels.drafts} value={String(drafts)} tone="ivory" />
         </div>
+
+        <SectionContentGuidePanel locale={locale} surface="profile" />
 
         <section className="content-card profile-page__journey-card">
           <div className="section-head-row">

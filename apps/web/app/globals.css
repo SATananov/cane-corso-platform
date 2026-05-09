@@ -20581,3 +20581,115 @@ body {
     flex-direction: column;
   }
 }
+
+/* Step 99 — Platform-wide Active Section Priority & Intent Routing */
+.role-aware-action-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.role-aware-action-panel__location {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid rgba(217, 177, 92, 0.34);
+  border-radius: 999px;
+  background: rgba(217, 177, 92, 0.09);
+  color: rgba(247, 239, 218, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.role-aware-action-panel__location span,
+.role-aware-action-panel__action-label,
+.role-aware-action-panel__secondary-label,
+.role-aware-action-panel__info-link span {
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.role-aware-action-panel__location strong {
+  color: var(--color-ivory);
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+.role-aware-action-panel__location + .role-aware-action-panel__eyebrow {
+  display: none;
+}
+
+.role-aware-action-panel__action-label {
+  opacity: 0.9;
+}
+
+.role-aware-action-panel__secondary-label {
+  display: block;
+  margin: 0.1rem 0 -0.25rem;
+  opacity: 0.82;
+}
+
+.role-aware-action-panel__info-link {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px dashed rgba(217, 177, 92, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(247, 239, 218, 0.88);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.role-aware-action-panel__info-link strong {
+  color: var(--color-ivory);
+  font-size: 0.92rem;
+  line-height: 1.15;
+}
+
+.role-aware-action-panel__info-link small {
+  color: rgba(247, 239, 218, 0.7);
+  font-size: 0.72rem;
+}
+
+.role-aware-action-panel__info-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(217, 177, 92, 0.5);
+  background: rgba(217, 177, 92, 0.07);
+}
+
+.member-route-stack > .section-content-guide,
+.partners-page-flow > .section-content-guide,
+.page-content > .section-content-guide {
+  margin-top: clamp(1.2rem, 2.6vw, 2rem);
+}
+
+[data-theme='light'] .role-aware-action-panel__location,
+[data-theme='heritage'] .role-aware-action-panel__location,
+[data-theme='light'] .role-aware-action-panel__info-link,
+[data-theme='heritage'] .role-aware-action-panel__info-link {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(128, 99, 32, 0.24);
+  color: rgba(45, 38, 25, 0.82);
+}
+
+[data-theme='light'] .role-aware-action-panel__location strong,
+[data-theme='heritage'] .role-aware-action-panel__location strong,
+[data-theme='light'] .role-aware-action-panel__info-link strong,
+[data-theme='heritage'] .role-aware-action-panel__info-link strong {
+  color: rgba(32, 27, 18, 0.94);
+}
+
+@media (max-width: 720px) {
+  .role-aware-action-panel__location {
+    grid-auto-flow: row;
+    align-items: flex-start;
+    border-radius: 16px;
+  }
+}

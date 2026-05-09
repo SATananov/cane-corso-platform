@@ -134,7 +134,8 @@
     "step95:repo-hygiene:qa": "node scripts/qa-step95-repository-hygiene-release-gate.mjs",
     "step96:readme-visuals:qa": "node scripts/qa-step96-readme-visual-architecture-neon-schema.mjs",
     "step97:browser-smoke:evidence:qa": "node scripts/qa-step97-product-presentation-browser-smoke-evidence.mjs",
-    "step98:real-browser:evidence:qa": "node scripts/qa-step98-real-browser-evidence-capture.mjs"
+    "step98:real-browser:evidence:qa": "node scripts/qa-step98-real-browser-evidence-capture.mjs",
+    "step99:active-section-routing:qa": "node scripts/qa-step99-platform-active-section-intent-routing.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

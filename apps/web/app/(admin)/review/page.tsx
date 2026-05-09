@@ -45,8 +45,8 @@ export default async function ReviewQueuePage() {
       heroNote={pageCopy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="review" role="admin" />
-      <SectionContentGuidePanel locale={locale} surface="review" />
       <ReviewQueueDashboard document={document} locale={locale} />
+      <SectionContentGuidePanel locale={locale} surface="review" />
       <AdminOperationalClarityPanel locale={locale} surface="review" />
     </PageShell>
   );

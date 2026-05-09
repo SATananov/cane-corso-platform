@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 98 — Real Browser Evidence Capture Protocol**.
+This repository is currently aligned with **Step 99 — Platform-wide Active Section Priority & Intent Routing**.
 
 Recent locked product state:
 
@@ -23,6 +23,8 @@ Recent locked product state:
 - **Step 95:** Repository root cleanup, README checkpoint refresh, accidental nested patch artifact removal, and final release QA gate repair for the current Neon/Netlify state.
 - **Step 96:** README visual architecture overview and simplified Neon database schema using Mermaid diagrams for clearer project handoff.
 - **Step 97:** Product presentation and browser smoke evidence layer: route-by-route guest/member/admin review checklist, evidence capture format, and demo narrative for project handoff.
+- **Step 98:** Real browser evidence capture protocol for manual/local/Netlify route review.
+- **Step 99:** Platform-wide active section priority and intent routing: every major section now shows the active section, the primary action, and the correct information/help path with main content before supporting explanations.
 - **Step 98:** Real browser evidence capture protocol: manual screenshot/note folder, route evidence naming, local/Netlify smoke checklist, and reviewer sign-off format without changing product logic.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
@@ -403,6 +405,7 @@ Common verification commands:
 pnpm step95:repo-hygiene:qa
 pnpm step97:browser-smoke:evidence:qa
 pnpm step98:real-browser:evidence:qa
+pnpm step99:active-section-routing:qa
 pnpm docs:readme:qa
 pnpm platform:content-completeness:qa
 pnpm platform:bg-it-language:qa
@@ -663,3 +666,12 @@ Step 98 turns the Step 97 browser smoke route map into a practical evidence capt
 Scope boundary: Step 98 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, public/member/admin product UI behavior, or deployment configuration. Actual screenshots remain a manual/browser task after local or Netlify deployment.
 
 QA: `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+
+### Step 99 — Platform-wide Active Section Priority & Intent Routing
+
+Step 99 applies the platform-wide UX rule that each active section should visually lead with its real purpose: the user sees where they are, the main action, and the correct information/help path before long supporting explanations. Member pages now prioritize action and status; public pages prioritize their real content before guidance; shared action panels clearly separate active section, primary action, secondary actions, and Knowledge/FAQ routing.
+
+Scope boundary: Step 99 is a presentation and hierarchy pass only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or Netlify deployment configuration.
+
+QA: `pnpm step99:active-section-routing:qa`, `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.

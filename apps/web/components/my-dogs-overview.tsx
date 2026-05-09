@@ -165,8 +165,6 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
 
   return (
     <div className="member-route-stack">
-      <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
-      <SectionContentGuidePanel locale={locale} surface="myDogs" />
       <section className="route-hero-card route-hero-card--member">
         <div>
           <span className="eyebrow-label">{t.pages.myDogs.eyebrow}</span>
@@ -190,6 +188,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
           </Link>
         </div>
       </section>
+
+      <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
 
       <div className="stats-grid five-up">
         <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />
@@ -318,6 +318,7 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
           </aside>
         </div>
       )}
+      <SectionContentGuidePanel locale={locale} surface="myDogs" />
     </div>
   );
 }

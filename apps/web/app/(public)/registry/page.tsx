@@ -33,14 +33,14 @@ export default async function RegistryPage() {
       heroChips={[t.pages.registry.heroChipPublished, t.pages.registry.heroChipCertificate, t.pages.registry.heroChipVerify]}
       heroNote={t.pages.registry.heroNote}
     >
-      <RoleAwareActionPanel locale={locale} surface="registry" role={currentSession?.user.role ?? null} />
-      <SectionContentGuidePanel locale={locale} surface="registry" />
       <PublicRegistryOverview
         document={document}
         locale={locale}
         hasMemberAccess={Boolean(currentSession)}
         isAdminViewer={isAdminViewer}
       />
+      <RoleAwareActionPanel locale={locale} surface="registry" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="registry" />
       <RegistryCertificateReleaseFlowPanel
         locale={locale}
         variant="public"

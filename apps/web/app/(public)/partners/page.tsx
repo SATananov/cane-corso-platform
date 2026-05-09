@@ -161,8 +161,6 @@ export default async function PartnersPage({ searchParams }: PartnersPageProps) 
       heroChips={copy.heroChips}
     >
       <div className="partners-page-flow">
-        <RoleAwareActionPanel locale={locale} surface="partners" role={currentSession?.user.role ?? null} />
-        <SectionContentGuidePanel locale={locale} surface="partners" />
         <PartnersServicesExperience
           locale={locale}
           totalVisible={document.total}
@@ -170,6 +168,8 @@ export default async function PartnersPage({ searchParams }: PartnersPageProps) 
           featuredTotal={document.featuredTotal}
         />
         <PartnerDirectoryOverview document={document} locale={locale} />
+        <RoleAwareActionPanel locale={locale} surface="partners" role={currentSession?.user.role ?? null} />
+        <SectionContentGuidePanel locale={locale} surface="partners" />
       </div>
     </PageShell>
   );

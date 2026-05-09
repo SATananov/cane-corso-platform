@@ -233,8 +233,6 @@ export default async function FaqPage() {
 
   return (
     <PageShell eyebrow={copy.eyebrow} title={copy.title} description={copy.description} cards={copy.cards} actionLabel={actionLabel} accentLabel={copy.eyebrow} helpHref="/guide?topic=overview#overview" helpLabel={helpLabel} visualSrc="/brand/icons/brand-icon.png" visualAlt="USG FAQ clarity symbol" visualFit="contain" heroChips={copy.chips} variant="knowledge">
-      <RoleAwareActionPanel locale={locale} surface="faq" role={currentSession?.user.role ?? null} />
-      <SectionContentGuidePanel locale={locale} surface="faq" />
       <section className="content-card platform-faq-priority" aria-labelledby="faq-priority-title">
         <div className="platform-faq-heading"><span className="eyebrow-label">{copy.eyebrow}</span><h2 id="faq-priority-title">{copy.priorityTitle}</h2><p>{copy.priorityDescription}</p></div>
         <div className="platform-faq-priority-grid">{copy.priorityItems.map((item) => <article className="platform-faq-priority-card" key={item.question}><h3>{item.question}</h3><p>{item.answer}</p>{item.href ? <a href={item.href}>{item.hrefLabel ?? actionLabel}</a> : null}</article>)}</div>
@@ -243,6 +241,8 @@ export default async function FaqPage() {
         <span className="eyebrow-label">FAQ map</span><h2>{copy.navTitle}</h2>
         <div className="platform-faq-nav-grid">{copy.sections.map((section) => <a key={section.id} href={`#${section.id}`}><span>{section.eyebrow}</span>{section.title}</a>)}<a href="#official-references"><span>Sources</span>{copy.referencesTitle}</a></div>
       </nav>
+      <RoleAwareActionPanel locale={locale} surface="faq" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="faq" />
       <div className="platform-faq-section-stack">{copy.sections.map((section) => <section className="content-card platform-faq-section" id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}><div className="platform-faq-section__intro"><span className="eyebrow-label">{section.eyebrow}</span><h2 id={`${section.id}-title`}>{section.title}</h2><p>{section.description}</p></div><div className="platform-faq-accordion">{section.items.map((item) => <details className="platform-faq-item" key={item.question}><summary>{item.question}</summary><p>{item.answer}</p>{item.href ? <a href={item.href}>{item.hrefLabel ?? actionLabel}</a> : null}</details>)}</div></section>)}</div>
       <section className="content-card platform-faq-references" id="official-references" aria-labelledby="official-references-title">
         <div className="platform-faq-heading platform-faq-heading--split"><div><span className="eyebrow-label">Official and specialist sources</span><h2 id="official-references-title">{copy.referencesTitle}</h2><p>{copy.referencesDescription}</p></div><p className="platform-faq-source-note">{copy.referencesNote}</p></div>

@@ -41,11 +41,11 @@ export default async function KnowledgePage() {
       heroNote={copy.hero.note}
       variant="knowledge"
     >
-      <RoleAwareActionPanel locale={locale} surface="knowledge" role={currentSession?.user.role ?? null} />
-      <SectionContentGuidePanel locale={locale} surface="knowledge" />
       <section id="knowledge-center" aria-label="Cane Corso Knowledge Center">
         <KnowledgeCenter copy={copy} actionLabel={actionLabel} articles={articles} locale={locale} />
       </section>
+      <RoleAwareActionPanel locale={locale} surface="knowledge" role={currentSession?.user.role ?? null} />
+      <SectionContentGuidePanel locale={locale} surface="knowledge" />
     </PageShell>
   );
 }

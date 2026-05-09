@@ -134,9 +134,9 @@ export default async function MemberCommandCenterPage() {
         heroNote={copy.heroNote}
       >
         <RoleAwareActionPanel locale={locale} surface="member" role={document.member.role} />
-        <SectionContentGuidePanel locale={locale} surface="member" />
-        <OwnerOnboardingFinalPanel locale={locale} surface="member" />
         <OwnerCenterWorkspace document={document} locale={locale} />
+        <OwnerOnboardingFinalPanel locale={locale} surface="member" />
+        <SectionContentGuidePanel locale={locale} surface="member" />
       </PageShell>
     );
   } catch (error) {

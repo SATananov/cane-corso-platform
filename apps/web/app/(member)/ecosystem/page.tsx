@@ -134,9 +134,9 @@ export default async function EcosystemPage() {
       heroNote={copy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="community" role={document.member.role} />
-      <SectionContentGuidePanel locale={locale} surface="ecosystemWorkspace" />
-      <OwnerCenterWorkspace document={document} locale={locale} />
       <EcosystemOwnerWorkspace document={document.ecosystem} locale={locale} />
+      <OwnerCenterWorkspace document={document} locale={locale} />
+      <SectionContentGuidePanel locale={locale} surface="ecosystemWorkspace" />
     </PageShell>
   );
 }

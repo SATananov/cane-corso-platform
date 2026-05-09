@@ -41,8 +41,8 @@ export default async function PartnerApplyPage({ searchParams }: PartnerApplyPag
       helpLabel={copy.labels.help ?? (locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help')}
     >
       <RoleAwareActionPanel locale={locale} surface="partnerApply" role={currentSession.user.role} />
-      <SectionContentGuidePanel locale={locale} surface="partnerApply" />
       <PartnerApplicationWorkspace document={document} locale={locale} showOnboardingNotice={showOnboardingNotice} />
+      <SectionContentGuidePanel locale={locale} surface="partnerApply" />
     </PageShell>
   );
 }
