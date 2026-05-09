@@ -901,31 +901,46 @@ interface SectionContentGuidePanelProps {
   className?: string;
 }
 
+function getDetailsLabel(locale: Locale) {
+  if (locale === 'bg') return 'Кратко обяснение';
+  if (locale === 'it') return 'Spiegazione breve';
+  return 'Short explanation';
+}
+
 export function SectionContentGuidePanel({ locale, surface, className }: SectionContentGuidePanelProps) {
   const copy = (copyByLocale[locale] ?? copyByLocale.en)[surface];
 
   return (
-    <section className={`content-card section-content-guide section-content-guide--${surface}${className ? ` ${className}` : ''}`} aria-label={copy.title}>
-      <div className="section-content-guide__intro">
-        <span className="eyebrow-label">{copy.eyebrow}</span>
-        <h2>{copy.title}</h2>
-        <p>{copy.description}</p>
+    <section
+      className={`content-card section-content-guide section-content-guide--compact section-content-guide--${surface}${className ? ` ${className}` : ''}`}
+      aria-label={copy.title}
+    >
+      <div className="section-content-guide__compact-row">
+        <div className="section-content-guide__intro">
+          <span className="eyebrow-label">{copy.eyebrow}</span>
+          <h2>{copy.title}</h2>
+          <p>{copy.description}</p>
+        </div>
+        <div className="section-content-guide__next">
+          <p>{copy.nextText}</p>
+          <Link href={copy.nextHref} className="button-secondary small">
+            {copy.nextLabel}
+          </Link>
+        </div>
       </div>
-      <div className="section-content-guide__cards">
-        {copy.cards.map((card) => (
-          <article className="section-content-guide__card" key={`${surface}-${card.label}-${card.title}`}>
-            <span>{card.label}</span>
-            <h3>{card.title}</h3>
-            <p>{card.body}</p>
-          </article>
-        ))}
-      </div>
-      <div className="section-content-guide__next">
-        <p>{copy.nextText}</p>
-        <Link href={copy.nextHref} className="button-secondary small">
-          {copy.nextLabel}
-        </Link>
-      </div>
+
+      <details className="section-content-guide__details">
+        <summary>{getDetailsLabel(locale)}</summary>
+        <div className="section-content-guide__cards">
+          {copy.cards.map((card) => (
+            <article className="section-content-guide__card" key={`${surface}-${card.label}-${card.title}`}>
+              <span>{card.label}</span>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </details>
     </section>
   );
 }

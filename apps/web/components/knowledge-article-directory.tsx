@@ -19,8 +19,8 @@ const copyByLocale = {
     sourceDiscipline: 'Source discipline',
     featured: 'Featured',
     articleCount: 'articles',
-    trustTitle: 'Published Knowledge layer',
-    trustText: 'Only reviewed, published articles appear publicly. Drafts and maintenance records stay out of the public route.',
+    trustTitle: 'Published Knowledge',
+    trustText: 'Only reviewed articles appear publicly. Internal notes stay out of the public route.',
   },
   bg: {
     eyebrow: 'Статии',
@@ -28,8 +28,8 @@ const copyByLocale = {
     sourceDiscipline: 'Проверени източници',
     featured: 'Отличени',
     articleCount: 'статии',
-    trustTitle: 'Публикуван слой Знания',
-    trustText: 'Публично се показват само прегледани и публикувани статии. Черновите и вътрешните записи остават извън публичния път.',
+    trustTitle: 'Публикувани знания',
+    trustText: 'Публично се показват само прегледани статии. Вътрешните бележки не се показват на потребителите.',
   },
   it: {
     eyebrow: 'Articoli',
@@ -37,8 +37,8 @@ const copyByLocale = {
     sourceDiscipline: 'Fonti controllate',
     featured: 'In evidenza',
     articleCount: 'articoli',
-    trustTitle: 'Layer Conoscenza pubblicato',
-    trustText: 'Pubblicamente compaiono solo articoli revisionati e pubblicati. Bozze e record interni restano fuori dal percorso pubblico.',
+    trustTitle: 'Conoscenze pubblicate',
+    trustText: 'Pubblicamente compaiono solo articoli revisionati. Note interne e manutenzione restano fuori dal percorso pubblico.',
   },
 } as const;
 

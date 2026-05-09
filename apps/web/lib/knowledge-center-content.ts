@@ -147,37 +147,37 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
   en: {
     hero: {
       eyebrow: 'Cane Corso Knowledge Center',
-      title: 'A serious breed guide for owners, guests, and the USG ecosystem',
+      title: 'Cane Corso knowledge for owners and guests',
       description:
-        'This layer turns Knowledge into a premium Cane Corso reference: history, official standard context, temperament, health awareness, care, training, responsible breeding, and safe ownership — all separated from registry, certificate, and gallery logic.',
+        'Find clear information about Cane Corso history, official standard context, temperament, health awareness, care, training, responsible breeding, and safe ownership.',
       chips: ['History', 'FCI standard', 'Temperament', 'Health', 'Owner guide', 'Responsible breeding'],
       note: 'Educational information only. Health content supports awareness and should never replace a veterinarian, qualified trainer, or official kennel-club standard.',
       cards: [
         {
           eyebrow: 'Official anchor',
-          title: 'Reference-based, not random internet text',
-          description: 'The page now separates official standard facts, owner guidance, health awareness, and USG editorial interpretation.',
+          title: 'Based on reliable sources',
+          description: 'Official standard facts, owner guidance, health awareness, and USG observations are kept clearly separated.',
           meta: 'FCI • AKC • CCAA / CHIC',
         },
         {
           eyebrow: 'Breed first',
-          title: 'Cane Corso before product features',
-          description: 'Users first understand the breed, then understand why registry review, verification, and curated visibility matter.',
+          title: 'Cane Corso before platform actions',
+          description: 'Start with the breed, then continue to profile preparation, registry review, verification, or community actions.',
           meta: 'Breed identity • trust path',
         },
         {
-          eyebrow: 'Editorial system',
-          title: 'Ready to become a multilingual knowledge base',
-          description: 'The structure uses published articles, source references, reviewed labels, categories, and multilingual editorial discipline.',
-          meta: 'BG • EN • IT ready',
+          eyebrow: 'Clear reading',
+          title: 'Organized by topics',
+          description: 'Articles, sources, categories, and labels keep the reading path simple in Bulgarian, English, and Italian.',
+          meta: 'BG • EN • IT',
         },
       ],
     },
     overview: {
       eyebrow: 'Knowledge architecture',
-      title: 'The breed information is organized as a long-term editorial foundation',
+      title: 'The breed information is organized by real owner needs',
       description:
-        'Instead of one overloaded page, the content is divided into practical reading zones that can later become separate articles or admin-managed knowledge records.',
+        'The content is divided into practical topics, so owners can quickly find standard, history, health, care, photos, and USG boundaries.',
       cards: [
         {
           eyebrow: 'History & identity',
@@ -369,37 +369,37 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
   bg: {
     hero: {
       eyebrow: 'Cane Corso Knowledge Center',
-      title: 'Cane Corso справочник за собственици и гости',
+      title: 'Cane Corso знания за собственици и гости',
       description:
-        'Премиум образователен слой за породата: история, официален стандарт, темперамент, здравна осведоменост, грижа, обучение, отговорно развъждане и безопасно притежание — ясно отделени от Регистъра, Сертификата и Галерията.',
+        'Ясна информация за Cane Corso: история, официален стандарт, характер, здравна осведоменост, грижа, обучение, отговорно развъждане и безопасно притежание.',
       chips: ['История', 'FCI стандарт', 'Темперамент', 'Здраве', 'Грижа', 'Развъждане'],
       note: 'Само образователна информация. Здравните теми насочват към осведоменост и не заменят ветеринар, квалифициран треньор или официален киноложки стандарт.',
       cards: [
         {
           eyebrow: 'Официална основа',
-          title: 'Базирано на проверими източници',
-          description: 'Страницата разделя стандартни факти, практически насоки, здравна осведоменост и USG редакционна интерпретация.',
+          title: 'Базирано на надеждни източници',
+          description: 'Официалните факти, практическите насоки, здравната осведоменост и USG наблюденията са ясно разделени.',
           meta: 'FCI • AKC • CCAA / CHIC',
         },
         {
           eyebrow: 'Първо породата',
-          title: 'Cane Corso преди функциите',
+          title: 'Cane Corso преди действията',
           description: 'Потребителят първо разбира породата, а после защо прегледът, проверката и селектираната видимост имат значение.',
           meta: 'Породна идентичност • доверие',
         },
         {
-          eyebrow: 'Редакционна система',
-          title: 'Готово за многоезична база',
-          description: 'Структурата е подготвена за статии, източници, дата на преглед, категории и бъдещо съдържание, управлявано от админ.',
+          eyebrow: 'Ясно четене',
+          title: 'Подредено по теми',
+          description: 'Статиите, източниците, категориите и езиците помагат човек бързо да намери правилната тема.',
           meta: 'BG • EN • IT',
         },
       ],
     },
     overview: {
       eyebrow: 'Структура на знанието',
-      title: 'Породната информация е подредена като дългосрочна основа',
+      title: 'Породната информация е подредена според реалните нужди',
       description:
-        'Вместо една претоварена страница, съдържанието е разделено на ясни зони за четене. По-късно всяка зона може да стане отделна статия или редакционен запис.',
+        'Съдържанието е разделено на практични теми, за да стигнеш бързо до стандарт, история, здраве, грижа, снимки и USG граници.',
       cards: [
         {
           eyebrow: 'История и идентичност',
@@ -599,7 +599,7 @@ export const knowledgeCenterContent: Record<Locale, KnowledgeCenterCopy> = {
       cards: [
         { eyebrow: 'Ancora ufficiale', title: 'Basato su fonti, non su testo casuale online', description: 'La pagina separa fatti ufficiali di standard, owner guidance, consapevolezza salute e interpretazione editoriale USG.', meta: 'FCI • AKC • CCAA / CHIC' },
         { eyebrow: 'Prima la razza', title: 'Cane Corso prima delle funzioni prodotto', description: 'L’utente capisce prima la razza, poi perché review, verify e curated visibility contano.', meta: 'Identità di razza • trust path' },
-        { eyebrow: 'Sistema editoriale', title: 'Pronto per diventare una base knowledge multilingue', description: 'La struttura è preparata per articoli, source references, reviewed dates, categorie e contenuto futuro gestito da admin.', meta: 'BG • EN • IT ready' },
+        { eyebrow: 'Sistema editoriale', title: 'Pronto per diventare una base knowledge multilingue', description: 'La struttura è preparata per articoli, source references, reviewed dates, categorie e contenuto futuro gestito da admin.', meta: 'BG • EN • IT' },
       ],
     },
     overview: {
