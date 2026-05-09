@@ -424,11 +424,20 @@ function inputFromRecord(record: DogMeasurementRecord): UsgMeasurementInput {
   };
 }
 
-function withProfileBase(input: UsgMeasurementInput, sex: DogSex, dateOfBirth?: string): UsgMeasurementInput {
+type MeasurementEvaluationInput = CreateDogMeasurementInput | UsgMeasurementInput;
+
+function withProfileBase(input: MeasurementEvaluationInput, sex: DogSex, dateOfBirth?: string): UsgMeasurementInput {
   return {
-    ...input,
     sex,
     dateOfBirth,
+    measurementDate: 'measuredAt' in input ? input.measuredAt : input.measurementDate,
+    weightKg: input.weightKg,
+    heightWithersCm: input.heightWithersCm,
+    bodyLengthCm: input.bodyLengthCm,
+    chestCircumferenceCm: input.chestCircumferenceCm,
+    headLengthCm: input.headLengthCm,
+    muzzleLengthCm: input.muzzleLengthCm,
+    skullLengthCm: input.skullLengthCm,
   };
 }
 
