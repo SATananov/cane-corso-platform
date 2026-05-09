@@ -19,10 +19,13 @@ const requiredFiles = [
   'docs/qa/step95-repository-hygiene-release-gate.md',
   'docs/qa/step96-readme-visual-architecture-neon-schema.md',
   'docs/qa/step97-product-presentation-browser-smoke-evidence.md',
+  'docs/qa/step98-real-browser-evidence-capture.md',
+  'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
   'scripts/qa-step95-repository-hygiene-release-gate.mjs',
   'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs',
   'scripts/qa-step97-product-presentation-browser-smoke-evidence.mjs',
+  'scripts/qa-step98-real-browser-evidence-capture.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -40,6 +43,7 @@ const requiredPackageScripts = [
   'step95:repo-hygiene:qa',
   'step96:readme-visuals:qa',
   'step97:browser-smoke:evidence:qa',
+  'step98:real-browser:evidence:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -64,6 +68,7 @@ const qaScripts = [
   ['Step 95 repository hygiene/release gate', 'scripts/qa-step95-repository-hygiene-release-gate.mjs'],
   ['Step 96 README visual architecture/Neon schema', 'scripts/qa-step96-readme-visual-architecture-neon-schema.mjs'],
   ['Step 97 product presentation/browser smoke evidence', 'scripts/qa-step97-product-presentation-browser-smoke-evidence.mjs'],
+  ['Step 98 real browser evidence capture protocol', 'scripts/qa-step98-real-browser-evidence-capture.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 97 — Product Presentation & Browser Smoke Evidence**.
+This repository is currently aligned with **Step 98 — Real Browser Evidence Capture Protocol**.
 
 Recent locked product state:
 
@@ -23,6 +23,7 @@ Recent locked product state:
 - **Step 95:** Repository root cleanup, README checkpoint refresh, accidental nested patch artifact removal, and final release QA gate repair for the current Neon/Netlify state.
 - **Step 96:** README visual architecture overview and simplified Neon database schema using Mermaid diagrams for clearer project handoff.
 - **Step 97:** Product presentation and browser smoke evidence layer: route-by-route guest/member/admin review checklist, evidence capture format, and demo narrative for project handoff.
+- **Step 98:** Real browser evidence capture protocol: manual screenshot/note folder, route evidence naming, local/Netlify smoke checklist, and reviewer sign-off format without changing product logic.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -401,6 +402,7 @@ Common verification commands:
 ```powershell
 pnpm step95:repo-hygiene:qa
 pnpm step97:browser-smoke:evidence:qa
+pnpm step98:real-browser:evidence:qa
 pnpm docs:readme:qa
 pnpm platform:content-completeness:qa
 pnpm platform:bg-it-language:qa
@@ -558,6 +560,50 @@ A browser smoke review is considered presentable when the reviewer can answer:
 - Which surfaces are public trust surfaces and which are moderated workflows?
 - Which Neon database is the runtime connected to?
 
+## Real browser evidence capture protocol
+
+Step 98 turns the Step 97 browser smoke map into a practical evidence capture protocol. It still does not claim that screenshots are already captured. It defines how a reviewer should collect, name, and store manual screenshots/notes after opening the platform locally or on Netlify.
+
+Recommended evidence folder:
+
+```txt
+docs/qa/evidence/step98-real-browser-evidence/
+  README.md
+  01-public-home.png
+  02-public-platform.png
+  03-public-registry.png
+  04-public-registry-detail.png
+  05-public-gallery.png
+  06-public-knowledge.png
+  07-public-faq.png
+  08-public-community.png
+  09-public-partners.png
+  10-access.png
+  11-verify.png
+  12-member-center.png
+  13-member-profile.png
+  14-member-my-dogs.png
+  15-member-new-dog.png
+  16-admin-review.png
+  17-admin-registry.png
+  18-admin-ecosystem.png
+  19-admin-partners.png
+  20-admin-knowledge.png
+  21-runtime-db-health.txt
+```
+
+Minimum manual review rules:
+
+- Capture public routes before login.
+- Capture member routes after member login.
+- Capture admin routes after admin login.
+- Capture `/api/health/db` after deployment or production-like local setup.
+- Confirm `activeDatabase` is `cane_corso_platform` and `status` is `ok` before calling the evidence production-valid.
+- Keep screenshots out of the clean ZIP unless the reviewer intentionally commits them as QA evidence.
+- Do not include secrets, database URLs, API keys, session cookies, private contact data, or hidden admin-only personal data in screenshots.
+
+Step 98 is evidence workflow documentation only. It does not change application logic, database schema, routing, authorization, public trust rules, or admin authority.
+
 ## Development principles
 
 - Prefer intent-first UX: show the thing the user came for before explanatory panels.
@@ -568,9 +614,6 @@ A browser smoke review is considered presentable when the reviewer can answer:
 - Use QA scripts as guardrails, not as decorative files.
 - Preserve historical notes in archive; keep the root directory clean and readable.
 
-## Current continuation point
-
-Use the latest clean checkpoint created after **Step 97 — Product Presentation & Browser Smoke Evidence** as the stable continuation point. It preserves the Step 91–94.3 product behavior, keeps Step 95 repository hygiene/release gate repairs, keeps Step 96 visual architecture/Neon schema documentation, and adds a route-by-route product presentation and browser smoke evidence layer.
 
 ## Step 94 — Platform-wide Role-aware Action UX
 
@@ -609,3 +652,14 @@ Scope boundary: Step 96 is documentation and QA only. It does not change Registr
 Step 97 makes the repository easier to present and review by adding a route-by-route browser smoke evidence layer for public, member, admin, trust, and runtime database surfaces. It defines what should be visible on each route, what evidence should be captured, and how the project should be demoed as a real full-stack Next.js product rather than only a code package.
 
 Scope boundary: Step 97 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member/admin product UI behavior. Actual screenshots remain a manual/browser task after local or Netlify deployment.
+
+QA: `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+
+### Step 98 — Real Browser Evidence Capture Protocol
+
+Step 98 turns the Step 97 browser smoke route map into a practical evidence capture protocol. It defines the local folder, screenshot naming convention, runtime DB evidence note, reviewer sign-off checklist, and privacy rules for screenshots.
+
+Scope boundary: Step 98 is documentation and QA only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, public/member/admin product UI behavior, or deployment configuration. Actual screenshots remain a manual/browser task after local or Netlify deployment.
+
+QA: `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
