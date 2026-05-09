@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 99 — Platform-wide Active Section Priority & Intent Routing**.
+This repository is currently aligned with **Step 100 — Owner and Cane Corso Privacy Boundary**.
 
 Recent locked product state:
 
@@ -25,7 +25,7 @@ Recent locked product state:
 - **Step 97:** Product presentation and browser smoke evidence layer: route-by-route guest/member/admin review checklist, evidence capture format, and demo narrative for project handoff.
 - **Step 98:** Real browser evidence capture protocol for manual/local/Netlify route review.
 - **Step 99:** Platform-wide active section priority and intent routing: every major section now shows the active section, the primary action, and the correct information/help path with main content before supporting explanations.
-- **Step 98:** Real browser evidence capture protocol: manual screenshot/note folder, route evidence naming, local/Netlify smoke checklist, and reviewer sign-off format without changing product logic.
+- **Step 100:** Owner and Cane Corso privacy boundary: owner profile means the human owner, My Dogs means the Cane Corso records, owner/admin can see the full data, and public Registry shows only the approved safe public core.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -35,7 +35,7 @@ Legacy patch notes are archived under `docs/archive/package-notes/`. They are pr
 
 - **Platform Home** — premium entry into the USG Cane Corso ecosystem.
 - **Registry** — official public registry of published Cane Corso profiles.
-- **Registry Detail** — public profile view with dog identity, registry status, owner public summary, pedigree, photos, and certificate trust when available.
+- **Registry Detail** — public profile view with approved safe essentials first: photos, Cane Corso name, birth date, owner public name, and certificate/verify trust when available. Full owner and deeper Cane Corso data stays owner/admin-only.
 - **USG Certificate / Verify** — certificate trust layer and public verification by code.
 - **Gallery** — curated visual showcase, separate from the official registry.
 - **Certified Archive** — public archive of certified / trusted entries where applicable.
@@ -63,8 +63,10 @@ Legacy patch notes are archived under `docs/archive/package-notes/`. They are pr
 
 The platform is intentionally not a free-for-all listing board.
 
-- Public Registry shows only the owner’s public name and avatar/initials.
-- Full owner contact data is visible to admins only.
+- Owner profile data is visible to the owner and admin; the owner can update it.
+- Full Cane Corso data is visible to the owner and admin; the owner can update it.
+- Approved public Registry view shows only approved photos, Cane Corso name, birth date, and owner public name, with certificate/verify trust when available.
+- Full owner contact data is visible to admins only and never shown publicly.
 - Sensitive community listings do not expose direct phone/email publicly.
 - Sensitive listings include breeding match, adoption/new home, puppies, and lost/found.
 - A second user can submit an offer/help request, but the connection is mediated by admin.
@@ -468,6 +470,7 @@ Public:
 - `/community` starts with “Cane Corso търси:” and shows the intent cards clearly.
 - Sensitive listings do not expose direct phone/email publicly.
 - `/registry` focuses on published Cane Corso profiles first.
+- `/registry/[slug]` shows only approved safe public essentials to other visitors: photos, Cane Corso name, birth date, and owner public name; full data stays owner/admin-only.
 - `/gallery` focuses on visual showcase first.
 - `/verify` focuses on the certificate lookup first.
 - `/knowledge` reads as complete educational content, not placeholder text.
@@ -675,3 +678,14 @@ Step 99 applies the platform-wide UX rule that each active section should visual
 Scope boundary: Step 99 is a presentation and hierarchy pass only. It does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or Netlify deployment configuration.
 
 QA: `pnpm step99:active-section-routing:qa`, `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+
+### Step 100 — Owner and Cane Corso Privacy Boundary
+
+Step 100 clarifies the profile model before deeper browser review: **Profile / My Profile** means the human owner, while **My Cane Corso / My Dogs** means the owner-managed Cane Corso records. The owner can see and update their own owner profile data and their own Cane Corso data. Admin can see the full owner and Cane Corso data for moderation, registry review, publication, certificate, and safety. Other public visitors see only the approved public Registry core.
+
+Public Registry boundary: after approval, other visitors see approved photos, Cane Corso name, birth date, owner public name, and certificate/verify trust when available. Microchip, full pedigree number, deeper family tree, private owner contact data, internal admin review detail, long owner story, and full Cane Corso data remain owner/admin-only.
+
+Scope boundary: Step 100 is a privacy/visibility and UX clarity pass. It does not change Neon schema/migrations, Auth/session mechanics, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend, Ecosystem authority logic, or Netlify deployment configuration.
+
+QA: `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.

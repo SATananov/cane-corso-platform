@@ -35,9 +35,9 @@ const copyByLocale = {
       profilePathC: 'Verify route',
       profilePathCCopy: 'When an active certificate exists, Verify becomes the direct public confirmation path.',
       guestPreviewEyebrow: 'Public preview',
-      guestPreviewTitle: 'This public profile is intentionally limited for guests.',
+      guestPreviewTitle: 'This Registry profile uses a privacy-first public view.',
       guestPreviewDescription:
-        'The public registry proves that the profile exists and is trusted. Richer identity layers, deeper story context, and expanded registry details unlock after member registration.',
+        'Other visitors see only approved photos, the Cane Corso name, birth date, and the owner public name. Full owner data and deeper Cane Corso details stay owner/admin-only.',
       joinMember: 'Become a member',
       memberAccess: 'Member access',
       lockedDetailsTitle: 'Registered access unlocks the richer profile view',
@@ -99,6 +99,16 @@ const copyByLocale = {
       certificateNotIssued: 'No active USG certificate yet',
       dangerZone: 'Danger zone',
       removeDog: 'Delete Cane Corso',
+      publicEssentialsEyebrow: 'Public safe view',
+      publicEssentialsTitle: 'What other people can see',
+      publicEssentialsDescription: 'This public Registry page shows only the approved safe essentials: photos, Cane Corso name, birth date, and the owner public name. Full owner data and deeper Cane Corso details remain visible only to the owner and admin.',
+      publicEssentialsPhotos: 'Approved photos',
+      publicEssentialsIdentity: 'Cane Corso name',
+      publicEssentialsBirthDate: 'Birth date',
+      publicEssentialsOwner: 'Owner public name',
+      privateRegistryDetailsTitle: 'Protected owner/admin details',
+      privateRegistryDetailsDescription: 'You are seeing the extended Registry depth because you are the owner or an admin. Other visitors receive only the approved public essentials.',
+      ownerAdminOnly: 'Owner/admin only',
     },
   },
   bg: {
@@ -127,9 +137,9 @@ const copyByLocale = {
       profilePathC: 'Път към проверката',
       profilePathCCopy: 'Когато има активен сертификат, Проверката става директният публичен път за потвърждение.',
       guestPreviewEyebrow: 'Публичен преглед',
-      guestPreviewTitle: 'Този публичен профил умишлено показва ограничен преглед за гост.',
+      guestPreviewTitle: 'Този Registry профил използва публичен изглед с приоритет на поверителността.',
       guestPreviewDescription:
-        'Публичният регистър доказва, че профилът съществува и е доверен. По-богатите слоеве на идентичност, по-дълбоката история и разширените данни от регистъра се отключват след членска регистрация.',
+        'Другите посетители виждат само одобрени снимки, име на Cane Corso, дата на раждане и публично име на собственика. Пълните данни остават само за собственика и админ.',
       joinMember: 'Стани член',
       memberAccess: 'Вход за членове',
       lockedDetailsTitle: 'Регистрираният достъп отключва по-богатия профилен изглед',
@@ -191,6 +201,16 @@ const copyByLocale = {
       certificateNotIssued: 'Все още няма активен USG сертификат',
       dangerZone: 'Опасна зона',
       removeDog: 'Изтрий Cane Corso',
+      publicEssentialsEyebrow: 'Безопасен публичен изглед',
+      publicEssentialsTitle: 'Какво виждат другите хора',
+      publicEssentialsDescription: 'Този публичен Registry профил показва само одобреното безопасно ядро: снимки, име на Cane Corso, дата на раждане и публично име на собственика. Пълните данни за собственика и по-дълбоките данни за Cane Corso остават видими само за собственика и админ.',
+      publicEssentialsPhotos: 'Одобрени снимки',
+      publicEssentialsIdentity: 'Име на Cane Corso',
+      publicEssentialsBirthDate: 'Дата на раждане',
+      publicEssentialsOwner: 'Публично име на собственика',
+      privateRegistryDetailsTitle: 'Защитени данни за собственик/админ',
+      privateRegistryDetailsDescription: 'Виждаш разширения Registry слой, защото си собственикът или админ. Другите посетители получават само одобреното публично ядро.',
+      ownerAdminOnly: 'Само собственик/админ',
     },
   },
   it: {
@@ -219,9 +239,9 @@ const copyByLocale = {
       profilePathC: 'Percorso di verifica',
       profilePathCCopy: 'Quando esiste un certificato attivo, La verifica diventa il percorso pubblico diretto di conferma.',
       guestPreviewEyebrow: 'Anteprima pubblica',
-      guestPreviewTitle: 'Questo profilo pubblico mostra intenzionalmente una vista limitata per gli ospiti.',
+      guestPreviewTitle: 'Questo profilo Registry usa una vista pubblica privacy-first.',
       guestPreviewDescription:
-        'Il registro pubblico dimostra che il profilo esiste ed è affidabile. I livelli più ricchi di identità, la storia completa e i dettagli estesi del registro si sbloccano dopo la registrazione membro.',
+        'Gli altri visitatori vedono solo foto approvate, nome del Cane Corso, data di nascita e nome pubblico del proprietario. I dati completi restano solo proprietario/admin.',
       joinMember: 'Diventa membro',
       memberAccess: 'Accesso membri',
       lockedDetailsTitle: 'L’accesso registrato sblocca una vista profilo più ricca',
@@ -283,6 +303,16 @@ const copyByLocale = {
       certificateNotIssued: 'Nessun certificato USG attivo',
       dangerZone: 'Zona pericolosa',
       removeDog: 'Elimina Cane Corso',
+      publicEssentialsEyebrow: 'Vista pubblica sicura',
+      publicEssentialsTitle: 'Cosa vedono le altre persone',
+      publicEssentialsDescription: 'Questo profilo Registry pubblico mostra solo il nucleo sicuro approvato: foto, nome del Cane Corso, data di nascita e nome pubblico del proprietario. I dati completi del proprietario e i dettagli più profondi del Cane Corso restano visibili solo al proprietario e all’admin.',
+      publicEssentialsPhotos: 'Foto approvate',
+      publicEssentialsIdentity: 'Nome Cane Corso',
+      publicEssentialsBirthDate: 'Data di nascita',
+      publicEssentialsOwner: 'Nome pubblico proprietario',
+      privateRegistryDetailsTitle: 'Dati protetti proprietario/admin',
+      privateRegistryDetailsDescription: 'Vedi il livello Registry esteso perché sei il proprietario o un admin. Gli altri visitatori ricevono solo il nucleo pubblico approvato.',
+      ownerAdminOnly: 'Solo proprietario/admin',
     },
   },
 } as const;
@@ -291,6 +321,7 @@ interface PublicRegistryProfileProps {
   document: PublicRegistryProfileDocument;
   locale: Locale;
   hasMemberAccess: boolean;
+  isOwnerViewer?: boolean;
   isAdminViewer?: boolean;
   ratingStatus?: string | null;
 }
@@ -404,7 +435,7 @@ function renderParentPhoto(profile: NonNullable<ReturnType<typeof getParentProfi
   return <div className="registry-parent-card__placeholder">{(profile.name || fallback).slice(0, 1)}</div>;
 }
 
-export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdminViewer = false, ratingStatus }: PublicRegistryProfileProps) {
+export function PublicRegistryProfile({ document, locale, hasMemberAccess, isOwnerViewer = false, isAdminViewer = false, ratingStatus }: PublicRegistryProfileProps) {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const entry = document.entry;
   const verifyTarget = entry.certificate?.certificateCode ?? entry.certificate?.verificationSlug ?? null;
@@ -426,6 +457,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
   const galleryImages = getGalleryImages(entry);
   const mainImage = galleryImages[0] ?? null;
   const parents = getParentProfiles(entry);
+  const viewerCanSeeProtectedRegistryDepth = isOwnerViewer || isAdminViewer;
 
   return (
     <div className="member-route-stack" suppressHydrationWarning>
@@ -476,7 +508,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
               </div>
             ) : null}
 
-            {parents.length > 0 ? (
+            {viewerCanSeeProtectedRegistryDepth && parents.length > 0 ? (
               <div className="registry-parents-strip registry-parents-strip--profile">
                 <span className="eyebrow-label">{copy.labels.parents}</span>
                 <div className="registry-parents-strip__grid" suppressHydrationWarning>
@@ -493,6 +525,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
               </div>
             ) : null}
 
+            {viewerCanSeeProtectedRegistryDepth ? (
             <div className="registry-rating-stack registry-rating-stack--profile">
               <div className="registry-rating-row">
                 <div className="registry-rating-row__copy">
@@ -520,6 +553,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
                 </div>
               </div>
             </div>
+            ) : null}
           </div>
 
           <div className="registry-profile-card__copy">
@@ -530,7 +564,7 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
               </div>
               {isAdminViewer ? <span className="route-pill route-pill--glow">{copy.labels.adminView}</span> : null}
             </div>
-            <p>{entry.summary || entry.dog.shortDescription || copy.labels.notAvailable}</p>
+            <p>{viewerCanSeeProtectedRegistryDepth ? entry.summary || entry.dog.shortDescription || copy.labels.notAvailable : copy.labels.publicEssentialsDescription}</p>
 
             <div className="registry-approval-grid registry-approval-grid--profile">
               <div className="registry-approval-card registry-approval-card--approved">
@@ -543,6 +577,8 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
               </div>
             </div>
 
+            {viewerCanSeeProtectedRegistryDepth ? (
+              <>
             <PublicRegistryTrustReadabilityPanel
               locale={locale}
               dogName={entry.dog.name}
@@ -592,6 +628,20 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
                 <p className="registry-admin-assessment-public__pending">{copy.labels.awaitingAdminAssessment}</p>
               )}
             </div>
+              </>
+            ) : (
+              <section className="content-card registry-public-essentials-card">
+                <span className="eyebrow-label">{copy.labels.publicEssentialsEyebrow}</span>
+                <h3>{copy.labels.publicEssentialsTitle}</h3>
+                <p>{copy.labels.publicEssentialsDescription}</p>
+                <div className="registry-public-essentials-card__grid">
+                  <span>{copy.labels.publicEssentialsPhotos}</span>
+                  <span>{copy.labels.publicEssentialsIdentity}</span>
+                  <span>{copy.labels.publicEssentialsBirthDate}</span>
+                  <span>{copy.labels.publicEssentialsOwner}</span>
+                </div>
+              </section>
+            )}
 
             {entry.certificate?.certificateCode ? (
               <div className="registry-profile-card__certificate-strip">
@@ -645,19 +695,19 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
               </div>
               <div>
                 <dt>{copy.labels.birthDate}</dt>
-                <dd>{hasMemberAccess ? entry.dog.dateOfBirth ?? copy.labels.notAvailable : copy.labels.memberExclusiveValue}</dd>
+                <dd>{entry.dog.dateOfBirth ?? copy.labels.notAvailable}</dd>
               </div>
               <div>
                 <dt>{copy.labels.registryClass}</dt>
-                <dd>{hasMemberAccess ? formatRegistryClass(locale, entry.dog.registryClass, copy.labels.notAvailable) : copy.labels.memberExclusiveValue}</dd>
+                <dd>{viewerCanSeeProtectedRegistryDepth ? formatRegistryClass(locale, entry.dog.registryClass, copy.labels.notAvailable) : copy.labels.ownerAdminOnly}</dd>
               </div>
               <div>
                 <dt>{copy.labels.microchip}</dt>
-                <dd>{hasMemberAccess ? entry.dog.microchipNumber ?? copy.labels.protectedValue : copy.labels.memberExclusiveValue}</dd>
+                <dd>{viewerCanSeeProtectedRegistryDepth ? entry.dog.microchipNumber ?? copy.labels.protectedValue : copy.labels.ownerAdminOnly}</dd>
               </div>
               <div>
                 <dt>{copy.labels.pedigree}</dt>
-                <dd>{hasMemberAccess ? entry.dog.pedigreeNumber ?? copy.labels.notAvailable : copy.labels.memberExclusiveValue}</dd>
+                <dd>{viewerCanSeeProtectedRegistryDepth ? entry.dog.pedigreeNumber ?? copy.labels.notAvailable : copy.labels.ownerAdminOnly}</dd>
               </div>
             </dl>
 
@@ -803,17 +853,20 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
         </div>
       </section>
 
-      <CommunityRatingPanel
-        locale={locale}
-        variant="registry"
-        slug={entry.publicSlug}
-        targetId={entry.entryId}
-        summary={entry.communityRating}
-        vote={document.communityVote}
-        status={ratingStatus}
-      />
+      {viewerCanSeeProtectedRegistryDepth ? (
+        <CommunityRatingPanel
+          locale={locale}
+          variant="registry"
+          slug={entry.publicSlug}
+          targetId={entry.entryId}
+          summary={entry.communityRating}
+          vote={document.communityVote}
+          status={ratingStatus}
+        />
+      ) : null}
 
-      <section className="content-card registry-pedigree-card">
+      {viewerCanSeeProtectedRegistryDepth ? (
+        <section className="content-card registry-pedigree-card">
         <span className="eyebrow-label">{copy.labels.pedigreeEyebrow}</span>
         <h2>{copy.labels.pedigreeTitle}</h2>
         <p>{copy.labels.pedigreeDescription}</p>
@@ -822,48 +875,25 @@ export function PublicRegistryProfile({ document, locale, hasMemberAccess, isAdm
           pedigree={entry.dog.pedigree ?? {}}
           rootImageUrl={mainImage}
         />
-      </section>
+        </section>
+      ) : null}
 
-      {hasMemberAccess ? (
+      {viewerCanSeeProtectedRegistryDepth ? (
         <section className="content-card registry-story-card">
           <span className="eyebrow-label">{copy.labels.longStory}</span>
           <h2>{copy.labels.longStory}</h2>
           <p>{entry.dog.longDescription || entry.summary || copy.labels.notAvailable}</p>
         </section>
       ) : (
-        <>
-          <section className="content-card registry-locked-card">
-            <div className="registry-locked-card__grid">
-              <div>
-                <span className="eyebrow-label">{copy.labels.memberExclusive}</span>
-                <h2>{copy.labels.lockedDetailsTitle}</h2>
-                <p>{copy.labels.lockedDetailsDescription}</p>
-              </div>
-
-              <div className="registry-locked-card__actions">
-                <Link href="/access?intent=member" className="button-primary small">
-                  {copy.labels.joinMember}
-                </Link>
-                <Link href="/access?intent=member" className="button-secondary small">
-                  {copy.labels.memberAccess}
-                </Link>
-              </div>
+        <section className="content-card registry-locked-card registry-locked-card--privacy">
+          <div className="registry-locked-card__grid">
+            <div>
+              <span className="eyebrow-label">{copy.labels.publicEssentialsEyebrow}</span>
+              <h2>{copy.labels.privateRegistryDetailsTitle}</h2>
+              <p>{copy.labels.privateRegistryDetailsDescription}</p>
             </div>
-
-            <div className="registry-locked-list">
-              <div className="registry-locked-list__item">{copy.labels.lockedItemIdentity}</div>
-              <div className="registry-locked-list__item">{copy.labels.lockedItemPedigree}</div>
-              <div className="registry-locked-list__item">{copy.labels.lockedItemStory}</div>
-            </div>
-          </section>
-
-          <section className="content-card registry-story-card registry-story-card--teaser">
-            <span className="eyebrow-label">{copy.labels.teaserTitle}</span>
-            <h2>{copy.labels.teaserTitle}</h2>
-            <p>{storyPreview}</p>
-            <p className="registry-story-card__locked-note">{copy.labels.teaserLocked}</p>
-          </section>
-        </>
+          </div>
+        </section>
       )}
     </div>
   );

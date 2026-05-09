@@ -265,7 +265,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Owner identity',
         identityTitle: 'Your personal foundation',
         identityDescription:
-          'This is the private owner layer behind your Cane Corso profiles. Keep it clear, credible, and easy to understand.',
+          'This is your owner profile. You and the admin can see the full data; the public Registry uses only your public owner name and safe presentation details.',
         labels: {
           ownerName: 'Owner name',
           email: 'Email',
@@ -313,7 +313,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Public presence',
         presenceTitle: 'How your owner profile connects to the registry',
         presenceDescription:
-          'Your personal profile remains private. Public registry visibility, certificate trust, and verification sit on top of it as separate public layers.',
+          'Your owner profile remains private to you and admin. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
         presenceItems: [
           `${published} published profile${published === 1 ? '' : 's'}`,
           `${inReview} in review`,
@@ -372,7 +372,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Идентичност на собственика',
         identityTitle: 'Твоята лична основа',
         identityDescription:
-          'Това е личният слой зад профилите на твоите Cane Corso. Дръж го ясен, достоверен и лесен за разбиране.',
+          'Това е твоят профил на собственик. Ти и админът виждате пълните данни; публичният Registry използва само публичното име на собственика и безопасните данни за представяне.',
         labels: {
           ownerName: 'Име на собственика',
           email: 'Имейл',
@@ -420,7 +420,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Публично присъствие',
         presenceTitle: 'Как профилът ти се свързва с регистъра',
         presenceDescription:
-          'Личният ти профил остава частен. Публичният регистър, сертификатното доверие и проверката стъпват върху него като отделни публични слоеве.',
+          'Профилът ти на собственик остава видим само за теб и админ. Публичният Registry използва само одобрено безопасно представяне на собственика и публикуваното ядро за Cane Corso.',
         presenceItems: [
           published === 1 ? '1 публикуван профил' : `${published} публикувани профила`,
           inReview === 1 ? '1 профил в преглед' : `${inReview} профила в преглед`,
@@ -479,7 +479,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Identità del proprietario',
         identityTitle: 'La tua base personale',
         identityDescription:
-          'Questo è il livello personale dietro i profili dei tuoi Cane Corso. Mantienilo chiaro, credibile e facile da comprendere.',
+          'Questo è il tuo profilo proprietario. Tu e l’admin vedete i dati completi; il Registry pubblico usa solo il nome pubblico del proprietario e i dati sicuri di presentazione.',
         labels: {
           ownerName: 'Nome proprietario',
           email: 'Email',
@@ -527,7 +527,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Presenza pubblica',
         presenceTitle: 'Come il tuo profilo si collega al registro',
         presenceDescription:
-          'Il tuo profilo personale resta privato. Registro pubblico, fiducia del certificato e verifica si appoggiano su di esso come livelli pubblici separati.',
+          'Il tuo profilo proprietario resta visibile solo a te e all’admin. Il Registry pubblico usa solo la presentazione sicura approvata del proprietario e il nucleo pubblicato del Cane Corso.',
         presenceItems: [
           published === 1 ? '1 profilo pubblicato' : `${published} profili pubblicati`,
           inReview === 1 ? '1 profilo in revisione' : `${inReview} profili in revisione`,
@@ -585,7 +585,7 @@ export default async function ProfilePage() {
       },
       identityEyebrow: 'Owner identity',
       identityTitle: 'Your personal foundation',
-      identityDescription: 'This is the private owner layer behind your Cane Corso profiles. Keep it clear, credible, and easy to understand.',
+      identityDescription: 'This is your owner profile. You and the admin can see the full data; the public Registry uses only your public owner name and safe presentation details.',
       labels: {
         ownerName: 'Owner name',
         email: 'Email',
@@ -633,7 +633,7 @@ export default async function ProfilePage() {
       presenceEyebrow: 'Public presence',
       presenceTitle: 'How your owner profile connects to the registry',
       presenceDescription:
-        'Your personal profile remains private. Public registry visibility, certificate trust, and verification sit on top of it as separate public layers.',
+        'Your owner profile remains private to you and admin. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
       presenceItems: [],
       nextTitle: 'Best next step',
       nextDescription: workingDog

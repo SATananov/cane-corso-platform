@@ -52,8 +52,8 @@ const bg: SurfaceMap = {
   myDogs: {
     eyebrow: 'Моите Cane Corso',
     title: 'Добави, довърши или провери статус',
-    description: 'Работи по реалните профили: данни, снимки, родословна информация, преглед и публикация.',
-    status: 'Нямаш профил? Започни първия. Имаш чернова? Довърши я.',
+    description: 'Работи по Cane Corso профилите: данни, снимки, родословна информация, преглед и публикация. Пълните данни са за теб и админ.',
+    status: 'Публично излиза само одобреното ядро; пълният профил остава личен до админ преглед.',
     primary: { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'Създай профил' },
     secondary: [
       { href: '/my-dogs', label: 'Всички профили', meta: 'Преглед' },
@@ -64,9 +64,9 @@ const bg: SurfaceMap = {
   },
   profile: {
     eyebrow: 'Профил на собственика',
-    title: 'Провери кой стои зад профилите',
-    description: 'Попълни данните, които помагат при доверие, връзка с USG и ясно представяне на собственика.',
-    status: 'Снимка, име и контакт са важни преди сериозни заявки.',
+    title: 'Провери данните за собственика',
+    description: 'Това е профилът на човека, не на Cane Corso. Пълните данни се виждат от теб и админ; публично се използва само безопасно публично име.',
+    status: 'Ти можеш да обновяваш данните си; другите не виждат имейл, телефон или лични контакти.',
     primary: { href: '/profile', label: 'Редактирай профил', meta: 'Собственик' },
     secondary: [
       { href: '/my-dogs', label: 'Към моите Cane Corso', meta: 'Профили' },
@@ -234,8 +234,8 @@ const en: SurfaceMap = {
   myDogs: {
     eyebrow: 'My Cane Corso',
     title: 'Add, complete, or check status',
-    description: 'Work on real profiles: data, images, pedigree information, review, and publication.',
-    status: 'No profile yet? Start the first one. Draft exists? Complete it.',
+    description: 'Work on Cane Corso profiles: data, images, pedigree information, review, and publication. Full data stays owner/admin-only.',
+    status: 'Only the approved public core goes public; the full profile stays private until admin review.',
     primary: { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'Create profile' },
     secondary: [
       { href: '/my-dogs', label: 'All profiles', meta: 'Overview' },
@@ -246,9 +246,9 @@ const en: SurfaceMap = {
   },
   profile: {
     eyebrow: 'Owner profile',
-    title: 'Check who stands behind the profiles',
-    description: 'Complete the data that supports trust, communication with USG, and clear owner presentation.',
-    status: 'Photo, name, and contact clarity matter before serious requests.',
+    title: 'Check the owner data',
+    description: 'This is the human owner profile, not the Cane Corso profile. Full data is visible to you and admin; public Registry uses only a safe public owner name.',
+    status: 'You can update your data; other people do not see email, phone, or private contact details.',
     primary: { href: '/profile', label: 'Edit profile', meta: 'Owner' },
     secondary: [
       { href: '/my-dogs', label: 'My Cane Corso', meta: 'Profiles' },
@@ -416,8 +416,8 @@ const it: SurfaceMap = {
   myDogs: {
     eyebrow: 'I miei Cane Corso',
     title: 'Aggiungi, completa o controlla lo stato',
-    description: 'Lavora sui profili reali: dati, immagini, genealogia, revisione e pubblicazione.',
-    status: 'Non hai un profilo? Inizia il primo. Hai una bozza? Completala.',
+    description: 'Lavora sui profili Cane Corso: dati, immagini, genealogia, revisione e pubblicazione. I dati completi restano proprietario/admin.',
+    status: 'Solo il nucleo pubblico approvato diventa pubblico; il profilo completo resta privato fino alla revisione admin.',
     primary: { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'Crea profilo' },
     secondary: [
       { href: '/my-dogs', label: 'Tutti i profili', meta: 'Panoramica' },
@@ -428,9 +428,9 @@ const it: SurfaceMap = {
   },
   profile: {
     eyebrow: 'Profilo proprietario',
-    title: 'Controlla chi sta dietro ai profili',
-    description: 'Completa i dati che aiutano fiducia, contatto con USG e presentazione chiara del proprietario.',
-    status: 'Foto, nome e contatto sono importanti prima di richieste serie.',
+    title: 'Controlla i dati del proprietario',
+    description: 'Questo è il profilo della persona proprietaria, non il profilo Cane Corso. I dati completi sono visibili a te e all’admin; il Registry pubblico usa solo un nome pubblico sicuro.',
+    status: 'Puoi aggiornare i tuoi dati; le altre persone non vedono email, telefono o contatti privati.',
     primary: { href: '/profile', label: 'Modifica profilo', meta: 'Proprietario' },
     secondary: [
       { href: '/my-dogs', label: 'I miei Cane Corso', meta: 'Profili' },
