@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 100 — Owner and Cane Corso Privacy Boundary**.
+This repository is currently aligned with **Step 101 — USG Standard Knowledge Layer**.
 
 Recent locked product state:
 
@@ -26,6 +26,7 @@ Recent locked product state:
 - **Step 98:** Real browser evidence capture protocol for manual/local/Netlify route review.
 - **Step 99:** Platform-wide active section priority and intent routing: every major section now shows the active section, the primary action, and the correct information/help path with main content before supporting explanations.
 - **Step 100:** Owner and Cane Corso privacy boundary: owner profile means the human owner, My Dogs means the Cane Corso records, owner/admin can see the full data, and public Registry shows only the approved safe public core.
+- **Step 101:** USG standard knowledge layer: Knowledge now includes a branded USG guide for structure, proportions, photo preparation, and official-reading boundaries, with direct helper shortcuts from My Dogs, Review, and FAQ.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -41,19 +42,19 @@ Legacy patch notes are archived under `docs/archive/package-notes/`. They are pr
 - **Certified Archive** — public archive of certified / trusted entries where applicable.
 - **Community** — intent-first community hub: “Cane Corso търси:” for help, home, partner, puppies, friendly places, services, and lost/found cases.
 - **Partners / Services** — moderated partner and service ecosystem.
-- **Knowledge** — educational Cane Corso content, history, breed identity, owner guidance, and responsible ownership.
+- **Knowledge** — educational Cane Corso content, history, breed identity, owner guidance, responsible ownership, and the branded **USG standard guide** for structure, proportions, and photo preparation.
 - **FAQ / Manifesto** — platform orientation, trust boundaries, USG Certificate clarity, admin-mediated community explanation, and official Cane Corso source links.
 
 ### Member surfaces
 
 - **Profile** — member identity and owner profile data.
-- **My Dogs** — create and manage Cane Corso profiles, photos, pedigree data, and submission readiness.
+- **My Dogs** — create and manage Cane Corso profiles, photos, pedigree data, submission readiness, and quick access to the USG photo-preparation guide.
 - **Member Ecosystem Workspace** — submit community listings and offers through moderated flows.
 - **Partner Application** — request partner/service visibility through admin review.
 
 ### Admin surfaces
 
-- **Review** — registry submission review, admin assessment, publication, certificate, and gallery decisions.
+- **Review** — registry submission review, admin assessment, publication, certificate, gallery decisions, and a compact USG visual-review helper.
 - **Admin Registry** — registry administration and evidence surfaces.
 - **Admin Ecosystem** — ecosystem moderation, community listing moderation, and admin-mediated connection requests.
 - **Admin Partners** — partner/service review and publication.
@@ -689,3 +690,14 @@ Public Registry boundary: after approval, other visitors see approved photos, Ca
 Scope boundary: Step 100 is a privacy/visibility and UX clarity pass. It does not change Neon schema/migrations, Auth/session mechanics, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend, Ecosystem authority logic, or Netlify deployment configuration.
 
 QA: `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm step98:real-browser:evidence:qa`, `pnpm step97:browser-smoke:evidence:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.
+
+
+### Step 101 — USG Standard Knowledge Layer
+
+Step 101 adds a branded USG educational layer so the platform feels more alive and practically useful around Cane Corso standard reading. The public Knowledge page now includes a dedicated **USG standard guide** for structure and proportions, head and muzzle reading, bite caution, growth caution, owner photo preparation, and official-reading boundaries between FCI / ENCI / AKC support sources.
+
+The same thinking now reaches the working flows too: **My Dogs** includes a direct owner-facing photo checklist, **Review** includes a compact admin visual-review helper, and **FAQ** includes a small boundary panel that explains where official reading ends and where USG guidance begins.
+
+Scope boundary: Step 101 is a content, presentation, and clarity pass only. It does not change Neon schema/migrations, Auth/session, Registry publication authority, Certificate issue/revoke authority, Verify lookup authority, Gallery authority, Admin moderation backend logic, Ecosystem authority logic, or Netlify deployment configuration.
+
+QA: `pnpm step101:usg-standard-knowledge:qa`, `pnpm step100:owner-dog-privacy:qa`, `pnpm step99:active-section-routing:qa`, `pnpm docs:readme:qa`, `pnpm release:all:qa`, `pnpm workspace:verify`, `pnpm workspace:syntax`, `pnpm typecheck`.

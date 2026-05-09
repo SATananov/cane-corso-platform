@@ -22,6 +22,7 @@ const requiredFiles = [
   'docs/qa/step98-real-browser-evidence-capture.md',
   'docs/qa/step99-platform-active-section-intent-routing.md',
   'docs/qa/step100-owner-dog-privacy-boundary.md',
+  'docs/qa/step101-usg-standard-knowledge-layer.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
   'scripts/qa-step95-repository-hygiene-release-gate.mjs',
@@ -30,6 +31,7 @@ const requiredFiles = [
   'scripts/qa-step98-real-browser-evidence-capture.mjs',
   'scripts/qa-step99-platform-active-section-intent-routing.mjs',
   'scripts/qa-step100-owner-dog-privacy-boundary.mjs',
+  'scripts/qa-step101-usg-standard-knowledge-layer.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -50,6 +52,7 @@ const requiredPackageScripts = [
   'step98:real-browser:evidence:qa',
   'step99:active-section-routing:qa',
   'step100:owner-dog-privacy:qa',
+  'step101:usg-standard-knowledge:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -77,6 +80,7 @@ const qaScripts = [
   ['Step 98 real browser evidence capture protocol', 'scripts/qa-step98-real-browser-evidence-capture.mjs'],
   ['Step 99 platform active section/intent routing', 'scripts/qa-step99-platform-active-section-intent-routing.mjs'],
   ['Step 100 owner/dog privacy boundary', 'scripts/qa-step100-owner-dog-privacy-boundary.mjs'],
+  ['Step 101 USG standard knowledge layer', 'scripts/qa-step101-usg-standard-knowledge-layer.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

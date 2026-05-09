@@ -15,6 +15,7 @@ import { getCurrentMemberDogMediaDocument } from '@/lib/my-dog-media.server';
 import { getPublishedRegistryProfileDocument } from '@/lib/registry.server';
 import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigree';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
+import { UsgOwnerPhotoChecklistPanel } from '@/components/usg-standard-knowledge-panel';
 
 interface MyDogsOverviewProps {
   dogs: Dog[];
@@ -196,6 +197,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
       </section>
 
       <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? 'member'} />
+
+      <UsgOwnerPhotoChecklistPanel locale={locale} />
 
       <div className="stats-grid five-up">
         <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />

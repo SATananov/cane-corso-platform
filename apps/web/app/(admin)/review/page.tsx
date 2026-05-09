@@ -6,6 +6,7 @@ import { getCurrentLocale } from '@/lib/locale.server';
 import { getDictionary } from '@/lib/i18n';
 import { getReviewQueueDocument } from '@/lib/review.server';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
+import { UsgAdminVisualReviewPanel } from '@/components/usg-standard-knowledge-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,6 +46,7 @@ export default async function ReviewQueuePage() {
       heroNote={pageCopy.heroNote}
     >
       <RoleAwareActionPanel locale={locale} surface="review" role="admin" />
+      <UsgAdminVisualReviewPanel locale={locale} />
       <ReviewQueueDashboard document={document} locale={locale} />
       <SectionContentGuidePanel locale={locale} surface="review" />
       <AdminOperationalClarityPanel locale={locale} surface="review" />

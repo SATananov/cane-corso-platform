@@ -4,6 +4,7 @@ import type { PageShellCard } from '@/components/page-shell';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
+import { UsgFaqKnowledgeBoundaryPanel } from '@/components/usg-standard-knowledge-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -243,6 +244,7 @@ export default async function FaqPage() {
       </nav>
       <RoleAwareActionPanel locale={locale} surface="faq" role={currentSession?.user.role ?? null} />
       <SectionContentGuidePanel locale={locale} surface="faq" />
+      <UsgFaqKnowledgeBoundaryPanel locale={locale} />
       <div className="platform-faq-section-stack">{copy.sections.map((section) => <section className="content-card platform-faq-section" id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}><div className="platform-faq-section__intro"><span className="eyebrow-label">{section.eyebrow}</span><h2 id={`${section.id}-title`}>{section.title}</h2><p>{section.description}</p></div><div className="platform-faq-accordion">{section.items.map((item) => <details className="platform-faq-item" key={item.question}><summary>{item.question}</summary><p>{item.answer}</p>{item.href ? <a href={item.href}>{item.hrefLabel ?? actionLabel}</a> : null}</details>)}</div></section>)}</div>
       <section className="content-card platform-faq-references" id="official-references" aria-labelledby="official-references-title">
         <div className="platform-faq-heading platform-faq-heading--split"><div><span className="eyebrow-label">Official and specialist sources</span><h2 id="official-references-title">{copy.referencesTitle}</h2><p>{copy.referencesDescription}</p></div><p className="platform-faq-source-note">{copy.referencesNote}</p></div>
