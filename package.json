@@ -130,7 +130,8 @@
     "platform:role-aware-action:qa": "node scripts/qa-platform-role-aware-action-ux.mjs",
     "platform:intent-first-auth:qa": "node scripts/qa-intent-first-authenticated-experience.mjs",
     "platform:bg-it-language:qa": "node scripts/qa-bg-it-language-consistency.mjs",
-    "platform:content-completeness:qa": "node scripts/qa-platform-content-completeness.mjs"
+    "platform:content-completeness:qa": "node scripts/qa-platform-content-completeness.mjs",
+    "step95:repo-hygiene:qa": "node scripts/qa-step95-repository-hygiene-release-gate.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

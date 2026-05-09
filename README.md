@@ -6,14 +6,21 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with the post-Step 93.3 product state:
+This repository is currently aligned with **Step 95 — Repository Hygiene & Release Gate Repair**.
+
+Recent locked product state:
 
 - **Step 91:** Admin-mediated match requests for sensitive community listings.
 - **Step 92:** Platform-wide intent-first page hierarchy.
 - **Step 93:** Content authority and placeholder removal across public knowledge/content surfaces.
 - **Step 93.1:** Canonical README and project documentation cleanup.
 - **Step 93.2:** USG identity, USG Certificate evidence levels, and USG Bulgarico observational framework.
-- **Step 93.3:** Platform-wide FAQ and trust clarity center with official Cane Corso source links and revival-history reading path. This platform-wide FAQ is the main clarity center for first-time visitors.
+- **Step 93.3:** Platform-wide FAQ and trust clarity center with official Cane Corso source links and revival-history reading path. The platform-wide FAQ is the main clarity center for first-time visitors.
+- **Step 94:** Platform-wide role-aware action UX for guests, members, partners, and admins.
+- **Step 94.1:** Intent-first authenticated experience cleanup: logged-in users see actions, status, and learning paths before dense public explanations.
+- **Step 94.2:** BG/IT language consistency pass across visible platform copy.
+- **Step 94.3:** Content completeness cleanup and intent balance across current platform surfaces.
+- **Step 95:** Repository root cleanup, README checkpoint refresh, accidental nested patch artifact removal, and final release QA gate repair for the current Neon/Netlify state.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -125,7 +132,7 @@ Public-facing copy should avoid internal development language such as “step”
 - **Monorepo:** pnpm workspace + TurboRepo.
 - **Web:** Next.js App Router, React, TypeScript, Tailwind CSS.
 - **Mobile:** Expo / React Native.
-- **Database:** PostgreSQL with Drizzle ORM; Neon is the production target.
+- **Database:** PostgreSQL with Drizzle ORM; Neon is the production database target.
 - **Shared packages:** `@cane-corso-platform/auth`, `config`, `contracts`, `db`, `storage`, `ui`.
 - **Deployment:** Netlify for the web app, with SSR/API route support.
 
@@ -228,27 +235,26 @@ The expected healthy production/main target is:
 Common verification commands:
 
 ```powershell
+pnpm step95:repo-hygiene:qa
+pnpm docs:readme:qa
+pnpm platform:content-completeness:qa
+pnpm platform:bg-it-language:qa
+pnpm platform:intent-first-auth:qa
+pnpm platform:role-aware-action:qa
 pnpm platform:faq-trust:qa
 pnpm usg:identity-bulgarico:qa
 pnpm content:authority:qa
-pnpm platform:intent-release:qa
-pnpm community:match-requests:qa
-pnpm community:hub-polish:qa
-pnpm community:intent-hub:qa
-pnpm ecosystem:friendly-places:qa
-pnpm ecosystem:google-maps:qa
-pnpm owner:identity-privacy:qa
-pnpm owner:image-payload:qa
 pnpm db:target:qa
 pnpm deploy:netlify:qa
+pnpm workspace:verify
 pnpm workspace:syntax
 pnpm typecheck
 ```
 
-README/documentation guardrail:
+Final release QA gate:
 
 ```powershell
-pnpm docs:readme:qa
+pnpm release:all:qa
 ```
 
 A release checkpoint is not considered clean until:
@@ -266,7 +272,7 @@ A clean handoff ZIP must exclude:
 - `node_modules`, `.next`, `.turbo`, `.expo`, `.git`, `.vercel`;
 - logs, nested ZIPs, `*.tsbuildinfo`, local build/cache artifacts.
 
-Root-level historical patch notes should stay archived under `docs/archive/package-notes/`, not mixed into the root directory beside the canonical README.
+Example files such as `.env.example` and `apps/web/.env.example` are allowed because they contain placeholders only. Root-level historical patch notes should stay archived under `docs/archive/package-notes/`, not mixed into the root directory beside the canonical README.
 
 ## Netlify deployment
 
@@ -322,8 +328,7 @@ Admin:
 
 ## Current continuation point
 
-Use the latest clean checkpoint created after Step 93.3 as the stable continuation point. If a future branch or ZIP is created, it should preserve the same authority boundaries and clean documentation structure described here.
-
+Use the latest clean checkpoint created after **Step 95 — Repository Hygiene & Release Gate Repair** as the stable continuation point. It preserves the Step 91–94.3 product behavior and changes only documentation, repository hygiene, and release QA gate alignment.
 
 ## Step 94 — Platform-wide Role-aware Action UX
 
@@ -334,3 +339,17 @@ QA: `pnpm platform:role-aware-action:qa`, `pnpm platform:faq-trust:qa`, `pnpm us
 ### Step 94.1 — Intent-first Authenticated Experience
 
 Step 94.1 refines the post-login product behavior: signed-in users see intent-first actions, status, and a Cane Corso information compass instead of dense public section explanations. Guest presentation remains public and explanatory; authenticated surfaces prioritize what to do now, where to continue, and where to learn more.
+
+### Step 94.2 — BG/IT Language Consistency
+
+Step 94.2 verifies visible Bulgarian and Italian copy consistency across the current platform surfaces without changing core authority flows.
+
+### Step 94.3 — Content Completeness Cleanup & Intent Balance
+
+Step 94.3 verifies that public/member/admin surfaces are not left with placeholder-like copy and that action-first hierarchy remains balanced with enough guidance for users.
+
+### Step 95 — Repository Hygiene & Release Gate Repair
+
+Step 95 cleans the repository handoff layer after the Step 94.x content and UX passes. It removes legacy root patch clutter after archiving, removes accidental nested patch artifact folders under `packages/`, refreshes this README checkpoint, and repairs the all-in-one release QA gate so it validates the current Neon/Netlify production state instead of re-running the historical pre-Neon lock.
+
+Scope boundary: Step 95 does not change Registry, Certificate, Verify, Gallery, Auth/session, Neon schema/migrations, Admin moderation backend, Ecosystem authority logic, or public/member product UI behavior.

@@ -16,7 +16,9 @@ const requiredFiles = [
   'docs/architecture/auth-session-jwt-contract.md',
   'docs/release/fullstack-nextjs-product-release-final-lock.md',
   'docs/qa/final-fullstack-nextjs-product-release-lock.md',
+  'docs/qa/step95-repository-hygiene-release-gate.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
+  'scripts/qa-step95-repository-hygiene-release-gate.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -30,7 +32,10 @@ const requiredPackageScripts = [
   'performance:optimization:qa',
   'production:readiness:qa',
   'submission:qna:qa',
-  'pre-neon:lock:qa',
+  'docs:readme:qa',
+  'step95:repo-hygiene:qa',
+  'db:target:qa',
+  'deploy:netlify:qa',
   'workspace:verify',
   'workspace:syntax',
   'typecheck',
@@ -49,7 +54,10 @@ const qaScripts = [
   ['Performance optimization pass', 'scripts/qa-performance-optimization-pass.mjs'],
   ['Production readiness cleanup', 'scripts/qa-production-readiness-cleanup.mjs'],
   ['Submission Q&A package', 'scripts/qa-submission-qna-package.mjs'],
-  ['Pre-Neon lock', 'scripts/qa-pre-neon-lock.mjs'],
+  ['Canonical README/project docs', 'scripts/qa-canonical-readme-project-docs.mjs'],
+  ['Step 95 repository hygiene/release gate', 'scripts/qa-step95-repository-hygiene-release-gate.mjs'],
+  ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
+  ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],
   ['Workspace syntax check', 'scripts/check-workshop-syntax.mjs'],
 ];
@@ -112,9 +120,9 @@ if (forbidden.length > 0) {
   pass('No forbidden clean-ZIP artifacts found in working tree');
 }
 
-const envFiles = files.filter((file) => /(^|\/)\.env(\..*)?$/.test(file) && file !== '.env.example');
+const envFiles = files.filter((file) => /(^|\/)\.env(\..*)?$/.test(file) && !file.endsWith('.env.example'));
 if (envFiles.length > 0) fail(`Real environment files found: ${envFiles.join(', ')}`);
-else pass('No real environment files committed; .env.example only');
+else pass('No real environment files committed; .env.example files only');
 
 for (const [label, script] of qaScripts) {
   if (!existsSync(path.join(root, script))) {
