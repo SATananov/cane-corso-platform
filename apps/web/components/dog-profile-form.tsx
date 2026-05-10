@@ -136,10 +136,15 @@ const profileFlowCopy = {
     identityTitle: 'Documents and identity details',
     identityDescription: 'Microchip, pedigree number, registry class and bloodline notes are useful, but they are not required for the first draft.',
     identityCta: 'Documents',
+    identityHint: 'Microchip and pedigree number',
     presentationCta: 'Story',
+    presentationHint: 'Short public introduction',
     locationCta: 'Location',
+    locationHint: 'City and country',
     pedigreeCta: 'Pedigree',
+    pedigreeHint: 'Parents and family line',
     checksCta: 'USG / FCI',
+    checksHint: 'Analysis and measurements',
     checksTitle: 'Review tools and USG status',
     checksDescription: 'Use these checks only when the profile is ready for a more serious review path.',
     optionalBadge: 'optional',
@@ -156,10 +161,15 @@ const profileFlowCopy = {
     identityTitle: 'Документи и идентификационни данни',
     identityDescription: 'Микрочип, родословен номер, клас в регистъра и бележка за линия са полезни, но не са нужни за първата чернова.',
     identityCta: 'Документи',
+    identityHint: 'Микрочип и родословен номер',
     presentationCta: 'Описание',
+    presentationHint: 'Кратко представяне',
     locationCta: 'Локация',
+    locationHint: 'Град и държава',
     pedigreeCta: 'Родословие',
+    pedigreeHint: 'Родители и семейна линия',
     checksCta: 'USG / FCI',
+    checksHint: 'Анализ и измервания',
     checksTitle: 'Инструменти за преглед и USG статус',
     checksDescription: 'Използвай тези проверки чак когато профилът е готов за по-сериозен път към преглед.',
     optionalBadge: 'по избор',
@@ -176,10 +186,15 @@ const profileFlowCopy = {
     identityTitle: 'Documenti e dati identificativi',
     identityDescription: 'Microchip, numero pedigree, classe registro e note di linea sono utili, ma non obbligatori per la prima bozza.',
     identityCta: 'Documenti',
+    identityHint: 'Microchip e numero pedigree',
     presentationCta: 'Storia',
+    presentationHint: 'Breve presentazione pubblica',
     locationCta: 'Luogo',
+    locationHint: 'Città e paese',
     pedigreeCta: 'Pedigree',
+    pedigreeHint: 'Genitori e linea familiare',
     checksCta: 'USG / FCI',
+    checksHint: 'Analisi e misure',
     checksTitle: 'Strumenti di revisione e stato USG',
     checksDescription: 'Usa questi controlli solo quando il profilo è pronto per un percorso di revisione più serio.',
     optionalBadge: 'facoltativo',
@@ -464,7 +479,14 @@ export function DogProfileForm({
     setOpenPanels((current) => ({ ...current, [panel]: !current[panel] }));
   };
   const sexLabel = values.sex === 'male' ? t.fields.male : values.sex === 'female' ? t.fields.female : flowT.notSet;
-  const panelButtonLabel = (panel: ProgressivePanelKey) => openPanels[panel] ? flowT.close : flowT.open;
+  const panelButtonLabel = (panel: ProgressivePanelKey) => (openPanels[panel] ? flowT.close : flowT.open);
+  const panelCards: Array<{ panel: ProgressivePanelKey; label: string; hint: string }> = [
+    { panel: 'identity', label: flowT.identityCta, hint: flowT.identityHint },
+    { panel: 'presentation', label: flowT.presentationCta, hint: flowT.presentationHint },
+    { panel: 'location', label: flowT.locationCta, hint: flowT.locationHint },
+    { panel: 'pedigree', label: flowT.pedigreeCta, hint: flowT.pedigreeHint },
+    { panel: 'checks', label: flowT.checksCta, hint: flowT.checksHint },
+  ];
 
   useEffect(() => {
     setOpenPanels((current) => ({
@@ -832,21 +854,16 @@ export function DogProfileForm({
           <p>{flowT.moreText}</p>
         </div>
         <div className="dog-form-progressive-actions__grid">
-          {([
-            ['identity', flowT.identityCta],
-            ['presentation', flowT.presentationCta],
-            ['location', flowT.locationCta],
-            ['pedigree', flowT.pedigreeCta],
-            ['checks', flowT.checksCta],
-          ] as Array<[ProgressivePanelKey, string]>).map(([panel, label]) => (
+          {panelCards.map(({ panel, label, hint }) => (
             <button
               key={panel}
               type="button"
-              className={`button-secondary dog-form-progressive-actions__button${openPanels[panel] ? ' is-active' : ''}`}
+              className={`dog-form-progressive-actions__button${openPanels[panel] ? ' is-active' : ''}`}
               onClick={() => togglePanel(panel)}
             >
-              <span>{label}</span>
-              <strong>{panelButtonLabel(panel)}</strong>
+              <span className="dog-form-progressive-actions__button-title">{label}</span>
+              <span className="dog-form-progressive-actions__button-hint">{hint}</span>
+              <strong className="dog-form-progressive-actions__button-state">{panelButtonLabel(panel)}</strong>
             </button>
           ))}
         </div>

@@ -22457,3 +22457,134 @@ body {
   max-width: 100%;
 }
 /* Step 108.2.1 — Basic-first profile layout repair END */
+
+/* Step 108.2.2 — Optional sections visual polish START */
+.dog-form-progressive-actions {
+  position: relative;
+  gap: clamp(1.05rem, 2.2vw, 1.45rem);
+  padding: clamp(1.2rem, 2.4vw, 1.65rem);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(212, 175, 55, 0.14), transparent 36%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+    rgba(9, 10, 13, 0.92);
+}
+
+.dog-form-progressive-actions::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), transparent 44%);
+}
+
+.dog-form-progressive-actions__copy,
+.dog-form-progressive-actions__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.dog-form-progressive-actions__copy {
+  display: flex;
+  max-width: 74ch;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.dog-form-progressive-actions__copy .eyebrow-label {
+  width: fit-content;
+}
+
+.dog-form-progressive-actions h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.35vw, 1.85rem);
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.dog-form-progressive-actions p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: clamp(0.9rem, 1.22vw, 1rem);
+  line-height: 1.68;
+}
+
+.dog-form-progressive-actions__grid {
+  grid-template-columns: repeat(auto-fit, minmax(154px, 1fr));
+  gap: 0.82rem;
+}
+
+.dog-form-progressive-actions__button {
+  position: relative;
+  display: grid;
+  min-height: 92px;
+  padding: 1rem 1rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.022)),
+    rgba(255, 255, 255, 0.018);
+  color: #f8f5ef;
+  cursor: pointer;
+  gap: 0.35rem;
+  text-align: left;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.dog-form-progressive-actions__button:hover {
+  border-color: rgba(212, 175, 55, 0.42);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(212, 175, 55, 0.12), transparent 45%),
+    rgba(255, 255, 255, 0.038);
+  transform: translateY(-1px);
+}
+
+.dog-form-progressive-actions__button.is-active {
+  border-color: rgba(212, 175, 55, 0.72);
+  background:
+    radial-gradient(circle at 14% 8%, rgba(212, 175, 55, 0.18), transparent 44%),
+    rgba(212, 175, 55, 0.1);
+}
+
+.dog-form-progressive-actions__button-title {
+  color: rgba(248, 245, 239, 0.96);
+  font-size: 0.98rem;
+  font-weight: 780;
+  letter-spacing: -0.01em;
+  line-height: 1.16;
+}
+
+.dog-form-progressive-actions__button-hint {
+  color: rgba(248, 245, 239, 0.62);
+  font-size: 0.78rem;
+  font-weight: 520;
+  line-height: 1.35;
+}
+
+.dog-form-progressive-actions__button-state {
+  align-self: end;
+  justify-self: start;
+  margin-top: 0.35rem;
+  padding: 0.28rem 0.58rem;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.09);
+  color: #d4af37;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .dog-form-progressive-actions__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dog-form-progressive-actions__button {
+    min-height: 82px;
+  }
+}
+/* Step 108.2.2 — Optional sections visual polish END */
