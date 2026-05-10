@@ -301,8 +301,8 @@ function buildFaultsBoundarySection(input: FciStandardConformityInput): FciConfo
   const hasProfile = Boolean(input.latestMeasurement || safeText(input.color) || safeText(input.dateOfBirth));
   return {
     key: 'faults_boundary',
-    status: 'human_review_required',
-    score: hasProfile ? 60 : 20,
+    status: hasProfile ? 'human_review_required' : 'not_assessable_from_profile',
+    score: hasProfile ? 60 : 0,
     confidence: 'low',
     value: null,
     expectedRange: null,
@@ -353,11 +353,11 @@ function getConfidence(sections: FciConformitySection[], mode: FciConformityMode
 }
 
 function getQualification(score: number, confidence: FciConformityConfidence, mode: FciConformityMode): FciConformityQualification {
+  if (score <= 0) return 'not_ready_for_conformity_orientation';
   if (mode === 'puppy_development_projection') return 'development_only';
   if (score >= 80 && confidence !== 'low') return 'candidate_for_usg_review';
   if (score >= 55) return 'human_review_needed';
-  if (score > 0) return 'collect_more_data';
-  return 'not_ready_for_conformity_orientation';
+  return 'collect_more_data';
 }
 
 function pickLatestMeasurement(record: DogMeasurementRecord | null | undefined): FciStandardConformityDocument['latestMeasurement'] {

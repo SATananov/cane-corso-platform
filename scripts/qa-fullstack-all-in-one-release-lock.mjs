@@ -33,6 +33,7 @@ const requiredFiles = [
   'docs/qa/step108-usg-intelligence-layer-foundation.md',
   'docs/architecture/fci-standard-conformity-engine.md',
   'docs/qa/step108-1-fci-standard-conformity-engine.md',
+  'docs/qa/step108-1-1-fci-intelligence-empty-state-location-polish.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -51,6 +52,7 @@ const requiredFiles = [
   'scripts/qa-step107-usg-product-lock.mjs',
   'scripts/qa-step108-usg-intelligence-layer-foundation.mjs',
   'scripts/qa-step108-1-fci-standard-conformity-engine.mjs',
+  'scripts/qa-step108-1-1-fci-intelligence-empty-state-location-polish.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -80,6 +82,7 @@ const requiredPackageScripts = [
   'step107:product-lock:qa',
   'step108:usg-intelligence:qa',
   'step108-1:fci-conformity:qa',
+  'step108-1-1:fci-ux-polish:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -116,6 +119,7 @@ const qaScripts = [
   ['Step 107 USG product lock', 'scripts/qa-step107-usg-product-lock.mjs'],
   ['Step 108 USG Intelligence layer foundation', 'scripts/qa-step108-usg-intelligence-layer-foundation.mjs'],
   ['Step 108.1 FCI Standard conformity engine', 'scripts/qa-step108-1-fci-standard-conformity-engine.mjs'],
+  ['Step 108.1.1 FCI/Intelligence empty-state and location polish', 'scripts/qa-step108-1-1-fci-intelligence-empty-state-location-polish.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

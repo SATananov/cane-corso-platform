@@ -20,7 +20,7 @@ const copyByLocale = {
     eyebrow: 'USG Intelligence foundation',
     title: 'Smart orientation from the profile data',
     description:
-      'This layer prepares the platform for future regression and ML-assisted orientation. Today it reads the available profile, photos, pedigree context and measurement archive as guidance only.',
+      'This layer prepares the platform for future regression and data-assisted orientation. Today it reads the available profile, photos, pedigree context and measurement archive as guidance only.',
     scores: {
       dataCompleteness: 'Data completeness',
       growthEvidence: 'Growth evidence',
@@ -79,7 +79,7 @@ const copyByLocale = {
     eyebrow: 'USG интелигентен анализ',
     title: 'Умен ориентир от данните в профила',
     description:
-      'Този слой подготвя платформата за бъдеща регресия и ML-подпомогнат ориентир. Днес той чете наличния профил, снимки, родословен контекст и архив с измервания само като насока.',
+      'Този слой подготвя платформата за бъдеща регресия и интелигентен ориентир от данните. Днес той чете наличния профил, снимки, родословен контекст и архив с измервания само като насока.',
     scores: {
       dataCompleteness: 'Пълнота на данните',
       growthEvidence: 'Данни за растеж',
@@ -138,7 +138,7 @@ const copyByLocale = {
     eyebrow: 'Analisi intelligente USG',
     title: 'Orientamento intelligente dai dati del profilo',
     description:
-      'Questo livello prepara la piattaforma per futura regressione e orientamento assistito da ML. Oggi legge profilo, foto, contesto pedigree e archivio misure solo come guida.',
+      'Questo livello prepara la piattaforma per futura regressione e orientamento assistito dai dati. Oggi legge profilo, foto, contesto pedigree e archivio misure solo come guida.',
     scores: {
       dataCompleteness: 'Completezza dati',
       growthEvidence: 'Evidenza crescita',
@@ -222,7 +222,7 @@ export function UsgIntelligenceFoundationPanel({ locale, ...input }: UsgIntellig
           <h2>{copy.title}</h2>
           <p>{copy.description}</p>
         </div>
-        <div className="usg-intelligence-panel__mark" aria-hidden="true">ML</div>
+        <div className="usg-intelligence-panel__mark" aria-hidden="true">USG</div>
       </div>
 
       <div className="usg-intelligence-panel__scores">
