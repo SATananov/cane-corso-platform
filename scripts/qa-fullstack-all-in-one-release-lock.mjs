@@ -44,6 +44,7 @@ const requiredFiles = [
   'docs/qa/step111-1-usg-heritage-written-story-toggle.md',
   'docs/qa/step111-2-usg-platform-origin-story.md',
   'docs/qa/step111-3-heritage-navigation-member-clarity.md',
+  'docs/qa/step112-mobile-browser-ux-readiness.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -73,6 +74,7 @@ const requiredFiles = [
   'scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs',
   'scripts/qa-step111-2-usg-platform-origin-story.mjs',
   'scripts/qa-step111-3-heritage-navigation-member-clarity.mjs',
+  'scripts/qa-step112-mobile-browser-ux-readiness.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -113,6 +115,7 @@ const requiredPackageScripts = [
   'step111-1:usg-heritage-story:qa',
   'step111-2:usg-platform-origin:qa',
   'step111-3:heritage-nav-member-clarity:qa',
+  'step112:mobile-browser:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -160,6 +163,7 @@ const qaScripts = [
   ['Step 111.1 USG heritage written story toggle', 'scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs'],
   ['Step 111.2 USG platform origin story', 'scripts/qa-step111-2-usg-platform-origin-story.mjs'],
   ['Step 111.3 Heritage navigation/member clarity', 'scripts/qa-step111-3-heritage-navigation-member-clarity.mjs'],
+  ['Step 112 Mobile browser UX readiness', 'scripts/qa-step112-mobile-browser-ux-readiness.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

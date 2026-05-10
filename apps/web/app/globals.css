@@ -23925,3 +23925,333 @@ body {
   }
 }
 /* Step 111.3 — Heritage Navigation & Member Home Clarity Polish END */
+
+
+/* Step 112 — Mobile Browser UX Readiness Pass START */
+.mobile-browser-safe-zone,
+.site-header__bar--premium-two-row,
+.route-hero-card,
+.page-hero,
+.content-card,
+.side-info-card,
+.section-card,
+.form-section-card,
+.preview-card,
+.dog-card,
+.registry-card,
+.usg-founder-heritage,
+.owner-health-tracker,
+.owner-center-stack--real-user,
+.role-aware-action-panel {
+  min-width: 0;
+}
+
+.mobile-scroll-hint {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .site-header__bar.site-header__bar--premium-two-row {
+    width: calc(100vw - 16px);
+    border-radius: 22px;
+  }
+
+  .site-nav--topline,
+  .site-utility__menus--workline,
+  .site-utility__preferences--workline {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .site-nav--topline::-webkit-scrollbar,
+  .site-utility__menus--workline::-webkit-scrollbar,
+  .site-utility__preferences--workline::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav__link.site-nav__link--topline,
+  .header-direct-link.header-direct-link--workline,
+  .site-utility__preferences--workline > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .site-nav__link.site-nav__link--topline,
+  .header-direct-link.header-direct-link--workline,
+  .button-primary,
+  .button-secondary,
+  .button-ghost,
+  .btn,
+  .inline-link-action,
+  .owner-health-tracker__switch button,
+  .password-field__toggle {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .content-grid,
+  .two-columns,
+  .two-columns-wide-right,
+  .platform-member-focus.role-aware-action-panel,
+  .member-home-hero,
+  .owner-center-stack--real-user .owner-center-identity-card--compact,
+  .owner-health-tracker__hero,
+  .owner-health-dashboard-grid,
+  .usg-founder-heritage__hero,
+  .usg-founder-heritage__archive-head {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .hero-usg-grounding-seal,
+  .platform-member-focus .role-aware-action-panel__next-step,
+  .usg-founder-heritage__archive-head .button-ghost,
+  .owner-health-tracker__seal {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --shell-width: min(100%, calc(100vw - 18px));
+  }
+
+  .app-frame,
+  .page-shell,
+  .member-route-stack,
+  .stack-blocks,
+  .side-stack {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .route-hero-card,
+  .page-hero,
+  .content-card,
+  .side-info-card,
+  .section-card,
+  .form-section-card,
+  .preview-card,
+  .empty-state-panel,
+  .usg-founder-heritage {
+    border-radius: 22px;
+    padding: clamp(0.95rem, 4vw, 1.15rem);
+  }
+
+  .route-title,
+  .page-hero__title,
+  .hero__title,
+  .usg-founder-heritage__copy h2,
+  .usg-founder-heritage__archive-head h3 {
+    font-size: clamp(1.85rem, 10vw, 2.45rem);
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+  }
+
+  .route-copy,
+  .page-hero__description,
+  .hero__subtitle,
+  .usg-founder-heritage__copy p,
+  .usg-founder-heritage__archive-head p,
+  .owner-health-tracker__hero p {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .route-hero-actions,
+  .member-home-primary-actions,
+  .form-actions-bar,
+  .dog-card-actions,
+  .dog-card--owner-workspace .dog-card-actions,
+  .registry-card__actions,
+  .community-rating-panel__buttons {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+  }
+
+  .route-hero-actions > *,
+  .member-home-primary-actions > *,
+  .form-actions-bar > *,
+  .dog-card-actions > *,
+  .dog-card--owner-workspace .dog-card-actions > *,
+  .registry-card__actions > *,
+  .community-rating-panel__buttons > * {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .member-start-card,
+  .owner-center-task,
+  .owner-center-lane,
+  .role-aware-action-panel__next-step,
+  .owner-health-stat-card {
+    border-radius: 20px;
+  }
+
+  .hero-usg-grounding-seal {
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 20px;
+  }
+
+  .role-aware-action-panel__next-step ol {
+    gap: 0.35rem;
+  }
+
+  .role-aware-action-panel__next-step li {
+    min-height: 44px;
+    padding-block: 0.55rem;
+  }
+
+  .usg-founder-heritage::before {
+    right: 0.3rem;
+    top: 0.5rem;
+    font-size: clamp(3.2rem, 24vw, 6.4rem);
+    opacity: 0.55;
+  }
+
+  .usg-founder-heritage__grid,
+  .usg-founder-heritage--full .usg-founder-heritage__grid,
+  .owner-health-tracker__stats,
+  .owner-health-form-grid,
+  .owner-health-form-grid--weight,
+  .member-start-grid--priority,
+  .member-home-reset--real-user .member-start-grid[data-layout='priority'],
+  .owner-center-task-grid--priority,
+  .owner-center-lane-grid--primary {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .usg-founder-heritage-card__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .usg-founder-heritage-story__summary,
+  .member-journey-details > summary {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 52px;
+  }
+
+  .owner-health-form-card__head,
+  .owner-health-section-head,
+  .section-head-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .owner-health-table-wrap {
+    margin-inline: -0.15rem;
+    border-radius: 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .owner-health-table {
+    min-width: 720px;
+  }
+
+  .owner-health-chart__row {
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 16px;
+    padding: 0.65rem;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .health-tracker-input,
+  .field-input,
+  .field-textarea,
+  select.field-input {
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  .password-field__input {
+    padding-right: 54px;
+  }
+
+  .password-field__toggle {
+    right: 0.42rem;
+    width: 42px;
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header__bar.site-header__bar--premium-two-row {
+    width: calc(100vw - 12px);
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .brand-mark--compact .brand-mark__statement {
+    display: none;
+  }
+
+  .brand-mark--compact .brand-mark__title {
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+  }
+
+  .site-nav__link.site-nav__link--topline,
+  .header-direct-link.header-direct-link--workline {
+    padding-inline: 0.82rem;
+    font-size: 0.82rem;
+  }
+
+  .header-identity-panel--workline {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .header-identity-panel__name {
+    max-width: calc(100vw - 72px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .route-title,
+  .page-hero__title,
+  .hero__title {
+    font-size: clamp(1.7rem, 12vw, 2.2rem);
+  }
+
+  .owner-health-tracker__seal {
+    width: 118px;
+  }
+
+  .owner-health-tracker__seal strong {
+    font-size: 2rem;
+  }
+
+  .owner-health-tracker__seal span {
+    font-size: 0.66rem;
+  }
+
+  .usg-founder-heritage-card__body {
+    padding: 0.9rem;
+  }
+
+  .usg-founder-heritage-card__body h4 {
+    font-size: 1.45rem;
+  }
+}
+/* Step 112 — Mobile Browser UX Readiness Pass END */

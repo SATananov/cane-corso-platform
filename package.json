@@ -156,7 +156,8 @@
     "step111:usg-heritage:qa": "node scripts/qa-step111-usg-heritage-di-casa-tananov-archive.mjs",
     "step111-1:usg-heritage-story:qa": "node scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs",
     "step111-2:usg-platform-origin:qa": "node scripts/qa-step111-2-usg-platform-origin-story.mjs",
-    "step111-3:heritage-nav-member-clarity:qa": "node scripts/qa-step111-3-heritage-navigation-member-clarity.mjs"
+    "step111-3:heritage-nav-member-clarity:qa": "node scripts/qa-step111-3-heritage-navigation-member-clarity.mjs",
+    "step112:mobile-browser:qa": "node scripts/qa-step112-mobile-browser-ux-readiness.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
