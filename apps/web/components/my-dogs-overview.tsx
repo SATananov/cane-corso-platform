@@ -322,7 +322,7 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
           </aside>
         </div>
       )}
-      <details className="owner-secondary-help">
+      <details className="owner-secondary-help" id="owner-photo-review-guidance">
         <summary>{locale === 'bg' ? 'Снимки и насоки за преглед' : locale === 'it' ? 'Foto e guida per revisione' : 'Photos and review guidance'}</summary>
         <UsgOwnerPhotoChecklistPanel locale={locale} />
       </details>

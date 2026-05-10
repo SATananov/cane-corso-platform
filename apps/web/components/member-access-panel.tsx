@@ -42,6 +42,8 @@ type AuthPanelCopy = {
   lastNameLabel: string;
   emailLabel: string;
   passwordLabel: string;
+  showPasswordLabel: string;
+  hidePasswordLabel: string;
   firstNamePlaceholder: string;
   lastNamePlaceholder: string;
   emailPlaceholder: string;
@@ -128,6 +130,8 @@ const copyByLocale: Record<string, AuthPanelCopy> = {
     lastNameLabel: 'Last name',
     emailLabel: 'Email',
     passwordLabel: 'Password',
+    showPasswordLabel: 'Show password',
+    hidePasswordLabel: 'Hide password',
     firstNamePlaceholder: 'Stefano',
     lastNamePlaceholder: 'De Tanini',
     emailPlaceholder: 'name@example.com',
@@ -218,6 +222,8 @@ const copyByLocale: Record<string, AuthPanelCopy> = {
     lastNameLabel: 'Фамилия',
     emailLabel: 'Имейл',
     passwordLabel: 'Парола',
+    showPasswordLabel: 'Покажи паролата',
+    hidePasswordLabel: 'Скрий паролата',
     firstNamePlaceholder: 'Стефан',
     lastNamePlaceholder: 'Тананов',
     emailPlaceholder: 'name@example.com',
@@ -308,6 +314,8 @@ const copyByLocale: Record<string, AuthPanelCopy> = {
     lastNameLabel: 'Cognome',
     emailLabel: 'Email',
     passwordLabel: 'Password',
+    showPasswordLabel: 'Mostra password',
+    hidePasswordLabel: 'Nascondi password',
     firstNamePlaceholder: 'Stefano',
     lastNamePlaceholder: 'De Tanini',
     emailPlaceholder: 'name@example.com',
@@ -596,6 +604,8 @@ export function MemberAccessPanel({
   const [signInStatus, setSignInStatus] = useState<string | null>(null);
   const [signUpErrors, setSignUpErrors] = useState<SignUpErrors>({});
   const [signInErrors, setSignInErrors] = useState<SignInErrors>({});
+  const [showSignUpPassword, setShowSignUpPassword] = useState(false);
+  const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [signUpForm, setSignUpForm] = useState({
     firstName: '',
     lastName: '',
@@ -762,13 +772,6 @@ export function MemberAccessPanel({
     setSignInPending(true);
 
     try {
-      console.info('[access-login-payload]', {
-        endpoint: '/api/auth/sign-in',
-        email: nextForm.email,
-        passwordLength: nextForm.password.length,
-        rawPasswordLength: rawPassword.length,
-      });
-
       const data = await fetchApiDocument<LocalAuthResponse>('/api/auth/sign-in', {
         method: 'POST',
         body: JSON.stringify(nextForm),
@@ -1126,20 +1129,32 @@ export function MemberAccessPanel({
               <label className="field-label" htmlFor="access-signup-password">
                 {copy.passwordLabel}
               </label>
-              <input
-                id="access-signup-password"
-                className={`field-input${signUpErrors.password ? ' is-invalid' : ''}`}
-                name="signup_password"
-                type="password"
-                value={signUpForm.password}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setSignUpForm((current) => ({ ...current, password: value }));
-                  setSignUpErrors((current) => ({ ...current, password: undefined }));
-                }}
-                placeholder={copy.passwordPlaceholder}
-                autoComplete="section-signup new-password"
-              />
+              <div className="password-field">
+                <input
+                  id="access-signup-password"
+                  className={`field-input password-field__input${signUpErrors.password ? ' is-invalid' : ''}`}
+                  name="signup_password"
+                  type={showSignUpPassword ? 'text' : 'password'}
+                  value={signUpForm.password}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setSignUpForm((current) => ({ ...current, password: value }));
+                    setSignUpErrors((current) => ({ ...current, password: undefined }));
+                  }}
+                  placeholder={copy.passwordPlaceholder}
+                  autoComplete="section-signup new-password"
+                />
+                <button
+                  className="password-field__toggle"
+                  type="button"
+                  aria-label={showSignUpPassword ? copy.hidePasswordLabel : copy.showPasswordLabel}
+                  aria-pressed={showSignUpPassword}
+                  onClick={() => setShowSignUpPassword((current) => !current)}
+                >
+                  <span aria-hidden="true">{showSignUpPassword ? '🙈' : '👁'}</span>
+                  <span>{showSignUpPassword ? copy.hidePasswordLabel : copy.showPasswordLabel}</span>
+                </button>
+              </div>
               {signUpErrors.password ? <p className="field-error">{signUpErrors.password}</p> : null}
             </div>
 
@@ -1193,23 +1208,35 @@ export function MemberAccessPanel({
                 <label className="field-label" htmlFor="access-signin-password">
                   {copy.passwordLabel}
                 </label>
-                <input
-                  id="access-signin-password"
-                  className={`field-input${signInErrors.password ? ' is-invalid' : ''}`}
-                  name="password"
-                  type="password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  value={signInForm.password}
-                  onChange={(event) => {
-                    const value = event.target.value;
-                    setSignInForm((current) => ({ ...current, password: value }));
-                    setSignInErrors((current) => ({ ...current, password: undefined }));
-                  }}
-                  placeholder={copy.passwordPlaceholder}
-                  autoComplete="section-signin current-password"
-                />
+                <div className="password-field">
+                  <input
+                    id="access-signin-password"
+                    className={`field-input password-field__input${signInErrors.password ? ' is-invalid' : ''}`}
+                    name="password"
+                    type={showSignInPassword ? 'text' : 'password'}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    value={signInForm.password}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setSignInForm((current) => ({ ...current, password: value }));
+                      setSignInErrors((current) => ({ ...current, password: undefined }));
+                    }}
+                    placeholder={copy.passwordPlaceholder}
+                    autoComplete="section-signin current-password"
+                  />
+                  <button
+                    className="password-field__toggle"
+                    type="button"
+                    aria-label={showSignInPassword ? copy.hidePasswordLabel : copy.showPasswordLabel}
+                    aria-pressed={showSignInPassword}
+                    onClick={() => setShowSignInPassword((current) => !current)}
+                  >
+                    <span aria-hidden="true">{showSignInPassword ? '🙈' : '👁'}</span>
+                    <span>{showSignInPassword ? copy.hidePasswordLabel : copy.showPasswordLabel}</span>
+                  </button>
+                </div>
                 {signInErrors.password ? <p className="field-error">{signInErrors.password}</p> : null}
 
                 <button className="btn btn--secondary access-form-submit" type="submit" disabled={signInPending}>
