@@ -10,46 +10,52 @@ export const dynamic = 'force-dynamic';
 
 const copyByLocale = {
   en: {
-    eyebrow: 'Private start',
-    title: 'What do you want to do now?',
-    description: 'This is your private area. Start with your Cane Corso profile, owner data, requests, or the knowledge you need.',
-    primary: { href: '/my-dogs', label: 'Open My Cane Corso', meta: 'profiles, photos, measurements, status' },
-    secondary: [
-      { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'new private profile' },
-      { href: '/profile', label: 'Owner profile', meta: 'your details' },
-      { href: '/ecosystem', label: 'My requests', meta: 'community and services' },
-      { href: '/knowledge', label: 'Learn first', meta: 'standard, care, USG' },
-    ],
-    statusTitle: 'Current status',
-    statusText: 'Below you see real next actions from your account. Long explanations are kept in Knowledge and FAQ.',
+    eyebrow: 'Private Cane Corso center',
+    title: 'Your Cane Corso center',
+    description:
+      'Add a profile, follow health and growth, keep your owner data ready, and use the community layer when you need trusted places or services.',
+    primaryNoDogs: { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'start with a private profile' },
+    primaryWithDogs: { href: '/my-dogs', label: 'Open My Cane Corso', meta: 'profiles, photos, health, status' },
+    healthAction: { label: 'Health and growth', meta: 'weight, vaccines, vet notes' },
+    cardsLabel: 'Main member actions',
+    cards: {
+      myDogs: { href: '/my-dogs', label: 'My Cane Corso', meta: 'profiles, photos, measurements, review status' },
+      health: { label: 'Health and growth', meta: 'weight, vaccines, deworming, vet notes', noDogMeta: 'add a Cane Corso profile first' },
+      profile: { href: '/profile', label: 'Owner profile', meta: 'identity and private contact details' },
+      ecosystem: { href: '/ecosystem', label: 'Community and services', meta: 'requests, places, services, matching' },
+    },
   },
   bg: {
-    eyebrow: 'Личен старт',
-    title: 'Какво искаш да направиш сега?',
-    description: 'Това е личната ти зона. Започни от профила на твоето Cane Corso, данните за собственика, заявките или нужната информация.',
-    primary: { href: '/my-dogs', label: 'Отвори „Моите Cane Corso“', meta: 'профили, снимки, измервания, статус' },
-    secondary: [
-      { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'нов личен профил' },
-      { href: '/profile', label: 'Профил на собственика', meta: 'твоите данни' },
-      { href: '/ecosystem', label: 'Моите заявки', meta: 'общност и услуги' },
-      { href: '/knowledge', label: 'Научи първо', meta: 'стандарт, грижа, USG' },
-    ],
-    statusTitle: 'Текущ статус',
-    statusText: 'По-долу виждаш реалните следващи действия от твоя акаунт. Дългите обяснения са в Знания и Помощ.',
+    eyebrow: 'Личен Cane Corso център',
+    title: 'Твоят Cane Corso център',
+    description:
+      'Добави профил, следи здраве и растеж, поддържай данните на собственика и използвай общността, когато търсиш доверени места или услуги.',
+    primaryNoDogs: { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'започни с личен профил' },
+    primaryWithDogs: { href: '/my-dogs', label: 'Отвори „Моите Cane Corso“', meta: 'профили, снимки, здраве, статус' },
+    healthAction: { label: 'Здраве и растеж', meta: 'тегло, ваксини, бележки от ветеринар' },
+    cardsLabel: 'Какво искаш да направиш сега?',
+    cards: {
+      myDogs: { href: '/my-dogs', label: 'Моите Cane Corso', meta: 'профили, снимки, измервания, статус на преглед' },
+      health: { label: 'Здраве и растеж', meta: 'тегло, ваксини, обезпаразитяване, прегледи', noDogMeta: 'първо добави Cane Corso профил' },
+      profile: { href: '/profile', label: 'Профил на собственика', meta: 'идентичност и лични контактни данни' },
+      ecosystem: { href: '/ecosystem', label: 'Общност и услуги', meta: 'заявки, места, услуги, свързване' },
+    },
   },
   it: {
-    eyebrow: 'Start privato',
-    title: 'Cosa vuoi fare adesso?',
-    description: 'Questa è la tua area privata. Inizia dal profilo del tuo Cane Corso, dai dati proprietario, dalle richieste o dalle informazioni utili.',
-    primary: { href: '/my-dogs', label: 'Apri I miei Cane Corso', meta: 'profili, foto, misure, stato' },
-    secondary: [
-      { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'nuovo profilo privato' },
-      { href: '/profile', label: 'Profilo proprietario', meta: 'i tuoi dati' },
-      { href: '/ecosystem', label: 'Le mie richieste', meta: 'comunità e servizi' },
-      { href: '/knowledge', label: 'Prima informati', meta: 'standard, cura, USG' },
-    ],
-    statusTitle: 'Stato attuale',
-    statusText: 'Sotto trovi le prossime azioni reali del tuo account. Le spiegazioni lunghe restano in Conoscenze e Aiuto.',
+    eyebrow: 'Centro Cane Corso privato',
+    title: 'Il tuo centro Cane Corso',
+    description:
+      'Aggiungi un profilo, segui salute e crescita, mantieni pronti i dati proprietario e usa la community quando cerchi luoghi o servizi affidabili.',
+    primaryNoDogs: { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'inizia da un profilo privato' },
+    primaryWithDogs: { href: '/my-dogs', label: 'Apri I miei Cane Corso', meta: 'profili, foto, salute, stato' },
+    healthAction: { label: 'Salute e crescita', meta: 'peso, vaccini, note veterinarie' },
+    cardsLabel: 'Azioni principali membro',
+    cards: {
+      myDogs: { href: '/my-dogs', label: 'I miei Cane Corso', meta: 'profili, foto, misure, stato revisione' },
+      health: { label: 'Salute e crescita', meta: 'peso, vaccini, sverminazione, visite', noDogMeta: 'aggiungi prima un profilo Cane Corso' },
+      profile: { href: '/profile', label: 'Profilo proprietario', meta: 'identità e contatti privati' },
+      ecosystem: { href: '/ecosystem', label: 'Community e servizi', meta: 'richieste, luoghi, servizi, connessioni' },
+    },
   },
 } as const;
 
@@ -58,37 +64,51 @@ export default async function MemberCommandCenterPage() {
     const locale = await getCurrentLocale();
     const document = await getCurrentOwnerCenterDocument();
     const copy = copyByLocale[locale] ?? copyByLocale.en;
+    const firstDog = document.dogs.items[0] ?? null;
+    const hasDogs = document.dogs.total > 0;
+    const primary = hasDogs ? copy.primaryWithDogs : copy.primaryNoDogs;
+    const healthHref = firstDog ? `/my-dogs/${firstDog.id}/health` : '/my-dogs/new';
+    const startCards = [
+      copy.cards.myDogs,
+      {
+        href: healthHref,
+        label: copy.cards.health.label,
+        meta: hasDogs ? copy.cards.health.meta : copy.cards.health.noDogMeta,
+      },
+      copy.cards.profile,
+      copy.cards.ecosystem,
+    ];
 
     return (
-      <main className="member-route-stack member-home-reset">
-        <section className="route-hero-card route-hero-card--member route-hero-card--user-first">
+      <main className="member-route-stack member-home-reset member-home-reset--real-user">
+        <section className="route-hero-card route-hero-card--member route-hero-card--user-first member-home-hero">
           <div>
             <span className="eyebrow-label">{copy.eyebrow}</span>
             <h1 className="route-title">{copy.title}</h1>
             <p className="route-copy">{copy.description}</p>
           </div>
-          <div className="route-hero-actions route-hero-actions--vertical">
-            <Link href={copy.primary.href} className="button-primary">
-              {copy.primary.label}
-              <small>{copy.primary.meta}</small>
+          <div className="route-hero-actions route-hero-actions--vertical member-home-primary-actions">
+            <Link href={primary.href} className="button-primary">
+              {primary.label}
+              <small>{primary.meta}</small>
+            </Link>
+            <Link href={healthHref} className="button-secondary">
+              {copy.healthAction.label}
+              <small>{copy.healthAction.meta}</small>
             </Link>
           </div>
         </section>
 
-        <section className="member-start-grid" aria-label={copy.title}>
-          {copy.secondary.map((item) => (
-            <Link href={item.href} className="member-start-card" key={item.href}>
+        <section className="member-start-grid" data-layout="priority" aria-label={copy.cardsLabel}>
+          {startCards.map((item, index) => (
+            <Link href={item.href} className={`member-start-card ${index === 0 ? 'member-start-card--primary' : ''}`} key={item.href}>
               <strong>{item.label}</strong>
               <span>{item.meta}</span>
             </Link>
           ))}
         </section>
 
-        <section className="content-card member-status-card">
-          <span className="eyebrow-label">{copy.statusTitle}</span>
-          <p>{copy.statusText}</p>
-        </section>
-
+        {/* read-only orchestration: /member consumes the owner document and routes the user to the right workspace without mutating authority data. */}
         <OwnerCenterWorkspace document={document} locale={locale} />
       </main>
     );

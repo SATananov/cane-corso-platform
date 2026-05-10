@@ -51,7 +51,7 @@ const copyByLocale = {
       review: 'Admin review',
       registry: 'Registry',
       certificate: 'USG certificate',
-      showcase: 'Galleria / presentazione',
+      showcase: 'Gallery / showcase',
       status: 'Status',
       public: 'Public',
       privateVisibility: 'Private',
@@ -60,7 +60,9 @@ const copyByLocale = {
       galleryReady: 'Eligible after publication quality review',
       galleryPrep: 'Prepare richer media first',
       lastUpdated: 'Updated',
+      pedigree: 'Pedigree',
     },
+    miniLabels: { total: 'Total', draft: 'Drafts', review: 'Review', public: 'Public', usg: 'USG', fix: 'Fix' },
     milestones: {
       privateReady: 'Profile exists in the owner workspace.',
       privateEmpty: 'No private profile has been created yet.',
@@ -137,7 +139,7 @@ const copyByLocale = {
       review: 'Админ преглед',
       registry: 'Регистър',
       certificate: 'USG сертификат',
-      showcase: 'Галерия / showcase',
+      showcase: 'Галерия / представяне',
       status: 'Статус',
       public: 'Публичен',
       privateVisibility: 'Личен',
@@ -146,7 +148,9 @@ const copyByLocale = {
       galleryReady: 'Възможност след преглед на публичното качество',
       galleryPrep: 'Първо подготви по-силна медия',
       lastUpdated: 'Обновен',
+      pedigree: 'Родословие',
     },
+    miniLabels: { total: 'Общо', draft: 'Чернови', review: 'Преглед', public: 'Публични', usg: 'USG', fix: 'Корекции' },
     milestones: {
       privateReady: 'Профилът съществува в личната зона на собственика.',
       privateEmpty: 'Все още няма създаден личен профил.',
@@ -223,7 +227,7 @@ const copyByLocale = {
       review: 'Revisione amministrativa',
       registry: 'Registro',
       certificate: 'Certificato USG',
-      showcase: 'Galleria / presentazione',
+      showcase: 'Gallery / showcase',
       status: 'Stato',
       public: 'Pubblico',
       privateVisibility: 'Privato',
@@ -232,7 +236,9 @@ const copyByLocale = {
       galleryReady: 'Possibile dopo la revisione della qualità pubblica',
       galleryPrep: 'Prepara prima media più forti',
       lastUpdated: 'Aggiornato',
+      pedigree: 'Pedigree',
     },
+    miniLabels: { total: 'Totale', draft: 'Bozze', review: 'Revisione', public: 'Pubblici', usg: 'USG', fix: 'Correzioni' },
     milestones: {
       privateReady: 'Il profilo esiste nel spazio del proprietario.',
       privateEmpty: 'Nessun profilo privato è stato creato.',
@@ -458,7 +464,7 @@ export function OwnerJourneyCommandCenter({ document, locale }: OwnerJourneyComm
                   <dd>{representativeDog.publication ? copy.labels.galleryReady : copy.labels.galleryPrep}</dd>
                 </div>
                 <div>
-                  <dt>Pedigree</dt>
+                  <dt>{copy.labels.pedigree}</dt>
                   <dd>{countFilledPedigree(representativeDog)}/14</dd>
                 </div>
                 <div>
@@ -491,22 +497,22 @@ export function OwnerJourneyCommandCenter({ document, locale }: OwnerJourneyComm
         <article className="owner-journey-summary-card">
           <span className="eyebrow-label">{copy.dogs}</span>
           <div className="owner-journey-mini-stats">
-            <div><strong>{document.dogs.total}</strong><span>Total</span></div>
-            <div><strong>{document.dogs.draft}</strong><span>Draft</span></div>
-            <div><strong>{document.dogs.submitted + document.dogs.approved + document.dogs.needsChanges}</strong><span>Review</span></div>
-            <div><strong>{document.dogs.published}</strong><span>Public</span></div>
-            <div><strong>{document.dogs.certified}</strong><span>USG</span></div>
+            <div><strong>{document.dogs.total}</strong><span>{copy.miniLabels.total}</span></div>
+            <div><strong>{document.dogs.draft}</strong><span>{copy.miniLabels.draft}</span></div>
+            <div><strong>{document.dogs.submitted + document.dogs.approved + document.dogs.needsChanges}</strong><span>{copy.miniLabels.review}</span></div>
+            <div><strong>{document.dogs.published}</strong><span>{copy.miniLabels.public}</span></div>
+            <div><strong>{document.dogs.certified}</strong><span>{copy.miniLabels.usg}</span></div>
           </div>
         </article>
 
         <article className="owner-journey-summary-card">
           <span className="eyebrow-label">{copy.ecosystem}</span>
           <div className="owner-journey-mini-stats">
-            <div><strong>{document.ecosystem.summary.total}</strong><span>Total</span></div>
-            <div><strong>{document.ecosystem.summary.drafts}</strong><span>Draft</span></div>
-            <div><strong>{document.ecosystem.summary.pendingReview}</strong><span>Review</span></div>
-            <div><strong>{document.ecosystem.summary.published}</strong><span>Public</span></div>
-            <div><strong>{document.ecosystem.summary.needsChanges}</strong><span>Fix</span></div>
+            <div><strong>{document.ecosystem.summary.total}</strong><span>{copy.miniLabels.total}</span></div>
+            <div><strong>{document.ecosystem.summary.drafts}</strong><span>{copy.miniLabels.draft}</span></div>
+            <div><strong>{document.ecosystem.summary.pendingReview}</strong><span>{copy.miniLabels.review}</span></div>
+            <div><strong>{document.ecosystem.summary.published}</strong><span>{copy.miniLabels.public}</span></div>
+            <div><strong>{document.ecosystem.summary.needsChanges}</strong><span>{copy.miniLabels.fix}</span></div>
           </div>
         </article>
       </div>

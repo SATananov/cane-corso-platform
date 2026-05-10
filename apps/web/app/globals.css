@@ -23056,3 +23056,186 @@ body {
   }
 }
 /* Step 109.1 — Access password visibility + owner photo guide polish END */
+
+/* Step 110 — Member Dashboard Real User UX Cleanup START */
+.member-home-reset--real-user {
+  gap: clamp(0.95rem, 1.5vw, 1.35rem);
+}
+
+.member-home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr);
+  min-height: auto;
+}
+
+.member-home-primary-actions {
+  align-items: stretch;
+}
+
+.member-home-primary-actions .button-secondary {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+  min-width: min(100%, 280px);
+  border-radius: 18px;
+}
+
+.member-home-primary-actions .button-secondary small {
+  color: rgba(248, 245, 239, 0.64);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.member-start-grid--priority,
+.member-home-reset--real-user .member-start-grid[data-layout='priority'] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.member-start-card--primary {
+  border-color: rgba(212, 175, 55, 0.34);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(212, 175, 55, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(212, 175, 55, 0.12), rgba(255, 255, 255, 0.035));
+}
+
+.owner-center-stack--real-user {
+  gap: clamp(0.95rem, 1.35vw, 1.25rem);
+}
+
+.owner-center-stack--real-user .owner-center-identity-card--compact {
+  grid-template-columns: minmax(0, 0.72fr) minmax(420px, 1fr);
+  padding: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.owner-center-stack--real-user .owner-center-identity-card--compact h2 {
+  font-size: clamp(1.28rem, 1.8vw, 1.9rem);
+}
+
+.owner-center-stats-grid--compact .overview-stat {
+  min-height: auto;
+  padding: 0.95rem;
+}
+
+.owner-center-panel--priority,
+.owner-center-panel--actions {
+  padding: clamp(1rem, 1.7vw, 1.35rem);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.owner-center-panel--priority .owner-center-section-head,
+.owner-center-panel--actions .owner-center-section-head {
+  margin-bottom: 0.85rem;
+}
+
+.owner-center-task-grid--priority {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.owner-center-task-grid--priority .owner-center-task {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: space-between;
+}
+
+.owner-center-lane-grid--primary {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.owner-center-lane-grid--primary .owner-center-lane {
+  padding: 1rem;
+}
+
+.member-journey-details {
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.member-journey-details > summary {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.member-journey-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.member-journey-details > summary strong {
+  color: var(--color-text-strong, #fff8e6);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.25;
+}
+
+.member-journey-details > summary small {
+  max-width: 58rem;
+  color: var(--color-text-muted, rgba(255, 255, 255, 0.68));
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.member-journey-details[open] > summary {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.member-journey-details .owner-journey-command-center {
+  margin: 1rem;
+  box-shadow: none;
+}
+
+[data-theme='heritage'] .member-start-card--primary,
+[data-theme='heritage'] .owner-center-panel--priority,
+[data-theme='heritage'] .owner-center-panel--actions,
+[data-theme='heritage'] .member-journey-details {
+  border-color: rgba(93, 70, 28, 0.16);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+[data-theme='heritage'] .member-home-primary-actions .button-secondary small,
+[data-theme='heritage'] .member-journey-details > summary small {
+  color: rgba(49, 37, 22, 0.68);
+}
+
+[data-theme='heritage'] .member-journey-details > summary strong {
+  color: rgba(35, 27, 17, 0.96);
+}
+
+@media (max-width: 1180px) {
+  .member-home-hero,
+  .owner-center-stack--real-user .owner-center-identity-card--compact,
+  .owner-center-task-grid--priority,
+  .owner-center-lane-grid--primary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .owner-center-lane-grid--primary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .member-start-grid--priority,
+.member-home-reset--real-user .member-start-grid[data-layout='priority'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .member-start-grid--priority,
+  .member-home-reset--real-user .member-start-grid[data-layout='priority'],
+  .owner-center-lane-grid--primary,
+  .owner-center-stack--real-user .owner-center-identity-card--compact dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .member-journey-details .owner-journey-command-center {
+    margin: 0.65rem;
+  }
+}
+/* Step 110 — Member Dashboard Real User UX Cleanup END */
