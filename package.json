@@ -152,7 +152,8 @@
     "step108-2-2:optional-visual-polish:qa": "node scripts/qa-step108-2-2-optional-sections-visual-polish.mjs",
     "step109:owner-health-growth:qa": "node scripts/qa-step109-owner-health-growth-tracker.mjs",
     "step109-1:access-photo-guide:qa": "node scripts/qa-step109-1-access-password-photo-guide-polish.mjs",
-    "step110:member-dashboard:qa": "node scripts/qa-step110-member-dashboard-real-user-ux-cleanup.mjs"
+    "step110:member-dashboard:qa": "node scripts/qa-step110-member-dashboard-real-user-ux-cleanup.mjs",
+    "step111:usg-heritage:qa": "node scripts/qa-step111-usg-heritage-di-casa-tananov-archive.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

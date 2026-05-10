@@ -7,6 +7,7 @@ import { getDictionary } from '@/lib/i18n';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
+import { UsgFounderHeritagePanel } from '@/components/usg-founder-heritage-panel';
 
 export default async function PlatformPage() {
   const locale = await getCurrentLocale();
@@ -570,6 +571,7 @@ export default async function PlatformPage() {
           </section>
 
           <UsgIdentityBulgaricoPanel locale={locale} variant="platform" />
+          <UsgFounderHeritagePanel locale={locale} variant="compact" />
         </>
       )}
 
