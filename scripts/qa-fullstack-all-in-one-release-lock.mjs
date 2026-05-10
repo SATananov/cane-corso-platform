@@ -41,6 +41,7 @@ const requiredFiles = [
   'docs/qa/step109-1-access-password-photo-guide-polish.md',
   'docs/qa/step110-member-dashboard-real-user-ux-cleanup.md',
   'docs/qa/step111-usg-heritage-di-casa-tananov-archive.md',
+  'docs/qa/step111-1-usg-heritage-written-story-toggle.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -67,6 +68,7 @@ const requiredFiles = [
   'scripts/qa-step109-1-access-password-photo-guide-polish.mjs',
   'scripts/qa-step110-member-dashboard-real-user-ux-cleanup.mjs',
   'scripts/qa-step111-usg-heritage-di-casa-tananov-archive.mjs',
+  'scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -104,6 +106,7 @@ const requiredPackageScripts = [
   'step109-1:access-photo-guide:qa',
   'step110:member-dashboard:qa',
   'step111:usg-heritage:qa',
+  'step111-1:usg-heritage-story:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -148,6 +151,7 @@ const qaScripts = [
   ['Step 109.1 Access password/photo guide polish', 'scripts/qa-step109-1-access-password-photo-guide-polish.mjs'],
   ['Step 110 Member dashboard real-user UX cleanup', 'scripts/qa-step110-member-dashboard-real-user-ux-cleanup.mjs'],
   ['Step 111 USG heritage / di Casa Tananov archive', 'scripts/qa-step111-usg-heritage-di-casa-tananov-archive.mjs'],
+  ['Step 111.1 USG heritage written story toggle', 'scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

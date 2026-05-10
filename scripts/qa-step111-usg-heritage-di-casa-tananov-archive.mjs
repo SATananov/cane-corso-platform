@@ -46,10 +46,11 @@ assertIncludes(component, 'Reia di Casa Tananov', 'Reia archive identity exists'
 assertIncludes(component, 'Mark II di Casa Tananov', 'Mark II archive identity exists');
 assertIncludes(component, 'Ara di Casa Tananov', 'Ara archive identity exists');
 assertIncludes(component, 'Broly di Casa Tananov', 'Broly archive identity exists');
-assertIncludes(component, 'The first Cane Corso in the personal path behind USG.', 'Mark I is described as the first Cane Corso path marker');
-assertIncludes(component, 'Първото Cane Corso в личния път зад USG.', 'BG Mark I first Cane Corso copy exists');
+assertIncludes(component, 'The last puppy that became the first chapter', 'Mark I is described as the first chapter path marker');
+assertIncludes(component, 'Последното кученце, което стана първа глава', 'BG Mark I first chapter copy exists');
 assertIncludes(component, 'official breed systems', 'Component respects official breed systems');
-assertNotIncludes(component, 'куп', 'Component does not contain Bulgarian sales wording fragment');
+assertNotIncludes(component, 'купи сега', 'Component does not contain buy-now sales wording');
+assertNotIncludes(component, 'купете', 'Component does not contain direct purchase CTA wording');
 assertNotIncludes(component, 'за продажба', 'Component does not present dogs for sale');
 assertNotIncludes(component, 'цена', 'Component does not contain pricing wording');
 assertNotIncludes(component, 'available puppies', 'Component does not sell puppies');

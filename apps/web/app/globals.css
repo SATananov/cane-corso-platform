@@ -23532,3 +23532,177 @@ body {
   }
 }
 /* Step 111 — USG Heritage / di Casa Tananov Personal Archive END */
+/* Step 111.1 — USG Heritage Written Story Toggle START */
+.usg-founder-heritage-story {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 32%),
+    rgba(0, 0, 0, 0.24);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+}
+
+.usg-founder-heritage-story__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.45rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.usg-founder-heritage-story__summary::-webkit-details-marker {
+  display: none;
+}
+
+.usg-founder-heritage-story__summary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.78rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.11);
+  color: var(--color-accent, #d4af37);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.usg-founder-heritage-story__summary span::after {
+  content: '+';
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 0.75rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.18);
+  color: currentColor;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.usg-founder-heritage-story[open] .usg-founder-heritage-story__summary span::after {
+  content: '–';
+}
+
+.usg-founder-heritage-story__summary small {
+  max-width: 30rem;
+  color: var(--color-text-muted, rgba(255, 255, 255, 0.62));
+  font-size: 0.86rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.usg-founder-heritage-story__body {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding: 0 clamp(1rem, 2.2vw, 1.45rem) clamp(1rem, 2.2vw, 1.45rem);
+}
+
+.usg-founder-heritage-story__body h3 {
+  margin: 0.25rem 0 0;
+  max-width: 62rem;
+  color: var(--color-text-strong, #fff8e6);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.65rem);
+  line-height: 1;
+}
+
+.usg-founder-heritage-story__lead,
+.usg-founder-heritage-story__closing,
+.usg-founder-heritage-story__section p {
+  margin: 0;
+  color: var(--color-text-muted, rgba(255, 255, 255, 0.72));
+  font-size: clamp(0.94rem, 1.08vw, 1.02rem);
+  line-height: 1.72;
+}
+
+.usg-founder-heritage-story__lead,
+.usg-founder-heritage-story__closing {
+  max-width: 72rem;
+}
+
+.usg-founder-heritage-story__sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1rem);
+}
+
+.usg-founder-heritage-story__section {
+  display: grid;
+  gap: 0.7rem;
+  padding: clamp(0.95rem, 1.8vw, 1.2rem);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.usg-founder-heritage-story__section h4 {
+  margin: 0;
+  color: var(--color-text-strong, #fff8e6);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.12rem, 1.55vw, 1.45rem);
+  line-height: 1.08;
+}
+
+.usg-founder-heritage-story__closing {
+  padding: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 22px;
+  background: rgba(212, 175, 55, 0.07);
+  color: var(--color-text, rgba(255, 255, 255, 0.8));
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story {
+  border-color: rgba(93, 70, 28, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(151, 103, 26, 0.1), transparent 32%),
+    rgba(255, 255, 255, 0.58);
+  box-shadow: 0 18px 42px rgba(74, 53, 18, 0.12);
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story__body h3,
+[data-theme='heritage'] .usg-founder-heritage-story__section h4 {
+  color: rgba(35, 27, 17, 0.96);
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story__summary small,
+[data-theme='heritage'] .usg-founder-heritage-story__lead,
+[data-theme='heritage'] .usg-founder-heritage-story__closing,
+[data-theme='heritage'] .usg-founder-heritage-story__section p {
+  color: rgba(49, 37, 22, 0.72);
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story__section {
+  border-color: rgba(93, 70, 28, 0.12);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story__closing {
+  border-color: rgba(93, 70, 28, 0.14);
+  background: rgba(151, 103, 26, 0.08);
+}
+
+@media (max-width: 900px) {
+  .usg-founder-heritage-story__sections {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .usg-founder-heritage-story__summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .usg-founder-heritage-story__summary small {
+    text-align: left;
+  }
+}
+/* Step 111.1 — USG Heritage Written Story Toggle END */
+
