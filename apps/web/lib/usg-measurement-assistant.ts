@@ -65,7 +65,13 @@ const puppyGrowthReference = [
   { month: 12, heightWithersCm: [65, 71], bodyLengthCm: [72, 78], chestCircumferenceCm: [80, 89], headLengthCm: null, muzzleLengthCm: null, weightKg: null },
 ] as const;
 
-const adultStandardBySex: Record<DogSex, { heightWithersCm: MeasurementRange; weightKg: MeasurementRange }> = {
+type StandardSex = Exclude<DogSex, 'unknown'>;
+
+function isStandardSex(sex: DogSex): sex is StandardSex {
+  return sex === 'male' || sex === 'female';
+}
+
+const adultStandardBySex: Record<StandardSex, { heightWithersCm: MeasurementRange; weightKg: MeasurementRange }> = {
   male: {
     heightWithersCm: { low: 64, high: 68 },
     weightKg: { low: 45, high: 50 },
@@ -185,7 +191,12 @@ export function evaluateUsgMeasurementAssistant(input: UsgMeasurementInput): Usg
   const ageMonths = calculateAgeMonths(input.dateOfBirth, input.measurementDate);
   const referenceMonth = getReferenceMonth(ageMonths);
   const lifeStage = getLifeStage(ageMonths);
-  const adultStandard = adultStandardBySex[input.sex];
+  const adultStandard = isStandardSex(input.sex)
+    ? adultStandardBySex[input.sex]
+    : {
+        heightWithersCm: { low: 60, high: 68 },
+        weightKg: { low: 40, high: 50 },
+      };
   const puppyReference = getPuppyReference(referenceMonth);
   const isAdultReference = lifeStage === 'adult' || lifeStage === 'young_adult';
 

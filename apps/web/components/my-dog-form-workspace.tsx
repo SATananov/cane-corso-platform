@@ -31,6 +31,30 @@ import { UsgIntelligenceFoundationPanel } from '@/components/usg-intelligence-fo
 import { FciStandardConformityPanel } from '@/components/fci-standard-conformity-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
+const guidanceLauncherCopy = {
+  en: {
+    eyebrow: 'Optional intelligence tools',
+    title: 'Open USG / FCI tools only when you need them',
+    body: 'The profile can start with basic data. Intelligence, FCI orientation, measurements and review readiness stay behind this button so the first experience remains calm.',
+    open: 'Open USG / FCI tools',
+    close: 'Hide USG / FCI tools',
+  },
+  bg: {
+    eyebrow: 'Допълнителни интелигентни инструменти',
+    title: 'Отвори USG / FCI инструментите само когато ти трябват',
+    body: 'Профилът може да започне с основни данни. Интелигентният анализ, FCI ориентирът, измерванията и готовността за преглед стоят зад този бутон, за да остане първото преживяване спокойно.',
+    open: 'Отвори USG / FCI инструменти',
+    close: 'Скрий USG / FCI инструменти',
+  },
+  it: {
+    eyebrow: 'Strumenti intelligenti facoltativi',
+    title: 'Apri gli strumenti USG / FCI solo quando servono',
+    body: 'Il profilo può iniziare con dati base. Analisi intelligente, orientamento FCI, misure e prontezza revisione restano dietro questo pulsante per mantenere calmo il primo passaggio.',
+    open: 'Apri strumenti USG / FCI',
+    close: 'Nascondi strumenti USG / FCI',
+  },
+} as const;
+
 interface MyDogFormWorkspaceProps {
   mode: 'create' | 'edit';
   initialValues: DogFormValues;
@@ -347,6 +371,10 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
   const [validationPassed, setValidationPassed] = useState(false);
   const [pendingIntent, setPendingIntent] = useState<'save_draft' | 'submit_for_review' | null>(null);
   const [lastPersistedAtLabel, setLastPersistedAtLabel] = useState<string | null>(null);
+  const [isGuidanceVisible, setIsGuidanceVisible] = useState(() =>
+    mode === 'edit' && (initialValues.lifecycleStatus !== 'draft' || Boolean(initialValues.publicationPublicSlug || initialValues.publicationCertificateCode)),
+  );
+  const guidanceT = guidanceLauncherCopy[locale] ?? guidanceLauncherCopy.en;
 
   useEffect(() => {
     let isCancelled = false;
@@ -652,86 +680,102 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
           onSubmitForReview={() => void runAction('submit_for_review')}
         />
 
-        <div className="dog-form-guidance-stack">
-          <UsgIntelligenceFoundationPanel
-            locale={locale}
-            dogId={activeDogId}
-            dogName={values.name}
-            sex={values.sex}
-            dateOfBirth={values.dateOfBirth}
-            color={values.color}
-            city={values.city}
-            country={values.country}
-            shortDescription={values.shortDescription}
-            mainImageUrl={values.mainImageUrl || values.galleryImageUrls[0]}
-            galleryImageCount={galleryImageCount}
-            pedigreeFilledCount={pedigreeFilledCount}
-            pedigreePhotoCount={pedigreePhotoCount}
-            lifecycleStatus={values.lifecycleStatus}
-            hasPublication={Boolean(values.publicationPublicSlug)}
-            hasCertificate={Boolean(values.publicationCertificateCode)}
-            hasMeasurementArchive={Boolean(activeDogId)}
-          />
+        <section className="content-card dog-form-guidance-launcher">
+          <div>
+            <span className="eyebrow-label">{guidanceT.eyebrow}</span>
+            <h3>{guidanceT.title}</h3>
+            <p>{guidanceT.body}</p>
+          </div>
+          <button
+            type="button"
+            className={`button-secondary dog-form-guidance-launcher__button${isGuidanceVisible ? ' is-active' : ''}`}
+            onClick={() => setIsGuidanceVisible((current) => !current)}
+          >
+            {isGuidanceVisible ? guidanceT.close : guidanceT.open}
+          </button>
+        </section>
 
-          <FciStandardConformityPanel
-            locale={locale}
-            dogId={activeDogId}
-            dogName={values.name}
-            sex={values.sex}
-            dateOfBirth={values.dateOfBirth}
-            color={values.color}
-          />
+        {isGuidanceVisible ? (
+          <div className="dog-form-guidance-stack">
+            <UsgIntelligenceFoundationPanel
+              locale={locale}
+              dogId={activeDogId}
+              dogName={values.name}
+              sex={values.sex}
+              dateOfBirth={values.dateOfBirth}
+              color={values.color}
+              city={values.city}
+              country={values.country}
+              shortDescription={values.shortDescription}
+              mainImageUrl={values.mainImageUrl || values.galleryImageUrls[0]}
+              galleryImageCount={galleryImageCount}
+              pedigreeFilledCount={pedigreeFilledCount}
+              pedigreePhotoCount={pedigreePhotoCount}
+              lifecycleStatus={values.lifecycleStatus}
+              hasPublication={Boolean(values.publicationPublicSlug)}
+              hasCertificate={Boolean(values.publicationCertificateCode)}
+              hasMeasurementArchive={Boolean(activeDogId)}
+            />
 
-          <UsgMeasurementAssistantPanel
-            locale={locale}
-            dogId={activeDogId}
-            dogName={values.name}
-            sex={values.sex}
-            dateOfBirth={values.dateOfBirth}
-            color={values.color}
-          />
+            <FciStandardConformityPanel
+              locale={locale}
+              dogId={activeDogId}
+              dogName={values.name}
+              sex={values.sex}
+              dateOfBirth={values.dateOfBirth}
+              color={values.color}
+            />
 
-          <OwnerReviewReadinessPanel
-            locale={locale}
-            context="form"
-            dogName={values.name}
-            slug={values.slug}
-            lifecycleStatus={values.lifecycleStatus}
-            visibility={values.visibility}
-            hasPublication={Boolean(values.publicationPublicSlug)}
-            hasCertificate={Boolean(values.publicationCertificateCode)}
-            hasName={Boolean(values.name.trim())}
-            hasSlug={Boolean(values.slug.trim())}
-            hasDateOfBirth={Boolean(values.dateOfBirth)}
-            hasColor={Boolean(values.color.trim())}
-            hasShortDescription={Boolean(values.shortDescription.trim())}
-            hasCity={Boolean(values.city.trim())}
-            hasCountry={Boolean(values.country.trim())}
-            hasPrimaryImage={Boolean(values.mainImageUrl || values.galleryImageUrls[0])}
-            galleryImageCount={galleryImageCount}
-            pedigreeFilledCount={pedigreeFilledCount}
-            pedigreePhotoCount={pedigreePhotoCount}
-            mediaHref={activeDogId ? `/my-dogs/${activeDogId}/media` : undefined}
-            compact
-          />
+            <UsgMeasurementAssistantPanel
+              locale={locale}
+              dogId={activeDogId}
+              dogName={values.name}
+              sex={values.sex}
+              dateOfBirth={values.dateOfBirth}
+              color={values.color}
+            />
 
-          <OwnerSubmissionHappyPathPanel
-            locale={locale}
-            mode={mode}
-            dogId={activeDogId}
-            dogName={values.name}
-            lifecycleStatus={values.lifecycleStatus}
-            hasBlockingIssues={hasBlockingSubmissionIssues}
-            completionCount={completionCount}
-            importantFieldsCount={importantFieldsCount}
-            galleryImageCount={galleryImageCount}
-            pedigreeFilledCount={pedigreeFilledCount}
-            isSaving={pendingIntent === 'save_draft'}
-            isSubmitting={pendingIntent === 'submit_for_review'}
-            lastPersistedAtLabel={lastPersistedAtLabel}
-          />
+            <OwnerReviewReadinessPanel
+              locale={locale}
+              context="form"
+              dogName={values.name}
+              slug={values.slug}
+              lifecycleStatus={values.lifecycleStatus}
+              visibility={values.visibility}
+              hasPublication={Boolean(values.publicationPublicSlug)}
+              hasCertificate={Boolean(values.publicationCertificateCode)}
+              hasName={Boolean(values.name.trim())}
+              hasSlug={Boolean(values.slug.trim())}
+              hasDateOfBirth={Boolean(values.dateOfBirth)}
+              hasColor={Boolean(values.color.trim())}
+              hasShortDescription={Boolean(values.shortDescription.trim())}
+              hasCity={Boolean(values.city.trim())}
+              hasCountry={Boolean(values.country.trim())}
+              hasPrimaryImage={Boolean(values.mainImageUrl || values.galleryImageUrls[0])}
+              galleryImageCount={galleryImageCount}
+              pedigreeFilledCount={pedigreeFilledCount}
+              pedigreePhotoCount={pedigreePhotoCount}
+              mediaHref={activeDogId ? `/my-dogs/${activeDogId}/media` : undefined}
+              compact
+            />
 
-        </div>
+            <OwnerSubmissionHappyPathPanel
+              locale={locale}
+              mode={mode}
+              dogId={activeDogId}
+              dogName={values.name}
+              lifecycleStatus={values.lifecycleStatus}
+              hasBlockingIssues={hasBlockingSubmissionIssues}
+              completionCount={completionCount}
+              importantFieldsCount={importantFieldsCount}
+              galleryImageCount={galleryImageCount}
+              pedigreeFilledCount={pedigreeFilledCount}
+              isSaving={pendingIntent === 'save_draft'}
+              isSubmitting={pendingIntent === 'submit_for_review'}
+              lastPersistedAtLabel={lastPersistedAtLabel}
+            />
+          </div>
+        ) : null}
       </div>
       <DogProfilePreviewCard
         values={values}

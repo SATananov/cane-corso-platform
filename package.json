@@ -146,7 +146,8 @@
     "step107:product-lock:qa": "node scripts/qa-step107-usg-product-lock.mjs",
     "step108:usg-intelligence:qa": "node scripts/qa-step108-usg-intelligence-layer-foundation.mjs",
     "step108-1:fci-conformity:qa": "node scripts/qa-step108-1-fci-standard-conformity-engine.mjs",
-    "step108-1-1:fci-ux-polish:qa": "node scripts/qa-step108-1-1-fci-intelligence-empty-state-location-polish.mjs"
+    "step108-1-1:fci-ux-polish:qa": "node scripts/qa-step108-1-1-fci-intelligence-empty-state-location-polish.mjs",
+    "step108-2:basic-first-profile:qa": "node scripts/qa-step108-2-basic-first-profile-ux.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

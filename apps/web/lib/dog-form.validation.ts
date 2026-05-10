@@ -18,6 +18,10 @@ export function validateDogForm(values: DogFormValues, locale: Locale = 'en'): D
     errors.slug = t.slugPattern;
   }
 
+  if (!values.sex || values.sex === 'unknown') {
+    errors.sex = t.sexRequired;
+  }
+
   if (!values.dateOfBirth) {
     errors.dateOfBirth = t.birthDateRequired;
   }

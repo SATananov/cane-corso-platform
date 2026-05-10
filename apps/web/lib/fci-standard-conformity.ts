@@ -35,12 +35,18 @@ const FCI_STANDARD: FciStandardConformityDocument['standard'] = {
   source: 'FCI',
 };
 
-const ADULT_HEIGHT_BY_SEX: Record<DogSex, FciConformityRange> = {
+type StandardSex = Exclude<DogSex, 'unknown'>;
+
+function isStandardSex(sex: DogSex): sex is StandardSex {
+  return sex === 'male' || sex === 'female';
+}
+
+const ADULT_HEIGHT_BY_SEX: Record<StandardSex, FciConformityRange> = {
   male: { low: 64, high: 68 },
   female: { low: 60, high: 64 },
 };
 
-const ADULT_WEIGHT_BY_SEX: Record<DogSex, FciConformityRange> = {
+const ADULT_WEIGHT_BY_SEX: Record<StandardSex, FciConformityRange> = {
   male: { low: 45, high: 50 },
   female: { low: 40, high: 45 },
 };
@@ -171,6 +177,20 @@ function countMeasurementFields(record: DogMeasurementRecord | null | undefined)
 function buildHeightWeightSection(input: FciStandardConformityInput): FciConformitySection {
   const height = fieldValue(input.latestMeasurement, 'heightWithersCm');
   const weight = fieldValue(input.latestMeasurement, 'weightKg');
+
+  if (!isStandardSex(input.sex)) {
+    return {
+      key: 'height_weight',
+      status: 'missing_data',
+      score: 0,
+      confidence: 'low',
+      value: null,
+      expectedRange: null,
+      expectedTextKey: 'adult_height_range',
+      evidenceKeys: ['fci_standard_343', 'sex_needed_for_standard_range', input.latestMeasurement ? 'measurement_archive_latest_record' : 'measurement_archive_needed'],
+    };
+  }
+
   const heightTarget = ADULT_HEIGHT_BY_SEX[input.sex];
   const weightTarget = ADULT_WEIGHT_BY_SEX[input.sex];
   const heightWatch = expandRange(heightTarget, 2);

@@ -148,7 +148,7 @@ function buildGrowthSignal(input: UsgIntelligenceProfileInput): UsgIntelligenceS
 function buildRegressionSignal(input: UsgIntelligenceProfileInput): UsgIntelligenceSignal {
   const recordCount = normalizeCount(input.measurementRecordCount);
   const hasArchive = Boolean(input.hasMeasurementArchive);
-  const score = clampScore((hasArchive ? 35 : 0) + Math.min(45, recordCount * 15) + (hasText(input.dateOfBirth) ? 10 : 0) + (input.sex ? 10 : 0));
+  const score = clampScore((hasArchive ? 35 : 0) + Math.min(45, recordCount * 15) + (hasText(input.dateOfBirth) ? 10 : 0) + (input.sex === 'male' || input.sex === 'female' ? 10 : 0));
 
   return {
     key: 'future_regression',

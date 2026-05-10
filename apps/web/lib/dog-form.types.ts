@@ -4,7 +4,7 @@ import type {
   DogRegistryClass,
 } from '@cane-corso-platform/contracts';
 
-export type DogSex = 'male' | 'female';
+export type DogSex = 'unknown' | 'male' | 'female';
 
 export interface DogFormValues {
   name: string;

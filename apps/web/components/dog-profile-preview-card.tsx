@@ -204,7 +204,7 @@ export function DogProfilePreviewCard({
           </div>
           <div>
             <dt>{t.preview.sex}</dt>
-            <dd>{values.sex === 'male' ? t.fields.male : t.fields.female}</dd>
+            <dd>{values.sex === 'male' ? t.fields.male : values.sex === 'female' ? t.fields.female : dictionary.common.notSetYet}</dd>
           </div>
           <div>
             <dt>{t.preview.birthDate}</dt>

@@ -48,6 +48,7 @@ export type FciConformityEvidenceKey =
   | 'measurement_archive_latest_record'
   | 'measurement_archive_needed'
   | 'birth_date_needed'
+  | 'sex_needed_for_standard_range'
   | 'puppy_not_final_standard'
   | 'disqualifying_faults_not_auto_detected'
   | 'human_review_required';

@@ -3,7 +3,7 @@ import type { DogFormValues } from './dog-form.types';
 const baseDraft: DogFormValues = {
   name: '',
   slug: '',
-  sex: 'male',
+  sex: 'unknown',
   dateOfBirth: '',
   color: '',
   microchipNumber: '',

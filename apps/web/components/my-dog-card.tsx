@@ -321,7 +321,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
 
       <div className="dog-card-body">
         <div className="dog-card-meta-strip">
-          <span className="dog-card-sex">{dog.sex === 'male' ? t.fields.male : t.fields.female}</span>
+          <span className="dog-card-sex">{dog.sex === 'male' ? t.fields.male : dog.sex === 'female' ? t.fields.female : dictionary.common.notSetYet}</span>
           <StatusBadge status={dog.lifecycleStatus} />
         </div>
         <div className="dog-card-heading-row">

@@ -1,7 +1,7 @@
 import type { EntityId, ISODateString, ISODateTimeString, Slug } from '../common/ids';
 import type { DogLifecycleStatus, Visibility } from '../common/status';
 
-export type DogSex = 'male' | 'female';
+export type DogSex = 'unknown' | 'male' | 'female';
 
 export type DogRegistryClass =
   | 'verified_pedigree'

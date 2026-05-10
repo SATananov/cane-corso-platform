@@ -504,7 +504,7 @@ export function UsgMeasurementAssistantPanel({ locale, dogId, dogName, sex, date
   const currentInput = useMemo(() => toInput(measurements), [measurements]);
   const result = useMemo(() => evaluateUsgMeasurementAssistant(withProfileBase(currentInput, sex, dateOfBirth)), [currentInput, dateOfBirth, sex]);
 
-  const sexLabel = sex === 'male' ? copy.male : copy.female;
+  const sexLabel = sex === 'male' ? copy.male : sex === 'female' ? copy.female : copy.notSet;
   const ageLabel = result.ageMonths == null ? copy.unknownAge : `${result.ageMonths} ${copy.months}`;
   const canSave = Boolean(dogId) && hasAnyMeasurement(currentInput) && !isSaving;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import { FormSectionCard } from './form-section-card';
 import { PedigreeEditor } from './pedigree-editor';
 import { PedigreeTree } from './pedigree-tree';
@@ -118,6 +118,71 @@ const evaluationCopy = {
     downloadCertificate: 'Scarica certificato',
     noCertificate: 'Il certificato appare solo dopo una decisione separata sul certificato USG.',
     photoCount: 'Foto principali',
+  },
+} as const;
+
+type ProgressivePanelKey = 'identity' | 'presentation' | 'location' | 'pedigree' | 'checks';
+
+const profileFlowCopy = {
+  en: {
+    selectSex: 'Select sex',
+    notSet: 'Not set yet',
+    basicsReady: 'Basic profile first',
+    basicsHint: 'Add only what you know now. You can save the profile and open the deeper sections later.',
+    moreTitle: 'Add more when you are ready',
+    moreText: 'Pedigree, measurements, USG review and FCI orientation stay optional until the profile has real data.',
+    open: 'Open',
+    close: 'Hide',
+    identityTitle: 'Documents and identity details',
+    identityDescription: 'Microchip, pedigree number, registry class and bloodline notes are useful, but they are not required for the first draft.',
+    identityCta: 'Documents / identity',
+    presentationCta: 'Presentation',
+    locationCta: 'Location',
+    pedigreeCta: 'Parents / pedigree',
+    checksCta: 'Review / certificate status',
+    checksTitle: 'Review tools and USG status',
+    checksDescription: 'Use these checks only when the profile is ready for a more serious review path.',
+    optionalBadge: 'optional',
+  },
+  bg: {
+    selectSex: 'Избери пол',
+    notSet: 'Все още не е избрано',
+    basicsReady: 'Първо основният профил',
+    basicsHint: 'Попълни само това, което знаеш сега. Можеш да запазиш профила и да отвориш по-дълбоките секции по-късно.',
+    moreTitle: 'Добави още, когато си готов',
+    moreText: 'Родословие, измервания, USG преглед и FCI ориентир остават по избор, докато профилът има реални данни.',
+    open: 'Отвори',
+    close: 'Скрий',
+    identityTitle: 'Документи и идентификационни данни',
+    identityDescription: 'Микрочип, родословен номер, клас в регистъра и бележка за линия са полезни, но не са нужни за първата чернова.',
+    identityCta: 'Документи / идентичност',
+    presentationCta: 'Представяне',
+    locationCta: 'Локация',
+    pedigreeCta: 'Родители / родословие',
+    checksCta: 'Преглед / сертификат',
+    checksTitle: 'Инструменти за преглед и USG статус',
+    checksDescription: 'Използвай тези проверки чак когато профилът е готов за по-сериозен път към преглед.',
+    optionalBadge: 'по избор',
+  },
+  it: {
+    selectSex: 'Seleziona sesso',
+    notSet: 'Non ancora scelto',
+    basicsReady: 'Prima il profilo base',
+    basicsHint: 'Inserisci solo ciò che sai ora. Puoi salvare il profilo e aprire le sezioni più profonde più tardi.',
+    moreTitle: 'Aggiungi altro quando sei pronto',
+    moreText: 'Pedigree, misure, revisione USG e orientamento FCI restano facoltativi finché il profilo non ha dati reali.',
+    open: 'Apri',
+    close: 'Nascondi',
+    identityTitle: 'Documenti e dati identificativi',
+    identityDescription: 'Microchip, numero pedigree, classe registro e note di linea sono utili, ma non obbligatori per la prima bozza.',
+    identityCta: 'Documenti / identità',
+    presentationCta: 'Presentazione',
+    locationCta: 'Località',
+    pedigreeCta: 'Genitori / pedigree',
+    checksCta: 'Revisione / certificato',
+    checksTitle: 'Strumenti di revisione e stato USG',
+    checksDescription: 'Usa questi controlli solo quando il profilo è pronto per un percorso di revisione più serio.',
+    optionalBadge: 'facoltativo',
   },
 } as const;
 
@@ -353,7 +418,21 @@ export function DogProfileForm({
   const t = dictionary.form;
   const imageT = imageUploadCopy[locale];
   const reviewT = evaluationCopy[locale];
-  const [isPedigreeVisible, setIsPedigreeVisible] = useState(false);
+  const flowT = profileFlowCopy[locale] ?? profileFlowCopy.en;
+  const hasAdvancedIdentity = Boolean(
+    values.microchipNumber.trim() || values.pedigreeNumber.trim() || values.bloodlineNote.trim() || values.registryClass !== 'owner_declared_cane_corso',
+  );
+  const hasPresentation = Boolean(values.shortDescription.trim() || values.longDescription.trim());
+  const hasLocation = Boolean(values.city.trim() || values.country.trim());
+  const hasReviewState = values.lifecycleStatus !== 'draft' || Boolean(values.publicationPublicSlug || values.publicationCertificateCode);
+  const [openPanels, setOpenPanels] = useState<Record<ProgressivePanelKey, boolean>>(() => ({
+    identity: mode === 'edit' && hasAdvancedIdentity,
+    presentation: mode === 'edit' && hasPresentation,
+    location: mode === 'edit' && hasLocation,
+    pedigree: mode === 'edit' && getPedigreeFilledCount(values.pedigree) > 0,
+    checks: mode === 'edit' && hasReviewState,
+  }));
+  const [isPedigreeVisible, setIsPedigreeVisible] = useState(mode === 'edit' && getPedigreeFilledCount(values.pedigree) > 0);
   const [isPreparingImages, setIsPreparingImages] = useState(false);
   const [assetPreview, setAssetPreview] = useState<{ title: string; url: string } | null>(null);
   const mainImageInputRef = useRef<HTMLInputElement | null>(null);
@@ -381,6 +460,21 @@ export function DogProfileForm({
     `field-input${errors[field as keyof DogFormErrors] ? ' is-invalid' : ''}`;
   const textAreaClassName = (field: keyof DogFormValues, size: 'small' | 'large') =>
     `field-textarea ${size}${errors[field as keyof DogFormErrors] ? ' is-invalid' : ''}`;
+  const togglePanel = (panel: ProgressivePanelKey) => {
+    setOpenPanels((current) => ({ ...current, [panel]: !current[panel] }));
+  };
+  const sexLabel = values.sex === 'male' ? t.fields.male : values.sex === 'female' ? t.fields.female : flowT.notSet;
+  const panelButtonLabel = (panel: ProgressivePanelKey) => openPanels[panel] ? flowT.close : flowT.open;
+
+  useEffect(() => {
+    setOpenPanels((current) => ({
+      ...current,
+      identity: current.identity || Boolean(errors.microchipNumber || errors.pedigreeNumber || errors.registryClass || errors.bloodlineNote),
+      presentation: current.presentation || Boolean(errors.shortDescription || errors.longDescription),
+      location: current.location || Boolean(errors.city || errors.country),
+      checks: current.checks || Object.keys(errors).length > 0,
+    }));
+  }, [errors]);
 
   const withCurrentValue = (options: Array<{ value: string; label: string }>, currentValue: string) => {
     const normalizedCurrentValue = currentValue.trim();
@@ -542,7 +636,7 @@ export function DogProfileForm({
     const certificateUrl = buildCertificateDataUrl({
       locale,
       dogName: values.name || 'Cane Corso',
-      sexLabel: values.sex === 'male' ? t.fields.male : t.fields.female,
+      sexLabel,
       color: values.color,
       birthDate: values.dateOfBirth,
       registryClass: t.registryClass[values.registryClass],
@@ -565,7 +659,7 @@ export function DogProfileForm({
     const certificateUrl = buildCertificateDataUrl({
       locale,
       dogName: values.name || 'Cane Corso',
-      sexLabel: values.sex === 'male' ? t.fields.male : t.fields.female,
+      sexLabel,
       color: values.color,
       birthDate: values.dateOfBirth,
       registryClass: t.registryClass[values.registryClass],
@@ -659,7 +753,12 @@ export function DogProfileForm({
           </div>
         ) : null}
 
-        <div className="form-grid two-up">
+        <div className="basic-profile-helper-card">
+          <span className="eyebrow-label">{flowT.basicsReady}</span>
+          <p>{flowT.basicsHint}</p>
+        </div>
+
+        <div className="form-grid two-up dog-form-basic-grid">
           <label className="field-group">
             <span className="field-label">{t.fields.name}</span>
             <input
@@ -694,10 +793,12 @@ export function DogProfileForm({
               onValueChange={(nextValue) => onFieldChange('sex', nextValue as DogSex)}
               invalid={Boolean(errors.sex)}
               options={[
+                { value: 'unknown', label: flowT.selectSex },
                 { value: 'male', label: t.fields.male },
                 { value: 'female', label: t.fields.female },
               ]}
             />
+            {errors.sex ? <span className="field-error">{errors.sex}</span> : null}
           </label>
 
           <label className="field-group">
@@ -721,166 +822,205 @@ export function DogProfileForm({
             />
             {errors.color ? <span className="field-error">{errors.color}</span> : null}
           </label>
-
-          <label className="field-group">
-            <span className="field-label">{t.fields.microchip}</span>
-            <input
-              className={fieldClassName('microchipNumber')}
-              value={values.microchipNumber}
-              onChange={(event) => onFieldChange('microchipNumber', event.target.value)}
-              placeholder={t.placeholders.microchip}
-            />
-            {errors.microchipNumber ? <span className="field-error">{errors.microchipNumber}</span> : null}
-          </label>
-
-          <label className="field-group">
-            <span className="field-label">{t.fields.pedigree}</span>
-            <input
-              className={fieldClassName('pedigreeNumber')}
-              value={values.pedigreeNumber}
-              onChange={(event) => onFieldChange('pedigreeNumber', event.target.value)}
-              placeholder={t.placeholders.pedigree}
-            />
-            {errors.pedigreeNumber ? <span className="field-error">{errors.pedigreeNumber}</span> : null}
-          </label>
-
-          <label className="field-group">
-            <span className="field-label">{t.fields.registryClass}</span>
-            <LuxurySelect
-              value={values.registryClass}
-              onValueChange={(nextValue) => onFieldChange('registryClass', nextValue as DogFormValues['registryClass'])}
-              invalid={Boolean(errors.registryClass)}
-              options={registryClassOptions}
-            />
-          </label>
-
-          <label className="field-group">
-            <span className="field-label">{t.fields.bloodline}</span>
-            <input
-              className={fieldClassName('bloodlineNote')}
-              value={values.bloodlineNote}
-              onChange={(event) => onFieldChange('bloodlineNote', event.target.value)}
-              placeholder={t.placeholders.bloodline}
-            />
-          </label>
-        </div>
-
-        <div className="registry-class-note">
-          <strong>{t.registryClass[values.registryClass]}</strong>
-          <p>{t.registryClassDescriptions[values.registryClass]}</p>
         </div>
       </FormSectionCard>
 
-      <FormSectionCard title={t.sections.presentationTitle} description={t.sections.presentationDescription}>
-        <div className="form-grid single-column">
-          <label className="field-group">
-            <span className="field-label">{t.fields.shortDescription}</span>
-            <textarea
-              className={textAreaClassName('shortDescription', 'small')}
-              value={values.shortDescription}
-              onChange={(event) => onFieldChange('shortDescription', event.target.value)}
-              placeholder={t.placeholders.shortDescription}
-            />
-            {errors.shortDescription ? <span className="field-error">{errors.shortDescription}</span> : null}
-          </label>
-
-          <label className="field-group">
-            <span className="field-label">
-              {t.fields.longDescription} <span className="field-optional">({dictionary.common.optional})</span>
-            </span>
-            <textarea
-              className={textAreaClassName('longDescription', 'large')}
-              value={values.longDescription}
-              onChange={(event) => onFieldChange('longDescription', event.target.value)}
-              placeholder={t.placeholders.longDescription}
-            />
-            {errors.longDescription ? <span className="field-error">{errors.longDescription}</span> : null}
-          </label>
+      <section className="content-card dog-form-progressive-actions" aria-label={flowT.moreTitle}>
+        <div className="dog-form-progressive-actions__copy">
+          <span className="eyebrow-label">{flowT.optionalBadge}</span>
+          <h3>{flowT.moreTitle}</h3>
+          <p>{flowT.moreText}</p>
         </div>
-      </FormSectionCard>
-
-      <FormSectionCard title={t.sections.locationTitle} description={t.sections.locationDescription}>
-        <div className="form-grid two-up">
-          <label className="field-group">
-            <span className="field-label">{t.fields.city}</span>
-            <input
-              className={fieldClassName('city')}
-              value={values.city}
-              onChange={(event) => onFieldChange('city', event.target.value)}
-              placeholder={t.placeholders.city}
-            />
-            {errors.city ? <span className="field-error">{errors.city}</span> : null}
-          </label>
-
-          <label className="field-group">
-            <span className="field-label">{t.fields.country}</span>
-            <LuxurySelect
-              value={values.country}
-              onValueChange={(nextValue) => onFieldChange('country', nextValue)}
-              invalid={Boolean(errors.country)}
-              options={countryOptions}
-            />
-            {errors.country ? <span className="field-error">{errors.country}</span> : null}
-          </label>
+        <div className="dog-form-progressive-actions__grid">
+          {([
+            ['identity', flowT.identityCta],
+            ['presentation', flowT.presentationCta],
+            ['location', flowT.locationCta],
+            ['pedigree', flowT.pedigreeCta],
+            ['checks', flowT.checksCta],
+          ] as Array<[ProgressivePanelKey, string]>).map(([panel, label]) => (
+            <button
+              key={panel}
+              type="button"
+              className={`button-secondary dog-form-progressive-actions__button${openPanels[panel] ? ' is-active' : ''}`}
+              onClick={() => togglePanel(panel)}
+            >
+              <span>{label}</span>
+              <strong>{panelButtonLabel(panel)}</strong>
+            </button>
+          ))}
         </div>
-      </FormSectionCard>
+      </section>
 
-      <FormSectionCard title={t.sections.pedigreeTitle} description={t.sections.pedigreeDescription}>
-        <div className="pedigree-disclosure">
-          <div className="pedigree-disclosure__bar">
-            <div className="pedigree-disclosure__main">
-              <div className="pedigree-disclosure__copy">
-                <span className="eyebrow-label">{t.pedigree.eyebrow}</span>
-                <h3>{t.pedigree.summaryTitle}</h3>
-                <p>{t.pedigree.summaryText}</p>
-              </div>
+      {openPanels.identity ? (
+        <FormSectionCard title={flowT.identityTitle} description={flowT.identityDescription}>
+          <div className="form-grid two-up">
+            <label className="field-group">
+              <span className="field-label">{t.fields.microchip}</span>
+              <input
+                className={fieldClassName('microchipNumber')}
+                value={values.microchipNumber}
+                onChange={(event) => onFieldChange('microchipNumber', event.target.value)}
+                placeholder={t.placeholders.microchip}
+              />
+              {errors.microchipNumber ? <span className="field-error">{errors.microchipNumber}</span> : null}
+            </label>
 
-              <div className="pedigree-disclosure__stats">
-                <div>
-                  <strong>{pedigreeFilledCount}/14</strong>
-                  <span>{t.pedigree.stats.filledAncestors}</span>
-                </div>
-                <div>
-                  <strong>{pedigreePhotoCount}</strong>
-                  <span>{t.pedigree.stats.ancestorPhotos}</span>
-                </div>
-                <div>
-                  <strong>3 + 1</strong>
-                  <span>{t.pedigree.stats.photoRule}</span>
-                </div>
-              </div>
-            </div>
+            <label className="field-group">
+              <span className="field-label">{t.fields.pedigree}</span>
+              <input
+                className={fieldClassName('pedigreeNumber')}
+                value={values.pedigreeNumber}
+                onChange={(event) => onFieldChange('pedigreeNumber', event.target.value)}
+                placeholder={t.placeholders.pedigree}
+              />
+              {errors.pedigreeNumber ? <span className="field-error">{errors.pedigreeNumber}</span> : null}
+            </label>
 
-            <div className="pedigree-disclosure__actions">
-              <button
-                type="button"
-                className={`button-secondary pedigree-toggle-button${isPedigreeVisible ? ' is-open' : ''}`}
-                onClick={() => setIsPedigreeVisible((current) => !current)}
-              >
-                {isPedigreeVisible ? t.pedigree.hideTree : t.pedigree.progressive?.addParents ?? t.pedigree.showTree}
-              </button>
-              <a href="/guide?topic=member-workspace#member-workspace" className="button-ghost small pedigree-help-link">
-                {t.pedigree.progressive?.helpCta ?? 'Помощ / как се работи'}
-              </a>
-            </div>
+            <label className="field-group">
+              <span className="field-label">{t.fields.registryClass}</span>
+              <LuxurySelect
+                value={values.registryClass}
+                onValueChange={(nextValue) => onFieldChange('registryClass', nextValue as DogFormValues['registryClass'])}
+                invalid={Boolean(errors.registryClass)}
+                options={registryClassOptions}
+              />
+            </label>
+
+            <label className="field-group">
+              <span className="field-label">{t.fields.bloodline}</span>
+              <input
+                className={fieldClassName('bloodlineNote')}
+                value={values.bloodlineNote}
+                onChange={(event) => onFieldChange('bloodlineNote', event.target.value)}
+                placeholder={t.placeholders.bloodline}
+              />
+            </label>
           </div>
 
-          {isPedigreeVisible ? (
-            <div className="pedigree-disclosure__body">
-              <PedigreeTree
-                dogName={values.name}
-                pedigree={values.pedigree}
-                rootImageUrl={values.mainImageUrl || values.galleryImageUrls[0] || null}
+          <div className="registry-class-note">
+            <strong>{t.registryClass[values.registryClass]}</strong>
+            <p>{t.registryClassDescriptions[values.registryClass]}</p>
+          </div>
+        </FormSectionCard>
+      ) : null}
+
+      {openPanels.presentation ? (
+        <FormSectionCard title={t.sections.presentationTitle} description={t.sections.presentationDescription}>
+          <div className="form-grid single-column">
+            <label className="field-group">
+              <span className="field-label">{t.fields.shortDescription}</span>
+              <textarea
+                className={textAreaClassName('shortDescription', 'small')}
+                value={values.shortDescription}
+                onChange={(event) => onFieldChange('shortDescription', event.target.value)}
+                placeholder={t.placeholders.shortDescription}
               />
-              <PedigreeEditor pedigree={values.pedigree} onAncestorChange={onAncestorChange} />
+              {errors.shortDescription ? <span className="field-error">{errors.shortDescription}</span> : null}
+            </label>
+
+            <label className="field-group">
+              <span className="field-label">
+                {t.fields.longDescription} <span className="field-optional">({dictionary.common.optional})</span>
+              </span>
+              <textarea
+                className={textAreaClassName('longDescription', 'large')}
+                value={values.longDescription}
+                onChange={(event) => onFieldChange('longDescription', event.target.value)}
+                placeholder={t.placeholders.longDescription}
+              />
+              {errors.longDescription ? <span className="field-error">{errors.longDescription}</span> : null}
+            </label>
+          </div>
+        </FormSectionCard>
+      ) : null}
+
+      {openPanels.location ? (
+        <FormSectionCard title={t.sections.locationTitle} description={t.sections.locationDescription}>
+          <div className="form-grid two-up">
+            <label className="field-group">
+              <span className="field-label">{t.fields.city}</span>
+              <input
+                className={fieldClassName('city')}
+                value={values.city}
+                onChange={(event) => onFieldChange('city', event.target.value)}
+                placeholder={t.placeholders.city}
+              />
+              {errors.city ? <span className="field-error">{errors.city}</span> : null}
+            </label>
+
+            <label className="field-group">
+              <span className="field-label">{t.fields.country}</span>
+              <LuxurySelect
+                value={values.country}
+                onValueChange={(nextValue) => onFieldChange('country', nextValue)}
+                invalid={Boolean(errors.country)}
+                options={countryOptions}
+              />
+              {errors.country ? <span className="field-error">{errors.country}</span> : null}
+            </label>
+          </div>
+        </FormSectionCard>
+      ) : null}
+
+      {openPanels.pedigree ? (
+        <FormSectionCard title={t.sections.pedigreeTitle} description={t.sections.pedigreeDescription}>
+          <div className="pedigree-disclosure">
+            <div className="pedigree-disclosure__bar">
+              <div className="pedigree-disclosure__main">
+                <div className="pedigree-disclosure__copy">
+                  <span className="eyebrow-label">{t.pedigree.eyebrow}</span>
+                  <h3>{t.pedigree.summaryTitle}</h3>
+                  <p>{t.pedigree.summaryText}</p>
+                </div>
+
+                <div className="pedigree-disclosure__stats">
+                  <div>
+                    <strong>{pedigreeFilledCount}/14</strong>
+                    <span>{t.pedigree.stats.filledAncestors}</span>
+                  </div>
+                  <div>
+                    <strong>{pedigreePhotoCount}</strong>
+                    <span>{t.pedigree.stats.ancestorPhotos}</span>
+                  </div>
+                  <div>
+                    <strong>3 + 1</strong>
+                    <span>{t.pedigree.stats.photoRule}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pedigree-disclosure__actions">
+                <button
+                  type="button"
+                  className={`button-secondary pedigree-toggle-button${isPedigreeVisible ? ' is-open' : ''}`}
+                  onClick={() => setIsPedigreeVisible((current) => !current)}
+                >
+                  {isPedigreeVisible ? t.pedigree.hideTree : t.pedigree.progressive?.addParents ?? t.pedigree.showTree}
+                </button>
+                <a href="/guide?topic=member-workspace#member-workspace" className="button-ghost small pedigree-help-link">
+                  {t.pedigree.progressive?.helpCta ?? 'Помощ / как се работи'}
+                </a>
+              </div>
             </div>
-          ) : (
-            <div className="pedigree-disclosure__collapsed-note">
-              <p>{t.pedigree.collapsedHint}</p>
-            </div>
-          )}
-        </div>
-      </FormSectionCard>
+
+            {isPedigreeVisible ? (
+              <div className="pedigree-disclosure__body">
+                <PedigreeTree
+                  dogName={values.name}
+                  pedigree={values.pedigree}
+                  rootImageUrl={values.mainImageUrl || values.galleryImageUrls[0] || null}
+                />
+                <PedigreeEditor pedigree={values.pedigree} onAncestorChange={onAncestorChange} />
+              </div>
+            ) : (
+              <div className="pedigree-disclosure__collapsed-note">
+                <p>{t.pedigree.collapsedHint}</p>
+              </div>
+            )}
+          </div>
+        </FormSectionCard>
+      ) : null}
 
       <div className="form-actions-bar">
         <div className="form-actions-copy">
@@ -899,114 +1039,117 @@ export function DogProfileForm({
         </div>
       </div>
 
-      <div className="dog-form-secondary-panels">
-      <div className="validation-banner-row">
-        <div className="validation-summary-card">
-          <span className="eyebrow-label">{t.validationEyebrow}</span>
-          <h3>{errorCount === 0 ? t.validationClean : `${errorCount} ${t.validationDetected}`}</h3>
-          <p>{t.validationText}</p>
-        </div>
+      {openPanels.checks ? (
+        <FormSectionCard title={flowT.checksTitle} description={flowT.checksDescription}>
+          <div className="dog-form-secondary-panels">
+            <div className="validation-banner-row">
+              <div className="validation-summary-card">
+                <span className="eyebrow-label">{t.validationEyebrow}</span>
+                <h3>{errorCount === 0 ? t.validationClean : `${errorCount} ${t.validationDetected}`}</h3>
+                <p>{t.validationText}</p>
+              </div>
 
-        <div className="validation-actions">
-          <button type="button" className="button-secondary" onClick={onGenerateSlug} disabled={isBusy}>
-            {dictionary.common.generateSlug}
-          </button>
-          <button type="button" className="button-ghost" onClick={onValidateProfile} disabled={isBusy}>
-            {dictionary.common.runValidation}
-          </button>
-        </div>
-      </div>
+              <div className="validation-actions">
+                <button type="button" className="button-secondary" onClick={onGenerateSlug} disabled={isBusy}>
+                  {dictionary.common.generateSlug}
+                </button>
+                <button type="button" className="button-ghost" onClick={onValidateProfile} disabled={isBusy}>
+                  {dictionary.common.runValidation}
+                </button>
+              </div>
+            </div>
 
-      <div className="member-status-panel">
-        <div className="member-status-panel__copy">
-          <span className="eyebrow-label">{t.ownerStatus.eyebrow}</span>
-          <div className="member-status-panel__title-row">
-            <h3>{t.ownerStatus.title}</h3>
-            <StatusBadge status={values.lifecycleStatus} />
-          </div>
-          <p>{t.ownerStatus.help[values.lifecycleStatus]}</p>
-        </div>
-        <div className="member-status-panel__meta">
-          <div>
-            <strong>{t.registryClass[values.registryClass]}</strong>
-            <span>{t.ownerStatus.registryClassLabel}</span>
-          </div>
-          <div>
-            <strong>{publicationLabel}</strong>
-            <span>{t.fields.visibility}</span>
-          </div>
-        </div>
-      </div>
+            <div className="member-status-panel">
+              <div className="member-status-panel__copy">
+                <span className="eyebrow-label">{t.ownerStatus.eyebrow}</span>
+                <div className="member-status-panel__title-row">
+                  <h3>{t.ownerStatus.title}</h3>
+                  <StatusBadge status={values.lifecycleStatus} />
+                </div>
+                <p>{t.ownerStatus.help[values.lifecycleStatus]}</p>
+              </div>
+              <div className="member-status-panel__meta">
+                <div>
+                  <strong>{t.registryClass[values.registryClass]}</strong>
+                  <span>{t.ownerStatus.registryClassLabel}</span>
+                </div>
+                <div>
+                  <strong>{publicationLabel}</strong>
+                  <span>{t.fields.visibility}</span>
+                </div>
+              </div>
+            </div>
 
-      <div className="usg-evaluation-panel">
-        <div className="usg-evaluation-panel__copy">
-          <span className="eyebrow-label">{reviewT.eyebrow}</span>
-          <h3>{reviewT.title}</h3>
-          <p>{reviewT.description}</p>
-        </div>
+            <div className="usg-evaluation-panel">
+              <div className="usg-evaluation-panel__copy">
+                <span className="eyebrow-label">{reviewT.eyebrow}</span>
+                <h3>{reviewT.title}</h3>
+                <p>{reviewT.description}</p>
+              </div>
 
-        <div className="usg-evaluation-panel__grid">
-          <div className="usg-evaluation-card">
-            <span>{reviewT.reviewStage}</span>
-            <strong>{t.status[values.lifecycleStatus]}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.registryClass}</span>
-            <strong>{t.registryClass[values.registryClass]}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.publication}</span>
-            <strong>{publicationLabel}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.certificate}</span>
-            <strong>{hasCertificate ? reviewT.issued : reviewT.waiting}</strong>
-          </div>
-          <div className="usg-evaluation-card">
-            <span>{reviewT.photoCount}</span>
-            <strong>{galleryImages.length}/3</strong>
-          </div>
-        </div>
+              <div className="usg-evaluation-panel__grid">
+                <div className="usg-evaluation-card">
+                  <span>{reviewT.reviewStage}</span>
+                  <strong>{t.status[values.lifecycleStatus]}</strong>
+                </div>
+                <div className="usg-evaluation-card">
+                  <span>{reviewT.registryClass}</span>
+                  <strong>{t.registryClass[values.registryClass]}</strong>
+                </div>
+                <div className="usg-evaluation-card">
+                  <span>{reviewT.publication}</span>
+                  <strong>{publicationLabel}</strong>
+                </div>
+                <div className="usg-evaluation-card">
+                  <span>{reviewT.certificate}</span>
+                  <strong>{hasCertificate ? reviewT.issued : reviewT.waiting}</strong>
+                </div>
+                <div className="usg-evaluation-card">
+                  <span>{reviewT.photoCount}</span>
+                  <strong>{galleryImages.length}/3</strong>
+                </div>
+              </div>
 
-        <div className="usg-evaluation-panel__actions">
-          <button
-            type="button"
-            className="button-secondary"
-            onClick={() => void handlePreviewBrandedImage()}
-            disabled={!values.mainImageUrl}
-          >
-            {imageT.downloadPreview}
-          </button>
-          <button
-            type="button"
-            className="button-ghost"
-            onClick={() => void handleDownloadBrandedImage()}
-            disabled={!values.mainImageUrl}
-          >
-            {imageT.download}
-          </button>
-          <button
-            type="button"
-            className="button-secondary"
-            onClick={openCertificatePreview}
-            disabled={!hasCertificate}
-          >
-            {reviewT.showCertificate}
-          </button>
-          <button
-            type="button"
-            className="button-ghost"
-            onClick={handleDownloadCertificate}
-            disabled={!hasCertificate}
-          >
-            {reviewT.downloadCertificate}
-          </button>
-        </div>
+              <div className="usg-evaluation-panel__actions">
+                <button
+                  type="button"
+                  className="button-secondary"
+                  onClick={() => void handlePreviewBrandedImage()}
+                  disabled={!values.mainImageUrl}
+                >
+                  {imageT.downloadPreview}
+                </button>
+                <button
+                  type="button"
+                  className="button-ghost"
+                  onClick={() => void handleDownloadBrandedImage()}
+                  disabled={!values.mainImageUrl}
+                >
+                  {imageT.download}
+                </button>
+                <button
+                  type="button"
+                  className="button-secondary"
+                  onClick={openCertificatePreview}
+                  disabled={!hasCertificate}
+                >
+                  {reviewT.showCertificate}
+                </button>
+                <button
+                  type="button"
+                  className="button-ghost"
+                  onClick={handleDownloadCertificate}
+                  disabled={!hasCertificate}
+                >
+                  {reviewT.downloadCertificate}
+                </button>
+              </div>
 
-        {!hasCertificate ? <small>{reviewT.noCertificate}</small> : null}
-      </div>
-
-      </div>
+              {!hasCertificate ? <small>{reviewT.noCertificate}</small> : null}
+            </div>
+          </div>
+        </FormSectionCard>
+      ) : null}
 
       {assetPreview ? (
         <div className="usg-asset-modal" role="dialog" aria-modal="true">
