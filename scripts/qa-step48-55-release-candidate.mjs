@@ -72,7 +72,8 @@ async function main() {
   await expectIncludes('apps/web/app/(public)/community/page.tsx', '<CommunityDiscoveryExperience', 'Community page renders Step 48 discovery experience');
   await expectIncludes('apps/web/app/(public)/partners/page.tsx', '<PartnersServicesExperience', 'Partners page renders Step 49 service experience');
   await expectIncludes('apps/web/app/access/page.tsx', '<OwnerOnboardingFinalPanel locale={locale} surface="access" />', 'Access page renders Step 51 onboarding panel');
-  await expectIncludes('apps/web/app/(member)/member/page.tsx', '<OwnerOnboardingFinalPanel locale={locale} surface="member" />', 'Member page renders Step 51 onboarding panel');
+  await expectIncludes('apps/web/app/(member)/member/page.tsx', 'member-home-reset', 'Member page keeps Step 106 member command center');
+  await expectNotIncludes('apps/web/app/(member)/member/page.tsx', '<OwnerOnboardingFinalPanel', 'Member page keeps dense onboarding panel out of primary Step 106 flow');
   await expectIncludes('apps/web/app/(member)/profile/page.tsx', '<OwnerOnboardingFinalPanel locale={locale} surface="profile" />', 'Profile page renders Step 51 onboarding panel');
 
   await expectIncludes('apps/web/app/(admin)/review/page.tsx', 'surface="review"', 'Review admin page renders operational clarity');

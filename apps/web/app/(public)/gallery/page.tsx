@@ -188,7 +188,7 @@ export default async function GalleryPage() {
       eyebrow={copy.eyebrow}
       title={copy.title}
       description={copy.description}
-      accentLabel={locale === 'bg' ? 'Слой на USG Галерията' : locale === 'it' ? 'Layer Galleria USG' : 'USG gallery layer'}
+      accentLabel={locale === 'bg' ? 'USG Галерия' : locale === 'it' ? 'Galleria USG' : 'USG gallery layer'}
       helpHref="/guide?topic=community#community"
       helpLabel={locale === 'bg' ? 'Помощ' : locale === 'it' ? 'Aiuto' : 'Help'}
       visualSrc="/brand/editorial-member-shadow-eye.jpg"

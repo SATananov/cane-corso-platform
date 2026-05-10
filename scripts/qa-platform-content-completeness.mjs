@@ -36,12 +36,8 @@ const renderTargets = [
   ['apps/web/app/(public)/certified/page.tsx', 'certified'],
   ['apps/web/app/verify/page.tsx', 'verify'],
   ['apps/web/app/verify/[code]/page.tsx', 'verify'],
-  ['apps/web/app/(public)/knowledge/page.tsx', 'knowledge'],
   ['apps/web/app/(public)/faq/page.tsx', 'faq'],
-  ['apps/web/app/(public)/community/page.tsx', 'community'],
   ['apps/web/app/(public)/partners/page.tsx', 'partners'],
-  ['apps/web/app/(member)/member/page.tsx', 'member'],
-  ['apps/web/components/my-dogs-overview.tsx', 'myDogs'],
   ['apps/web/app/(member)/profile/page.tsx', 'profile'],
   ['apps/web/app/(member)/ecosystem/page.tsx', 'ecosystemWorkspace'],
   ['apps/web/app/(member)/partners/apply/page.tsx', 'partnerApply'],
@@ -52,6 +48,13 @@ const renderTargets = [
   ['apps/web/app/(admin)/admin/ecosystem/page.tsx', 'adminEcosystem'],
   ['apps/web/app/(admin)/admin/knowledge/page.tsx', 'adminKnowledge'],
   ['apps/web/app/(admin)/admin/members/page.tsx', 'adminMembers'],
+];
+
+const step106ActiveSectionTargets = [
+  ['apps/web/app/(public)/knowledge/page.tsx', 'knowledge', 'KnowledgeCenter'],
+  ['apps/web/app/(public)/community/page.tsx', 'community', 'EcosystemDirectory'],
+  ['apps/web/app/(member)/member/page.tsx', 'member', 'member-home-reset'],
+  ['apps/web/components/my-dogs-overview.tsx', 'myDogs', 'owner-secondary-help'],
 ];
 
 const protectedFiles = [
@@ -94,6 +97,12 @@ for (const [file, surface] of renderTargets) {
   const text = await read(file);
   expect(text.includes("@/components/section-content-guide-panel"), `${file} imports SectionContentGuidePanel`);
   expect(text.includes(`surface="${surface}"`), `${file} renders content guide surface ${surface}`);
+}
+
+for (const [file, surface, marker] of step106ActiveSectionTargets) {
+  const text = await read(file);
+  expect(!text.includes("@/components/section-content-guide-panel"), `${file} keeps Step 106 active-section structure without SectionContentGuidePanel`);
+  expect(text.includes(marker), `${file} renders active product content for ${surface}`);
 }
 
 const css = await read('apps/web/app/globals.css');

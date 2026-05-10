@@ -20,7 +20,7 @@ export default async function VerifyLandingPage() {
       contractCards: [
         { eyebrow: 'Registry', title: 'A profile can be published without becoming a certificate record', description: 'Publication is the official public profile step, but certificate trust is a later decision.', href: '/registry', meta: 'Published profile • official visibility', icon: 'registry' as const },
         { eyebrow: 'Certificate', title: 'Certificate trust exists only when it is actively issued', description: 'Verify checks the active certificate layer, not private drafts and not every published profile.', href: '/guide?topic=registry#registry', meta: 'Issued certificate • active trust', icon: 'verify' as const },
-        { eyebrow: 'Owner workspace', title: 'Owners prepare long before Verify becomes relevant', description: 'Profile work, review, and publication happen first in the member area.', href: '/my-dogs', meta: 'Owner preparation • review • publish', icon: 'member' as const },
+        { eyebrow: 'Owner area', title: 'Owners prepare long before Verify becomes relevant', description: 'Profile work, review, and publication happen first in the member area.', href: '/my-dogs', meta: 'Owner preparation • review • publish', icon: 'member' as const },
         { eyebrow: 'Guide', title: 'The guide explains how the trust layers connect', description: 'Use the guide whenever you need the full picture of registry vs certificate vs community visibility.', href: '/guide?topic=registry#registry', meta: 'Guide • trust clarity', icon: 'guide' as const },
       ],
       journeyEyebrow: 'How to use Verify',

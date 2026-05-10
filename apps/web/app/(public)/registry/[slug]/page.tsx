@@ -58,10 +58,10 @@ export default async function RegistryProfilePage({ params, searchParams }: Regi
           : locale === 'bg' ? 'Публичен основен изглед' : locale === 'it' ? 'Vista pubblica essenziale' : 'Public essentials view',
       ]}
       heroNote={locale === 'bg'
-        ? 'Публичният профил показва само одобреното безопасно ядро: снимки, име, дата на раждане и публично име на собственика. Пълните данни остават за собственика и админ.'
+        ? 'Публичният профил показва най-важното първо: одобрените снимки, името, датата на раждане и публичното име на собственика. Пълните данни остават за собственика и админ.'
         : locale === 'it'
-          ? 'Il profilo pubblico mostra solo il nucleo sicuro approvato: foto, nome, data di nascita e nome pubblico del proprietario. I dati completi restano al proprietario e all’admin.'
-          : 'The public profile shows only the approved safe core: photos, name, birth date, and public owner name. Full data stays with the owner and admin.'}
+          ? 'Il profilo pubblico mostra prima l’essenziale: foto approvate, nome, data di nascita e nome pubblico del proprietario. I dati completi restano al proprietario e all’admin.'
+          : 'The public profile shows the essentials first: approved photos, name, birth date, and public owner name. Full data stays with the owner and admin.'}
     >
       <PublicRegistryProfile
         document={document}

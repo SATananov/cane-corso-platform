@@ -6,7 +6,7 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 103 — USG Growth & Measurement Assistant**.
+This repository is currently aligned with **Step 107 — USG Product Lock**.
 
 Recent locked product state:
 
@@ -29,6 +29,10 @@ Recent locked product state:
 - **Step 101:** USG standard knowledge layer: Knowledge now includes a branded USG guide for structure, proportions, photo preparation, and official-reading boundaries, with direct helper shortcuts from My Dogs, Review, and FAQ.
 - **Step 102:** Language purity and terminology lock: visible UI text should follow the active locale, while brand/domain terms like USG, Cane Corso, FCI, ENCI, AKC, CCAA, Neon, and Netlify remain original.
 - **Step 103:** USG growth and measurement assistant: the member Cane Corso form now has a safe local helper for age-aware growth orientation, key measurements, and core proportions without changing database schema or authority flows.
+- **Step 104:** Owner growth measurement archive: members can keep private measurement records for their own Cane Corso profiles, with owner-only API boundaries and a dedicated migration for growth history.
+- **Step 105:** Production clarity and user-first copy: public/member sections lead with what the user can do now, while deeper explanations stay in Knowledge, FAQ, or compact help details.
+- **Step 106:** Full product structure reset: primary navigation and member/public surfaces prioritize active sections, real actions, and clean product hierarchy over development-style orientation panels.
+- **Step 107:** USG Product Lock: release hygiene, Step 103–106 checkpoint alignment, visible BG/IT/EN terminology cleanup, and final product-tone guardrails for the current Netlify deployed state.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 

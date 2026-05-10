@@ -58,7 +58,7 @@ const releaseQa = read('scripts/qa-fullstack-all-in-one-release-lock.mjs');
 
 assertIncludes('Registry detail route derives owner viewer from current session and registry owner', registryPage, 'const isOwnerViewer = Boolean(currentSession?.user.profileId && currentSession.user.profileId === document?.entry.owner.profileId);');
 assertIncludes('Registry detail route passes isOwnerViewer into public profile component', registryPage, 'isOwnerViewer={isOwnerViewer}');
-assertIncludes('Registry hero copy explains approved safe public core', registryPage, 'Публичният профил показва само одобреното безопасно ядро');
+assertIncludes('Registry hero copy explains user-first public core', registryPage, 'Публичният профил показва най-важното първо');
 
 assertIncludes('Public registry profile accepts isOwnerViewer prop', publicRegistryProfile, 'isOwnerViewer?: boolean;');
 assertIncludes('Protected registry depth is owner/admin only', publicRegistryProfile, 'const viewerCanSeeProtectedRegistryDepth = isOwnerViewer || isAdminViewer;');
@@ -79,7 +79,7 @@ assertNotIncludes('Old member-registration unlock claim is removed from registry
 assertNotIncludes('Old Bulgarian member unlock claim is removed from registry copy', publicRegistryProfile, 'отключват след членска регистрация');
 
 assertIncludes('Owner profile page explains full owner data is owner/admin visible', memberProfile, 'Ти и админът виждате пълните данни');
-assertIncludes('Owner profile page clarifies public Registry uses only safe owner presentation', memberProfile, 'публичният Registry използва само публичното име');
+assertIncludes('Owner profile page clarifies public Registry uses only safe owner presentation', memberProfile, 'публичният Регистър използва само публичното име');
 assertIncludes('My Dogs overview explains other people see only approved public core', myDogsOverview, 'Другите хора виждат само одобрени снимки, име на Cane Corso, дата на раждане и публично име на собственика.');
 assertIncludes('My Dogs overview explains full Cane Corso data stays owner/admin only', myDogsOverview, 'Пълните Cane Corso данни остават видими само за теб и админ.');
 assertIncludes('Role-aware profile panel says profile means owner data', roleAware, 'Това е профилът на човека, не на Cane Corso.');

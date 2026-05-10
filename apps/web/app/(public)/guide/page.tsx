@@ -42,7 +42,7 @@ export default async function GuidePage({ searchParams }: GuidePageProps) {
         { eyebrow: 'Access', title: 'A calmer threshold into member and partner paths', description: 'The deeper parts of the platform begin with a clear personal access path before anything public appears.', href: '/access?intent=member', meta: 'Member • partner • reviewed visibility', icon: 'member' },
       ],
       chips: ['Official trust', 'Community usefulness', 'Help before action'],
-      note: 'The old project was strongest when identity, explanation, and trust worked together. The guide keeps that discipline alive in the new structure.',
+      note: 'USG is strongest when identity, explanation, and trust work together. The guide keeps that discipline clear across the product.',
     },
     bg: {
       cards: [

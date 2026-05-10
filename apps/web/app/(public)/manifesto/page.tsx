@@ -89,13 +89,13 @@ export default async function ManifestoPage() {
           eyebrow: 'Какво трябва да остане вярно',
           title: 'USG е гледна точка, не само продуктова рамка',
           description:
-            'Най-силното в стария проект не беше само визията. Беше усещането, че платформата има позиция: селективна, сериозна, редакционна и отговорна към породата. Тази енергия трябва да остане видима и в новата архитектура.',
+            'Най-силното в USG не е само визията. Това е усещането, че платформата има позиция: селективна, сериозна, редакционна и отговорна към породата. Тази енергия трябва да остане видима и в продукта.',
         },
         {
           eyebrow: 'Какво трябва да узрее',
           title: 'Емоцията и авторитетът вече трябва да живеят в по-силна система',
           description:
-            'Новата платформа трябва да запази манифестния тон, но да го подкрепи с по-чисти правила за достъп, по-добри обяснителни слоеве, по-силни member потоци и по-ясно разделение между official trust и community visibility.',
+            'Платформата трябва да запази манифестния тон, но да го подкрепи с по-чисти правила за достъп, по-добри обяснения, по-силни членски потоци и по-ясно разделение между официално доверие и видимост в общността.',
         },
       ],
     },
@@ -141,7 +141,7 @@ export default async function ManifestoPage() {
           eyebrow: 'Cosa deve maturare',
           title: 'Emozione e autorevolezza ora devono vivere dentro un sistema più forte',
           description:
-            'La nuova piattaforma dovrebbe mantenere il tono manifesto, ma sostenerlo con regole di accesso più pulite, migliori strati di spiegazione, flussi membro più forti e una separazione più chiara tra official trust e visibilità community.',
+            'La piattaforma deve mantenere il tono manifesto, ma sostenerlo con regole di accesso più pulite, spiegazioni migliori, flussi membro più forti e una separazione più chiara tra fiducia ufficiale e visibilità della comunità.',
         },
       ],
     },

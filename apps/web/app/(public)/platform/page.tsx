@@ -359,11 +359,11 @@ export default async function PlatformPage() {
     bg: {
       eyebrow: 'Информационен компас',
       title: 'Търсиш информация за Cane Corso?',
-      description: 'Когато не знаеш откъде да започнеш, отвори Knowledge или FAQ — история, стандарт, грижа, здраве, сертификат, общност и USG обяснения.',
+      description: 'Когато не знаеш откъде да започнеш, отвори Знания или Помощ — история, стандарт, грижа, здраве, сертификат, общност и USG обяснения.',
       cards: [
         { href: '/knowledge', label: 'Знания за породата', text: 'История, стандарт, грижа, здраве, поведение и отговорно притежание.' },
-        { href: '/faq', label: 'Бързи отговори', text: 'Профил, Registry, сертификат, общност, партньори и видимост.' },
-        { href: '/platform', label: 'Идеята на USG', text: 'Как Registry, Certificate, Verify, Gallery, Knowledge и Community остават ясни.' },
+        { href: '/faq', label: 'Бързи отговори', text: 'Профил, Регистър, сертификат, общност, партньори и видимост.' },
+        { href: '/platform', label: 'Идеята на USG', text: 'Как Регистър, Сертификат, Проверка, Галерия, Знания и Общност остават ясни.' },
       ],
     },
     it: {
@@ -373,7 +373,7 @@ export default async function PlatformPage() {
       cards: [
         { href: '/knowledge', label: 'Conoscenza razza', text: 'Storia, standard, cura, salute, comportamento e proprietà responsabile.' },
         { href: '/faq', label: 'Risposte rapide', text: 'Profilo, registro, certificato, community, partner e visibilità.' },
-        { href: '/platform', label: 'Idea USG', text: 'Come Registry, Certificate, Verify, Gallery, Knowledge e Community restano separati.' },
+        { href: '/platform', label: 'Idea USG', text: 'Come Registro, Certificato, Verifica, Galleria, Conoscenze e Comunità restano separati.' },
       ],
     },
   } as const;

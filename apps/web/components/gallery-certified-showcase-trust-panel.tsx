@@ -75,7 +75,7 @@ const copyByLocale = {
       eyebrow: 'Кураторска витрина доверие',
       title: 'USG Галерия е кураторски слой за витрина',
       description:
-        'Галерията показва внимателно избрани снимки и публично представяне. Качванията от собственика, снимките в Registry и USG Галерия са отделни — Галерията остава кураторски слой.',
+        'Галерията показва внимателно избрани снимки и публично представяне. Качванията от собственика, снимките в Регистъра и USG Галерия са отделни — Галерията остава подбрано визуално представяне.',
       mark: 'USG Галерия',
       small: 'кураторска витрина',
       lanes: [
@@ -85,14 +85,14 @@ const copyByLocale = {
           description: 'Снимките се появяват тук само когато са избрани за витрина, не автоматично при качване.',
         },
         {
-          title: 'Граница на Registry',
+          title: 'Граница на Регистъра',
           state: 'Отделен слой',
-          description: 'Registry профилът доказва публична идентичност; Галерията представя най-силното визуално присъствие.',
+          description: 'Профилът в Регистъра доказва публична идентичност; Галерията представя най-силното визуално присъствие.',
         },
         {
           title: 'Граница на сертификата',
           state: 'Не е сертификат',
-          description: 'Участието в Галерия не означава автоматично USG Certificate. Сертификатът остава отделно решение.',
+          description: 'Участието в Галерия не означава автоматично USG сертификат. Сертификатът остава отделно решение.',
         },
         {
           title: 'Публично доверие',
@@ -120,9 +120,9 @@ const copyByLocale = {
           description: 'Потребителят трябва да може да свърже сертифицирания профил, проверката и представянето на сертификата.',
         },
         {
-          title: 'Основа на Registry',
+          title: 'Основа на Регистъра',
           state: 'Публична основа',
-          description: 'Registry остава основният публичен слой за идентичност преди четене на сертифицирани/сертификат.',
+          description: 'Регистърът остава основната публична част за идентичност преди четене на сертифицирани профили или сертификат.',
         },
         {
           title: 'Граница на Галерия',
@@ -137,7 +137,7 @@ const copyByLocale = {
       eyebrow: 'Fiducia vetrina curata',
       title: 'USG Gallery è uno strato di vetrina curata',
       description:
-        'Gallery mostra foto selezionate con cura e presentazione pubblica. I caricamenti del proprietario, le foto del Registry e la USG Gallery sono separati—Gallery rimane uno strato curato.',
+        'La Galleria mostra foto selezionate con cura e presentazione pubblica. I caricamenti del proprietario, le foto nel Registro e la Galleria USG sono separati: la Galleria resta una selezione curata.',
       mark: 'USG Gallery',
       small: 'vetrina curata',
       lanes: [
@@ -147,9 +147,9 @@ const copyByLocale = {
           description: 'Le foto appaiono qui solo quando selezionate per la vetrina, non automaticamente al caricamento.',
         },
         {
-          title: 'Confine del Registry',
+          title: 'Confine del Registro',
           state: 'Strato separato',
-          description: 'Il profilo del Registry dimostra l\'identità pubblica; Gallery presenta la più forte presenza visiva.',
+          description: 'Il profilo nel Registro dimostra l\'identità pubblica; la Galleria presenta la presenza visiva più forte.',
         },
         {
           title: 'Confine del certificato',
@@ -182,9 +182,9 @@ const copyByLocale = {
           description: 'L\'utente deve essere in grado di collegare il profilo certificato, la verifica e la presentazione del certificato.',
         },
         {
-          title: 'Fondamento del Registry',
+          title: 'Fondamento del Registro',
           state: 'Fondamento pubblico',
-          description: 'Il Registry rimane lo strato di identità pubblica principale prima della lettura certificato/certificato.',
+          description: 'Il Registro rimane la base pubblica dell’identità prima della lettura dei profili certificati o del certificato.',
         },
         {
           title: 'Confine della Gallery',
