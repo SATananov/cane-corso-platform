@@ -82,6 +82,27 @@ export const dogMeasurementRecords = pgTable('dog_measurement_records', {
   ...timestamps(),
 });
 
+
+export const dogHealthRecords = pgTable('dog_health_records', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  dogId: uuid('dog_id')
+    .notNull()
+    .references(() => dogs.id, { onDelete: 'cascade' }),
+  recordedByProfileId: uuid('recorded_by_profile_id')
+    .notNull()
+    .references(() => profiles.id, { onDelete: 'restrict' }),
+  category: text('category').notNull().default('vaccine'),
+  title: text('title').notNull(),
+  performedAt: date('performed_at').notNull(),
+  nextDueAt: date('next_due_at'),
+  veterinarian: text('veterinarian'),
+  clinic: text('clinic'),
+  batchNumber: text('batch_number'),
+  documentUrl: text('document_url'),
+  note: text('note'),
+  ...timestamps(),
+});
+
 export const dogSubmissions = pgTable('dog_submissions', {
   id: uuid('id').defaultRandom().primaryKey(),
   dogId: uuid('dog_id')

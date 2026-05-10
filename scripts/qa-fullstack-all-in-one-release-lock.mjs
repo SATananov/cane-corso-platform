@@ -37,6 +37,7 @@ const requiredFiles = [
   'docs/qa/step108-2-basic-first-profile-ux.md',
   'docs/qa/step108-2-1-basic-first-profile-layout-repair.md',
   'docs/qa/step108-2-2-optional-sections-visual-polish.md',
+  'docs/qa/step109-owner-health-growth-tracker.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -59,6 +60,7 @@ const requiredFiles = [
   'scripts/qa-step108-2-basic-first-profile-ux.mjs',
   'scripts/qa-step108-2-1-basic-first-profile-layout-repair.mjs',
   'scripts/qa-step108-2-2-optional-sections-visual-polish.mjs',
+  'scripts/qa-step109-owner-health-growth-tracker.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -92,6 +94,7 @@ const requiredPackageScripts = [
   'step108-2:basic-first-profile:qa',
   'step108-2-1:profile-layout-repair:qa',
   'step108-2-2:optional-visual-polish:qa',
+  'step109:owner-health-growth:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -132,6 +135,7 @@ const qaScripts = [
   ['Step 108.2 Basic-first Cane Corso profile UX', 'scripts/qa-step108-2-basic-first-profile-ux.mjs'],
   ['Step 108.2.1 Basic-first profile layout repair', 'scripts/qa-step108-2-1-basic-first-profile-layout-repair.mjs'],
   ['Step 108.2.2 Optional sections visual polish', 'scripts/qa-step108-2-2-optional-sections-visual-polish.mjs'],
+  ['Step 109 Owner health/growth tracker', 'scripts/qa-step109-owner-health-growth-tracker.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

@@ -9,6 +9,8 @@ export * from './repositories/dog-media.repository';
 
 export * from './repositories/dog-measurements.repository';
 
+export * from './repositories/dog-health.repository';
+
 export * from './repositories/local-auth.repository';
 
 export * from './repositories/partners.repository';

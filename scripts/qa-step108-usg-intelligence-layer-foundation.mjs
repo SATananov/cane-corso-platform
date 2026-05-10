@@ -128,7 +128,7 @@ assertIncludes(
 );
 
 const drizzleFiles = readdirSync(path.join(root, 'packages/db/drizzle'));
-const step108Migration = drizzleFiles.find((file) => /0014|intelligence/i.test(file));
+const step108Migration = drizzleFiles.find((file) => /intelligence/i.test(file));
 if (step108Migration) fail(`Step 108 should not add DB migration, found: ${step108Migration}`);
 else pass('No DB migration added for Step 108 foundation');
 

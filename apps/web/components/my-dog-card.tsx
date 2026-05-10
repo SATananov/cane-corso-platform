@@ -146,6 +146,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       heroGalleryChip: 'USG Gallery by admin',
       gallerySlot: 'Photo',
       addPhoto: 'Add photo',
+      healthTracker: 'Health & growth',
       ownerLayer: 'Owner profile',
       ownerLayerHint: 'Visible here immediately after save.',
       registryLayer: 'Registry visibility',
@@ -181,6 +182,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       heroGalleryChip: 'USG Галерия от администратор',
       gallerySlot: 'Снимка',
       addPhoto: 'Добави снимка',
+      healthTracker: 'Здраве и растеж',
       ownerLayer: 'Профил на собственика',
       ownerLayerHint: 'Видими са тук веднага след запис.',
       registryLayer: 'Видимост в Регистъра',
@@ -216,6 +218,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       heroGalleryChip: 'Galleria USG da amministratore',
       gallerySlot: 'Foto',
       addPhoto: 'Aggiungi foto',
+      healthTracker: 'Salute e crescita',
       ownerLayer: 'Profilo proprietario',
       ownerLayerHint: 'Visibili qui subito dopo il salvataggio.',
       registryLayer: 'Visibilità nel registro',
@@ -246,6 +249,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
     galleryCount: 'up to 3 owner photos',
     gallerySlot: 'Photo',
     addPhoto: 'Add photo',
+    healthTracker: 'Health & growth',
     ownerLayer: 'Owner profile',
     ownerLayerHint: 'Visible here immediately after save.',
     registryLayer: 'Registry visibility',
@@ -479,6 +483,9 @@ export function MyDogCard({ dog }: MyDogCardProps) {
           </Link>
           <Link href={`/my-dogs/${dog.id}/media`} className="button-ghost small">
             {t.dogCard.manageMedia}
+          </Link>
+          <Link href={`/my-dogs/${dog.id}/health`} className="button-secondary small">
+            {workspaceCopy.healthTracker}
           </Link>
           {dog.publication ? (
             <Link href={`/registry/${dog.publication.publicSlug}`} className="button-secondary small">

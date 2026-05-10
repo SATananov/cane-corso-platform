@@ -22588,3 +22588,380 @@ body {
   }
 }
 /* Step 108.2.2 — Optional sections visual polish END */
+
+/* Step 109 — Owner Health & Growth Tracker START */
+.owner-health-tracker {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.owner-health-tracker__hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.14), transparent 34%),
+    linear-gradient(135deg, rgba(12, 28, 24, 0.96), rgba(6, 13, 12, 0.98));
+}
+
+.owner-health-tracker__hero h2,
+.owner-health-form-card h3,
+.owner-health-section-head h3,
+.owner-health-safety-card h3 {
+  margin: 0;
+  color: var(--color-cream, #f8f5ef);
+}
+
+.owner-health-tracker__hero p,
+.owner-health-form-card p,
+.owner-health-safety-card p {
+  margin: 0.45rem 0 0;
+  color: rgba(248, 245, 239, 0.74);
+  line-height: 1.62;
+}
+
+.owner-health-tracker__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.owner-health-tracker__pills span,
+.owner-health-stat-card small {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  color: rgba(248, 245, 239, 0.72);
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 0.78rem;
+}
+
+.owner-health-tracker__seal {
+  width: min(180px, 34vw);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18), rgba(255, 255, 255, 0.04));
+  box-shadow: inset 0 0 28px rgba(212, 175, 55, 0.08), 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.owner-health-tracker__seal strong {
+  display: block;
+  color: rgba(212, 175, 55, 0.9);
+  font-family: Georgia, serif;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  letter-spacing: 0.08em;
+}
+
+.owner-health-tracker__seal span {
+  display: block;
+  max-width: 9rem;
+  color: rgba(248, 245, 239, 0.72);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.owner-health-tracker__stats,
+.owner-health-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.owner-health-stat-card {
+  min-height: 132px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(145deg, rgba(16, 34, 30, 0.92), rgba(7, 15, 14, 0.96));
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+.owner-health-stat-card--gold {
+  border-color: rgba(212, 175, 55, 0.24);
+  background: linear-gradient(145deg, rgba(55, 44, 16, 0.45), rgba(9, 18, 16, 0.96));
+}
+
+.owner-health-stat-card > span {
+  color: rgba(248, 245, 239, 0.62);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
+.owner-health-stat-card strong {
+  color: var(--color-cream, #f8f5ef);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1.25;
+}
+
+.owner-health-stat-card small {
+  width: fit-content;
+  padding: 0.25rem 0.55rem;
+}
+
+.owner-health-tracker__switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.owner-health-tracker__switch button {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(248, 245, 239, 0.74);
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.owner-health-tracker__switch button:hover,
+.owner-health-tracker__switch button.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.owner-health-tracker__switch strong,
+.owner-health-tracker__switch span {
+  display: block;
+}
+
+.owner-health-tracker__switch strong {
+  color: var(--color-cream, #f8f5ef);
+  margin-bottom: 0.25rem;
+}
+
+.owner-health-tracker__switch span {
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.owner-health-form-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.owner-health-form-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.owner-health-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.owner-health-form-grid--weight {
+  grid-template-columns: 0.9fr 0.9fr 0.9fr minmax(220px, 1.4fr);
+}
+
+.owner-health-form-grid label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.owner-health-form-grid label span {
+  color: rgba(248, 245, 239, 0.68);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.owner-health-form-grid__wide {
+  grid-column: span 2;
+}
+
+.health-tracker-input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--color-cream, #f8f5ef);
+  padding: 0.72rem 0.82rem;
+  min-height: 44px;
+  outline: none;
+}
+
+.health-tracker-input:focus,
+.health-tracker-input.has-value {
+  border-color: rgba(212, 175, 55, 0.34);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+}
+
+.health-tracker-input option {
+  background: #07110f;
+  color: #f8f5ef;
+}
+
+.owner-health-message {
+  margin: 0;
+  border-radius: 18px;
+  padding: 0.8rem 1rem;
+  color: rgba(248, 245, 239, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.owner-health-message--success {
+  border-color: rgba(130, 202, 157, 0.34);
+  background: rgba(130, 202, 157, 0.1);
+}
+
+.owner-health-message--error {
+  border-color: rgba(242, 119, 119, 0.36);
+  background: rgba(242, 119, 119, 0.1);
+}
+
+.owner-health-dashboard-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+}
+
+.owner-health-section-head {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.owner-health-chart {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.owner-health-chart__row {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.5fr) minmax(140px, 1fr) minmax(76px, auto);
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(248, 245, 239, 0.72);
+  font-size: 0.88rem;
+}
+
+.owner-health-chart__bar-track {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.owner-health-chart__bar {
+  height: 100%;
+  width: var(--bar-width, 0%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.38), rgba(248, 245, 239, 0.82));
+}
+
+.owner-health-chart__row strong {
+  color: var(--color-cream, #f8f5ef);
+  text-align: right;
+}
+
+.owner-health-empty {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.68);
+}
+
+.owner-health-safety-card {
+  align-content: center;
+  border-color: rgba(212, 175, 55, 0.18);
+}
+
+.owner-health-table-card {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.owner-health-table-wrap {
+  overflow-x: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.owner-health-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px;
+}
+
+.owner-health-table th,
+.owner-health-table td {
+  padding: 0.82rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(248, 245, 239, 0.72);
+  vertical-align: top;
+}
+
+.owner-health-table th {
+  color: rgba(212, 175, 55, 0.82);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.owner-health-table td strong,
+.owner-health-table td small {
+  display: block;
+}
+
+.owner-health-table td strong {
+  color: var(--color-cream, #f8f5ef);
+}
+
+.owner-health-table td small {
+  margin-top: 0.2rem;
+  color: rgba(248, 245, 239, 0.56);
+}
+
+@media (max-width: 920px) {
+  .owner-health-tracker__hero,
+  .owner-health-dashboard-grid,
+  .owner-health-tracker__stats,
+  .owner-health-form-grid,
+  .owner-health-form-grid--weight {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-health-form-grid__wide {
+    grid-column: auto;
+  }
+
+  .owner-health-tracker__seal {
+    width: 150px;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 620px) {
+  .owner-health-tracker__switch {
+    grid-template-columns: 1fr;
+  }
+
+  .owner-health-chart__row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .owner-health-chart__row strong {
+    text-align: left;
+  }
+}
+/* Step 109 — Owner Health & Growth Tracker END */
