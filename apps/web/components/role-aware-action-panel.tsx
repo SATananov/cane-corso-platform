@@ -18,7 +18,15 @@ export type RoleAwareActionSurface =
   | 'adminEcosystem';
 
 type PanelAction = { href: string; label: string; meta?: string };
-type SurfaceCopy = { eyebrow: string; title: string; description: string; status: string; primary: PanelAction; secondary: readonly PanelAction[] };
+type SurfaceCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  status: string;
+  primary: PanelAction;
+  secondary: readonly PanelAction[];
+  nextStep?: { eyebrow: string; title: string; items: readonly string[]; note: string };
+};
 
 type SurfaceMap = Record<RoleAwareActionSurface, SurfaceCopy>;
 
@@ -35,6 +43,12 @@ const bg: SurfaceMap = {
       { href: '/knowledge', label: 'Информация за породата', meta: 'История, стандарт, грижа' },
       { href: '/faq', label: 'Помощ', meta: 'Кратки отговори' },
     ],
+    nextStep: {
+      eyebrow: 'Следваща стъпка',
+      title: 'Най-лесният път напред',
+      items: ['Добави Cane Corso', 'Попълни профила спокойно', 'Следи здраве и растеж', 'Подготви снимки за преглед'],
+      note: 'USG те води по действия, не по сложни менюта.',
+    },
   },
   member: {
     eyebrow: 'Личен работен център',
@@ -715,6 +729,18 @@ export function RoleAwareActionPanel({ locale, surface, role, className }: RoleA
           {infoAction.meta ? <small>{infoAction.meta}</small> : null}
         </Link>
       </div>
+      {copy.nextStep ? (
+        <aside className="role-aware-action-panel__next-step" aria-label={copy.nextStep.eyebrow}>
+          <span>{copy.nextStep.eyebrow}</span>
+          <strong>{copy.nextStep.title}</strong>
+          <ol>
+            {copy.nextStep.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ol>
+          <small>{copy.nextStep.note}</small>
+        </aside>
+      ) : null}
     </section>
   );
 }

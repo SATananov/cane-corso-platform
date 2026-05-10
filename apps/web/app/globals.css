@@ -23741,3 +23741,187 @@ body {
   }
 }
 /* Step 111.2 — USG Platform Origin Story END */
+
+
+/* Step 111.3 — Heritage Navigation & Member Home Clarity Polish START */
+.hero-usg-grounding-seal {
+  position: relative;
+  display: grid;
+  width: min(100%, 390px);
+  margin-top: clamp(2rem, 7vw, 6.5rem);
+  padding: 0.95rem 1rem 0.9rem 4.25rem;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 14% 50%, rgba(212, 175, 55, 0.16), transparent 26%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+  box-shadow: inset 0 1px 0 rgba(255, 244, 219, 0.05);
+  color: rgba(247, 239, 218, 0.88);
+}
+
+.hero-usg-grounding-seal::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  width: 2.45rem;
+  height: 2.45rem;
+  transform: translateY(-50%);
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 58%),
+    url('/brand/seal/usg-official-seal-compact.png') center / 72% auto no-repeat;
+  opacity: 0.88;
+}
+
+.hero-usg-grounding-seal span {
+  color: var(--color-gold);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-usg-grounding-seal strong {
+  margin-top: 0.14rem;
+  color: var(--color-ivory);
+  font-size: 0.94rem;
+  line-height: 1.1;
+}
+
+.hero-usg-grounding-seal small {
+  margin-top: 0.25rem;
+  color: rgba(247, 239, 218, 0.62);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.role-aware-action-panel__next-step {
+  display: grid;
+  gap: 0.65rem;
+  align-self: stretch;
+  padding: clamp(0.95rem, 1.8vw, 1.25rem);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(212, 175, 55, 0.14), transparent 36%),
+    rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 244, 219, 0.05);
+}
+
+.role-aware-action-panel__next-step span {
+  color: var(--color-gold);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.role-aware-action-panel__next-step strong {
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  line-height: 1.05;
+}
+
+.role-aware-action-panel__next-step ol {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: next-step;
+}
+
+.role-aware-action-panel__next-step li {
+  position: relative;
+  min-height: 2rem;
+  padding: 0.42rem 0.5rem 0.42rem 2.35rem;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(247, 239, 218, 0.86);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.role-aware-action-panel__next-step li::before {
+  counter-increment: next-step;
+  content: counter(next-step, decimal-leading-zero);
+  position: absolute;
+  left: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.role-aware-action-panel__next-step small {
+  color: rgba(247, 239, 218, 0.64);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.platform-member-focus.role-aware-action-panel {
+  grid-template-columns: minmax(0, 0.98fr) minmax(280px, 0.78fr);
+}
+
+.platform-member-focus .role-aware-action-panel__next-step {
+  grid-column: 2;
+}
+
+[data-theme='light'] .hero-usg-grounding-seal,
+[data-theme='heritage'] .hero-usg-grounding-seal,
+[data-theme='light'] .role-aware-action-panel__next-step,
+[data-theme='heritage'] .role-aware-action-panel__next-step {
+  border-color: rgba(128, 99, 32, 0.2);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+[data-theme='light'] .hero-usg-grounding-seal strong,
+[data-theme='heritage'] .hero-usg-grounding-seal strong,
+[data-theme='light'] .role-aware-action-panel__next-step strong,
+[data-theme='heritage'] .role-aware-action-panel__next-step strong {
+  color: rgba(32, 27, 18, 0.94);
+}
+
+[data-theme='light'] .hero-usg-grounding-seal small,
+[data-theme='heritage'] .hero-usg-grounding-seal small,
+[data-theme='light'] .role-aware-action-panel__next-step small,
+[data-theme='heritage'] .role-aware-action-panel__next-step small {
+  color: rgba(49, 37, 22, 0.68);
+}
+
+[data-theme='light'] .role-aware-action-panel__next-step li,
+[data-theme='heritage'] .role-aware-action-panel__next-step li {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(35, 27, 17, 0.86);
+}
+
+@media (max-width: 980px) {
+  .platform-member-focus.role-aware-action-panel,
+  .platform-member-focus .role-aware-action-panel__next-step {
+    grid-template-columns: 1fr;
+    grid-column: auto;
+  }
+
+  .hero-usg-grounding-seal {
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-usg-grounding-seal {
+    padding-left: 1rem;
+  }
+
+  .hero-usg-grounding-seal::before {
+    position: static;
+    transform: none;
+    margin-bottom: 0.4rem;
+  }
+}
+/* Step 111.3 — Heritage Navigation & Member Home Clarity Polish END */

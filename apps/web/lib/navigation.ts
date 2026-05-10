@@ -7,17 +7,20 @@ export interface NavItem {
   description?: string;
 }
 
-const publicNavigationLabels: Record<Locale, { community: string; verify: string }> = {
+const publicNavigationLabels: Record<Locale, { community: string; heritage: string; verify: string }> = {
   en: {
     community: 'Community',
+    heritage: 'Heritage',
     verify: 'Verify',
   },
   bg: {
     community: 'Общност',
+    heritage: 'История',
     verify: 'Проверка',
   },
   it: {
     community: 'Comunità',
+    heritage: 'Storia',
     verify: 'Verifica',
   },
 };
@@ -31,6 +34,7 @@ export function getPublicNavigation(locale: Locale): NavItem[] {
     { label: t.navigation.registry, href: '/registry' },
     { label: t.navigation.knowledge, href: '/knowledge' },
     { label: labels.community, href: '/community' },
+    { label: labels.heritage, href: '/heritage' },
     { label: labels.verify, href: '/verify' },
   ];
 }

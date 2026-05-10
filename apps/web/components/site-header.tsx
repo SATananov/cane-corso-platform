@@ -60,7 +60,7 @@ export async function SiteHeader() {
   const identityStatement = resolveHeaderIdentityStatement(locale, t.site.brandStatement, t.site.brandEyebrow);
   const primaryNavigationLabel = locale === 'bg' ? 'Основна навигация' : locale === 'it' ? 'Navigazione principale' : 'Primary navigation';
   const workspaceControlsLabel = locale === 'bg' ? 'Контроли на профила' : locale === 'it' ? 'Controlli area personale' : 'Workspace controls';
-  const memberCenterLabel = locale === 'bg' ? 'Старт' : locale === 'it' ? 'Start' : 'Start';
+  const memberCenterLabel = locale === 'bg' ? 'Център' : locale === 'it' ? 'Centro' : 'Center';
   const memberRequestsLabel = locale === 'bg' ? 'Заявки' : locale === 'it' ? 'Richieste' : 'Requests';
 
   const workspaceLinks: HeaderWorkspaceLink[] = currentSession

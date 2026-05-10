@@ -449,6 +449,12 @@ export default async function PlatformPage() {
                   : 'Already have an account? Use Sign in from the header or open member access to continue deeper.'}
             </p>
           ) : null}
+
+          <div className="hero-usg-grounding-seal" aria-label={locale === 'bg' ? 'USG платформа, история, грижа и доверие' : locale === 'it' ? 'Piattaforma USG, storia, cura e fiducia' : 'USG platform, heritage, care and trust'}>
+            <span>USG</span>
+            <strong>{locale === 'bg' ? 'История • грижа • доверие' : locale === 'it' ? 'Storia • cura • fiducia' : 'Heritage • care • trust'}</strong>
+            <small>{locale === 'bg' ? 'Екосистема за Cane Corso и собственици' : locale === 'it' ? 'Ecosistema per Cane Corso e proprietari' : 'Ecosystem for Cane Corso and owners'}</small>
+          </div>
         </div>
 
         <div className="hero__visual-column">
