@@ -34,3 +34,4 @@ export * from './ecosystem/ecosystem-submission.types';
 export * from './knowledge/knowledge.types';
 
 export * from './intelligence/usg-intelligence.types';
+export * from './intelligence/fci-standard-conformity.types';

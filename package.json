@@ -144,7 +144,8 @@
     "step105:production-clarity:qa": "node scripts/qa-step105-production-clarity-user-first.mjs",
     "step106:product-structure:qa": "node scripts/qa-step106-full-product-structure-reset.mjs",
     "step107:product-lock:qa": "node scripts/qa-step107-usg-product-lock.mjs",
-    "step108:usg-intelligence:qa": "node scripts/qa-step108-usg-intelligence-layer-foundation.mjs"
+    "step108:usg-intelligence:qa": "node scripts/qa-step108-usg-intelligence-layer-foundation.mjs",
+    "step108-1:fci-conformity:qa": "node scripts/qa-step108-1-fci-standard-conformity-engine.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

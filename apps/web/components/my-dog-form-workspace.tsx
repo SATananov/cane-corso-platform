@@ -28,6 +28,7 @@ import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-p
 import { OwnerSubmissionHappyPathPanel } from '@/components/owner-submission-happy-path-panel';
 import { UsgMeasurementAssistantPanel } from '@/components/usg-measurement-assistant-panel';
 import { UsgIntelligenceFoundationPanel } from '@/components/usg-intelligence-foundation-panel';
+import { FciStandardConformityPanel } from '@/components/fci-standard-conformity-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 interface MyDogFormWorkspaceProps {
@@ -670,6 +671,15 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
             hasPublication={Boolean(values.publicationPublicSlug)}
             hasCertificate={Boolean(values.publicationCertificateCode)}
             hasMeasurementArchive={Boolean(activeDogId)}
+          />
+
+          <FciStandardConformityPanel
+            locale={locale}
+            dogId={activeDogId}
+            dogName={values.name}
+            sex={values.sex}
+            dateOfBirth={values.dateOfBirth}
+            color={values.color}
           />
 
           <UsgMeasurementAssistantPanel
