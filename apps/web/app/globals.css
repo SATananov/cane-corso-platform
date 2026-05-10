@@ -21786,3 +21786,260 @@ body {
     align-items: stretch;
   }
 }
+
+/* Step 108 — USG Intelligence Layer Foundation */
+.usg-intelligence-panel {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(139, 205, 255, 0.18);
+  background:
+    radial-gradient(circle at top right, rgba(139, 205, 255, 0.13), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(214, 173, 73, 0.11), transparent 30%),
+    linear-gradient(135deg, rgba(7, 10, 18, 0.96), rgba(14, 16, 22, 0.92));
+  color: var(--color-ivory);
+}
+
+.usg-intelligence-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(139, 205, 255, 0.06), transparent 42%, rgba(214, 173, 73, 0.06));
+}
+
+.usg-intelligence-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.usg-intelligence-panel__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.usg-intelligence-panel__header h2 {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.usg-intelligence-panel__header p {
+  max-width: 74ch;
+  color: rgba(248, 245, 239, 0.78);
+  line-height: 1.65;
+}
+
+.usg-intelligence-panel__mark {
+  display: grid;
+  width: 4.8rem;
+  height: 4.8rem;
+  place-items: center;
+  border: 1px solid rgba(139, 205, 255, 0.34);
+  border-radius: 1.35rem;
+  background: rgba(139, 205, 255, 0.08);
+  color: rgba(205, 233, 255, 0.95);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+}
+
+.usg-intelligence-panel__scores,
+.usg-intelligence-panel__signals {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.usg-intelligence-panel__scores {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.usg-intelligence-panel__scores > div,
+.usg-intelligence-signal,
+.usg-intelligence-panel__boundaries {
+  border: 1px solid rgba(214, 173, 73, 0.16);
+  border-radius: 1.05rem;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 0.9rem;
+}
+
+.usg-intelligence-panel__scores span,
+.usg-intelligence-signal__meta span,
+.usg-intelligence-signal__evidence span {
+  color: rgba(248, 245, 239, 0.64);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.usg-intelligence-panel__scores strong {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--color-gold);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+}
+
+.usg-intelligence-panel__scores .is-strong {
+  border-color: rgba(96, 190, 144, 0.34);
+  background: rgba(96, 190, 144, 0.08);
+}
+
+.usg-intelligence-panel__scores .is-watch {
+  border-color: rgba(214, 173, 73, 0.32);
+  background: rgba(214, 173, 73, 0.08);
+}
+
+.usg-intelligence-panel__scores .is-low {
+  border-color: rgba(139, 205, 255, 0.24);
+  background: rgba(139, 205, 255, 0.07);
+}
+
+.usg-intelligence-panel__signals {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.usg-intelligence-signal {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.usg-intelligence-signal--ready_for_orientation {
+  border-color: rgba(96, 190, 144, 0.34);
+  background: rgba(96, 190, 144, 0.08);
+}
+
+.usg-intelligence-signal--human_review_required,
+.usg-intelligence-signal--boundary_locked {
+  border-color: rgba(214, 173, 73, 0.34);
+  background: rgba(214, 173, 73, 0.08);
+}
+
+.usg-intelligence-signal--missing_data,
+.usg-intelligence-signal--collecting_data {
+  border-color: rgba(139, 205, 255, 0.22);
+  background: rgba(139, 205, 255, 0.06);
+}
+
+.usg-intelligence-signal__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.usg-intelligence-signal__head strong {
+  display: block;
+  color: var(--color-ivory);
+  font-size: 1rem;
+}
+
+.usg-intelligence-signal__head p,
+.usg-intelligence-signal__action,
+.usg-intelligence-panel__boundaries li {
+  margin: 0.25rem 0 0;
+  color: rgba(248, 245, 239, 0.76);
+  line-height: 1.58;
+}
+
+.usg-intelligence-signal__head > span {
+  color: var(--color-gold);
+  font-weight: 900;
+}
+
+.usg-intelligence-signal__meta,
+.usg-intelligence-signal__evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.usg-intelligence-signal__meta span,
+.usg-intelligence-signal__evidence span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(214, 173, 73, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.052);
+  padding: 0.34rem 0.55rem;
+}
+
+.usg-intelligence-signal__action {
+  border-top: 1px solid rgba(214, 173, 73, 0.14);
+  padding-top: 0.7rem;
+  color: rgba(255, 236, 181, 0.9);
+  font-weight: 750;
+}
+
+.usg-intelligence-panel__boundaries {
+  margin-top: 1rem;
+}
+
+.usg-intelligence-panel__boundaries strong {
+  color: var(--color-gold);
+}
+
+.usg-intelligence-panel__boundaries ul {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.7rem 0 0;
+  padding-left: 1.1rem;
+}
+
+[data-theme='heritage'] .usg-intelligence-panel {
+  background:
+    radial-gradient(circle at top right, rgba(139, 205, 255, 0.16), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(214, 173, 73, 0.15), transparent 30%),
+    linear-gradient(135deg, rgba(255, 248, 232, 0.96), rgba(255, 255, 255, 0.94));
+  color: rgba(46, 34, 18, 0.94);
+}
+
+[data-theme='heritage'] .usg-intelligence-panel__header p,
+[data-theme='heritage'] .usg-intelligence-panel__scores span,
+[data-theme='heritage'] .usg-intelligence-signal__meta span,
+[data-theme='heritage'] .usg-intelligence-signal__evidence span,
+[data-theme='heritage'] .usg-intelligence-signal__head p,
+[data-theme='heritage'] .usg-intelligence-signal__action,
+[data-theme='heritage'] .usg-intelligence-panel__boundaries li {
+  color: rgba(69, 49, 21, 0.72);
+}
+
+[data-theme='heritage'] .usg-intelligence-panel__scores > div,
+[data-theme='heritage'] .usg-intelligence-signal,
+[data-theme='heritage'] .usg-intelligence-panel__boundaries,
+[data-theme='heritage'] .usg-intelligence-signal__meta span,
+[data-theme='heritage'] .usg-intelligence-signal__evidence span {
+  background: rgba(255, 255, 255, 0.64);
+  border-color: rgba(158, 123, 38, 0.18);
+}
+
+[data-theme='heritage'] .usg-intelligence-signal__head strong {
+  color: rgba(46, 34, 18, 0.96);
+}
+
+@media (max-width: 980px) {
+  .usg-intelligence-panel__scores,
+  .usg-intelligence-panel__signals {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .usg-intelligence-panel__header,
+  .usg-intelligence-panel__scores,
+  .usg-intelligence-panel__signals,
+  .usg-intelligence-signal__head {
+    grid-template-columns: 1fr;
+  }
+
+  .usg-intelligence-panel__mark {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.15rem;
+    font-size: 1rem;
+  }
+}

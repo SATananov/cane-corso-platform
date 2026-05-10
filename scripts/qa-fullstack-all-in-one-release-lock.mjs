@@ -29,6 +29,8 @@ const requiredFiles = [
   'docs/qa/step105-production-clarity-user-first.md',
   'docs/qa/step106-full-product-structure-reset.md',
   'docs/qa/step107-usg-product-lock.md',
+  'docs/architecture/usg-intelligence-layer-foundation.md',
+  'docs/qa/step108-usg-intelligence-layer-foundation.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -45,6 +47,7 @@ const requiredFiles = [
   'scripts/qa-step105-production-clarity-user-first.mjs',
   'scripts/qa-step106-full-product-structure-reset.mjs',
   'scripts/qa-step107-usg-product-lock.mjs',
+  'scripts/qa-step108-usg-intelligence-layer-foundation.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -72,6 +75,7 @@ const requiredPackageScripts = [
   'step105:production-clarity:qa',
   'step106:product-structure:qa',
   'step107:product-lock:qa',
+  'step108:usg-intelligence:qa',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -106,6 +110,7 @@ const qaScripts = [
   ['Step 105 production clarity/user-first pass', 'scripts/qa-step105-production-clarity-user-first.mjs'],
   ['Step 106 full product structure reset', 'scripts/qa-step106-full-product-structure-reset.mjs'],
   ['Step 107 USG product lock', 'scripts/qa-step107-usg-product-lock.mjs'],
+  ['Step 108 USG Intelligence layer foundation', 'scripts/qa-step108-usg-intelligence-layer-foundation.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

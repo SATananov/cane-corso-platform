@@ -32,3 +32,5 @@ export * from './ecosystem/ecosystem.types';
 export * from './ecosystem/ecosystem-submission.types';
 
 export * from './knowledge/knowledge.types';
+
+export * from './intelligence/usg-intelligence.types';

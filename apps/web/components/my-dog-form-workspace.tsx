@@ -27,6 +27,7 @@ import { useLocale } from '@/components/locale-provider';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
 import { OwnerSubmissionHappyPathPanel } from '@/components/owner-submission-happy-path-panel';
 import { UsgMeasurementAssistantPanel } from '@/components/usg-measurement-assistant-panel';
+import { UsgIntelligenceFoundationPanel } from '@/components/usg-intelligence-foundation-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 interface MyDogFormWorkspaceProps {
@@ -651,6 +652,26 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
         />
 
         <div className="dog-form-guidance-stack">
+          <UsgIntelligenceFoundationPanel
+            locale={locale}
+            dogId={activeDogId}
+            dogName={values.name}
+            sex={values.sex}
+            dateOfBirth={values.dateOfBirth}
+            color={values.color}
+            city={values.city}
+            country={values.country}
+            shortDescription={values.shortDescription}
+            mainImageUrl={values.mainImageUrl || values.galleryImageUrls[0]}
+            galleryImageCount={galleryImageCount}
+            pedigreeFilledCount={pedigreeFilledCount}
+            pedigreePhotoCount={pedigreePhotoCount}
+            lifecycleStatus={values.lifecycleStatus}
+            hasPublication={Boolean(values.publicationPublicSlug)}
+            hasCertificate={Boolean(values.publicationCertificateCode)}
+            hasMeasurementArchive={Boolean(activeDogId)}
+          />
+
           <UsgMeasurementAssistantPanel
             locale={locale}
             dogId={activeDogId}
