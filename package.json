@@ -147,7 +147,8 @@
     "step108:usg-intelligence:qa": "node scripts/qa-step108-usg-intelligence-layer-foundation.mjs",
     "step108-1:fci-conformity:qa": "node scripts/qa-step108-1-fci-standard-conformity-engine.mjs",
     "step108-1-1:fci-ux-polish:qa": "node scripts/qa-step108-1-1-fci-intelligence-empty-state-location-polish.mjs",
-    "step108-2:basic-first-profile:qa": "node scripts/qa-step108-2-basic-first-profile-ux.mjs"
+    "step108-2:basic-first-profile:qa": "node scripts/qa-step108-2-basic-first-profile-ux.mjs",
+    "step108-2-1:profile-layout-repair:qa": "node scripts/qa-step108-2-1-basic-first-profile-layout-repair.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
