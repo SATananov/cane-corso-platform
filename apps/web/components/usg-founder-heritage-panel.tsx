@@ -249,6 +249,36 @@ const copyByLocale = {
     ] satisfies readonly HeritageStorySection[],
     storyClosing:
       'This text is personal memory and responsibility. di Casa Tananov is not presented here as a kennel, sales page, or official pedigree authority — it is the name of a personal Cane Corso archive.',
+    platformStorySummary: 'How the USG platform idea was born',
+    platformStoryHint: 'A separate chapter opens here for visitors who want to understand why the platform exists.',
+    platformStoryTitle: 'From trial and error to a Cane Corso ecosystem',
+    platformStoryLead:
+      'The platform was born from the same owner path: years of searching, asking, learning, and wanting the next Cane Corso owner to have a clearer road.',
+    platformStorySections: [
+      {
+        title: 'The missing complete place',
+        paragraphs: [
+          'After years with Cane Corso, I understood that there is information about the breed, but it is scattered. There are articles, posts, opinions, and separate publications, yet not one complete place that brings the important things together.',
+          'For a person who starts seriously, this becomes difficult. You search in many places, compare opinions, ask people, speak with veterinarians, learn from mistakes, and slowly build your own understanding.',
+        ],
+      },
+      {
+        title: 'Why I decided to learn and build it',
+        paragraphs: [
+          'I did not want every Cane Corso owner to discover everything the hard way, the way I had to — by trial and error, reading, asking, and experience. That is why I decided to learn how to build a system online.',
+          'The goal was not just to make a website. The goal was to create a real Cane Corso ecosystem: information about the breed, guidance for owners, profiles and history for the dogs, health and growth tracking, and useful services around them.',
+        ],
+      },
+      {
+        title: 'The USG ecosystem',
+        paragraphs: [
+          'USG is meant to be a place only for Cane Corso and the people around them — owners, future owners, services, clinics, hotels, shops, pet-friendly places, and partners who understand the responsibility of large breeds.',
+          'I want it to be easier for people to be informed, guided, and supported. Not lost between random information, but able to find knowledge, tools, care history, services, and community usefulness in one place.',
+        ],
+      },
+    ] satisfies readonly HeritageStorySection[],
+    platformStoryClosing:
+      'This is why USG exists as a platform: to turn a difficult personal learning path into a clearer, more useful, and more responsible Cane Corso ecosystem for others.',
     chips: ['Owner experience', 'Personal archive', 'Cane Corso only'],
   },
   bg: {
@@ -330,6 +360,37 @@ const copyByLocale = {
     ] satisfies readonly HeritageStorySection[],
     storyClosing:
       'Този текст е лична памет и отговорност. di Casa Tananov не е представено като развъдник, продажбена страница или официална родословна власт — това е името на личния Cane Corso архив зад USG.',
+    platformStorySummary: 'Как се роди идеята за платформата',
+    platformStoryHint: 'Отделна глава се отваря само ако посетителят иска да разбере защо съществува USG.',
+    platformStoryTitle: 'От проба-грешка към Cane Corso екосистема',
+    platformStoryLead:
+      'Идеята за платформата се роди от същия личен път — години питане, четене, опит, грешки и желание следващият собственик на Cane Corso да има по-ясен път.',
+    platformStorySections: [
+      {
+        title: 'Липсваше едно цялостно място',
+        paragraphs: [
+          'След години с Cane Corso разбрах, че информация за породата има, но тя е разпръсната. Има статии, има публикации, има отделни мнения и материали, но липсваше едно място, което да събира всичко важно около Cane Corso.',
+          'Когато човек започне да търси сериозно, пътят не е лесен. Четеш на много места, питаш различни хора, сравняваш мнения, консултираш се, грешиш, пробваш и малко по малко си изграждаш собствено разбиране.',
+        ],
+      },
+      {
+        title: 'Затова реших да уча',
+        paragraphs: [
+          'Аз минах през много неща по трудния начин — с питане, четене, проба-грешка, ветеринарни консултации и личен опит. И в един момент си казах, че не е нужно всеки собственик на Cane Corso да започва от нулата като мен.',
+          'Затова реших да уча, за да мога да изградя такава система в интернет. Не просто сайт, а платформа, която да направи пътя по-лесен, по-ясен и по-информиран за хората, които обичат Cane Corso.',
+        ],
+      },
+      {
+        title: 'Какво искам да бъде USG',
+        paragraphs: [
+          'Идеята ми беше цялостна екосистема само за Cane Corso и за собственици — информация за породата, насоки за отглеждане, профили и история на самите Cane Corso, снимки, развитие, здраве, ваксини и проследяване на грижата.',
+          'Искам в тази екосистема да има и полезни услуги около породата: хотели и boarding за големи породи, ветеринарни клиники, магазини, pet-friendly места, партньори и хора, които разбират какво означава Cane Corso.',
+          'За мен USG трябва да е място, където човек не се лута между случайни статии и непълна информация, а намира знание, инструменти, общност и подкрепа на едно място.',
+        ],
+      },
+    ] satisfies readonly HeritageStorySection[],
+    platformStoryClosing:
+      'Така личният ми път с Cane Corso започна да се превръща в платформа — не за да бъде всичко около мен, а за да бъде по-лесно, по-ясно и по-полезно за всеки, който носи отговорност към своето Cane.',
     chips: ['Опит като собственик', 'Личен архив', 'Само Cane Corso'],
   },
   it: {
@@ -411,6 +472,37 @@ const copyByLocale = {
     ] satisfies readonly HeritageStorySection[],
     storyClosing:
       'Questo testo è memoria personale e responsabilità. di Casa Tananov non è presentato come allevamento, vendita o autorità genealogica ufficiale — è il nome dell’archivio personale Cane Corso dietro USG.',
+    platformStorySummary: 'Come è nata l’idea della piattaforma',
+    platformStoryHint: 'Un capitolo separato si apre solo se il visitatore vuole capire perché esiste USG.',
+    platformStoryTitle: 'Dalla prova ed errore a un ecosistema Cane Corso',
+    platformStoryLead:
+      'L’idea della piattaforma nasce dallo stesso percorso personale: anni di domande, letture, esperienza e desiderio di dare al prossimo owner Cane Corso una strada più chiara.',
+    platformStorySections: [
+      {
+        title: 'Mancava un luogo completo',
+        paragraphs: [
+          'Dopo anni con Cane Corso ho capito che esistono informazioni sulla razza, ma sono sparse: articoli, pubblicazioni, opinioni e materiali separati. Mancava un luogo che raccogliesse ciò che conta davvero.',
+          'Chi cerca seriamente deve leggere in molti posti, chiedere, confrontare opinioni, parlare con professionisti, sbagliare e costruire piano piano la propria comprensione.',
+        ],
+      },
+      {
+        title: 'Per questo ho deciso di studiare',
+        paragraphs: [
+          'Io ho imparato molte cose nel modo difficile: domande, letture, prova ed errore, consulenze veterinarie ed esperienza personale. Non volevo che ogni owner Cane Corso dovesse iniziare da zero come me.',
+          'Per questo ho deciso di studiare e imparare a costruire un sistema online. Non solo un sito, ma una piattaforma che renda il percorso più semplice, chiaro e informato per chi ama il Cane Corso.',
+        ],
+      },
+      {
+        title: 'Cosa deve essere USG',
+        paragraphs: [
+          'L’idea è un ecosistema completo solo per Cane Corso e owner: informazioni sulla razza, guida alla cura, profili e storia dei Cane Corso, foto, crescita, salute, vaccini e tracciamento della cura.',
+          'Dentro questo ecosistema devono esserci anche servizi utili: hotel e boarding per razze grandi, cliniche veterinarie, negozi, luoghi pet-friendly, partner e persone che comprendono cosa significa Cane Corso.',
+          'USG deve essere un luogo dove non ci si perde tra informazioni casuali, ma si trovano conoscenza, strumenti, community e supporto nello stesso posto.',
+        ],
+      },
+    ] satisfies readonly HeritageStorySection[],
+    platformStoryClosing:
+      'Così il mio percorso personale con Cane Corso ha iniziato a diventare piattaforma: più chiara, più utile e più responsabile per chi vive con il proprio Cane.',
     chips: ['Esperienza owner', 'Archivio personale', 'Solo Cane Corso'],
   },
 } as const;
@@ -439,28 +531,53 @@ export function UsgFounderHeritagePanel({ locale, variant = 'compact' }: { local
       </div>
 
       {variant === 'full' ? (
-        <details className="usg-founder-heritage-story">
-          <summary className="usg-founder-heritage-story__summary">
-            <span>{copy.storySummary}</span>
-            <small>{copy.storyHint}</small>
-          </summary>
-          <article className="usg-founder-heritage-story__body" aria-label={copy.storyTitle}>
-            <span className="eyebrow-label">di Casa Tananov</span>
-            <h3>{copy.storyTitle}</h3>
-            <p className="usg-founder-heritage-story__lead">{copy.storyLead}</p>
-            <div className="usg-founder-heritage-story__sections">
-              {copy.storySections.map((section) => (
-                <section key={section.title} className="usg-founder-heritage-story__section">
-                  <h4>{section.title}</h4>
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </section>
-              ))}
-            </div>
-            <p className="usg-founder-heritage-story__closing">{copy.storyClosing}</p>
-          </article>
-        </details>
+        <>
+          <details className="usg-founder-heritage-story">
+            <summary className="usg-founder-heritage-story__summary">
+              <span>{copy.storySummary}</span>
+              <small>{copy.storyHint}</small>
+            </summary>
+            <article className="usg-founder-heritage-story__body" aria-label={copy.storyTitle}>
+              <span className="eyebrow-label">di Casa Tananov</span>
+              <h3>{copy.storyTitle}</h3>
+              <p className="usg-founder-heritage-story__lead">{copy.storyLead}</p>
+              <div className="usg-founder-heritage-story__sections">
+                {copy.storySections.map((section) => (
+                  <section key={section.title} className="usg-founder-heritage-story__section">
+                    <h4>{section.title}</h4>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </section>
+                ))}
+              </div>
+              <p className="usg-founder-heritage-story__closing">{copy.storyClosing}</p>
+            </article>
+          </details>
+
+          <details className="usg-founder-heritage-story usg-founder-heritage-story--platform-origin">
+            <summary className="usg-founder-heritage-story__summary">
+              <span>{copy.platformStorySummary}</span>
+              <small>{copy.platformStoryHint}</small>
+            </summary>
+            <article className="usg-founder-heritage-story__body" aria-label={copy.platformStoryTitle}>
+              <span className="eyebrow-label">UNICO SUO GENERE</span>
+              <h3>{copy.platformStoryTitle}</h3>
+              <p className="usg-founder-heritage-story__lead">{copy.platformStoryLead}</p>
+              <div className="usg-founder-heritage-story__sections">
+                {copy.platformStorySections.map((section) => (
+                  <section key={section.title} className="usg-founder-heritage-story__section">
+                    <h4>{section.title}</h4>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </section>
+                ))}
+              </div>
+              <p className="usg-founder-heritage-story__closing">{copy.platformStoryClosing}</p>
+            </article>
+          </details>
+        </>
       ) : null}
 
       <div className="usg-founder-heritage__archive-head">

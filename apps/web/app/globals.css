@@ -23706,3 +23706,38 @@ body {
 }
 /* Step 111.1 — USG Heritage Written Story Toggle END */
 
+
+/* Step 111.2 — USG Platform Origin Story START */
+.usg-founder-heritage-story--platform-origin {
+  border-color: rgba(212, 175, 55, 0.22);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(212, 175, 55, 0.14), transparent 32%),
+    linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(255, 255, 255, 0.035));
+}
+
+.usg-founder-heritage-story--platform-origin .usg-founder-heritage-story__summary span {
+  background: rgba(212, 175, 55, 0.16);
+}
+
+.usg-founder-heritage-story--platform-origin .usg-founder-heritage-story__sections {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.usg-founder-heritage-story--platform-origin .usg-founder-heritage-story__section {
+  background:
+    linear-gradient(180deg, rgba(212, 175, 55, 0.065), rgba(255, 255, 255, 0.028));
+}
+
+[data-theme='heritage'] .usg-founder-heritage-story--platform-origin {
+  border-color: rgba(93, 70, 28, 0.2);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(151, 103, 26, 0.12), transparent 32%),
+    rgba(255, 255, 255, 0.62);
+}
+
+@media (max-width: 1100px) {
+  .usg-founder-heritage-story--platform-origin .usg-founder-heritage-story__sections {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* Step 111.2 — USG Platform Origin Story END */

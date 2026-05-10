@@ -154,7 +154,8 @@
     "step109-1:access-photo-guide:qa": "node scripts/qa-step109-1-access-password-photo-guide-polish.mjs",
     "step110:member-dashboard:qa": "node scripts/qa-step110-member-dashboard-real-user-ux-cleanup.mjs",
     "step111:usg-heritage:qa": "node scripts/qa-step111-usg-heritage-di-casa-tananov-archive.mjs",
-    "step111-1:usg-heritage-story:qa": "node scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs"
+    "step111-1:usg-heritage-story:qa": "node scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs",
+    "step111-2:usg-platform-origin:qa": "node scripts/qa-step111-2-usg-platform-origin-story.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
