@@ -39,10 +39,10 @@ export default async function PlatformPage() {
 
   const structureCopyByLocale = {
     en: {
-      eyebrow: 'Master plan structure',
+      eyebrow: 'Product structure',
       title: 'Official trust, community usefulness, and clear help',
       description:
-        'The next evolution of the platform is a clearer product map: official trust pages, community growth pages, and a central guide so users understand what each zone does.',
+        'Use the platform through clear paths: official trust pages, community usefulness, and a central guide when you need orientation.',
       cards: [
         {
           eyebrow: 'Official layer',
@@ -61,17 +61,17 @@ export default async function PlatformPage() {
         {
           eyebrow: 'Help system',
           title: 'A guide so users do not get lost',
-          description: 'Every major page should point back to a clear help guide explaining official vs community, access, and how publication works.',
+          description: 'Every major path points to clear help when the next step needs context.',
           href: '/guide',
           meta: 'Guide • access • explanation',
         },
       ],
     },
     bg: {
-      eyebrow: 'Структура по MASTER ПЛАНА',
+      eyebrow: 'Структура на платформата',
       title: 'Официално доверие, общностна полезност и ясна помощ',
       description:
-        'Следващата еволюция на платформата е по-ясна продуктова карта: официални страници на доверие, общностни страници за полезност и централен наръчник, за да разбира потребителят какво прави всяка зона.',
+        'Използвай платформата през ясни пътища: официални страници на доверие, общностна полезност и централен наръчник, когато ти трябва ориентация.',
       cards: [
         {
           eyebrow: 'Официален слой',
@@ -90,17 +90,17 @@ export default async function PlatformPage() {
         {
           eyebrow: 'Система за помощ',
           title: 'Наръчник, за да не се лута потребителят',
-          description: 'Всяка основна страница трябва да води към ясен помощен наръчник, който обяснява официалния и общностния слой, достъпа и пътя към публикуване.',
+          description: 'Всеки основен път има помощ, когато следващата стъпка има нужда от контекст.',
           href: '/guide',
           meta: 'Наръчник • достъп • обяснения',
         },
       ],
     },
     it: {
-      eyebrow: 'Struttura del MASTER PLAN',
+      eyebrow: 'Struttura della piattaforma',
       title: 'Fiducia ufficiale, community utile e guida chiara',
       description:
-        'La prossima evoluzione della piattaforma è una mappa più chiara: pagine ufficiali di fiducia, aree community utili e una guida centrale per capire ogni zona.',
+        'Usa la piattaforma attraverso percorsi chiari: pagine ufficiali di fiducia, utilità community e una guida centrale quando serve orientamento.',
       cards: [
         {
           eyebrow: 'Livello ufficiale',
@@ -119,7 +119,7 @@ export default async function PlatformPage() {
         {
           eyebrow: 'Sistema di aiuto',
           title: 'Una guida chiara per non perdersi',
-          description: 'Ogni pagina principale dovrebbe rimandare a una guida semplice su livelli ufficiali, community, accesso e pubblicazione.',
+          description: 'Ogni percorso principale offre aiuto quando il prossimo passo richiede contesto.',
           href: '/guide',
           meta: 'Guida • accesso • spiegazione',
         },

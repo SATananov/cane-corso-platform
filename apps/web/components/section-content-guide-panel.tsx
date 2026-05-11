@@ -45,18 +45,18 @@ type ContentMap = Record<SectionContentSurface, ContentSurfaceCopy>;
 
 const bg: ContentMap = {
   platform: {
-    eyebrow: 'Пълнота на секцията',
-    title: 'Платформата е вход към цялата USG система, не просто начална страница',
+    eyebrow: 'Помощ при нужда',
+    title: 'Кратка помощ за този екран',
     description:
-      'Тук посетителят разбира как са разделени официалните повърхности, общността, знанията и личната зона. След вход фокусът се сменя към реални действия и статус.',
+      'Отвори помощта само когато ти трябва контекст. Основният екран остава фокусиран върху действие, статус и следваща стъпка.',
     cards: [
-      { label: 'Какво е това', title: 'Ориентационен център', body: 'Показва къде са Регистърът, проверката, Галерията, знанията, общността и партньорите.' },
-      { label: 'За кого е', title: 'Гост, член, партньор и админ', body: 'Всеки тип потребител получава различен път: разглеждане, подаване, кандидатстване или модерация.' },
-      { label: 'Какво следва', title: 'Избери намерение', body: 'Разглеждай публично, добави Cane Corso, кандидатствай като партньор или отвори Знания / Помощ.' },
+      { label: 'Къде да отида', title: 'Бърза ориентация', body: 'Избери Регистър, Проверка, Галерия, Знания, Общност или Партньори според нуждата си.' },
+      { label: 'Достъп', title: 'Гост, член и партньор', body: 'Гостите разглеждат, членовете подготвят профили и заявки, партньорите кандидатстват за публично присъствие.' },
+      { label: 'Следващо', title: 'Избери действие', body: 'Добави Cane Corso, провери статус, потърси услуга или отвори Знания / Помощ.' },
     ],
     nextLabel: 'Започни от Знания',
     nextHref: '/knowledge',
-    nextText: 'Когато не си сигурен коя секция ти трябва, започни от знанията и после продължи към действие.',
+    nextText: 'Когато не си сигурен откъде да започнеш, отвори знанията и после продължи към действие.',
   },
   registry: {
     eyebrow: 'Как да четеш Регистъра',
@@ -65,7 +65,7 @@ const bg: ContentMap = {
       'Това е официалната публична видимост на профила. Публикацията в Регистъра не е автоматичен сертификат и не замества родословие.',
     cards: [
       { label: 'Публично', title: 'Виждат се само публикувани профили', body: 'Чернови, чакащи профили и върнати за корекция записи остават в личната зона на собственика.' },
-      { label: 'Доверие', title: 'Сертификатът е отделно решение', body: 'USG сертификат се появява само след отделна админ преценка и може да се провери през секцията Проверка.' },
+      { label: 'Доверие', title: 'Сертификатът е отделно решение', body: 'USG сертификат се появява само след отделна USG преценка и може да се провери през секцията Проверка.' },
       { label: 'Собственик', title: 'Статусът е в Моите Cane Corso', body: 'Ако твоят профил не се вижда публично, провери дали е чернова, изпратен, върнат или публикуван.' },
     ],
     nextLabel: 'Виж статуса на моите Cane Corso',
@@ -80,7 +80,7 @@ const bg: ContentMap = {
     cards: [
       { label: 'Разлика', title: 'Регистър ≠ Галерия', body: 'Профил може да е в Регистъра и пак да не е в Галерията. Галерията е по-селективна сцена.' },
       { label: 'Снимки', title: 'Качеството на кадрите има значение', body: 'Ясни снимки, правилно представяне и завършен профил помагат за по-силна публична визия.' },
-      { label: 'Контрол', title: 'Финалната селекция е админ решение', body: 'Общностната подкрепа помага, но Галерията остава свързана с официалния USG слой на доверие.' },
+      { label: 'Контрол', title: 'Финалната селекция е USG решение', body: 'Общностната подкрепа помага, но Галерията остава свързана с официалния USG слой на доверие.' },
     ],
     nextLabel: 'Подготви профила и снимките',
     nextHref: '/my-dogs',
@@ -146,10 +146,10 @@ const bg: ContentMap = {
     eyebrow: 'Как работи Общността',
     title: 'Общността събира реални нужди, но не излага лични контакти без контрол',
     description:
-      'Тук има търсене на дом, разплоден партньор, малки, изгубен/намерен Cane Corso, места и услуги. Чувствителните връзки минават през администратор.',
+      'Тук има търсене на дом, разплоден партньор, малки, изгубен/намерен Cane Corso, места и услуги. Чувствителните връзки минават през защитен USG преглед.',
     cards: [
       { label: 'Намерение', title: 'Първо избираш реалната нужда', body: 'Дом, партньор, малки, сигнал, място или услуга са различни пътища с различна отговорност.' },
-      { label: 'Защита', title: 'Контактите не са директно публични', body: 'При чувствителни случаи интересът се подава през платформата и администраторът решава дали да свърже страните.' },
+      { label: 'Защита', title: 'Контактите не са директно публични', body: 'При чувствителни случаи интересът се подава през платформата и USG решава дали да свърже страните.' },
       { label: 'Полезност', title: 'Места и услуги помагат на собствениците', body: 'Платформата може да расте като практична карта и директория за Cane Corso живот.' },
     ],
     nextLabel: 'Подай или провери заявка',
@@ -914,6 +914,18 @@ function getDetailsDescription(locale: Locale) {
   return 'Open only the explanation you need now. The rest stays hidden.';
 }
 
+function getUseModeSummary(locale: Locale) {
+  if (locale === 'bg') return 'Помощ и контекст';
+  if (locale === 'it') return 'Aiuto e contesto';
+  return 'Help and context';
+}
+
+function getUseModeHint(locale: Locale) {
+  if (locale === 'bg') return 'Скрито по подразбиране, за да работиш първо по реалното действие.';
+  if (locale === 'it') return 'Nascosto di default, così lavori prima sull’azione reale.';
+  return 'Hidden by default so the real action stays first.';
+}
+
 export function SectionContentGuidePanel({ locale, surface, className }: SectionContentGuidePanelProps) {
   const copy = (copyByLocale[locale] ?? copyByLocale.en)[surface];
 
@@ -934,26 +946,32 @@ export function SectionContentGuidePanel({ locale, surface, className }: Section
         </div>
       </div>
 
-      <div className="section-content-guide__details section-content-guide__details--progressive">
-        <p className="section-content-guide__details-copy">{copy.description}</p>
-        <ProgressiveChoicePanel
-          ariaLabel={`${copy.title} · ${getDetailsLabel(locale)}`}
-          title={getDetailsLabel(locale)}
-          description={getDetailsDescription(locale)}
-          className="section-content-guide__progressive"
-          items={copy.cards.map((card, index) => ({
-            id: `${surface}-${index}`,
-            label: card.label,
-            eyebrow: card.label,
-            title: card.title,
-            body: card.body,
-            actionHref: copy.nextHref,
-            actionLabel: copy.nextLabel,
-            meta: index === 0 ? copy.nextText : undefined,
-            tone: index === 0 ? 'trust' : 'default',
-          }))}
-        />
-      </div>
+      <details className="section-content-guide__use-mode">
+        <summary className="section-content-guide__use-mode-summary">
+          <span>{getUseModeSummary(locale)}</span>
+          <small>{getUseModeHint(locale)}</small>
+        </summary>
+        <div className="section-content-guide__details section-content-guide__details--progressive">
+          <p className="section-content-guide__details-copy">{copy.description}</p>
+          <ProgressiveChoicePanel
+            ariaLabel={`${copy.title} · ${getDetailsLabel(locale)}`}
+            title={getDetailsLabel(locale)}
+            description={getDetailsDescription(locale)}
+            className="section-content-guide__progressive"
+            items={copy.cards.map((card, index) => ({
+              id: `${surface}-${index}`,
+              label: card.label,
+              eyebrow: card.label,
+              title: card.title,
+              body: card.body,
+              actionHref: copy.nextHref,
+              actionLabel: copy.nextLabel,
+              meta: index === 0 ? copy.nextText : undefined,
+              tone: index === 0 ? 'trust' : 'default',
+            }))}
+          />
+        </div>
+      </details>
     </section>
   );
 }

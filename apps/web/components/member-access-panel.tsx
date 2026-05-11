@@ -566,7 +566,7 @@ function buildSignInPayload(source: SignInPayload): SignInPayload {
   };
 }
 
-function getSignInErrorMessage(error: unknown, fallback: string, payload: SignInPayload, locale: string) {
+function getSignInErrorMessage(error: unknown, fallback: string, _payload: SignInPayload, locale: string) {
   const message = getErrorMessage(error, fallback);
 
   if (!(error instanceof ApiRequestError) || error.status !== 401) {
@@ -574,14 +574,14 @@ function getSignInErrorMessage(error: unknown, fallback: string, payload: SignIn
   }
 
   if (locale === 'bg') {
-    return `${message} Изпратеният login payload е с имейл ${payload.email} и дължина на паролата ${payload.password.length}. Demo паролата DemoMember123! трябва да е точно 14 символа.`;
+    return 'Имейлът или паролата не съвпадат. Провери данните и опитай отново.';
   }
 
   if (locale === 'it') {
-    return `${message} Il payload di login inviato usa email ${payload.email} e password lunga ${payload.password.length} caratteri. La password demo DemoMember123! deve avere esattamente 14 caratteri.`;
+    return 'Email o password non corrispondono. Controlla i dati e riprova.';
   }
 
-  return `${message} Login payload sent email ${payload.email} with password length ${payload.password.length}. Demo password DemoMember123! must be exactly 14 characters.`;
+  return 'Email or password does not match. Check your details and try again.';
 }
 
 export function MemberAccessPanel({

@@ -54,6 +54,7 @@ const requiredFiles = [
   'docs/qa/step115-platform-progressive-disclosure-ux.md',
   'docs/qa/step115-1-hero-chip-action-enforcement.md',
   'docs/qa/step115-2-page-hero-locale-fallback-polish.md',
+  'docs/qa/step116-product-use-mode-cleanup.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -93,6 +94,7 @@ const requiredFiles = [
   'scripts/qa-step115-platform-progressive-disclosure-ux.mjs',
   'scripts/qa-step115-1-hero-chip-action-enforcement.mjs',
   'scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs',
+  'scripts/qa-step116-product-use-mode-cleanup.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -143,6 +145,7 @@ const requiredPackageScripts = [
   'step115:platform-progressive-disclosure:qa',
   'step115-1:hero-chip-actions:qa',
   'step115-2:hero-locale-fallback:qa',
+  'step116:product-use-mode:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -201,6 +204,7 @@ const qaScripts = [
   ['Step 115 platform-wide progressive disclosure UX', 'scripts/qa-step115-platform-progressive-disclosure-ux.mjs'],
   ['Step 115.1 hero chip action enforcement', 'scripts/qa-step115-1-hero-chip-action-enforcement.mjs'],
   ['Step 115.2 page hero locale fallback polish', 'scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs'],
+  ['Step 116 product use-mode cleanup', 'scripts/qa-step116-product-use-mode-cleanup.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

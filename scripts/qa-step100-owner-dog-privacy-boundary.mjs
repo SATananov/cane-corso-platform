@@ -83,7 +83,7 @@ assertIncludes('Owner profile page clarifies public Registry uses only safe owne
 assertIncludes('My Dogs overview explains other people see only approved public core', myDogsOverview, 'Другите хора виждат само одобрени снимки, име на Cane Corso, дата на раждане и публично име на собственика.');
 assertIncludes('My Dogs overview explains full Cane Corso data stays owner/admin only', myDogsOverview, 'Пълните Cane Corso данни остават видими само за теб и админ.');
 assertIncludes('Role-aware profile panel says profile means owner data', roleAware, 'Това е профилът на човека, не на Cane Corso.');
-assertIncludes('Role-aware My Dogs panel says full data stays owner/admin-only', roleAware, 'Пълните данни са за теб и админ.');
+assertIncludes('Role-aware My Dogs panel keeps full data private with USG review wording', roleAware, 'Пълните данни са лични и се използват само при USG преглед.');
 
 assertIncludes('README current checkpoint is Step 100', readme, 'Step 100 — Owner and Cane Corso Privacy Boundary');
 assertIncludes('README trust rules explain owner data visibility', readme, 'Owner profile data is visible to the owner and admin; the owner can update it.');

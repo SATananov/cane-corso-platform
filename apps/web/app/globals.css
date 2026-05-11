@@ -25351,3 +25351,84 @@ body {
   background: rgba(255, 251, 244, 0.34);
 }
 /* Step 115.1 — Hero Chip Action Enforcement END */
+
+/* Step 116 — Product use-mode cleanup: real actions first, help stays available on demand */
+.section-content-guide__use-mode,
+.admin-operational-clarity-panel__details {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.section-content-guide__use-mode-summary,
+.admin-operational-clarity-panel__summary {
+  display: inline-grid;
+  width: fit-content;
+  max-width: 100%;
+  gap: 0.18rem;
+  cursor: pointer;
+  list-style: none;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 999px;
+  padding: 0.48rem 0.78rem;
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--color-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.section-content-guide__use-mode-summary::-webkit-details-marker,
+.admin-operational-clarity-panel__summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-content-guide__use-mode-summary span,
+.admin-operational-clarity-panel__summary strong {
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.section-content-guide__use-mode-summary small,
+.admin-operational-clarity-panel__summary small {
+  color: var(--color-muted);
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.section-content-guide__use-mode[open] .section-content-guide__use-mode-summary,
+.admin-operational-clarity-panel__details[open] .admin-operational-clarity-panel__summary {
+  border-radius: 18px;
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.admin-operational-clarity-panel__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+[data-theme='light'] .section-content-guide__use-mode-summary,
+[data-theme='heritage'] .section-content-guide__use-mode-summary,
+[data-theme='light'] .admin-operational-clarity-panel__summary,
+[data-theme='heritage'] .admin-operational-clarity-panel__summary {
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(118, 86, 29, 0.2);
+}
+
+@media (max-width: 820px) {
+  .section-content-guide__use-mode-summary,
+  .admin-operational-clarity-panel__summary {
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .admin-operational-clarity-panel__body {
+    grid-template-columns: 1fr;
+  }
+}

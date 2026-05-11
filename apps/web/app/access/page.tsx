@@ -43,9 +43,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
     en: {
       flow: {
         eyebrow: 'Access path',
-        title: 'A clear threshold before the deeper platform layers open',
+        title: 'Choose how you want to continue',
         description:
-          'This page explains how guest access, member accounts, partner applications, and protected moderation fit together before the visitor takes the next step.',
+          'Start as an owner, continue an existing profile, or apply as a partner when you are ready.',
         cards: [
           { eyebrow: 'Step 1', title: 'Explore as a guest first', description: 'The public platform, registry, verification, knowledge, partners, and community areas can be explored before registration.', href: '/platform', meta: 'Guest • public orientation', icon: 'platform' as const },
           { eyebrow: 'Step 2', title: 'Create a personal member account', description: 'Every deeper path starts with a real person and a personal identity inside the platform.', href: '/access?intent=member', meta: 'Member • personal identity', icon: 'member' as const },
@@ -55,9 +55,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
       },
       contract: {
         eyebrow: 'Platform clarity',
-        title: 'What should be clear before you continue',
+        title: 'Useful shortcuts after access',
         description:
-          'Access, trust, and publication are separate layers. This page keeps those rules visible so members and partners always know what comes next.',
+          'Use these links when you need Registry, certificate, Community, Partners, or a quick guide.',
         cards: [
           { eyebrow: 'Registry', title: 'Registry is the official publication layer', description: 'Public Cane Corso profiles appear in the registry only after review and publication.', href: '/registry', meta: 'Official • published profiles', icon: 'registry' as const },
           { eyebrow: 'Certificate', title: 'Certificate trust is a separate decision', description: 'Publication in the registry does not automatically create certificate trust.', href: '/verify', meta: 'Separate trust layer', icon: 'verify' as const },
@@ -70,9 +70,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
     bg: {
       flow: {
         eyebrow: 'Път на достъпа',
-        title: 'Ясен път към по-дълбок достъп',
+        title: 'Избери как да продължиш',
         description:
-          'Тази страница подрежда пътя: гост, членски акаунт, партньорска кандидатура и защитена модерация.',
+          'Започни като собственик, продължи съществуващ профил или кандидатствай като партньор, когато си готов.',
         cards: [
           { eyebrow: 'Стъпка 1', title: 'Първо разгледай като гост', description: 'Публичната платформа, регистърът, проверката, знанията, партньорите и общността могат да се разглеждат и преди регистрация.', href: '/platform', meta: 'Гост • публична ориентация', icon: 'platform' as const },
           { eyebrow: 'Стъпка 2', title: 'Създай личен членски акаунт', description: 'Всеки по-дълбок път започва с реален човек и лична идентичност в платформата.', href: '/access?intent=member', meta: 'Член • лична идентичност', icon: 'member' as const },
@@ -82,9 +82,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
       },
       contract: {
         eyebrow: 'Яснота на платформата',
-        title: 'Какво трябва да е ясно преди следващата стъпка',
+        title: 'Полезни преки пътища след вход',
         description:
-          'Достъпът, доверието и публикуването са отделни слоеве. Тази страница държи правилата видими, за да знаят членовете и партньорите какво следва.',
+          'Използвай тези връзки, когато ти трябва Регистър, сертификат, Общност, Партньори или кратка помощ.',
         cards: [
           { eyebrow: 'Регистър', title: 'Регистърът е официалният публичен слой', description: 'Публичните Cane Corso профили се появяват в регистъра само след преглед и публикуване.', href: '/registry', meta: 'Официално • публикувани профили', icon: 'registry' as const },
           { eyebrow: 'Сертификат', title: 'Сертификатът е отделно решение', description: 'Публикуването в регистъра не означава автоматичен USG сертификат.', href: '/verify', meta: 'Отделен слой на доверие', icon: 'verify' as const },
@@ -97,9 +97,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
     it: {
       flow: {
         eyebrow: 'Percorso di accesso',
-        title: 'Percorso chiaro verso i livelli profondi',
+        title: 'Scegli come continuare',
         description:
-          'Questa pagina collega accesso ospite, account membro, candidatura partner e moderazione protetta prima del passo successivo.',
+          'Inizia come proprietario, continua un profilo esistente o candidati come partner quando sei pronto.',
         cards: [
           { eyebrow: 'Passo 1', title: 'Esplora come ospite', description: 'La piattaforma pubblica, il registro, la verifica, la conoscenza, i partner e la comunità possono essere esplorati anche prima della registrazione.', href: '/platform', meta: 'Ospite • orientamento pubblico', icon: 'platform' as const },
           { eyebrow: 'Passo 2', title: 'Crea un account membro', description: 'Ogni percorso riservato inizia da una persona reale e da un’identità chiara nella piattaforma.', href: '/access?intent=member', meta: 'Membro • identità personale', icon: 'member' as const },
@@ -109,9 +109,9 @@ export default async function AccessPage({ searchParams }: AccessPageProps) {
       },
       contract: {
         eyebrow: 'Chiarezza della piattaforma',
-        title: 'Regole chiare prima di continuare',
+        title: 'Scorciatoie utili dopo l’accesso',
         description:
-          'Accesso, fiducia e pubblicazione restano livelli separati. Questa pagina rende visibili le regole prima del passo successivo.',
+          'Usa questi collegamenti quando ti servono Registro, certificato, Comunità, Partner o una guida rapida.',
         cards: [
           { eyebrow: 'Registro', title: 'Registro: livello ufficiale', description: 'I profili Cane Corso pubblici appaiono nel registro solo dopo revisione e pubblicazione.', href: '/registry', meta: 'Ufficiale • profili pubblicati', icon: 'registry' as const },
           { eyebrow: 'Certificato', title: 'Certificato: decisione separata', description: 'La pubblicazione nel registro non crea automaticamente un certificato USG.', href: '/verify', meta: 'Livello di fiducia separato', icon: 'verify' as const },

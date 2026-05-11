@@ -66,8 +66,8 @@ const bg: SurfaceMap = {
   myDogs: {
     eyebrow: 'Моите Cane Corso',
     title: 'Добави, довърши или провери статус',
-    description: 'Работи по Cane Corso профилите: данни, снимки, родословна информация, преглед и публикация. Пълните данни са за теб и админ.',
-    status: 'Публично излиза само одобреното ядро; пълният профил остава личен до админ преглед.',
+    description: 'Работи по Cane Corso профилите: данни, снимки, родословна информация, преглед и публикация. Пълните данни са лични и се използват само при USG преглед.',
+    status: 'Публично излиза само одобреното ядро; пълният профил остава личен до USG преглед.',
     primary: { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'Създай профил' },
     secondary: [
       { href: '/my-dogs', label: 'Всички профили', meta: 'Преглед' },
@@ -79,14 +79,14 @@ const bg: SurfaceMap = {
   profile: {
     eyebrow: 'Профил на собственика',
     title: 'Провери данните за собственика',
-    description: 'Това е профилът на човека, не на Cane Corso. Пълните данни се виждат от теб и админ; публично се използва само безопасно публично име.',
+    description: 'Това е профилът на човека, не на Cane Corso. Пълните данни остават лични; публично се използва само безопасно публично име.',
     status: 'Ти можеш да обновяваш данните си; другите не виждат имейл, телефон или лични контакти.',
     primary: { href: '/profile', label: 'Редактирай профил', meta: 'Собственик' },
     secondary: [
       { href: '/my-dogs', label: 'Към моите Cane Corso', meta: 'Профили' },
       { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'Нов профил' },
       { href: '/ecosystem', label: 'Моите заявки', meta: 'Общност' },
-      { href: '/faq', label: 'Помощ за профила', meta: 'Помощ' },
+      { href: '/faq', label: 'Помощ за профила', meta: 'Help' },
     ],
   },
   community: {
@@ -99,7 +99,7 @@ const bg: SurfaceMap = {
       { href: '/community#cane-corso-intent-listings', label: 'Избери тип заявка', meta: 'Дом, свързване, изгубен/намерен' },
       { href: '/ecosystem', label: 'Създай заявка', meta: 'Лична зона' },
       { href: '/partners', label: 'Намери услуга', meta: 'Партньори' },
-      { href: '/faq', label: 'Правила и безопасност', meta: 'Помощ' },
+      { href: '/faq', label: 'Правила и безопасност', meta: 'Help' },
     ],
   },
   partners: {
@@ -112,7 +112,7 @@ const bg: SurfaceMap = {
       { href: '/partners', label: 'Виж партньори', meta: 'Каталог' },
       { href: '/ecosystem', label: 'Моите заявки', meta: 'Статус' },
       { href: '/community', label: 'Места и помощ', meta: 'Общност' },
-      { href: '/faq', label: 'Партньорски въпроси', meta: 'Помощ' },
+      { href: '/faq', label: 'Партньорски въпроси', meta: 'Help' },
     ],
   },
   partnerApply: {
@@ -124,7 +124,7 @@ const bg: SurfaceMap = {
     secondary: [
       { href: '/partners', label: 'Виж каталога', meta: 'Одобрени' },
       { href: '/profile', label: 'Профил', meta: 'Данни' },
-      { href: '/faq', label: 'Правила', meta: 'Помощ' },
+      { href: '/faq', label: 'Правила', meta: 'Help' },
     ],
   },
   knowledge: {
@@ -137,7 +137,7 @@ const bg: SurfaceMap = {
       { href: '/knowledge/usg-identity-and-platform-trust', label: 'Какво е USG?', meta: 'Идентичност' },
       { href: '/knowledge/usg-certificate-evidence-levels', label: 'USG сертификат', meta: 'Граници' },
       { href: '/knowledge/usg-bulgarico-observational-framework', label: 'Bulgarico', meta: 'Наблюдения' },
-      { href: '/faq', label: 'Бърз отговор', meta: 'Помощ' },
+      { href: '/faq', label: 'Бърз отговор', meta: 'Help' },
     ],
   },
   registry: {
@@ -150,7 +150,7 @@ const bg: SurfaceMap = {
       { href: '/registry', label: 'Публичен регистър', meta: 'Одобрени профили' },
       { href: '/verify', label: 'Провери сертификат', meta: 'Проверка' },
       { href: '/my-dogs/new', label: 'Добави Cane Corso', meta: 'Нов профил' },
-      { href: '/knowledge', label: 'Как се подготвя профил?', meta: 'Знания' },
+      { href: '/knowledge', label: 'Как се подготвя профил?', meta: 'Knowledge' },
     ],
   },
   gallery: {
@@ -161,8 +161,8 @@ const bg: SurfaceMap = {
     primary: { href: '/my-dogs', label: 'Провери моите снимки', meta: 'Моите Cane Corso' },
     secondary: [
       { href: '/gallery', label: 'Виж галерията', meta: 'Витрина' },
-      { href: '/registry', label: 'Регистър', meta: 'Публични профили' },
-      { href: '/verify', label: 'Проверка', meta: 'Сертификат' },
+      { href: '/registry', label: 'Registry', meta: 'Публични профили' },
+      { href: '/verify', label: 'Verify', meta: 'Сертификат' },
       { href: '/knowledge', label: 'Снимки и представяне', meta: 'Насоки' },
     ],
   },
@@ -174,7 +174,7 @@ const bg: SurfaceMap = {
     primary: { href: '/faq', label: 'Отвори Помощ', meta: 'Отговори' },
     secondary: [
       { href: '/my-dogs', label: 'Моите Cane Corso', meta: 'Статус' },
-      { href: '/knowledge', label: 'Информация за породата', meta: 'Знания' },
+      { href: '/knowledge', label: 'Информация за породата', meta: 'Knowledge' },
       { href: '/community', label: 'Общност', meta: 'Заявки' },
       { href: '/partners', label: 'Партньори', meta: 'Услуги' },
     ],
@@ -248,8 +248,8 @@ const en: SurfaceMap = {
   myDogs: {
     eyebrow: 'My Cane Corso',
     title: 'Add, complete, or check status',
-    description: 'Work on Cane Corso profiles: data, images, pedigree information, review, and publication. Full data stays owner/admin-only.',
-    status: 'Only the approved public core goes public; the full profile stays private until admin review.',
+    description: 'Work on Cane Corso profiles: data, images, pedigree information, review, and publication. Full data stays private and is used only for USG review.',
+    status: 'Only the approved public core goes public; the full profile stays private until USG review.',
     primary: { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'Create profile' },
     secondary: [
       { href: '/my-dogs', label: 'All profiles', meta: 'Overview' },
@@ -261,14 +261,14 @@ const en: SurfaceMap = {
   profile: {
     eyebrow: 'Owner profile',
     title: 'Check the owner data',
-    description: 'This is the human owner profile, not the Cane Corso profile. Full data is visible to you and admin; public Registry uses only a safe public owner name.',
+    description: 'This is the human owner profile, not the Cane Corso profile. Full data stays private; the public Registry uses only a safe public owner name.',
     status: 'You can update your data; other people do not see email, phone, or private contact details.',
     primary: { href: '/profile', label: 'Edit profile', meta: 'Owner' },
     secondary: [
       { href: '/my-dogs', label: 'My Cane Corso', meta: 'Profiles' },
       { href: '/my-dogs/new', label: 'Add Cane Corso', meta: 'New profile' },
       { href: '/ecosystem', label: 'My requests', meta: 'Community' },
-      { href: '/faq', label: 'Profile help', meta: 'Помощ' },
+      { href: '/faq', label: 'Profile help', meta: 'Help' },
     ],
   },
   community: {
@@ -281,7 +281,7 @@ const en: SurfaceMap = {
       { href: '/community#cane-corso-intent-listings', label: 'Choose request type', meta: 'Home, match, lost/found' },
       { href: '/ecosystem', label: 'Create request', meta: 'Private area' },
       { href: '/partners', label: 'Find a service', meta: 'Partners' },
-      { href: '/faq', label: 'Rules and safety', meta: 'Помощ' },
+      { href: '/faq', label: 'Rules and safety', meta: 'Help' },
     ],
   },
   partners: {
@@ -294,7 +294,7 @@ const en: SurfaceMap = {
       { href: '/partners', label: 'View partners', meta: 'Directory' },
       { href: '/ecosystem', label: 'My requests', meta: 'Status' },
       { href: '/community', label: 'Places and help', meta: 'Community' },
-      { href: '/faq', label: 'Partner questions', meta: 'Помощ' },
+      { href: '/faq', label: 'Partner questions', meta: 'Help' },
     ],
   },
   partnerApply: {
@@ -306,7 +306,7 @@ const en: SurfaceMap = {
     secondary: [
       { href: '/partners', label: 'View directory', meta: 'Approved' },
       { href: '/profile', label: 'Profile', meta: 'Data' },
-      { href: '/faq', label: 'Rules', meta: 'Помощ' },
+      { href: '/faq', label: 'Rules', meta: 'Help' },
     ],
   },
   knowledge: {
@@ -343,8 +343,8 @@ const en: SurfaceMap = {
     primary: { href: '/my-dogs', label: 'Check my images', meta: 'My Cane Corso' },
     secondary: [
       { href: '/gallery', label: 'View Gallery', meta: 'Showcase' },
-      { href: '/registry', label: 'Регистър', meta: 'Public profiles' },
-      { href: '/verify', label: 'Проверка', meta: 'Certificate' },
+      { href: '/registry', label: 'Registry', meta: 'Public profiles' },
+      { href: '/verify', label: 'Verify', meta: 'Certificate' },
       { href: '/knowledge', label: 'Photos and presentation', meta: 'Guidance' },
     ],
   },
@@ -356,7 +356,7 @@ const en: SurfaceMap = {
     primary: { href: '/faq', label: 'Open FAQ', meta: 'Answers' },
     secondary: [
       { href: '/my-dogs', label: 'My Cane Corso', meta: 'Status' },
-      { href: '/knowledge', label: 'Breed information', meta: 'Знания' },
+      { href: '/knowledge', label: 'Breed information', meta: 'Knowledge' },
       { href: '/community', label: 'Community', meta: 'Requests' },
       { href: '/partners', label: 'Partners', meta: 'Services' },
     ],
@@ -430,8 +430,8 @@ const it: SurfaceMap = {
   myDogs: {
     eyebrow: 'I miei Cane Corso',
     title: 'Aggiungi, completa o controlla lo stato',
-    description: 'Lavora sui profili Cane Corso: dati, immagini, genealogia, revisione e pubblicazione. I dati completi restano proprietario/admin.',
-    status: 'Solo il nucleo pubblico approvato diventa pubblico; il profilo completo resta privato fino alla revisione admin.',
+    description: 'Lavora sui profili Cane Corso: dati, immagini, genealogia, revisione e pubblicazione. I dati completi restano privati e servono solo alla revisione USG.',
+    status: 'Solo il nucleo pubblico approvato diventa pubblico; il profilo completo resta privato fino alla revisione USG.',
     primary: { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'Crea profilo' },
     secondary: [
       { href: '/my-dogs', label: 'Tutti i profili', meta: 'Panoramica' },
@@ -443,14 +443,14 @@ const it: SurfaceMap = {
   profile: {
     eyebrow: 'Profilo proprietario',
     title: 'Controlla i dati del proprietario',
-    description: 'Questo è il profilo della persona proprietaria, non il profilo Cane Corso. I dati completi sono visibili a te e all’admin; il Registry pubblico usa solo un nome pubblico sicuro.',
+    description: 'Questo è il profilo della persona proprietaria, non il profilo Cane Corso. I dati completi restano privati; il Registro pubblico usa solo un nome pubblico sicuro.',
     status: 'Puoi aggiornare i tuoi dati; le altre persone non vedono email, telefono o contatti privati.',
     primary: { href: '/profile', label: 'Modifica profilo', meta: 'Proprietario' },
     secondary: [
       { href: '/my-dogs', label: 'I miei Cane Corso', meta: 'Profili' },
       { href: '/my-dogs/new', label: 'Aggiungi Cane Corso', meta: 'Nuovo profilo' },
       { href: '/ecosystem', label: 'Le mie richieste', meta: 'Comunità' },
-      { href: '/faq', label: 'Aiuto per il profilo', meta: 'Помощ' },
+      { href: '/faq', label: 'Aiuto per il profilo', meta: 'Aiuto' },
     ],
   },
   community: {
@@ -463,7 +463,7 @@ const it: SurfaceMap = {
       { href: '/community#cane-corso-intent-listings', label: 'Scegli tipo richiesta', meta: 'Casa, match, smarrito/trovato' },
       { href: '/ecosystem', label: 'Crea richiesta', meta: 'Area privata' },
       { href: '/partners', label: 'Trova un servizio', meta: 'Partner' },
-      { href: '/faq', label: 'Regole e sicurezza', meta: 'Помощ' },
+      { href: '/faq', label: 'Regole e sicurezza', meta: 'Aiuto' },
     ],
   },
   partners: {
@@ -476,7 +476,7 @@ const it: SurfaceMap = {
       { href: '/partners', label: 'Vedi partner', meta: 'Catalogo' },
       { href: '/ecosystem', label: 'Le mie richieste', meta: 'Stato' },
       { href: '/community', label: 'Luoghi e aiuto', meta: 'Comunità' },
-      { href: '/faq', label: 'Domande sui partner', meta: 'Помощ' },
+      { href: '/faq', label: 'Domande sui partner', meta: 'Aiuto' },
     ],
   },
   partnerApply: {
@@ -488,7 +488,7 @@ const it: SurfaceMap = {
     secondary: [
       { href: '/partners', label: 'Vedi catalogo', meta: 'Approvati' },
       { href: '/profile', label: 'Profilo', meta: 'Dati' },
-      { href: '/faq', label: 'Regole', meta: 'Помощ' },
+      { href: '/faq', label: 'Regole', meta: 'Aiuto' },
     ],
   },
   knowledge: {
@@ -501,7 +501,7 @@ const it: SurfaceMap = {
       { href: '/knowledge/usg-identity-and-platform-trust', label: 'Cos’è USG?', meta: 'Identità' },
       { href: '/knowledge/usg-certificate-evidence-levels', label: 'Certificato USG', meta: 'Confini' },
       { href: '/knowledge/usg-bulgarico-observational-framework', label: 'Bulgarico', meta: 'Osservazioni' },
-      { href: '/faq', label: 'Risposta rapida', meta: 'Помощ' },
+      { href: '/faq', label: 'Risposta rapida', meta: 'Aiuto' },
     ],
   },
   registry: {
@@ -605,7 +605,7 @@ const guestCopyByLocale: Record<Locale, SurfaceCopy> = {
     status: 'Guests see orientation; signed-in users see actions and status.',
     primary: { href: '/access?intent=member', label: 'Sign in / register', meta: 'Private area' },
     secondary: [
-      { href: '/registry', label: 'Регистър', meta: 'Public' },
+      { href: '/registry', label: 'Registry', meta: 'Public' },
       { href: '/knowledge', label: 'Knowledge', meta: 'Education' },
       { href: '/community', label: 'Community', meta: 'Intent' },
       { href: '/faq', label: 'FAQ', meta: 'Answers' },
