@@ -176,7 +176,8 @@
     "step120:photo-readiness-action:qa": "node scripts/qa-step120-photo-readiness-action-guidance.mjs",
     "step121:admin-photo-review:qa": "node scripts/qa-step121-admin-photo-review-human-labels.mjs",
     "step122:dataset-guardrails:qa": "node scripts/qa-step122-authenticity-dataset-preparation-guardrails.mjs",
-    "step123:ml-safe-photo-assistant:qa": "node scripts/qa-step123-ml-safe-photo-assistant-prototype.mjs"
+    "step123:ml-safe-photo-assistant:qa": "node scripts/qa-step123-ml-safe-photo-assistant-prototype.mjs",
+    "step124:current-platform-readme:qa": "node scripts/qa-step124-current-platform-readme.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

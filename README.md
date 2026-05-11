@@ -6,7 +6,11 @@ The product goal is simple: make the Cane Corso ecosystem easier to understand, 
 
 ## Current checkpoint
 
-This repository is currently aligned with **Step 107 — USG Product Lock**.
+This repository is currently aligned with **Step 123 — ML-safe Photo Assistant Prototype**.
+
+For a Bulgarian product-status handoff explaining what the platform currently does, see [`docs/product/current-platform-state-bg.md`](./docs/product/current-platform-state-bg.md).
+
+The product-state lineage still includes the locked **Step 107 — USG Product Lock** checkpoint; later Step 108–123 layers build on it without replacing its product-tone and release-hygiene guardrails.
 
 Recent locked product state:
 
@@ -33,6 +37,25 @@ Recent locked product state:
 - **Step 105:** Production clarity and user-first copy: public/member sections lead with what the user can do now, while deeper explanations stay in Knowledge, FAQ, or compact help details.
 - **Step 106:** Full product structure reset: primary navigation and member/public surfaces prioritize active sections, real actions, and clean product hierarchy over development-style orientation panels.
 - **Step 107:** USG Product Lock: release hygiene, Step 103–106 checkpoint alignment, visible BG/IT/EN terminology cleanup, and final product-tone guardrails for the current Netlify deployed state.
+- **Step 108:** USG Intelligence layer foundation: safe orientation layer for standard/growth/readiness signals without replacing human review.
+- **Step 108.1:** FCI Standard conformity engine: structured standard-oriented checks and safer educational boundaries.
+- **Step 108.2:** Basic-first Cane Corso profile UX: owner profile flow prioritizes core data before optional/advanced sections.
+- **Step 109:** Owner health/growth tracker: private owner records for growth, health, and care signals.
+- **Step 110:** Member dashboard real-user UX cleanup: member dashboard leads with usable actions instead of development-style explanations.
+- **Step 111:** USG Heritage / di Casa Tananov archive: founder story, responsibility, aftercare, and USG origin context.
+- **Step 112:** Mobile/browser UX readiness: responsive and browser-oriented readiness guardrails.
+- **Step 113:** Demo data and owner workspace improvements: seeded demo flows and stronger owner workspaces.
+- **Step 114:** Progressive growth UX and chart clarity: clearer growth/measurement interpretation for owners.
+- **Step 115:** Platform progressive disclosure and active guide navigation: important actions first, deeper help behind active controls.
+- **Step 116:** Product use-mode cleanup: removes development-tone copy and improves real-user readiness.
+- **Step 117:** USG authenticity check foundation: introduces “Провери за истинско” as a voluntary orientation feature.
+- **Step 118:** Photo evidence flow: connects owner photos to review readiness and evidence preparation.
+- **Step 118.1:** USG Standard Match bonus clarity: presents the percentage as orientation, not proof.
+- **Step 119:** Authenticity data foundation and ML-safe labels: separates Standard Match, Photo Readiness, and USG Review readiness with safe future-ML labels.
+- **Step 120:** Photo Readiness action guidance: owners see which photo is ready, missing, or next, and what to do.
+- **Step 121:** Admin Photo Review Assistant and human labels: admin sees assistant signals while the final human label remains authoritative.
+- **Step 122:** Authenticity dataset preparation guardrails: prepares safe dataset fields without personal-data or breed-proof labels.
+- **Step 123:** ML-safe Photo Assistant prototype: deterministic photo assistant prototype for view/quality signals only; no breed proof, Registry approval, or Certificate issuance.
 
 Legacy patch notes are archived under `docs/archive/package-notes/`. They are preserved as development history only; this root `README.md` is the current source of truth for day-to-day setup, QA, and handoff.
 
@@ -125,6 +148,19 @@ Registry and certificate are separate trust layers.
 - Verify checks certificate status by code.
 - Gallery is a curated showcase layer, not the official registry itself.
 - Community listings are not registry records unless intentionally connected by future product work.
+
+## “Провери за истинско”, Standard Match, Photo Readiness, and ML-safe assistant
+
+The current authenticity/readiness layer is a voluntary helper, not a breed-proof engine. It has four separate meanings:
+
+- **USG Standard Match** — an orientation percentage based on available data, measurements, profile completion, and standard-aligned signals. It is not proof of breed, origin, or pedigree.
+- **Photo Readiness** — shows whether the owner uploaded useful side/front/head photos for human review and future model training. It does not prove Cane Corso identity.
+- **USG Review Readiness** — tells whether the profile is ready for a human USG review decision.
+- **ML-safe Photo Assistant prototype** — a deterministic assistant layer that can suggest expected photo view and quality/readiness signals, but cannot approve Registry, issue Certificate, or replace admin judgment.
+
+The admin review flow keeps assistant suggestions separate from human final labels. Future ML training should use safe labels such as `good`, `usable`, `poor`, `wrong_angle`, `missing_view`, `ready`, `almost_ready`, and `needs_more_data`; it must not use labels such as “true breed”, “fake”, “purebred”, or “AI approved”.
+
+For the Bulgarian current-state explanation, see `docs/product/current-platform-state-bg.md`.
 
 ## Knowledge and content authority
 
