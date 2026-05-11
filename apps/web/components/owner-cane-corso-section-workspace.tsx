@@ -56,6 +56,14 @@ const copy = {
         action: 'Open vaccine table',
       },
       {
+        key: 'breedingGuide',
+        eyebrow: 'Breeding and puppies',
+        title: 'Pregnancy, birth and first 40 days',
+        body: 'Open the owner guide before any mating, birth preparation, puppy care, or community puppy listing.',
+        hrefKind: 'knowledge',
+        action: 'Read guide',
+      },
+      {
         key: 'ratings',
         eyebrow: 'Ratings',
         title: 'USG/admin and community ratings',
@@ -134,6 +142,14 @@ const copy = {
         body: 'Води лична таблица за ваксини, обезпаразитяване, ветеринарни прегледи, партидни номера и следващи дати.',
         hrefKind: 'vaccines',
         action: 'Виж ваксините',
+      },
+      {
+        key: 'breedingGuide',
+        eyebrow: 'Разплод и малки',
+        title: 'Бременност, раждане и първи 40 дни',
+        body: 'Отвори насоките преди покриване, подготовка за раждане, грижа за малки или community обява.',
+        hrefKind: 'knowledge',
+        action: 'Прочети насоките',
       },
       {
         key: 'ratings',
@@ -216,6 +232,14 @@ const copy = {
         action: 'Vedi vaccini',
       },
       {
+        key: 'breedingGuide',
+        eyebrow: 'Riproduzione e cuccioli',
+        title: 'Gravidanza, parto e primi 40 giorni',
+        body: 'Apri la guida prima di mating, preparazione parto, cura cuccioli o annuncio community.',
+        hrefKind: 'knowledge',
+        action: 'Leggi guida',
+      },
+      {
         key: 'ratings',
         eyebrow: 'Valutazioni',
         title: 'Valutazioni USG/admin e community',
@@ -266,6 +290,8 @@ function buildHref(kind: SectionHrefKind, dog: Dog) {
       return `/my-dogs/${dog.id}/health#vaccines-table`;
     case 'ratings':
       return dog.publication ? `/registry/${dog.publication.publicSlug}#ratings` : `/my-dogs/${dog.id}/edit`;
+    case 'knowledge':
+      return '/knowledge/cane-corso-pregnancy-birth-puppy-growth-calendar';
     case 'ecosystem':
       return `/ecosystem#community-intent-form`;
     case 'services':

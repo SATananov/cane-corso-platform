@@ -47,6 +47,7 @@ const requiredFiles = [
   'docs/qa/step112-mobile-browser-ux-readiness.md',
   'docs/qa/step113-softuni-demo-data-pack.md',
   'docs/qa/step113-1-owner-cane-corso-section-workspace.md',
+  'docs/qa/step113-2-cane-corso-pregnancy-puppy-growth-knowledge.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -79,6 +80,7 @@ const requiredFiles = [
   'scripts/qa-step112-mobile-browser-ux-readiness.mjs',
   'scripts/qa-step113-softuni-demo-data-pack.mjs',
   'scripts/qa-step113-1-owner-cane-corso-section-workspace.mjs',
+  'scripts/qa-step113-2-cane-corso-pregnancy-puppy-growth-knowledge.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -122,6 +124,7 @@ const requiredPackageScripts = [
   'step112:mobile-browser:qa',
   'step113:demo-data:qa',
   'step113-1:owner-workspace:qa',
+  'step113-2:pregnancy-puppy-knowledge:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -173,6 +176,7 @@ const qaScripts = [
   ['Step 112 Mobile browser UX readiness', 'scripts/qa-step112-mobile-browser-ux-readiness.mjs'],
   ['Step 113 SoftUni demo data pack', 'scripts/qa-step113-softuni-demo-data-pack.mjs'],
   ['Step 113.1 My Cane Corso section workspace', 'scripts/qa-step113-1-owner-cane-corso-section-workspace.mjs'],
+  ['Step 113.2 Cane Corso pregnancy/puppy knowledge', 'scripts/qa-step113-2-cane-corso-pregnancy-puppy-growth-knowledge.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

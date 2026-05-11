@@ -20,6 +20,7 @@ function getKnowledgeProductCopy(locale: Locale) {
         { href: '/knowledge/official-cane-corso-standard-reading', label: 'Стандарт', title: 'Как да чета FCI стандарта', body: 'Размер, пропорции, структура и граници.' },
         { href: '/knowledge/cane-corso-history-and-identity', label: 'История', title: 'Произход и характер', body: 'Какво прави Cane Corso различен.' },
         { href: '/knowledge/health-screening-and-responsible-care', label: 'Грижа', title: 'Здраве и отговорност', body: 'Практични насоки за собственик.' },
+        { href: '/knowledge/cane-corso-pregnancy-birth-puppy-growth-calendar', label: 'Малки', title: 'Разплод и първи 40 дни', body: 'Календар от покриване до малките.' },
         { href: '/knowledge/usg-certificate-evidence-levels', label: 'USG', title: 'Сертификат и граници', body: 'Какво доказва и какво не доказва.' },
       ],
     } as const;
@@ -38,6 +39,7 @@ function getKnowledgeProductCopy(locale: Locale) {
         { href: '/knowledge/official-cane-corso-standard-reading', label: 'Standard', title: 'Come leggere lo standard FCI', body: 'Taglia, proporzioni, struttura e limiti.' },
         { href: '/knowledge/cane-corso-history-and-identity', label: 'Storia', title: 'Origine e carattere', body: 'Cosa rende diverso il Cane Corso.' },
         { href: '/knowledge/health-screening-and-responsible-care', label: 'Cura', title: 'Salute e responsabilità', body: 'Indicazioni pratiche per proprietari.' },
+        { href: '/knowledge/cane-corso-pregnancy-birth-puppy-growth-calendar', label: 'Cuccioli', title: 'Riproduzione e primi 40 giorni', body: 'Calendario da mating a cuccioli.' },
         { href: '/knowledge/usg-certificate-evidence-levels', label: 'USG', title: 'Certificato e limiti', body: 'Cosa prova e cosa non prova.' },
       ],
     } as const;
@@ -55,6 +57,7 @@ function getKnowledgeProductCopy(locale: Locale) {
       { href: '/knowledge/official-cane-corso-standard-reading', label: 'Standard', title: 'How to read the FCI standard', body: 'Size, proportions, structure, and limits.' },
       { href: '/knowledge/cane-corso-history-and-identity', label: 'History', title: 'Origin and temperament', body: 'What makes the Cane Corso distinct.' },
       { href: '/knowledge/health-screening-and-responsible-care', label: 'Care', title: 'Health and responsibility', body: 'Practical owner guidance.' },
+      { href: '/knowledge/cane-corso-pregnancy-birth-puppy-growth-calendar', label: 'Puppies', title: 'Breeding and first 40 days', body: 'Calendar from mating to puppies.' },
       { href: '/knowledge/usg-certificate-evidence-levels', label: 'USG', title: 'Certificate and limits', body: 'What it proves and what it does not prove.' },
     ],
   } as const;

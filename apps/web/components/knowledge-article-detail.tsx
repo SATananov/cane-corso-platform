@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BreedStandardArticlePanel } from '@/components/breed-standard-article-panel';
+import { CaneCorsoPregnancyPuppyGuide } from '@/components/cane-corso-pregnancy-puppy-guide';
 import { KnowledgeArticleReaderCompass } from '@/components/knowledge-article-reader-compass';
 import type { KnowledgeArticle } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
@@ -99,6 +100,9 @@ export function KnowledgeArticleDetail({ article, locale }: KnowledgeArticleDeta
       <div className="knowledge-article-layout">
         <div className="knowledge-article-main">
           <BreedStandardArticlePanel locale={locale} slug={article.slug} />
+          {article.slug === 'cane-corso-pregnancy-birth-puppy-growth-calendar' ? (
+            <CaneCorsoPregnancyPuppyGuide locale={locale} />
+          ) : null}
 
           {article.sections.map((section) => (
             <section className="knowledge-article-section" key={section.heading}>

@@ -24498,3 +24498,200 @@ body {
   }
 }
 /* Step 113.1 — My Cane Corso Section Workspace END */
+
+/* Step 113.2 — Cane Corso Pregnancy & Puppy Growth Knowledge Guide START */
+.pregnancy-puppy-guide {
+  display: grid;
+  gap: 1rem;
+}
+
+.pregnancy-puppy-guide__hero,
+.pregnancy-puppy-guide__card,
+.pregnancy-puppy-guide__table-card {
+  border: 1px solid rgba(212, 175, 55, 0.17);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 36%),
+    linear-gradient(145deg, rgba(12, 16, 15, 0.92), rgba(6, 8, 8, 0.95));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.pregnancy-puppy-guide__hero {
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.pregnancy-puppy-guide__hero h2,
+.pregnancy-puppy-guide__table-head h3 {
+  margin: 0;
+  color: var(--color-cream, #f8f5ef);
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.pregnancy-puppy-guide__hero h2 {
+  max-width: 16ch;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.96;
+}
+
+.pregnancy-puppy-guide__hero p,
+.pregnancy-puppy-guide__card p,
+.pregnancy-puppy-guide__table-head p,
+.pregnancy-puppy-guide__principle span {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.72);
+  line-height: 1.65;
+}
+
+.pregnancy-puppy-guide__principle {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 86ch;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 20px;
+  padding: 0.9rem 1rem;
+  background: rgba(212, 175, 55, 0.075);
+}
+
+.pregnancy-puppy-guide__principle strong,
+.pregnancy-puppy-guide__card strong {
+  color: var(--gold-bright);
+  font-weight: 850;
+}
+
+.pregnancy-puppy-guide__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.pregnancy-puppy-guide__card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+}
+
+.pregnancy-puppy-guide__tables {
+  display: grid;
+  gap: 1rem;
+}
+
+.pregnancy-puppy-guide__table-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.pregnancy-puppy-guide__table-card--warning {
+  border-color: rgba(236, 182, 77, 0.34);
+  background:
+    radial-gradient(circle at top right, rgba(236, 182, 77, 0.16), transparent 38%),
+    linear-gradient(145deg, rgba(24, 15, 10, 0.94), rgba(7, 8, 8, 0.96));
+}
+
+.pregnancy-puppy-guide__table-card--calm {
+  border-color: rgba(130, 202, 157, 0.18);
+}
+
+.pregnancy-puppy-guide__table-head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.pregnancy-puppy-guide__table-head h3 {
+  font-size: clamp(1.18rem, 2vw, 1.7rem);
+}
+
+.pregnancy-puppy-guide__table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pregnancy-puppy-guide table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.pregnancy-puppy-guide th,
+.pregnancy-puppy-guide td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.pregnancy-puppy-guide th {
+  color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.08);
+  font-size: 0.72rem;
+  font-weight: 860;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pregnancy-puppy-guide td {
+  color: rgba(248, 245, 239, 0.74);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.pregnancy-puppy-guide td:first-child {
+  color: var(--color-cream, #f8f5ef);
+  font-weight: 820;
+}
+
+.owner-cane-section-card--breedingGuide {
+  border-color: rgba(212, 175, 55, 0.24);
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.16), transparent 50%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.064), rgba(255, 255, 255, 0.026));
+}
+
+[data-theme='heritage'] .pregnancy-puppy-guide__hero,
+[data-theme='heritage'] .pregnancy-puppy-guide__card,
+[data-theme='heritage'] .pregnancy-puppy-guide__table-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.48)),
+    rgba(255, 251, 244, 0.9);
+  border-color: rgba(150, 111, 33, 0.18);
+}
+
+[data-theme='heritage'] .pregnancy-puppy-guide__hero h2,
+[data-theme='heritage'] .pregnancy-puppy-guide__table-head h3,
+[data-theme='heritage'] .pregnancy-puppy-guide td:first-child {
+  color: var(--text);
+}
+
+[data-theme='heritage'] .pregnancy-puppy-guide__hero p,
+[data-theme='heritage'] .pregnancy-puppy-guide__card p,
+[data-theme='heritage'] .pregnancy-puppy-guide__table-head p,
+[data-theme='heritage'] .pregnancy-puppy-guide__principle span,
+[data-theme='heritage'] .pregnancy-puppy-guide td {
+  color: rgba(42, 33, 23, 0.78);
+}
+
+@media (max-width: 980px) {
+  .pregnancy-puppy-guide__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .pregnancy-puppy-guide__hero,
+  .pregnancy-puppy-guide__card,
+  .pregnancy-puppy-guide__table-card {
+    border-radius: 22px;
+  }
+
+  .pregnancy-puppy-guide table {
+    min-width: 640px;
+  }
+}
+/* Step 113.2 — Cane Corso Pregnancy & Puppy Growth Knowledge Guide END */

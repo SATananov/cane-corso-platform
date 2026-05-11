@@ -177,6 +177,38 @@ const sharedSources = {
     label: 'Orthopedic Foundation for Animals — CHIC browse by breed',
     href: 'https://ofa.org/chic-programs/browse-by-breed/',
   },
+  msdWhelping: {
+    label: 'MSD Veterinary Manual — Whelping and gestation timing in dogs',
+    href: 'https://www.msdvetmanual.com/management-and-nutrition/management-of-reproduction-dogs-and-cats/whelping-and-queening-in-bitches-and-queens',
+  },
+  msdGestationTable: {
+    label: 'MSD Veterinary Manual — Approximate gestation periods',
+    href: 'https://www.msdvetmanual.com/multimedia/table/approximate-gestation-periods',
+  },
+  cornellNormalWhelping: {
+    label: 'Cornell Riney Canine Health Center — Normal whelping process',
+    href: 'https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/normal-whelping-process',
+  },
+  cornellDystocia: {
+    label: 'Cornell Riney Canine Health Center — Dystocia in dogs',
+    href: 'https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/dystocia-dogs-understanding-difficult-births',
+  },
+  vcaWhelping: {
+    label: 'VCA Hospitals — Whelping in dogs',
+    href: 'https://vcahospitals.com/know-your-pet/breeding-for-pet-owners-whelping-in-dogs',
+  },
+  vcaNewbornPuppies: {
+    label: 'VCA Hospitals — Caring for newborn puppies',
+    href: 'https://vcahospitals.com/know-your-pet/breeding-for-dog-owners-caring-for-newborn-puppies',
+  },
+  vcaPuppyRaising: {
+    label: 'VCA Canada — Puppy raising: eyes, early care, and veterinary checks',
+    href: 'https://vcacanada.com/sitecore/content/vca/home/know-your-pet/puppy-raising',
+  },
+  esccapWormControl: {
+    label: 'ESCCAP — Worm control guidance for dogs and puppies',
+    href: 'https://www.esccap.org/uploads/docs/biu0jhej_0778_ESCCAP_GL1__English_2025_v21_1p.pdf',
+  },
 } as const;
 
 const articleSeeds: Record<Locale, readonly KnowledgeArticleSeed[]> = {
@@ -285,6 +317,62 @@ const articleSeeds: Record<Locale, readonly KnowledgeArticleSeed[]> = {
       relatedSlugs: ['official-standard-owner-reading', 'training-socialization-and-public-safety'],
       adminNotes: 'Admin workflow requires reviewed source references and visible health disclaimers for all health category articles.',
     },
+    {
+      slug: 'cane-corso-pregnancy-birth-puppy-growth-calendar',
+      status: 'published',
+      category: 'breeding',
+      title: 'Cane Corso pregnancy, birth, and first 40 days',
+      excerpt: 'A practical owner guide from mating / tie to whelping and the first 40 days of Cane Corso puppy care, with clear veterinary boundaries.',
+      reviewedLabel: 'USG responsible breeding education',
+      readingLevel: 'advanced',
+      featured: true,
+      tags: ['Pregnancy', 'Whelping', 'Puppies', 'Owner guide'],
+      heroNote: 'This is educational owner orientation. It does not replace veterinary pregnancy monitoring, emergency care, or professional breeding decisions.',
+      sections: [
+        {
+          heading: 'The mating date is not always the conception date',
+          body: 'Owners often count from the first mating or tie, but the real biological timing may differ. USG presents the date as an orientation point and keeps the wider birth window visible so owners do not confuse a calendar estimate with a diagnosis.',
+          bullets: ['Record the tie / mating date.', 'Remember that ovulation-based timing is more precise than mating-date timing.', 'Use veterinary checks to confirm pregnancy and risk.'],
+        },
+        {
+          heading: 'Natural approach with preparation, not chance',
+          body: 'USG supports a natural, responsible approach when the mother is healthy and the process is normal. That still requires a quiet whelping place, clean bedding, notes, a scale, emergency contacts, transport, and a clear plan for when to call the veterinarian.',
+        },
+        {
+          heading: 'Birth problems need early action',
+          body: 'Dystocia means difficult birth. Strong straining without a puppy, weak prolonged straining, green or dark discharge before a puppy, long pauses with no progress, collapse, fever, foul discharge, or severe pain should not be handled by guessing at home.',
+          bullets: ['Do not pull puppies forcefully.', 'Do not give oxytocin, calcium, antibiotics, dewormers, or human medicine without a veterinarian.', 'Call a veterinarian early when progress is unclear.'],
+        },
+        {
+          heading: 'The first 40 days are a growth record, not only a memory',
+          body: 'Puppies need warmth, milk, clean bedding, daily weight observation, careful eye-opening monitoring, gentle handling, and deworming only by veterinary product and weight-based plan. USG should help owners record the timeline without pretending to prescribe treatment.',
+        },
+      ],
+      keyFacts: [
+        { label: 'Counting from mating', value: 'Wider orientation: about 58–72 days from mating when estrus stage is unknown' },
+        { label: 'More precise timing', value: 'About 62–64 days from ovulation / LH or progesterone timing, depending on the reference method' },
+        { label: 'Puppy eyes', value: 'Most puppies open eyes around 7–14 days; swelling, discharge, or closed eyes after Day 14 needs veterinary review' },
+        { label: 'Deworming boundary', value: 'Puppies often start around two weeks, but product and dose must come from a veterinarian and current weight' },
+      ],
+      warnings: [
+        'This article is not veterinary diagnosis, emergency treatment, or a medication protocol.',
+        'Do not give “cleaning” injections, oxytocin, calcium, antibiotics, dewormers, herbs, or human medicine without veterinary instruction.',
+        'Do not present a Cane Corso puppy listing as public owner-contact data; community listings should protect owner identity and use admin-mediated contact where needed.',
+      ],
+      sourceReferences: [
+        sharedSources.msdWhelping,
+        sharedSources.msdGestationTable,
+        sharedSources.cornellNormalWhelping,
+        sharedSources.cornellDystocia,
+        sharedSources.vcaWhelping,
+        sharedSources.vcaNewbornPuppies,
+        sharedSources.vcaPuppyRaising,
+        sharedSources.esccapWormControl,
+      ],
+      relatedSlugs: ['health-screening-and-responsible-care', 'training-socialization-and-public-safety', 'usg-identity-and-platform-trust'],
+      adminNotes: 'Step 113.2 educational Knowledge article. Keep as content/UI only; no DB, auth, Registry, Certificate, Verify, or Admin backend changes.',
+    },
+
     {
       slug: 'training-socialization-and-public-safety',
       status: 'published',
@@ -730,6 +818,62 @@ const articleSeeds: Record<Locale, readonly KnowledgeArticleSeed[]> = {
       adminNotes: 'Админ работният поток изисква източници и видими предупреждения за здравни статии.',
     },
     {
+      slug: 'cane-corso-pregnancy-birth-puppy-growth-calendar',
+      status: 'published',
+      category: 'breeding',
+      title: 'Бременност, раждане и първи 40 дни при Cane Corso',
+      excerpt: 'Практични насоки от покриване / заклещване до раждане и първите 40 дни на малките Cane Corso, с ясна ветеринарна граница.',
+      reviewedLabel: 'USG обучение за отговорен разплод',
+      readingLevel: 'advanced',
+      featured: true,
+      tags: ['Бременност', 'Раждане', 'Малки', 'Насоки'],
+      heroNote: 'Това е образователна ориентация за собственик. Не замества ветеринарно проследяване, спешна помощ или професионално решение за разплод.',
+      sections: [
+        {
+          heading: 'Датата на заклещване не винаги е датата на зачеване',
+          body: 'Много собственици броят от първото покриване или заклещване, но реалният биологичен момент може да е различен. USG показва датата като ориентир и държи видим по-широкия прозорец за раждане, за да не се бърка календарът с диагноза.',
+          bullets: ['Запиши датата на покриване / заклещване.', 'Помни, че овулационното броене е по-точно от броенето по ден на покриване.', 'Потвърждавай бременност и риск с ветеринар.'],
+        },
+        {
+          heading: 'Естествен подход с подготовка, не със случайност',
+          body: 'USG подкрепя естествения и отговорен подход, когато майката е здрава и процесът върви нормално. Това все пак изисква спокойно родилно място, чисти постелки, записки, кантар, спешни телефони, транспорт и ясен план кога се звъни на ветеринар.',
+        },
+        {
+          heading: 'Проблемите при раждане изискват ранна реакция',
+          body: 'Дистоция означава трудно раждане. Силни напъни без малко, слаби напъни дълго време, зелено или тъмно течение преди малко, дълга пауза без напредък, колапс, температура, лоша миризма или силна болка не се решават с гадаене вкъщи.',
+          bullets: ['Не дърпай малки със сила.', 'Не давай окситоцин, калций, антибиотици, обезпаразитяващи или човешки лекарства без ветеринар.', 'Звъни на ветеринар навреме, когато напредъкът е неясен.'],
+        },
+        {
+          heading: 'Първите 40 дни са запис на растежа, не само спомен',
+          body: 'Малките имат нужда от топлина, мляко, чиста постелка, ежедневно наблюдение на теглото, внимателно следене на проглеждането, нежен контакт и обезпаразитяване само по ветеринарен продукт и тегло. USG помага да се води времевата линия, без да предписва лечение.',
+        },
+      ],
+      keyFacts: [
+        { label: 'Броене от покриване', value: 'Широк ориентир: около 58–72 дни от покриване, когато етапът на разгонване не е известен' },
+        { label: 'По-точен термин', value: 'Около 62–64 дни от овулация / LH или прогестеронов ориентир според метода' },
+        { label: 'Проглеждане', value: 'Повечето малки отварят очи около 7–14 ден; подуване, секрет или затворени очи след Ден 14 изискват ветеринар' },
+        { label: 'Обезпаразитяване', value: 'Често започва около две седмици, но продуктът и дозата са само по ветеринар и реално тегло' },
+      ],
+      warnings: [
+        'Тази статия не е ветеринарна диагноза, спешно лечение или лекарствен протокол.',
+        'Не давай “инжекция за изчистване”, окситоцин, калций, антибиотици, обезпаразитяващи, билки или човешки лекарства без ветеринар.',
+        'Не публикувай обява за малки Cane Corso с лични данни на собственика; community обявите трябва да пазят самоличността и да използват админ-посредничество, когато е нужно.',
+      ],
+      sourceReferences: [
+        sharedSources.msdWhelping,
+        sharedSources.msdGestationTable,
+        sharedSources.cornellNormalWhelping,
+        sharedSources.cornellDystocia,
+        sharedSources.vcaWhelping,
+        sharedSources.vcaNewbornPuppies,
+        sharedSources.vcaPuppyRaising,
+        sharedSources.esccapWormControl,
+      ],
+      relatedSlugs: ['health-screening-and-responsible-care', 'training-socialization-and-public-safety', 'usg-identity-and-platform-trust'],
+      adminNotes: 'Step 113.2 educational Knowledge article. Keep as content/UI only; no DB, auth, Registry, Certificate, Verify, or Admin backend changes.',
+    },
+
+    {
       slug: 'training-socialization-and-public-safety',
       status: 'published',
       category: 'training',
@@ -1130,6 +1274,62 @@ const articleSeeds: Record<Locale, readonly KnowledgeArticleSeed[]> = {
       relatedSlugs: ['official-standard-owner-reading', 'training-socialization-and-public-safety'],
       adminNotes: 'Il workflow admin richiede fonti e disclaimer visibili per articoli salute.',
     },
+    {
+      slug: 'cane-corso-pregnancy-birth-puppy-growth-calendar',
+      status: 'published',
+      category: 'breeding',
+      title: 'Gravidanza, parto e primi 40 giorni nel Cane Corso',
+      excerpt: 'Guida pratica dal mating / tie al parto e ai primi 40 giorni dei cuccioli Cane Corso, con confine veterinario chiaro.',
+      reviewedLabel: 'Educazione USG per riproduzione responsabile',
+      readingLevel: 'advanced',
+      featured: true,
+      tags: ['Gravidanza', 'Parto', 'Cuccioli', 'Guida'],
+      heroNote: 'È orientamento educativo per proprietari. Non sostituisce monitoraggio veterinario, emergenza o decisioni professionali di riproduzione.',
+      sections: [
+        {
+          heading: 'La data del tie non è sempre il concepimento',
+          body: 'Molti proprietari contano dal primo mating o tie, ma il momento biologico reale può essere diverso. USG presenta la data come orientamento e mantiene visibile la finestra più ampia per non confondere calendario e diagnosi.',
+          bullets: ['Registra data di mating / tie.', 'Ricorda che il timing da ovulazione è più preciso del conteggio da mating.', 'Conferma gravidanza e rischio con il veterinario.'],
+        },
+        {
+          heading: 'Approccio naturale con preparazione, non casualità',
+          body: 'USG sostiene un approccio naturale e responsabile quando la madre è sana e il processo è normale. Servono comunque luogo parto tranquillo, lettiere pulite, note, bilancia, contatti emergenza, trasporto e piano chiaro per chiamare il veterinario.',
+        },
+        {
+          heading: 'I problemi al parto richiedono azione precoce',
+          body: 'Distocia significa parto difficile. Forti spinte senza cucciolo, spinte deboli prolungate, scolo verde o scuro prima del cucciolo, pause lunghe senza progresso, collasso, febbre, cattivo odore o dolore forte non si gestiscono a tentativi in casa.',
+          bullets: ['Non tirare i cuccioli con forza.', 'Non dare ossitocina, calcio, antibiotici, antiparassitari o farmaci umani senza veterinario.', 'Chiama presto il veterinario quando il progresso non è chiaro.'],
+        },
+        {
+          heading: 'I primi 40 giorni sono registro di crescita, non solo memoria',
+          body: 'I cuccioli richiedono calore, latte, lettiera pulita, osservazione quotidiana del peso, controllo delicato degli occhi, contatto umano graduale e deworming solo secondo prodotto veterinario e peso reale. USG aiuta a registrare la timeline senza prescrivere cure.',
+        },
+      ],
+      keyFacts: [
+        { label: 'Conteggio da mating', value: 'Orientamento ampio: circa 58–72 giorni dal mating quando la fase estrale non è nota' },
+        { label: 'Timing più preciso', value: 'Circa 62–64 giorni da ovulazione / LH o progesterone secondo il metodo' },
+        { label: 'Apertura occhi', value: 'La maggior parte dei cuccioli apre gli occhi circa tra 7–14 giorni; gonfiore, secrezione o occhi chiusi dopo Giorno 14 richiedono veterinario' },
+        { label: 'Deworming', value: 'Spesso inizia intorno a due settimane, ma prodotto e dose devono arrivare da veterinario e peso reale' },
+      ],
+      warnings: [
+        'Questo articolo non è diagnosi veterinaria, trattamento urgente o protocollo farmaci.',
+        'Non dare iniezioni “per pulire”, ossitocina, calcio, antibiotici, antiparassitari, erbe o farmaci umani senza istruzione veterinaria.',
+        'Non pubblicare annunci cuccioli con dati personali del proprietario; gli annunci community devono proteggere identità e usare mediazione admin quando necessario.',
+      ],
+      sourceReferences: [
+        sharedSources.msdWhelping,
+        sharedSources.msdGestationTable,
+        sharedSources.cornellNormalWhelping,
+        sharedSources.cornellDystocia,
+        sharedSources.vcaWhelping,
+        sharedSources.vcaNewbornPuppies,
+        sharedSources.vcaPuppyRaising,
+        sharedSources.esccapWormControl,
+      ],
+      relatedSlugs: ['health-screening-and-responsible-care', 'training-socialization-and-public-safety', 'usg-identity-and-platform-trust'],
+      adminNotes: 'Step 113.2 educational Knowledge article. Keep as content/UI only; no DB, auth, Registry, Certificate, Verify, or Admin backend changes.',
+    },
+
     {
       slug: 'training-socialization-and-public-safety',
       status: 'published',
