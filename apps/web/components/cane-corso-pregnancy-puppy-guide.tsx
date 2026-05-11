@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import type { Locale } from '@/lib/i18n';
 
 type GuideRow = readonly string[];
@@ -373,9 +376,35 @@ function GuideTableCard({ table }: { table: GuideTable }) {
 
 export function CaneCorsoPregnancyPuppyGuide({ locale }: { locale: Locale }) {
   const copy = guideCopy[locale] ?? guideCopy.en;
+  const firstSectionId = copy.navItems[0]?.href.replace('#', '') ?? copy.tables[0]?.id ?? 'pregnancy-calendar';
+  const sectionIds = useMemo(() => new Set(copy.tables.map((table) => table.id).filter(Boolean) as string[]), [copy.tables]);
+  const [activeSectionId, setActiveSectionId] = useState(firstSectionId);
+
+  useEffect(() => {
+    setActiveSectionId(firstSectionId);
+  }, [firstSectionId]);
+
+  useEffect(() => {
+    const handleExternalTabClick = (event: MouseEvent) => {
+      const trigger = event.target instanceof Element
+        ? event.target.closest<HTMLElement>('[data-pregnancy-guide-target]')
+        : null;
+      const targetId = trigger?.dataset.pregnancyGuideTarget;
+
+      if (!targetId || !sectionIds.has(targetId)) return;
+
+      event.preventDefault();
+      setActiveSectionId(targetId);
+    };
+
+    document.addEventListener('click', handleExternalTabClick);
+    return () => document.removeEventListener('click', handleExternalTabClick);
+  }, [sectionIds]);
+
+  const activeTable = copy.tables.find((table) => table.id === activeSectionId) ?? copy.tables[0];
 
   return (
-    <section className="pregnancy-puppy-guide" aria-label={copy.title}>
+    <section className="pregnancy-puppy-guide" id="pregnancy-puppy-guide" aria-label={copy.title}>
       <div className="pregnancy-puppy-guide__hero">
         <span className="eyebrow-label">{copy.eyebrow}</span>
         <h2>{copy.title}</h2>
@@ -386,14 +415,6 @@ export function CaneCorsoPregnancyPuppyGuide({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <nav className="pregnancy-puppy-guide__nav" aria-label={copy.navLabel}>
-        {copy.navItems.map((item) => (
-          <a href={item.href} key={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
       <div className="pregnancy-puppy-guide__cards">
         {copy.cards.map((card) => (
           <article className="pregnancy-puppy-guide__card" key={card.title}>
@@ -403,10 +424,28 @@ export function CaneCorsoPregnancyPuppyGuide({ locale }: { locale: Locale }) {
         ))}
       </div>
 
-      <div className="pregnancy-puppy-guide__tables">
-        {copy.tables.map((table) => (
-          <GuideTableCard table={table} key={table.title} />
-        ))}
+      <nav className="pregnancy-puppy-guide__nav pregnancy-puppy-guide__nav--tabs" aria-label={copy.navLabel}>
+        {copy.navItems.map((item) => {
+          const sectionId = item.href.replace('#', '');
+          const isActive = sectionId === activeSectionId;
+
+          return (
+            <button
+              type="button"
+              className={isActive ? 'is-active' : ''}
+              aria-pressed={isActive}
+              data-pregnancy-guide-target={sectionId}
+              key={item.href}
+              onClick={() => setActiveSectionId(sectionId)}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className="pregnancy-puppy-guide__tables pregnancy-puppy-guide__tables--progressive" aria-live="polite">
+        {activeTable ? <GuideTableCard table={activeTable} /> : null}
       </div>
     </section>
   );

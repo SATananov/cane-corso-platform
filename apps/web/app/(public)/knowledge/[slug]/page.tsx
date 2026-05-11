@@ -41,10 +41,15 @@ function getArticleHeroChips(slug: string, tags: readonly string[]): readonly (s
 
   const anchors = ['#pregnancy-calendar', '#birth-warnings', '#puppy-day-1-40', '#owner-vet-boundary'] as const;
 
-  return tags.map((label, index) => ({
-    label,
-    href: anchors[index] ?? '#pregnancy-puppy-guide',
-  }));
+  return tags.map((label, index) => {
+    const href = anchors[index] ?? '#pregnancy-puppy-guide';
+
+    return {
+      label,
+      href,
+      targetId: href.replace('#', ''),
+    };
+  });
 }
 
 export function generateStaticParams() {

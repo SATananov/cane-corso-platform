@@ -24781,3 +24781,281 @@ body {
   }
 }
 /* Step 113.3 — Active Hero Chips & Guide Section Navigation END */
+
+/* Step 114 — Progressive Disclosure UX & Owner Growth Comparison START */
+.page-hero__badge--button {
+  appearance: none;
+  font: inherit;
+}
+
+.pregnancy-puppy-guide__nav--tabs button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 999px;
+  padding: 0 0.9rem;
+  background: rgba(212, 175, 55, 0.075);
+  color: var(--gold-bright);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.pregnancy-puppy-guide__nav--tabs button:hover,
+.pregnancy-puppy-guide__nav--tabs button:focus-visible,
+.pregnancy-puppy-guide__nav--tabs button.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.42);
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--ivory);
+  outline: none;
+}
+
+.pregnancy-puppy-guide__tables--progressive {
+  display: block;
+}
+
+.owner-health-progressive {
+  display: grid;
+  gap: 1rem;
+}
+
+.owner-health-insight-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.owner-health-insight-switch button {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 999px;
+  padding: 0.62rem 0.9rem;
+  background: rgba(212, 175, 55, 0.07);
+  color: rgba(248, 245, 239, 0.78);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.owner-health-insight-switch button:hover,
+.owner-health-insight-switch button:focus-visible,
+.owner-health-insight-switch button.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.42);
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--color-cream, #f8f5ef);
+  outline: none;
+}
+
+.owner-health-progressive__panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.owner-health-dashboard-grid--inside,
+.owner-health-graph-grid,
+.owner-health-records-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.owner-health-graph-panel {
+  display: grid;
+  gap: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.owner-growth-line-chart {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.owner-growth-line-chart svg {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(212, 175, 55, 0.035));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: visible;
+}
+
+.owner-growth-line-chart__axis {
+  stroke: rgba(248, 245, 239, 0.16);
+  stroke-width: 1.2;
+}
+
+.owner-growth-line-chart__range {
+  fill: rgba(212, 175, 55, 0.13);
+  stroke: rgba(212, 175, 55, 0.16);
+  stroke-width: 1;
+}
+
+.owner-growth-line-chart__actual,
+.owner-growth-line-chart__standard {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.owner-growth-line-chart__actual {
+  stroke: rgba(248, 245, 239, 0.92);
+  stroke-width: 4;
+}
+
+.owner-growth-line-chart__standard {
+  stroke: rgba(212, 175, 55, 0.82);
+  stroke-width: 3;
+  stroke-dasharray: 8 7;
+}
+
+.owner-growth-line-chart__actual-dot {
+  fill: var(--color-cream, #f8f5ef);
+  stroke: rgba(14, 14, 16, 0.88);
+  stroke-width: 2;
+}
+
+.owner-growth-line-chart__standard-dot {
+  fill: var(--gold-bright, #d4af37);
+  stroke: rgba(14, 14, 16, 0.88);
+  stroke-width: 1.5;
+}
+
+.owner-growth-line-chart__label {
+  fill: rgba(248, 245, 239, 0.68);
+  font-size: 13px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.owner-growth-line-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.owner-growth-line-chart__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.42rem 0.65rem;
+  color: rgba(248, 245, 239, 0.72);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.owner-growth-line-chart__legend span::before {
+  content: '';
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(248, 245, 239, 0.8);
+}
+
+.owner-growth-line-chart__legend-standard::before {
+  background: rgba(212, 175, 55, 0.82) !important;
+}
+
+.owner-growth-line-chart__legend-range::before {
+  height: 8px !important;
+  background: rgba(212, 175, 55, 0.2) !important;
+}
+
+.owner-growth-line-chart__data,
+.owner-health-deviation-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.owner-growth-line-chart__data div,
+.owner-health-deviation-card {
+  display: grid;
+  grid-template-columns: minmax(80px, 0.35fr) minmax(120px, 0.45fr) minmax(160px, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 0.65rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.owner-growth-line-chart__data span,
+.owner-growth-line-chart__data small,
+.owner-health-deviation-card span,
+.owner-health-deviation-card dd {
+  color: rgba(248, 245, 239, 0.68);
+}
+
+.owner-growth-line-chart__data strong,
+.owner-health-deviation-card strong,
+.owner-health-deviation-card dt {
+  color: var(--color-cream, #f8f5ef);
+}
+
+.owner-health-deviation-card dl {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.owner-health-deviation-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.owner-health-deviation-card dt,
+.owner-health-deviation-card dd {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+[data-theme='heritage'] .owner-growth-line-chart svg,
+[data-theme='heritage'] .owner-health-graph-panel,
+[data-theme='heritage'] .owner-health-progressive,
+[data-theme='heritage'] .owner-health-insight-switch,
+[data-theme='heritage'] .pregnancy-puppy-guide__nav--tabs button {
+  border-color: rgba(150, 111, 33, 0.18);
+}
+
+@media (max-width: 920px) {
+  .owner-health-dashboard-grid--inside,
+  .owner-health-graph-grid,
+  .owner-health-records-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .owner-health-insight-switch,
+  .pregnancy-puppy-guide__nav--tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .owner-health-insight-switch button,
+  .pregnancy-puppy-guide__nav--tabs button {
+    flex: 0 0 auto;
+  }
+
+  .owner-growth-line-chart__data div,
+  .owner-health-deviation-card {
+    grid-template-columns: 1fr;
+  }
+}
+/* Step 114 — Progressive Disclosure UX & Owner Growth Comparison END */

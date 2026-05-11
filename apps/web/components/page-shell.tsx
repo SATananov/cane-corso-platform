@@ -17,6 +17,7 @@ export interface PageShellHeroChip {
   label: string;
   href?: string;
   title?: string;
+  targetId?: string;
 }
 
 type PageShellHeroChipInput = string | PageShellHeroChip;
@@ -27,6 +28,10 @@ function getHeroChipLabel(chip: PageShellHeroChipInput) {
 
 function getHeroChipHref(chip: PageShellHeroChipInput) {
   return typeof chip === 'string' ? undefined : chip.href;
+}
+
+function getHeroChipTargetId(chip: PageShellHeroChipInput) {
+  return typeof chip === 'string' ? undefined : chip.targetId;
 }
 
 interface PageShellProps {
@@ -86,8 +91,19 @@ export function PageShell({
               {heroChips.map((chip) => {
                 const label = getHeroChipLabel(chip);
                 const href = getHeroChipHref(chip);
+                const targetId = getHeroChipTargetId(chip);
 
-                return href ? (
+                return targetId ? (
+                  <button
+                    key={`${label}-${targetId}`}
+                    type="button"
+                    className="page-hero__badge page-hero__badge--link page-hero__badge--button"
+                    title={typeof chip === 'string' ? undefined : chip.title}
+                    data-pregnancy-guide-target={targetId}
+                  >
+                    {label}
+                  </button>
+                ) : href ? (
                   <a key={`${label}-${href}`} className="page-hero__badge page-hero__badge--link" href={href} title={typeof chip === 'string' ? undefined : chip.title}>
                     {label}
                   </a>

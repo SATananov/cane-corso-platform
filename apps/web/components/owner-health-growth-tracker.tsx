@@ -28,6 +28,8 @@ interface OwnerHealthGrowthTrackerProps {
 }
 
 type ActivePanel = 'weight' | 'vaccine';
+type ActiveInsightPanel = 'overview' | 'weight' | 'height' | 'standard' | 'comparison' | 'deviations' | 'records';
+type GrowthMetric = 'weight' | 'height';
 
 type WeightFormState = {
   measuredAt: string;
@@ -143,6 +145,26 @@ const copy = {
     conclusionLow: 'The latest weight is below the broad orientation range for the saved age. Review appetite, nutrition and condition; if the gap continues, speak with a veterinarian.',
     conclusionMissing: 'Add age and weight records to generate an orientation note.',
     emptyChart: 'Save at least one measurement record to start the growth line.',
+    insightSwitchLabel: 'Choose what to inspect',
+    overviewPanel: 'Overview',
+    weightChartPanel: 'Weight graph',
+    heightChartPanel: 'Height graph',
+    standardPanel: 'Standard graph',
+    comparisonPanel: 'Together',
+    deviationsPanel: 'Deviations',
+    recordsPanel: 'Records',
+    userLineLabel: 'My Cane Corso',
+    standardLineLabel: 'Standard midpoint',
+    standardRangeLabel: 'Standard range',
+    noComparisonData: 'Add dated measurements with age in months to compare against the orientation range.',
+    standardWeightTitle: 'Weight orientation by age',
+    standardHeightTitle: 'Height orientation by age',
+    combinedWeightTitle: 'Weight: my Cane Corso + orientation',
+    combinedHeightTitle: 'Height: my Cane Corso + orientation',
+    deviationInRange: 'within orientation',
+    deviationAbove: 'above orientation',
+    deviationBelow: 'below orientation',
+    deviationMissing: 'not enough data',
     growthTable: 'Growth and size history',
     vaccineTable: 'Vaccines and care history',
     age: 'Age',
@@ -217,6 +239,26 @@ const copy = {
     conclusionLow: 'Последното тегло е под широкия ориентировъчен диапазон за възрастта. Провери апетита, храненето и общото състояние; ако отклонението продължава, говори с ветеринар.',
     conclusionMissing: 'Добави възраст и тегло, за да се покаже ориентировъчен извод.',
     emptyChart: 'Запази поне един запис с измервания, за да започне линията на растежа.',
+    insightSwitchLabel: 'Избери какво да разгледаш',
+    overviewPanel: 'Преглед',
+    weightChartPanel: 'Графика тегло',
+    heightChartPanel: 'Графика височина',
+    standardPanel: 'Графика стандарт',
+    comparisonPanel: 'Заедно',
+    deviationsPanel: 'Отклонения',
+    recordsPanel: 'Записи',
+    userLineLabel: 'Моето Cane Corso',
+    standardLineLabel: 'Среден ориентир',
+    standardRangeLabel: 'Ориентировъчен диапазон',
+    noComparisonData: 'Добави измервания с дата и възраст в месеци, за да има сравнение с ориентира.',
+    standardWeightTitle: 'Ориентир за тегло по възраст',
+    standardHeightTitle: 'Ориентир за височина по възраст',
+    combinedWeightTitle: 'Тегло: моето Cane Corso + ориентир',
+    combinedHeightTitle: 'Височина: моето Cane Corso + ориентир',
+    deviationInRange: 'в ориентировъчния диапазон',
+    deviationAbove: 'над ориентира',
+    deviationBelow: 'под ориентира',
+    deviationMissing: 'няма достатъчно данни',
     growthTable: 'История на растеж и размери',
     vaccineTable: 'История на ваксини и грижа',
     age: 'Възраст',
@@ -291,6 +333,26 @@ const copy = {
     conclusionLow: 'L’ultimo peso è sotto il range orientativo ampio per l’età. Controlla appetito, nutrizione e condizione generale; se la distanza continua, parla con un veterinario.',
     conclusionMissing: 'Aggiungi età e peso per generare una nota orientativa.',
     emptyChart: 'Salva almeno un record misure per iniziare la linea di crescita.',
+    insightSwitchLabel: 'Scegli cosa vedere',
+    overviewPanel: 'Panoramica',
+    weightChartPanel: 'Grafico peso',
+    heightChartPanel: 'Grafico altezza',
+    standardPanel: 'Grafico standard',
+    comparisonPanel: 'Insieme',
+    deviationsPanel: 'Deviazioni',
+    recordsPanel: 'Record',
+    userLineLabel: 'Il mio Cane Corso',
+    standardLineLabel: 'Orientamento medio',
+    standardRangeLabel: 'Range orientativo',
+    noComparisonData: 'Aggiungi misure con data ed età in mesi per confrontare con il range orientativo.',
+    standardWeightTitle: 'Orientamento peso per età',
+    standardHeightTitle: 'Orientamento altezza per età',
+    combinedWeightTitle: 'Peso: il mio Cane Corso + orientamento',
+    combinedHeightTitle: 'Altezza: il mio Cane Corso + orientamento',
+    deviationInRange: 'nel range orientativo',
+    deviationAbove: 'sopra orientamento',
+    deviationBelow: 'sotto orientamento',
+    deviationMissing: 'dati non sufficienti',
     growthTable: 'Storia crescita e misure',
     vaccineTable: 'Storia vaccini e cura',
     age: 'Età',
@@ -386,9 +448,180 @@ function getBarWidth(value: number | null | undefined, max: number) {
   return `${Math.max(6, Math.min(100, (value / max) * 100))}%`;
 }
 
+
+type GrowthChartPoint = {
+  key: string;
+  label: string;
+  ageMonths: number;
+  actual: number | null;
+  standardMin: number | null;
+  standardMax: number | null;
+  standardMid: number | null;
+};
+
+const standardAgePoints = [4, 8, 12, 18, 24] as const;
+
+function getMetricValue(record: DogMeasurementRecord, metric: GrowthMetric): number | null {
+  return metric === 'weight' ? record.weightKg : record.heightWithersCm;
+}
+
+function getMetricRange(range: OrientationRange | null, metric: GrowthMetric): [number, number] | null {
+  if (!range) return null;
+  return metric === 'weight' ? range.weight : range.height;
+}
+
+function getMetricSuffix(metric: GrowthMetric, t: { kg: string; cm: string }) {
+  return metric === 'weight' ? t.kg : t.cm;
+}
+
+function getMetricLabel(metric: GrowthMetric, t: { weight: string; height: string }) {
+  return metric === 'weight' ? t.weight : t.height;
+}
+
+function buildStandardMetricPoints(metric: GrowthMetric): GrowthChartPoint[] {
+  return standardAgePoints.map((age) => {
+    const range = getMetricRange(getOrientationRange(age), metric);
+    const standardMid = range ? Number(((range[0] + range[1]) / 2).toFixed(1)) : null;
+
+    return {
+      key: `standard-${metric}-${age}`,
+      label: `${age}`,
+      ageMonths: age,
+      actual: null,
+      standardMin: range?.[0] ?? null,
+      standardMax: range?.[1] ?? null,
+      standardMid,
+    };
+  });
+}
+
+function buildActualMetricPoints(records: DogMeasurementRecord[], metric: GrowthMetric): GrowthChartPoint[] {
+  return sortByDateAsc(records)
+    .filter((record) => record.ageMonths != null && getMetricValue(record, metric) != null)
+    .map((record) => {
+      const age = record.ageMonths ?? 0;
+      const range = getMetricRange(getOrientationRange(age), metric);
+      const standardMid = range ? Number(((range[0] + range[1]) / 2).toFixed(1)) : null;
+
+      return {
+        key: `${record.id}-${metric}`,
+        label: `${age}`,
+        ageMonths: age,
+        actual: getMetricValue(record, metric),
+        standardMin: range?.[0] ?? null,
+        standardMax: range?.[1] ?? null,
+        standardMid,
+      };
+    });
+}
+
+function getDeviationText(
+  record: DogMeasurementRecord,
+  metric: GrowthMetric,
+  t: { deviationMissing: string; deviationAbove: string; deviationBelow: string; deviationInRange: string },
+) {
+  const value = getMetricValue(record, metric);
+  const range = getMetricRange(getOrientationRange(record.ageMonths), metric);
+
+  if (value == null || !range) return t.deviationMissing;
+  if (value > range[1]) return t.deviationAbove;
+  if (value < range[0]) return t.deviationBelow;
+  return t.deviationInRange;
+}
+
+function makeChartPolyline(points: readonly GrowthChartPoint[], valueKey: 'actual' | 'standardMid', xAt: (point: GrowthChartPoint) => number, yAt: (value: number) => number) {
+  return points
+    .filter((point) => point[valueKey] != null)
+    .map((point) => `${xAt(point)},${yAt(point[valueKey] ?? 0)}`)
+    .join(' ');
+}
+
+function GrowthLineChart({
+  title,
+  points,
+  valueSuffix,
+  actualLabel,
+  standardLabel,
+  rangeLabel,
+  emptyLabel,
+  showActual = true,
+  showStandard = true,
+}: {
+  title: string;
+  points: readonly GrowthChartPoint[];
+  valueSuffix: string;
+  actualLabel: string;
+  standardLabel: string;
+  rangeLabel: string;
+  emptyLabel: string;
+  showActual?: boolean;
+  showStandard?: boolean;
+}) {
+  const chartValues = points.flatMap((point) => [point.actual, point.standardMin, point.standardMax, point.standardMid]).filter((value): value is number => value != null);
+
+  if (!chartValues.length) {
+    return <p className="owner-health-empty">{emptyLabel}</p>;
+  }
+
+  const minChartValue = Math.max(0, Math.min(...chartValues) - 5);
+  const maxChartValue = Math.max(...chartValues) + 5;
+  const width = 640;
+  const height = 260;
+  const padding = { top: 22, right: 34, bottom: 42, left: 42 };
+  const sortedPoints = [...points].sort((a, b) => a.ageMonths - b.ageMonths);
+  const minAge = Math.min(...sortedPoints.map((point) => point.ageMonths));
+  const maxAge = Math.max(...sortedPoints.map((point) => point.ageMonths));
+  const ageSpan = Math.max(1, maxAge - minAge);
+  const xAt = (point: GrowthChartPoint) => padding.left + ((point.ageMonths - minAge) / ageSpan) * (width - padding.left - padding.right);
+  const yAt = (value: number) => padding.top + ((maxChartValue - value) / Math.max(1, maxChartValue - minChartValue)) * (height - padding.top - padding.bottom);
+  const actualPolyline = makeChartPolyline(sortedPoints, 'actual', xAt, yAt);
+  const standardPolyline = makeChartPolyline(sortedPoints, 'standardMid', xAt, yAt);
+  const rangePoints = sortedPoints.filter((point) => point.standardMin != null && point.standardMax != null);
+  const rangePolygon = rangePoints.length
+    ? [
+        ...rangePoints.map((point) => `${xAt(point)},${yAt(point.standardMax ?? 0)}`),
+        ...[...rangePoints].reverse().map((point) => `${xAt(point)},${yAt(point.standardMin ?? 0)}`),
+      ].join(' ')
+    : '';
+
+  return (
+    <div className="owner-growth-line-chart" aria-label={title}>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={title}>
+        <line className="owner-growth-line-chart__axis" x1={padding.left} y1={height - padding.bottom} x2={width - padding.right} y2={height - padding.bottom} />
+        <line className="owner-growth-line-chart__axis" x1={padding.left} y1={padding.top} x2={padding.left} y2={height - padding.bottom} />
+        {rangePolygon && showStandard ? <polygon className="owner-growth-line-chart__range" points={rangePolygon} /> : null}
+        {standardPolyline && showStandard ? <polyline className="owner-growth-line-chart__standard" points={standardPolyline} /> : null}
+        {actualPolyline && showActual ? <polyline className="owner-growth-line-chart__actual" points={actualPolyline} /> : null}
+        {sortedPoints.map((point) => (
+          <g key={`${point.key}-dot`}>
+            {showActual && point.actual != null ? <circle className="owner-growth-line-chart__actual-dot" cx={xAt(point)} cy={yAt(point.actual)} r="5" /> : null}
+            {showStandard && point.standardMid != null ? <circle className="owner-growth-line-chart__standard-dot" cx={xAt(point)} cy={yAt(point.standardMid)} r="4" /> : null}
+            <text className="owner-growth-line-chart__label" x={xAt(point)} y={height - 14}>{point.label}</text>
+          </g>
+        ))}
+      </svg>
+      <div className="owner-growth-line-chart__legend">
+        {showActual ? <span className="owner-growth-line-chart__legend-actual">{actualLabel}</span> : null}
+        {showStandard ? <span className="owner-growth-line-chart__legend-standard">{standardLabel}</span> : null}
+        {showStandard ? <span className="owner-growth-line-chart__legend-range">{rangeLabel}</span> : null}
+      </div>
+      <div className="owner-growth-line-chart__data" role="list">
+        {sortedPoints.map((point) => (
+          <div role="listitem" key={`${point.key}-data`}>
+            <span>{point.label}</span>
+            <strong>{point.actual != null ? formatValue(point.actual, valueSuffix) : point.standardMid != null ? formatValue(point.standardMid, valueSuffix) : '—'}</strong>
+            <small>{formatRange(point.standardMin != null && point.standardMax != null ? ([point.standardMin, point.standardMax] as [number, number]) : null, valueSuffix)}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }: OwnerHealthGrowthTrackerProps) {
   const t = copy[locale] ?? copy.en;
   const [activePanel, setActivePanel] = useState<ActivePanel>('weight');
+  const [activeInsightPanel, setActiveInsightPanel] = useState<ActiveInsightPanel>('overview');
   const [weightForm, setWeightForm] = useState<WeightFormState>(() => createEmptyWeightForm());
   const [healthForm, setHealthForm] = useState<HealthFormState>(() => createEmptyHealthForm());
   const [measurements, setMeasurements] = useState<DogMeasurementRecord[]>([]);
@@ -430,6 +663,14 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
   const maxHeight = useMemo(() => Math.max(...heightChartRecords.map((record) => record.heightWithersCm ?? 0), 1), [heightChartRecords]);
   const latestOrientationRange = useMemo(() => getOrientationRange(latestMeasurement?.ageMonths), [latestMeasurement]);
   const latestConclusion = useMemo(() => getWeightConclusion(latestMeasurement, t), [latestMeasurement, t]);
+  const weightMetricPoints = useMemo(() => buildActualMetricPoints(measurements, 'weight'), [measurements]);
+  const heightMetricPoints = useMemo(() => buildActualMetricPoints(measurements, 'height'), [measurements]);
+  const standardWeightPoints = useMemo(() => buildStandardMetricPoints('weight'), []);
+  const standardHeightPoints = useMemo(() => buildStandardMetricPoints('height'), []);
+  const comparisonRecords = useMemo(
+    () => sortByDateAsc(measurements).filter((record) => record.ageMonths != null && (record.weightKg != null || record.heightWithersCm != null)),
+    [measurements],
+  );
 
   const handleWeightChange = (field: keyof WeightFormState, value: string) => {
     setWeightForm((current) => ({ ...current, [field]: value }));
@@ -714,172 +955,358 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
       {error ? <p className="owner-health-message owner-health-message--error">{error}</p> : null}
       {isLoading ? <p className="owner-health-message">{t.saving}</p> : null}
 
-      <section className="owner-health-dashboard-grid">
-        <div className="content-card owner-health-chart-card">
-          <div className="owner-health-section-head">
-            <span className="eyebrow-label">{t.growthChart}</span>
-            <h3>{t.weightTrend}</h3>
-          </div>
-          {chartRecords.length > 0 ? (
-            <div className="owner-health-chart" role="list">
-              {chartRecords.map((record) => {
-                const width = getBarWidth(record.weightKg, maxWeight);
-                return (
-                  <div className="owner-health-chart__row" role="listitem" key={record.id}>
-                    <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
-                    <div className="owner-health-chart__bar-track">
-                      <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
-                    </div>
-                    <strong>{formatValue(record.weightKg, t.kg)}</strong>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="owner-health-empty">{t.emptyChart}</p>
-          )}
-        </div>
-
-        <div className="content-card owner-health-chart-card">
-          <div className="owner-health-section-head">
-            <span className="eyebrow-label">{t.growthChart}</span>
-            <h3>{t.heightTrend}</h3>
-          </div>
-          {heightChartRecords.length > 0 ? (
-            <div className="owner-health-chart" role="list">
-              {heightChartRecords.map((record) => {
-                const width = getBarWidth(record.heightWithersCm, maxHeight);
-                return (
-                  <div className="owner-health-chart__row" role="listitem" key={`${record.id}-height`}>
-                    <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
-                    <div className="owner-health-chart__bar-track">
-                      <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
-                    </div>
-                    <strong>{formatValue(record.heightWithersCm, t.cm)}</strong>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="owner-health-empty">{t.emptyChart}</p>
-          )}
-        </div>
-
-        <div className="content-card owner-health-chart-card owner-health-chart-card--standard">
-          <div className="owner-health-section-head">
-            <span className="eyebrow-label">{t.standardChart}</span>
-            <h3>{t.conclusion}</h3>
-            <p>{t.standardBody}</p>
-          </div>
-          <div className="owner-health-standard-grid">
-            <div>
-              <span>{t.weight}</span>
-              <strong>{latestMeasurement?.weightKg != null ? formatValue(latestMeasurement.weightKg, t.kg) : '—'}</strong>
-              <small>{formatRange(latestOrientationRange?.weight, t.kg)}</small>
-            </div>
-            <div>
-              <span>{t.height}</span>
-              <strong>{latestMeasurement?.heightWithersCm != null ? formatValue(latestMeasurement.heightWithersCm, t.cm) : '—'}</strong>
-              <small>{formatRange(latestOrientationRange?.height, t.cm)}</small>
-            </div>
-            <div>
-              <span>{t.bodyLength}</span>
-              <strong>{latestMeasurement?.bodyLengthCm != null ? formatValue(latestMeasurement.bodyLengthCm, t.cm) : '—'}</strong>
-              <small>{latestMeasurement?.ageMonths != null ? `${latestMeasurement.ageMonths} ${t.months}` : '—'}</small>
-            </div>
-          </div>
-          <p className="owner-health-conclusion">{latestConclusion}</p>
-        </div>
-
-        <div className="content-card owner-health-safety-card">
-          <span className="eyebrow-label">{t.safetyTitle}</span>
-          <h3>{t.safetyTitle}</h3>
-          <p>{t.safetyBody}</p>
-        </div>
-      </section>
-
-      <section className="content-card owner-health-table-card" id="growth-table" aria-label={t.growthTable}>
+      <section className="owner-health-progressive content-card" aria-label={t.insightSwitchLabel}>
         <div className="owner-health-section-head">
-          <span className="eyebrow-label">{t.growthTable}</span>
-          <h3>{t.growthTable}</h3>
+          <span className="eyebrow-label">{t.growthChart}</span>
+          <h3>{t.insightSwitchLabel}</h3>
+          <p>{t.standardBody}</p>
         </div>
-        <div className="owner-health-table-wrap">
-          <table className="owner-health-table">
-            <thead>
-              <tr>
-                <th>{t.measuredAt}</th>
-                <th>{t.age}</th>
-                <th>{t.weight}</th>
-                <th>{t.height}</th>
-                <th>{t.bodyLength}</th>
-                <th>{t.chest}</th>
-                <th>{t.head}</th>
-                <th>{t.muzzle}</th>
-                <th>{t.skull}</th>
-                <th>{t.note}</th>
-                <th>{t.actions}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {measurements.length > 0 ? measurements.map((record) => (
-                <tr key={record.id}>
-                  <td>{formatDate(locale, record.measuredAt)}</td>
-                  <td>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : '—'}</td>
-                  <td>{formatValue(record.weightKg, t.kg)}</td>
-                  <td>{formatValue(record.heightWithersCm, t.cm)}</td>
-                  <td>{formatValue(record.bodyLengthCm, t.cm)}</td>
-                  <td>{formatValue(record.chestCircumferenceCm, t.cm)}</td>
-                  <td>{formatValue(record.headLengthCm, t.cm)}</td>
-                  <td>{formatValue(record.muzzleLengthCm, t.cm)}</td>
-                  <td>{formatValue(record.skullLengthCm, t.cm)}</td>
-                  <td>{record.note ?? '—'}</td>
-                  <td><button type="button" className="button-ghost small" onClick={() => void handleDeleteMeasurement(record.id)}>{t.remove}</button></td>
-                </tr>
-              )) : (
-                <tr><td colSpan={11}>{t.noRecords}</td></tr>
-              )}
-            </tbody>
-          </table>
+        <div className="owner-health-insight-switch" role="tablist" aria-label={t.insightSwitchLabel}>
+          {([
+            ['overview', t.overviewPanel],
+            ['weight', t.weightChartPanel],
+            ['height', t.heightChartPanel],
+            ['standard', t.standardPanel],
+            ['comparison', t.comparisonPanel],
+            ['deviations', t.deviationsPanel],
+            ['records', t.recordsPanel],
+          ] as const).map(([panel, label]) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeInsightPanel === panel}
+              className={activeInsightPanel === panel ? 'is-active' : ''}
+              key={panel}
+              onClick={() => setActiveInsightPanel(panel)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-      </section>
 
-      <section className="content-card owner-health-table-card" id="vaccines-table" aria-label={t.vaccineTable}>
-        <div className="owner-health-section-head">
-          <span className="eyebrow-label">{t.vaccineTable}</span>
-          <h3>{t.vaccineTable}</h3>
-        </div>
-        <div className="owner-health-table-wrap">
-          <table className="owner-health-table">
-            <thead>
-              <tr>
-                <th>{t.category}</th>
-                <th>{t.titleField}</th>
-                <th>{t.performedAt}</th>
-                <th>{t.nextDueAt}</th>
-                <th>{t.clinic}</th>
-                <th>{t.batchNumber}</th>
-                <th>{t.actions}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {healthRecords.length > 0 ? healthRecords.map((record) => (
-                <tr key={record.id}>
-                  <td>{t.categories[record.category]}</td>
-                  <td>
-                    <strong>{record.title}</strong>
-                    {record.note ? <small>{record.note}</small> : null}
-                  </td>
-                  <td>{formatDate(locale, record.performedAt)}</td>
-                  <td>{formatDate(locale, record.nextDueAt)}</td>
-                  <td>{record.clinic ?? record.veterinarian ?? '—'}</td>
-                  <td>{record.batchNumber ?? '—'}</td>
-                  <td><button type="button" className="button-ghost small" onClick={() => void handleDeleteHealthRecord(record.id)}>{t.remove}</button></td>
-                </tr>
-              )) : (
-                <tr><td colSpan={7}>{t.noRecords}</td></tr>
+        <div className="owner-health-progressive__panel" role="tabpanel" aria-live="polite">
+          {activeInsightPanel === 'overview' ? (
+            <section className="owner-health-dashboard-grid owner-health-dashboard-grid--inside">
+              <div className="content-card owner-health-chart-card">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.growthChart}</span>
+                  <h3>{t.weightTrend}</h3>
+                </div>
+                {chartRecords.length > 0 ? (
+                  <div className="owner-health-chart" role="list">
+                    {chartRecords.map((record) => {
+                      const width = getBarWidth(record.weightKg, maxWeight);
+                      return (
+                        <div className="owner-health-chart__row" role="listitem" key={record.id}>
+                          <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
+                          <div className="owner-health-chart__bar-track">
+                            <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
+                          </div>
+                          <strong>{formatValue(record.weightKg, t.kg)}</strong>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="owner-health-empty">{t.emptyChart}</p>
+                )}
+              </div>
+
+              <div className="content-card owner-health-chart-card">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.growthChart}</span>
+                  <h3>{t.heightTrend}</h3>
+                </div>
+                {heightChartRecords.length > 0 ? (
+                  <div className="owner-health-chart" role="list">
+                    {heightChartRecords.map((record) => {
+                      const width = getBarWidth(record.heightWithersCm, maxHeight);
+                      return (
+                        <div className="owner-health-chart__row" role="listitem" key={`${record.id}-height`}>
+                          <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
+                          <div className="owner-health-chart__bar-track">
+                            <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
+                          </div>
+                          <strong>{formatValue(record.heightWithersCm, t.cm)}</strong>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="owner-health-empty">{t.emptyChart}</p>
+                )}
+              </div>
+
+              <div className="content-card owner-health-chart-card owner-health-chart-card--standard">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.standardChart}</span>
+                  <h3>{t.conclusion}</h3>
+                  <p>{t.standardBody}</p>
+                </div>
+                <div className="owner-health-standard-grid">
+                  <div>
+                    <span>{t.weight}</span>
+                    <strong>{latestMeasurement?.weightKg != null ? formatValue(latestMeasurement.weightKg, t.kg) : '—'}</strong>
+                    <small>{formatRange(latestOrientationRange?.weight, t.kg)}</small>
+                  </div>
+                  <div>
+                    <span>{t.height}</span>
+                    <strong>{latestMeasurement?.heightWithersCm != null ? formatValue(latestMeasurement.heightWithersCm, t.cm) : '—'}</strong>
+                    <small>{formatRange(latestOrientationRange?.height, t.cm)}</small>
+                  </div>
+                  <div>
+                    <span>{t.bodyLength}</span>
+                    <strong>{latestMeasurement?.bodyLengthCm != null ? formatValue(latestMeasurement.bodyLengthCm, t.cm) : '—'}</strong>
+                    <small>{latestMeasurement?.ageMonths != null ? `${latestMeasurement.ageMonths} ${t.months}` : '—'}</small>
+                  </div>
+                </div>
+                <p className="owner-health-conclusion">{latestConclusion}</p>
+              </div>
+
+              <div className="content-card owner-health-safety-card">
+                <span className="eyebrow-label">{t.safetyTitle}</span>
+                <h3>{t.safetyTitle}</h3>
+                <p>{t.safetyBody}</p>
+              </div>
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'weight' ? (
+            <section className="owner-health-graph-panel">
+              <div className="owner-health-section-head">
+                <span className="eyebrow-label">{t.weightChartPanel}</span>
+                <h3>{t.weightTrend}</h3>
+                <p>{t.noComparisonData}</p>
+              </div>
+              <GrowthLineChart
+                title={t.weightTrend}
+                points={weightMetricPoints}
+                valueSuffix={getMetricSuffix('weight', t)}
+                actualLabel={t.userLineLabel}
+                standardLabel={t.standardLineLabel}
+                rangeLabel={t.standardRangeLabel}
+                emptyLabel={t.emptyChart}
+                showStandard={false}
+              />
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'height' ? (
+            <section className="owner-health-graph-panel">
+              <div className="owner-health-section-head">
+                <span className="eyebrow-label">{t.heightChartPanel}</span>
+                <h3>{t.heightTrend}</h3>
+                <p>{t.noComparisonData}</p>
+              </div>
+              <GrowthLineChart
+                title={t.heightTrend}
+                points={heightMetricPoints}
+                valueSuffix={getMetricSuffix('height', t)}
+                actualLabel={t.userLineLabel}
+                standardLabel={t.standardLineLabel}
+                rangeLabel={t.standardRangeLabel}
+                emptyLabel={t.emptyChart}
+                showStandard={false}
+              />
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'standard' ? (
+            <section className="owner-health-graph-grid">
+              <div className="owner-health-graph-panel">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.standardPanel}</span>
+                  <h3>{t.standardWeightTitle}</h3>
+                  <p>{t.standardBody}</p>
+                </div>
+                <GrowthLineChart
+                  title={t.standardWeightTitle}
+                  points={standardWeightPoints}
+                  valueSuffix={getMetricSuffix('weight', t)}
+                  actualLabel={t.userLineLabel}
+                  standardLabel={t.standardLineLabel}
+                  rangeLabel={t.standardRangeLabel}
+                  emptyLabel={t.emptyChart}
+                  showActual={false}
+                />
+              </div>
+              <div className="owner-health-graph-panel">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.standardPanel}</span>
+                  <h3>{t.standardHeightTitle}</h3>
+                  <p>{t.standardBody}</p>
+                </div>
+                <GrowthLineChart
+                  title={t.standardHeightTitle}
+                  points={standardHeightPoints}
+                  valueSuffix={getMetricSuffix('height', t)}
+                  actualLabel={t.userLineLabel}
+                  standardLabel={t.standardLineLabel}
+                  rangeLabel={t.standardRangeLabel}
+                  emptyLabel={t.emptyChart}
+                  showActual={false}
+                />
+              </div>
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'comparison' ? (
+            <section className="owner-health-graph-grid">
+              <div className="owner-health-graph-panel">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.comparisonPanel}</span>
+                  <h3>{t.combinedWeightTitle}</h3>
+                  <p>{t.standardBody}</p>
+                </div>
+                <GrowthLineChart
+                  title={t.combinedWeightTitle}
+                  points={weightMetricPoints}
+                  valueSuffix={getMetricSuffix('weight', t)}
+                  actualLabel={t.userLineLabel}
+                  standardLabel={t.standardLineLabel}
+                  rangeLabel={t.standardRangeLabel}
+                  emptyLabel={t.noComparisonData}
+                />
+              </div>
+              <div className="owner-health-graph-panel">
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.comparisonPanel}</span>
+                  <h3>{t.combinedHeightTitle}</h3>
+                  <p>{t.standardBody}</p>
+                </div>
+                <GrowthLineChart
+                  title={t.combinedHeightTitle}
+                  points={heightMetricPoints}
+                  valueSuffix={getMetricSuffix('height', t)}
+                  actualLabel={t.userLineLabel}
+                  standardLabel={t.standardLineLabel}
+                  rangeLabel={t.standardRangeLabel}
+                  emptyLabel={t.noComparisonData}
+                />
+              </div>
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'deviations' ? (
+            <section className="owner-health-deviation-panel">
+              <div className="owner-health-section-head">
+                <span className="eyebrow-label">{t.deviationsPanel}</span>
+                <h3>{t.deviationsPanel}</h3>
+                <p>{t.standardBody}</p>
+              </div>
+              {comparisonRecords.length ? (
+                <div className="owner-health-deviation-list" role="list">
+                  {comparisonRecords.map((record) => (
+                    <article role="listitem" key={`${record.id}-deviation`} className="owner-health-deviation-card">
+                      <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
+                      <strong>{formatDate(locale, record.measuredAt)}</strong>
+                      <dl>
+                        <div>
+                          <dt>{getMetricLabel('weight', t)}</dt>
+                          <dd>{getDeviationText(record, 'weight', t)}</dd>
+                        </div>
+                        <div>
+                          <dt>{getMetricLabel('height', t)}</dt>
+                          <dd>{getDeviationText(record, 'height', t)}</dd>
+                        </div>
+                      </dl>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <p className="owner-health-empty">{t.noComparisonData}</p>
               )}
-            </tbody>
-          </table>
+            </section>
+          ) : null}
+
+          {activeInsightPanel === 'records' ? (
+            <section className="owner-health-records-grid">
+              <div className="content-card owner-health-table-card" id="growth-table" aria-label={t.growthTable}>
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.growthTable}</span>
+                  <h3>{t.growthTable}</h3>
+                </div>
+                <div className="owner-health-table-wrap">
+                  <table className="owner-health-table">
+                    <thead>
+                      <tr>
+                        <th>{t.measuredAt}</th>
+                        <th>{t.age}</th>
+                        <th>{t.weight}</th>
+                        <th>{t.height}</th>
+                        <th>{t.bodyLength}</th>
+                        <th>{t.chest}</th>
+                        <th>{t.head}</th>
+                        <th>{t.muzzle}</th>
+                        <th>{t.skull}</th>
+                        <th>{t.note}</th>
+                        <th>{t.actions}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {measurements.length > 0 ? measurements.map((record) => (
+                        <tr key={record.id}>
+                          <td>{formatDate(locale, record.measuredAt)}</td>
+                          <td>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : '—'}</td>
+                          <td>{formatValue(record.weightKg, t.kg)}</td>
+                          <td>{formatValue(record.heightWithersCm, t.cm)}</td>
+                          <td>{formatValue(record.bodyLengthCm, t.cm)}</td>
+                          <td>{formatValue(record.chestCircumferenceCm, t.cm)}</td>
+                          <td>{formatValue(record.headLengthCm, t.cm)}</td>
+                          <td>{formatValue(record.muzzleLengthCm, t.cm)}</td>
+                          <td>{formatValue(record.skullLengthCm, t.cm)}</td>
+                          <td>{record.note ?? '—'}</td>
+                          <td><button type="button" className="button-ghost small" onClick={() => void handleDeleteMeasurement(record.id)}>{t.remove}</button></td>
+                        </tr>
+                      )) : (
+                        <tr><td colSpan={11}>{t.noRecords}</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="content-card owner-health-table-card" id="vaccines-table" aria-label={t.vaccineTable}>
+                <div className="owner-health-section-head">
+                  <span className="eyebrow-label">{t.vaccineTable}</span>
+                  <h3>{t.vaccineTable}</h3>
+                </div>
+                <div className="owner-health-table-wrap">
+                  <table className="owner-health-table">
+                    <thead>
+                      <tr>
+                        <th>{t.category}</th>
+                        <th>{t.titleField}</th>
+                        <th>{t.performedAt}</th>
+                        <th>{t.nextDueAt}</th>
+                        <th>{t.clinic}</th>
+                        <th>{t.batchNumber}</th>
+                        <th>{t.actions}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {healthRecords.length > 0 ? healthRecords.map((record) => (
+                        <tr key={record.id}>
+                          <td>{t.categories[record.category]}</td>
+                          <td>
+                            <strong>{record.title}</strong>
+                            {record.note ? <small>{record.note}</small> : null}
+                          </td>
+                          <td>{formatDate(locale, record.performedAt)}</td>
+                          <td>{formatDate(locale, record.nextDueAt)}</td>
+                          <td>{record.clinic ?? record.veterinarian ?? '—'}</td>
+                          <td>{record.batchNumber ?? '—'}</td>
+                          <td><button type="button" className="button-ghost small" onClick={() => void handleDeleteHealthRecord(record.id)}>{t.remove}</button></td>
+                        </tr>
+                      )) : (
+                        <tr><td colSpan={7}>{t.noRecords}</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          ) : null}
         </div>
       </section>
     </div>
