@@ -33,6 +33,11 @@ type WeightFormState = {
   measuredAt: string;
   weightKg: string;
   heightWithersCm: string;
+  bodyLengthCm: string;
+  chestCircumferenceCm: string;
+  headLengthCm: string;
+  muzzleLengthCm: string;
+  skullLengthCm: string;
   note: string;
 };
 
@@ -59,6 +64,11 @@ function createEmptyWeightForm(): WeightFormState {
     measuredAt: todayIso(),
     weightKg: '',
     heightWithersCm: '',
+    bodyLengthCm: '',
+    chestCircumferenceCm: '',
+    headLengthCm: '',
+    muzzleLengthCm: '',
+    skullLengthCm: '',
     note: '',
   };
 }
@@ -99,6 +109,11 @@ const copy = {
     measuredAt: 'Date',
     weight: 'Weight',
     height: 'Height at withers',
+    bodyLength: 'Body length',
+    chest: 'Chest circumference',
+    head: 'Head length',
+    muzzle: 'Muzzle length',
+    skull: 'Skull length',
     note: 'Note',
     saveWeight: 'Save weight',
     saving: 'Saving...',
@@ -117,9 +132,18 @@ const copy = {
     titleRequired: 'Add a title before saving the health record.',
     savedHealth: 'Health record saved.',
     deletedHealth: 'Health record deleted.',
-    growthChart: 'Weight trend',
-    emptyChart: 'Save at least one weight record to start the growth line.',
-    growthTable: 'Growth history',
+    growthChart: 'Growth charts',
+    weightTrend: 'Weight trend',
+    heightTrend: 'Height trend',
+    standardChart: 'Standard orientation',
+    standardBody: 'Broad orientation only. Fast changes or large deviations should be checked with a veterinarian.',
+    conclusion: 'Conclusion',
+    conclusionNormal: 'The latest record is within the broad orientation range for the saved age.',
+    conclusionHigh: 'The latest weight is above the broad orientation range for the saved age. Review food quantity, activity and growth pace; if the change is fast, speak with a veterinarian.',
+    conclusionLow: 'The latest weight is below the broad orientation range for the saved age. Review appetite, nutrition and condition; if the gap continues, speak with a veterinarian.',
+    conclusionMissing: 'Add age and weight records to generate an orientation note.',
+    emptyChart: 'Save at least one measurement record to start the growth line.',
+    growthTable: 'Growth and size history',
     vaccineTable: 'Vaccines and care history',
     age: 'Age',
     actions: 'Actions',
@@ -159,6 +183,11 @@ const copy = {
     measuredAt: 'Дата',
     weight: 'Тегло',
     height: 'Височина при холката',
+    bodyLength: 'Дължина на тяло',
+    chest: 'Гръдна обиколка',
+    head: 'Дължина на глава',
+    muzzle: 'Дължина на муцуна',
+    skull: 'Дължина на череп',
     note: 'Бележка',
     saveWeight: 'Запази тегло',
     saving: 'Записване...',
@@ -177,9 +206,18 @@ const copy = {
     titleRequired: 'Добави име на здравния запис преди запис.',
     savedHealth: 'Здравният запис е запазен.',
     deletedHealth: 'Здравният запис е изтрит.',
-    growthChart: 'Тенденция на теглото',
-    emptyChart: 'Запази поне един запис с тегло, за да започне линията на растежа.',
-    growthTable: 'История на растежа',
+    growthChart: 'Диаграми за растеж',
+    weightTrend: 'Тенденция на теглото',
+    heightTrend: 'Тенденция на височината',
+    standardChart: 'Ориентир спрямо стандарт',
+    standardBody: 'Широк ориентир, не медицинска диагноза. При резки промени или големи отклонения се консултирай с ветеринар.',
+    conclusion: 'Извод',
+    conclusionNormal: 'Последният запис е в широкия ориентировъчен диапазон за запазената възраст.',
+    conclusionHigh: 'Последното тегло е над широкия ориентировъчен диапазон за възрастта. Провери количеството храна, активността и темпото на растеж; при рязка промяна говори с ветеринар.',
+    conclusionLow: 'Последното тегло е под широкия ориентировъчен диапазон за възрастта. Провери апетита, храненето и общото състояние; ако отклонението продължава, говори с ветеринар.',
+    conclusionMissing: 'Добави възраст и тегло, за да се покаже ориентировъчен извод.',
+    emptyChart: 'Запази поне един запис с измервания, за да започне линията на растежа.',
+    growthTable: 'История на растеж и размери',
     vaccineTable: 'История на ваксини и грижа',
     age: 'Възраст',
     actions: 'Действия',
@@ -219,6 +257,11 @@ const copy = {
     measuredAt: 'Data',
     weight: 'Peso',
     height: 'Altezza al garrese',
+    bodyLength: 'Lunghezza corpo',
+    chest: 'Circonferenza torace',
+    head: 'Lunghezza testa',
+    muzzle: 'Lunghezza muso',
+    skull: 'Lunghezza cranio',
     note: 'Nota',
     saveWeight: 'Salva peso',
     saving: 'Salvataggio...',
@@ -237,9 +280,18 @@ const copy = {
     titleRequired: 'Aggiungi un titolo prima di salvare il record salute.',
     savedHealth: 'Record salute salvato.',
     deletedHealth: 'Record salute eliminato.',
-    growthChart: 'Trend peso',
-    emptyChart: 'Salva almeno un record peso per iniziare la linea di crescita.',
-    growthTable: 'Storia crescita',
+    growthChart: 'Grafici crescita',
+    weightTrend: 'Trend peso',
+    heightTrend: 'Trend altezza',
+    standardChart: 'Orientamento standard',
+    standardBody: 'Orientamento ampio, non diagnosi medica. Per cambi rapidi o deviazioni importanti consulta il veterinario.',
+    conclusion: 'Conclusione',
+    conclusionNormal: 'L’ultimo record è nel range orientativo ampio per l’età salvata.',
+    conclusionHigh: 'L’ultimo peso è sopra il range orientativo ampio per l’età. Controlla quantità di cibo, attività e ritmo di crescita; se il cambio è rapido, parla con un veterinario.',
+    conclusionLow: 'L’ultimo peso è sotto il range orientativo ampio per l’età. Controlla appetito, nutrizione e condizione generale; se la distanza continua, parla con un veterinario.',
+    conclusionMissing: 'Aggiungi età e peso per generare una nota orientativa.',
+    emptyChart: 'Salva almeno un record misure per iniziare la linea di crescita.',
+    growthTable: 'Storia crescita e misure',
     vaccineTable: 'Storia vaccini e cura',
     age: 'Età',
     actions: 'Azioni',
@@ -296,6 +348,44 @@ function getInputClass(value: string) {
   return value ? 'health-tracker-input has-value' : 'health-tracker-input';
 }
 
+type OrientationRange = {
+  weight: [number, number];
+  height: [number, number];
+};
+
+function getOrientationRange(ageMonths: number | null | undefined): OrientationRange | null {
+  if (ageMonths == null) return null;
+
+  if (ageMonths <= 5) return { weight: [14, 24], height: [42, 55] };
+  if (ageMonths <= 8) return { weight: [26, 38], height: [53, 63] };
+  if (ageMonths <= 12) return { weight: [34, 48], height: [58, 68] };
+  if (ageMonths <= 18) return { weight: [38, 54], height: [60, 70] };
+  return { weight: [40, 55], height: [60, 70] };
+}
+
+function getWeightConclusion(
+  latest: DogMeasurementRecord | null,
+  t: { conclusionMissing: string; conclusionHigh: string; conclusionLow: string; conclusionNormal: string },
+) {
+  const range = getOrientationRange(latest?.ageMonths);
+  const weight = latest?.weightKg;
+
+  if (!range || weight == null) return t.conclusionMissing;
+  if (weight > range.weight[1]) return t.conclusionHigh;
+  if (weight < range.weight[0]) return t.conclusionLow;
+  return t.conclusionNormal;
+}
+
+function formatRange(range: [number, number] | null | undefined, suffix: string) {
+  if (!range) return '—';
+  return `${range[0]}–${range[1]} ${suffix}`;
+}
+
+function getBarWidth(value: number | null | undefined, max: number) {
+  if (value == null || max <= 0) return '0%';
+  return `${Math.max(6, Math.min(100, (value / max) * 100))}%`;
+}
+
 export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }: OwnerHealthGrowthTrackerProps) {
   const t = copy[locale] ?? copy.en;
   const [activePanel, setActivePanel] = useState<ActivePanel>('weight');
@@ -335,7 +425,11 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
   const latestMeasurement = useMemo(() => getLatestMeasurement(measurements), [measurements]);
   const nextDue = useMemo(() => getNextDue(healthRecords), [healthRecords]);
   const chartRecords = useMemo(() => sortByDateAsc(measurements).filter((record) => record.weightKg != null), [measurements]);
+  const heightChartRecords = useMemo(() => sortByDateAsc(measurements).filter((record) => record.heightWithersCm != null), [measurements]);
   const maxWeight = useMemo(() => Math.max(...chartRecords.map((record) => record.weightKg ?? 0), 1), [chartRecords]);
+  const maxHeight = useMemo(() => Math.max(...heightChartRecords.map((record) => record.heightWithersCm ?? 0), 1), [heightChartRecords]);
+  const latestOrientationRange = useMemo(() => getOrientationRange(latestMeasurement?.ageMonths), [latestMeasurement]);
+  const latestConclusion = useMemo(() => getWeightConclusion(latestMeasurement, t), [latestMeasurement, t]);
 
   const handleWeightChange = (field: keyof WeightFormState, value: string) => {
     setWeightForm((current) => ({ ...current, [field]: value }));
@@ -358,10 +452,25 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
       measuredAt: weightForm.measuredAt,
       weightKg: toOptionalNumber(weightForm.weightKg),
       heightWithersCm: toOptionalNumber(weightForm.heightWithersCm),
+      bodyLengthCm: toOptionalNumber(weightForm.bodyLengthCm),
+      chestCircumferenceCm: toOptionalNumber(weightForm.chestCircumferenceCm),
+      headLengthCm: toOptionalNumber(weightForm.headLengthCm),
+      muzzleLengthCm: toOptionalNumber(weightForm.muzzleLengthCm),
+      skullLengthCm: toOptionalNumber(weightForm.skullLengthCm),
       note: weightForm.note.trim() || null,
     };
 
-    if (input.weightKg == null && input.heightWithersCm == null) {
+    const hasMeasurement = [
+      input.weightKg,
+      input.heightWithersCm,
+      input.bodyLengthCm,
+      input.chestCircumferenceCm,
+      input.headLengthCm,
+      input.muzzleLengthCm,
+      input.skullLengthCm,
+    ].some((value) => value != null);
+
+    if (!hasMeasurement) {
       setError(t.weightRequired);
       return;
     }
@@ -494,7 +603,7 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
       </section>
 
       {activePanel === 'weight' ? (
-        <section className="owner-health-form-card content-card" aria-label={t.weightTitle}>
+        <section className="owner-health-form-card content-card" id="growth" aria-label={t.weightTitle}>
           <div className="owner-health-form-card__head">
             <div>
               <span className="eyebrow-label">{t.openWeight}</span>
@@ -515,6 +624,26 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
               <span>{t.height} ({t.cm})</span>
               <input className={getInputClass(weightForm.heightWithersCm)} inputMode="decimal" value={weightForm.heightWithersCm} onChange={(event) => handleWeightChange('heightWithersCm', event.target.value)} placeholder="52" />
             </label>
+            <label>
+              <span>{t.bodyLength} ({t.cm})</span>
+              <input className={getInputClass(weightForm.bodyLengthCm)} inputMode="decimal" value={weightForm.bodyLengthCm} onChange={(event) => handleWeightChange('bodyLengthCm', event.target.value)} placeholder="60" />
+            </label>
+            <label>
+              <span>{t.chest} ({t.cm})</span>
+              <input className={getInputClass(weightForm.chestCircumferenceCm)} inputMode="decimal" value={weightForm.chestCircumferenceCm} onChange={(event) => handleWeightChange('chestCircumferenceCm', event.target.value)} placeholder="70" />
+            </label>
+            <label>
+              <span>{t.head} ({t.cm})</span>
+              <input className={getInputClass(weightForm.headLengthCm)} inputMode="decimal" value={weightForm.headLengthCm} onChange={(event) => handleWeightChange('headLengthCm', event.target.value)} placeholder="24" />
+            </label>
+            <label>
+              <span>{t.muzzle} ({t.cm})</span>
+              <input className={getInputClass(weightForm.muzzleLengthCm)} inputMode="decimal" value={weightForm.muzzleLengthCm} onChange={(event) => handleWeightChange('muzzleLengthCm', event.target.value)} placeholder="9" />
+            </label>
+            <label>
+              <span>{t.skull} ({t.cm})</span>
+              <input className={getInputClass(weightForm.skullLengthCm)} inputMode="decimal" value={weightForm.skullLengthCm} onChange={(event) => handleWeightChange('skullLengthCm', event.target.value)} placeholder="15" />
+            </label>
             <label className="owner-health-form-grid__wide">
               <span>{t.note}</span>
               <input className={getInputClass(weightForm.note)} value={weightForm.note} onChange={(event) => handleWeightChange('note', event.target.value)} placeholder={t.note} />
@@ -525,7 +654,7 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
           </button>
         </section>
       ) : (
-        <section className="owner-health-form-card content-card" aria-label={t.vaccineTitle}>
+        <section className="owner-health-form-card content-card" id="vaccines" aria-label={t.vaccineTitle}>
           <div className="owner-health-form-card__head">
             <div>
               <span className="eyebrow-label">{t.openVaccine}</span>
@@ -589,17 +718,17 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
         <div className="content-card owner-health-chart-card">
           <div className="owner-health-section-head">
             <span className="eyebrow-label">{t.growthChart}</span>
-            <h3>{t.growthChart}</h3>
+            <h3>{t.weightTrend}</h3>
           </div>
           {chartRecords.length > 0 ? (
             <div className="owner-health-chart" role="list">
               {chartRecords.map((record) => {
-                const width = Math.max(8, ((record.weightKg ?? 0) / maxWeight) * 100);
+                const width = getBarWidth(record.weightKg, maxWeight);
                 return (
                   <div className="owner-health-chart__row" role="listitem" key={record.id}>
                     <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
                     <div className="owner-health-chart__bar-track">
-                      <div className="owner-health-chart__bar" style={{ '--bar-width': `${width}%` } as CSSProperties} />
+                      <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
                     </div>
                     <strong>{formatValue(record.weightKg, t.kg)}</strong>
                   </div>
@@ -611,6 +740,57 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
           )}
         </div>
 
+        <div className="content-card owner-health-chart-card">
+          <div className="owner-health-section-head">
+            <span className="eyebrow-label">{t.growthChart}</span>
+            <h3>{t.heightTrend}</h3>
+          </div>
+          {heightChartRecords.length > 0 ? (
+            <div className="owner-health-chart" role="list">
+              {heightChartRecords.map((record) => {
+                const width = getBarWidth(record.heightWithersCm, maxHeight);
+                return (
+                  <div className="owner-health-chart__row" role="listitem" key={`${record.id}-height`}>
+                    <span>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : formatDate(locale, record.measuredAt)}</span>
+                    <div className="owner-health-chart__bar-track">
+                      <div className="owner-health-chart__bar" style={{ '--bar-width': width } as CSSProperties} />
+                    </div>
+                    <strong>{formatValue(record.heightWithersCm, t.cm)}</strong>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="owner-health-empty">{t.emptyChart}</p>
+          )}
+        </div>
+
+        <div className="content-card owner-health-chart-card owner-health-chart-card--standard">
+          <div className="owner-health-section-head">
+            <span className="eyebrow-label">{t.standardChart}</span>
+            <h3>{t.conclusion}</h3>
+            <p>{t.standardBody}</p>
+          </div>
+          <div className="owner-health-standard-grid">
+            <div>
+              <span>{t.weight}</span>
+              <strong>{latestMeasurement?.weightKg != null ? formatValue(latestMeasurement.weightKg, t.kg) : '—'}</strong>
+              <small>{formatRange(latestOrientationRange?.weight, t.kg)}</small>
+            </div>
+            <div>
+              <span>{t.height}</span>
+              <strong>{latestMeasurement?.heightWithersCm != null ? formatValue(latestMeasurement.heightWithersCm, t.cm) : '—'}</strong>
+              <small>{formatRange(latestOrientationRange?.height, t.cm)}</small>
+            </div>
+            <div>
+              <span>{t.bodyLength}</span>
+              <strong>{latestMeasurement?.bodyLengthCm != null ? formatValue(latestMeasurement.bodyLengthCm, t.cm) : '—'}</strong>
+              <small>{latestMeasurement?.ageMonths != null ? `${latestMeasurement.ageMonths} ${t.months}` : '—'}</small>
+            </div>
+          </div>
+          <p className="owner-health-conclusion">{latestConclusion}</p>
+        </div>
+
         <div className="content-card owner-health-safety-card">
           <span className="eyebrow-label">{t.safetyTitle}</span>
           <h3>{t.safetyTitle}</h3>
@@ -618,7 +798,7 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
         </div>
       </section>
 
-      <section className="content-card owner-health-table-card" aria-label={t.growthTable}>
+      <section className="content-card owner-health-table-card" id="growth-table" aria-label={t.growthTable}>
         <div className="owner-health-section-head">
           <span className="eyebrow-label">{t.growthTable}</span>
           <h3>{t.growthTable}</h3>
@@ -631,6 +811,11 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                 <th>{t.age}</th>
                 <th>{t.weight}</th>
                 <th>{t.height}</th>
+                <th>{t.bodyLength}</th>
+                <th>{t.chest}</th>
+                <th>{t.head}</th>
+                <th>{t.muzzle}</th>
+                <th>{t.skull}</th>
                 <th>{t.note}</th>
                 <th>{t.actions}</th>
               </tr>
@@ -642,18 +827,23 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                   <td>{record.ageMonths != null ? `${record.ageMonths} ${t.months}` : '—'}</td>
                   <td>{formatValue(record.weightKg, t.kg)}</td>
                   <td>{formatValue(record.heightWithersCm, t.cm)}</td>
+                  <td>{formatValue(record.bodyLengthCm, t.cm)}</td>
+                  <td>{formatValue(record.chestCircumferenceCm, t.cm)}</td>
+                  <td>{formatValue(record.headLengthCm, t.cm)}</td>
+                  <td>{formatValue(record.muzzleLengthCm, t.cm)}</td>
+                  <td>{formatValue(record.skullLengthCm, t.cm)}</td>
                   <td>{record.note ?? '—'}</td>
                   <td><button type="button" className="button-ghost small" onClick={() => void handleDeleteMeasurement(record.id)}>{t.remove}</button></td>
                 </tr>
               )) : (
-                <tr><td colSpan={6}>{t.noRecords}</td></tr>
+                <tr><td colSpan={11}>{t.noRecords}</td></tr>
               )}
             </tbody>
           </table>
         </div>
       </section>
 
-      <section className="content-card owner-health-table-card" aria-label={t.vaccineTable}>
+      <section className="content-card owner-health-table-card" id="vaccines-table" aria-label={t.vaccineTable}>
         <div className="owner-health-section-head">
           <span className="eyebrow-label">{t.vaccineTable}</span>
           <h3>{t.vaccineTable}</h3>

@@ -4,6 +4,7 @@ import { MyDogCard, type OwnerWorkspaceDog } from '@/components/my-dog-card';
 import { OverviewStatCard } from '@/components/overview-stat-card';
 import { EmptyStatePanel } from '@/components/empty-state-panel';
 import { OwnerCaneCorsoSpotlight } from '@/components/owner-cane-corso-spotlight';
+import { OwnerCaneCorsoSectionWorkspace } from '@/components/owner-cane-corso-section-workspace';
 import { OwnerPhotoGuidePanel } from '@/components/owner-photo-guide-panel';
 import { OwnerReviewReadinessPanel } from '@/components/owner-review-readiness-panel';
 import { getDictionary } from '@/lib/i18n';
@@ -216,6 +217,14 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
               publicHref={featuredPublicHref}
               verifyHref={featuredVerifyHref}
             />
+
+            {featuredDog ? (
+              <OwnerCaneCorsoSectionWorkspace
+                locale={locale}
+                dog={featuredDog}
+                registryEntry={featuredRegistryDocument?.entry ?? null}
+              />
+            ) : null}
 
             {featuredDog ? (
               <div className="my-dogs-compact-readiness">
