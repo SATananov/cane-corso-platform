@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 import type { DogLifecycleStatus, DogMeasurementRecord, DogSex } from '@cane-corso-platform/contracts';
@@ -30,6 +30,10 @@ type AuthenticitySignalKey = 'profile' | 'photos' | 'measurements' | 'standard' 
 
 type NextAuthenticityActionKey = 'profile' | 'photos' | 'measurements' | 'pedigree' | 'review';
 
+type AuthenticityQualificationKey = 'ready' | 'collecting' | 'weak';
+
+type AuthenticityConfidenceKey = 'low' | 'medium' | 'high';
+
 type AuthenticitySignal = {
   key: AuthenticitySignalKey;
   label: string;
@@ -47,7 +51,7 @@ const copyByLocale = {
     buttonContext: 'Model-ready assistant',
     score: 'Readiness score',
     confidence: 'Evidence confidence',
-    loading: 'Loading measurement archive…',
+    loading: 'Loading measurement archiveвЂ¦',
     loadError: 'Measurement archive is not available right now. The check continues with profile and photo evidence only.',
     noName: 'Unnamed Cane Corso',
     evidence: 'Evidence diagram',
@@ -62,7 +66,7 @@ const copyByLocale = {
       'The result is a preliminary orientation only. Final USG review, Registry publication and Certificate decisions remain human-controlled.',
     qualification: {
       ready: 'Strong candidate for USG review preparation',
-      collecting: 'Good start — collect more evidence',
+      collecting: 'Good start вЂ” collect more evidence',
       weak: 'Not enough evidence yet',
     },
     confidenceValues: {
@@ -96,9 +100,9 @@ const copyByLocale = {
       locked: 'locked',
     },
     diagramLabels: {
-      body: 'Body length ≈ height + 11%',
-      head: 'Head length ≈ 36% of height',
-      muzzle: 'Muzzle / skull ≈ 1:2',
+      body: 'Body length в‰€ height + 11%',
+      head: 'Head length в‰€ 36% of height',
+      muzzle: 'Muzzle / skull в‰€ 1:2',
     },
     nextActions: {
       photos: 'Add side-standing, front and head photos.',
@@ -109,83 +113,83 @@ const copyByLocale = {
     },
   },
   bg: {
-    eyebrow: 'USG проверка за истинско',
-    title: 'Провери готовността спрямо стандарта',
+    eyebrow: 'USG РїСЂРѕРІРµСЂРєР° Р·Р° РёСЃС‚РёРЅСЃРєРѕ',
+    title: 'РџСЂРѕРІРµСЂРё РіРѕС‚РѕРІРЅРѕСЃС‚С‚Р° СЃРїСЂСЏРјРѕ СЃС‚Р°РЅРґР°СЂС‚Р°',
     description:
-      'Това е AI/ML-ready ориентир. Комбинира данни от профила, снимки, измервания, FCI пропорции и граници на преглед. Не доказва порода или родословие.',
-    buttonContext: 'Моделът е подготвен като асистент',
-    score: 'Оценка на готовност',
-    confidence: 'Увереност по доказателства',
-    loading: 'Зареждам архива с измервания…',
-    loadError: 'Архивът с измервания не е достъпен в момента. Проверката продължава само с профил и снимки.',
-    noName: 'Cane Corso без име',
-    evidence: 'Диаграма на доказателствата',
-    signals: 'Сигнали, използвани от проверката',
-    proportions: 'Диаграми по стандарт',
-    photoModel: 'Статус на фото модела',
+      'РўРѕРІР° Рµ AI/ML-ready РѕСЂРёРµРЅС‚РёСЂ. РљРѕРјР±РёРЅРёСЂР° РґР°РЅРЅРё РѕС‚ РїСЂРѕС„РёР»Р°, СЃРЅРёРјРєРё, РёР·РјРµСЂРІР°РЅРёСЏ, FCI РїСЂРѕРїРѕСЂС†РёРё Рё РіСЂР°РЅРёС†Рё РЅР° РїСЂРµРіР»РµРґ. РќРµ РґРѕРєР°Р·РІР° РїРѕСЂРѕРґР° РёР»Рё СЂРѕРґРѕСЃР»РѕРІРёРµ.',
+    buttonContext: 'РњРѕРґРµР»СЉС‚ Рµ РїРѕРґРіРѕС‚РІРµРЅ РєР°С‚Рѕ Р°СЃРёСЃС‚РµРЅС‚',
+    score: 'РћС†РµРЅРєР° РЅР° РіРѕС‚РѕРІРЅРѕСЃС‚',
+    confidence: 'РЈРІРµСЂРµРЅРѕСЃС‚ РїРѕ РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°',
+    loading: 'Р—Р°СЂРµР¶РґР°Рј Р°СЂС…РёРІР° СЃ РёР·РјРµСЂРІР°РЅРёСЏвЂ¦',
+    loadError: 'РђСЂС…РёРІСЉС‚ СЃ РёР·РјРµСЂРІР°РЅРёСЏ РЅРµ Рµ РґРѕСЃС‚СЉРїРµРЅ РІ РјРѕРјРµРЅС‚Р°. РџСЂРѕРІРµСЂРєР°С‚Р° РїСЂРѕРґСЉР»Р¶Р°РІР° СЃР°РјРѕ СЃ РїСЂРѕС„РёР» Рё СЃРЅРёРјРєРё.',
+    noName: 'Cane Corso Р±РµР· РёРјРµ',
+    evidence: 'Р”РёР°РіСЂР°РјР° РЅР° РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°С‚Р°',
+    signals: 'РЎРёРіРЅР°Р»Рё, РёР·РїРѕР»Р·РІР°РЅРё РѕС‚ РїСЂРѕРІРµСЂРєР°С‚Р°',
+    proportions: 'Р”РёР°РіСЂР°РјРё РїРѕ СЃС‚Р°РЅРґР°СЂС‚',
+    photoModel: 'РЎС‚Р°С‚СѓСЃ РЅР° С„РѕС‚Рѕ РјРѕРґРµР»Р°',
     photoModelBody:
-      'Разпознаването от снимка е подготвено като бъдещ слой. Днес платформата проверява дали снимките са достатъчни за човешки/AI-подпомогнат преглед, не дали изображението доказва породата.',
-    nextTitle: 'Най-добра следваща стъпка',
-    boundaryTitle: 'Граница на доверие',
+      'Р Р°Р·РїРѕР·РЅР°РІР°РЅРµС‚Рѕ РѕС‚ СЃРЅРёРјРєР° Рµ РїРѕРґРіРѕС‚РІРµРЅРѕ РєР°С‚Рѕ Р±СЉРґРµС‰ СЃР»РѕР№. Р”РЅРµСЃ РїР»Р°С‚С„РѕСЂРјР°С‚Р° РїСЂРѕРІРµСЂСЏРІР° РґР°Р»Рё СЃРЅРёРјРєРёС‚Рµ СЃР° РґРѕСЃС‚Р°С‚СЉС‡РЅРё Р·Р° С‡РѕРІРµС€РєРё/AI-РїРѕРґРїРѕРјРѕРіРЅР°С‚ РїСЂРµРіР»РµРґ, РЅРµ РґР°Р»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµС‚Рѕ РґРѕРєР°Р·РІР° РїРѕСЂРѕРґР°С‚Р°.',
+    nextTitle: 'РќР°Р№-РґРѕР±СЂР° СЃР»РµРґРІР°С‰Р° СЃС‚СЉРїРєР°',
+    boundaryTitle: 'Р“СЂР°РЅРёС†Р° РЅР° РґРѕРІРµСЂРёРµ',
     boundaryBody:
-      'Резултатът е само предварителен ориентир. Финалният USG преглед, публикуването в Регистъра и Сертификатът остават човешки решения.',
+      'Р РµР·СѓР»С‚Р°С‚СЉС‚ Рµ СЃР°РјРѕ РїСЂРµРґРІР°СЂРёС‚РµР»РµРЅ РѕСЂРёРµРЅС‚РёСЂ. Р¤РёРЅР°Р»РЅРёСЏС‚ USG РїСЂРµРіР»РµРґ, РїСѓР±Р»РёРєСѓРІР°РЅРµС‚Рѕ РІ Р РµРіРёСЃС‚СЉСЂР° Рё РЎРµСЂС‚РёС„РёРєР°С‚СЉС‚ РѕСЃС‚Р°РІР°С‚ С‡РѕРІРµС€РєРё СЂРµС€РµРЅРёСЏ.',
     qualification: {
-      ready: 'Силен кандидат за подготовка към USG преглед',
-      collecting: 'Добро начало — събери още доказателства',
-      weak: 'Все още няма достатъчно доказателства',
+      ready: 'РЎРёР»РµРЅ РєР°РЅРґРёРґР°С‚ Р·Р° РїРѕРґРіРѕС‚РѕРІРєР° РєСЉРј USG РїСЂРµРіР»РµРґ',
+      collecting: 'Р”РѕР±СЂРѕ РЅР°С‡Р°Р»Рѕ вЂ” СЃСЉР±РµСЂРё РѕС‰Рµ РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°',
+      weak: 'Р’СЃРµ РѕС‰Рµ РЅСЏРјР° РґРѕСЃС‚Р°С‚СЉС‡РЅРѕ РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°',
     },
     confidenceValues: {
-      low: 'ниска',
-      medium: 'средна',
-      high: 'висока',
+      low: 'РЅРёСЃРєР°',
+      medium: 'СЃСЂРµРґРЅР°',
+      high: 'РІРёСЃРѕРєР°',
     },
-    flow: ['Профил', 'Снимки', 'Измервания', 'Стандарт', 'USG преглед'],
+    flow: ['РџСЂРѕС„РёР»', 'РЎРЅРёРјРєРё', 'РР·РјРµСЂРІР°РЅРёСЏ', 'РЎС‚Р°РЅРґР°СЂС‚', 'USG РїСЂРµРіР»РµРґ'],
     signalLabels: {
-      profile: 'Данни в профила',
-      photos: 'Снимкови доказателства',
-      measurements: 'Архив с измервания',
-      standard: 'FCI/USG ориентир',
-      pedigree: 'Семеен контекст',
-      human_review: 'Човешки преглед',
+      profile: 'Р”Р°РЅРЅРё РІ РїСЂРѕС„РёР»Р°',
+      photos: 'РЎРЅРёРјРєРѕРІРё РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°',
+      measurements: 'РђСЂС…РёРІ СЃ РёР·РјРµСЂРІР°РЅРёСЏ',
+      standard: 'FCI/USG РѕСЂРёРµРЅС‚РёСЂ',
+      pedigree: 'РЎРµРјРµРµРЅ РєРѕРЅС‚РµРєСЃС‚',
+      human_review: 'Р§РѕРІРµС€РєРё РїСЂРµРіР»РµРґ',
     },
     signalDescriptions: {
-      profile: 'Име, пол, дата на раждане, цвят, локация и описание от собственика.',
-      photos: 'Основна снимка плюс галерия от собственика за визуален контекст.',
-      measurements: 'Тегло, височина и пропорции, записани по дата.',
-      standard: 'Използва вече наличния FCI conformity engine от последните измервания.',
-      pedigree: 'Позната семейна линия и снимки на предци, когато са налични.',
-      human_review: 'Държи официалните решения отделени от автоматичната оценка.',
+      profile: 'РРјРµ, РїРѕР», РґР°С‚Р° РЅР° СЂР°Р¶РґР°РЅРµ, С†РІСЏС‚, Р»РѕРєР°С†РёСЏ Рё РѕРїРёСЃР°РЅРёРµ РѕС‚ СЃРѕР±СЃС‚РІРµРЅРёРєР°.',
+      photos: 'РћСЃРЅРѕРІРЅР° СЃРЅРёРјРєР° РїР»СЋСЃ РіР°Р»РµСЂРёСЏ РѕС‚ СЃРѕР±СЃС‚РІРµРЅРёРєР° Р·Р° РІРёР·СѓР°Р»РµРЅ РєРѕРЅС‚РµРєСЃС‚.',
+      measurements: 'РўРµРіР»Рѕ, РІРёСЃРѕС‡РёРЅР° Рё РїСЂРѕРїРѕСЂС†РёРё, Р·Р°РїРёСЃР°РЅРё РїРѕ РґР°С‚Р°.',
+      standard: 'РР·РїРѕР»Р·РІР° РІРµС‡Рµ РЅР°Р»РёС‡РЅРёСЏ FCI conformity engine РѕС‚ РїРѕСЃР»РµРґРЅРёС‚Рµ РёР·РјРµСЂРІР°РЅРёСЏ.',
+      pedigree: 'РџРѕР·РЅР°С‚Р° СЃРµРјРµР№РЅР° Р»РёРЅРёСЏ Рё СЃРЅРёРјРєРё РЅР° РїСЂРµРґС†Рё, РєРѕРіР°С‚Рѕ СЃР° РЅР°Р»РёС‡РЅРё.',
+      human_review: 'Р”СЉСЂР¶Рё РѕС„РёС†РёР°Р»РЅРёС‚Рµ СЂРµС€РµРЅРёСЏ РѕС‚РґРµР»РµРЅРё РѕС‚ Р°РІС‚РѕРјР°С‚РёС‡РЅР°С‚Р° РѕС†РµРЅРєР°.',
     },
     values: {
-      profileReady: 'готови профилни полета',
-      photoCount: 'снимки',
-      measurementCount: 'записа с измервания',
-      fciScore: 'оценка по стандарт',
-      pedigreeCount: 'родословни полета',
-      locked: 'заключено',
+      profileReady: 'РіРѕС‚РѕРІРё РїСЂРѕС„РёР»РЅРё РїРѕР»РµС‚Р°',
+      photoCount: 'СЃРЅРёРјРєРё',
+      measurementCount: 'Р·Р°РїРёСЃР° СЃ РёР·РјРµСЂРІР°РЅРёСЏ',
+      fciScore: 'РѕС†РµРЅРєР° РїРѕ СЃС‚Р°РЅРґР°СЂС‚',
+      pedigreeCount: 'СЂРѕРґРѕСЃР»РѕРІРЅРё РїРѕР»РµС‚Р°',
+      locked: 'Р·Р°РєР»СЋС‡РµРЅРѕ',
     },
     diagramLabels: {
-      body: 'Дължина на тяло ≈ височина + 11%',
-      head: 'Дължина на глава ≈ 36% от височината',
-      muzzle: 'Муцуна / череп ≈ 1:2',
+      body: 'Р”СЉР»Р¶РёРЅР° РЅР° С‚СЏР»Рѕ в‰€ РІРёСЃРѕС‡РёРЅР° + 11%',
+      head: 'Р”СЉР»Р¶РёРЅР° РЅР° РіР»Р°РІР° в‰€ 36% РѕС‚ РІРёСЃРѕС‡РёРЅР°С‚Р°',
+      muzzle: 'РњСѓС†СѓРЅР° / С‡РµСЂРµРї в‰€ 1:2',
     },
     nextActions: {
-      photos: 'Добави странична снимка в стойка, фронтална снимка и снимка на глава.',
-      measurements: 'Запази тегло, височина, дължина на тяло и глава по дата.',
-      profile: 'Попълни дата на раждане, пол, цвят, локация и описание.',
-      pedigree: 'Добави родители/предци, ако ги знаеш, със снимки когато е възможно.',
-      review: 'Подай към USG преглед, когато доказателствата са достатъчно ясни.',
+      photos: 'Р”РѕР±Р°РІРё СЃС‚СЂР°РЅРёС‡РЅР° СЃРЅРёРјРєР° РІ СЃС‚РѕР№РєР°, С„СЂРѕРЅС‚Р°Р»РЅР° СЃРЅРёРјРєР° Рё СЃРЅРёРјРєР° РЅР° РіР»Р°РІР°.',
+      measurements: 'Р—Р°РїР°Р·Рё С‚РµРіР»Рѕ, РІРёСЃРѕС‡РёРЅР°, РґСЉР»Р¶РёРЅР° РЅР° С‚СЏР»Рѕ Рё РіР»Р°РІР° РїРѕ РґР°С‚Р°.',
+      profile: 'РџРѕРїСЉР»РЅРё РґР°С‚Р° РЅР° СЂР°Р¶РґР°РЅРµ, РїРѕР», С†РІСЏС‚, Р»РѕРєР°С†РёСЏ Рё РѕРїРёСЃР°РЅРёРµ.',
+      pedigree: 'Р”РѕР±Р°РІРё СЂРѕРґРёС‚РµР»Рё/РїСЂРµРґС†Рё, Р°РєРѕ РіРё Р·РЅР°РµС€, СЃСЉСЃ СЃРЅРёРјРєРё РєРѕРіР°С‚Рѕ Рµ РІСЉР·РјРѕР¶РЅРѕ.',
+      review: 'РџРѕРґР°Р№ РєСЉРј USG РїСЂРµРіР»РµРґ, РєРѕРіР°С‚Рѕ РґРѕРєР°Р·Р°С‚РµР»СЃС‚РІР°С‚Р° СЃР° РґРѕСЃС‚Р°С‚СЉС‡РЅРѕ СЏСЃРЅРё.',
     },
   },
   it: {
-    eyebrow: 'Verifica autenticità USG',
+    eyebrow: 'Verifica autenticitГ  USG',
     title: 'Controlla la prontezza rispetto allo standard',
     description:
-      'È un livello di orientamento pronto per AI/ML. Combina profilo, foto, misure, proporzioni FCI e confini di revisione. Non prova razza o pedigree.',
+      'Г€ un livello di orientamento pronto per AI/ML. Combina profilo, foto, misure, proporzioni FCI e confini di revisione. Non prova razza o pedigree.',
     buttonContext: 'Assistente pronto per modello',
     score: 'Punteggio prontezza',
-    confidence: 'Affidabilità evidenze',
-    loading: 'Caricamento archivio misure…',
+    confidence: 'AffidabilitГ  evidenze',
+    loading: 'Caricamento archivio misureвЂ¦',
     loadError: 'Archivio misure non disponibile ora. La verifica continua solo con profilo e foto.',
     noName: 'Cane Corso senza nome',
     evidence: 'Diagramma evidenze',
@@ -193,14 +197,14 @@ const copyByLocale = {
     proportions: 'Diagrammi orientati allo standard',
     photoModel: 'Stato modello foto',
     photoModelBody:
-      'Il riconoscimento da foto è preparato come livello futuro. Oggi la piattaforma verifica se le foto sono sufficienti per revisione umana/assistita da AI, non se l’immagine prova la razza.',
+      'Il riconoscimento da foto ГЁ preparato come livello futuro. Oggi la piattaforma verifica se le foto sono sufficienti per revisione umana/assistita da AI, non se lвЂ™immagine prova la razza.',
     nextTitle: 'Prossima evidenza migliore',
     boundaryTitle: 'Confine di fiducia',
     boundaryBody:
-      'Il risultato è solo orientamento preliminare. Revisione USG finale, pubblicazione Registro e Certificato restano decisioni umane.',
+      'Il risultato ГЁ solo orientamento preliminare. Revisione USG finale, pubblicazione Registro e Certificato restano decisioni umane.',
     qualification: {
       ready: 'Forte candidato per preparazione revisione USG',
-      collecting: 'Buon inizio — raccogli più evidenze',
+      collecting: 'Buon inizio вЂ” raccogli piГ№ evidenze',
       weak: 'Evidenze ancora insufficienti',
     },
     confidenceValues: {
@@ -219,9 +223,9 @@ const copyByLocale = {
     },
     signalDescriptions: {
       profile: 'Nome, sesso, data di nascita, colore, luogo e descrizione proprietario.',
-      photos: 'Immagine principale più galleria proprietario per contesto visivo.',
+      photos: 'Immagine principale piГ№ galleria proprietario per contesto visivo.',
       measurements: 'Peso, altezza e proporzioni salvate per data.',
-      standard: 'Usa il motore FCI conformity già presente dalle ultime misure.',
+      standard: 'Usa il motore FCI conformity giГ  presente dalle ultime misure.',
       pedigree: 'Linea familiare nota e foto antenati quando disponibili.',
       human_review: 'Tiene le decisioni ufficiali separate dal punteggio automatico.',
     },
@@ -234,9 +238,9 @@ const copyByLocale = {
       locked: 'bloccato',
     },
     diagramLabels: {
-      body: 'Lunghezza corpo ≈ altezza + 11%',
-      head: 'Lunghezza testa ≈ 36% altezza',
-      muzzle: 'Muso / cranio ≈ 1:2',
+      body: 'Lunghezza corpo в‰€ altezza + 11%',
+      head: 'Lunghezza testa в‰€ 36% altezza',
+      muzzle: 'Muso / cranio в‰€ 1:2',
     },
     nextActions: {
       photos: 'Aggiungi foto laterale in posa, frontale e testa.',
@@ -275,13 +279,13 @@ function countMeasurementFields(record: DogMeasurementRecord | null) {
   ].filter((value) => typeof value === 'number' && Number.isFinite(value) && value > 0).length;
 }
 
-function getQualification(score: number) {
+function getQualification(score: number): AuthenticityQualificationKey {
   if (score >= 80) return 'ready';
   if (score >= 55) return 'collecting';
   return 'weak';
 }
 
-function getConfidence(signalCount: number, measurementCount: number, score: number) {
+function getConfidence(signalCount: number, measurementCount: number, score: number): AuthenticityConfidenceKey {
   if (signalCount >= 5 && measurementCount >= 2 && score >= 70) return 'high';
   if (signalCount >= 3 && score >= 45) return 'medium';
   return 'low';
@@ -567,3 +571,4 @@ export function UsgAuthenticityCheckPanel({
     </section>
   );
 }
+
