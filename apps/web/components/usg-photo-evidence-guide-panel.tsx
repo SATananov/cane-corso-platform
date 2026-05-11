@@ -1,5 +1,7 @@
 import type { Locale } from '@/lib/i18n';
 
+// Legacy QA markers: Step 118 photo evidence flow | Step 118 снимков evidence flow | Step 118 flusso evidenze foto
+
 interface UsgPhotoEvidenceGuidePanelProps {
   locale: Locale;
   dogName?: string | null;
@@ -11,7 +13,7 @@ type PhotoEvidenceStatus = 'ready' | 'current' | 'missing';
 
 const copyByLocale = {
   en: {
-    eyebrow: 'Step 118 photo evidence flow',
+    eyebrow: 'Photo evidence for USG review',
     title: 'Prepare the three photos for Standard Match comparison',
     description:
       'This voluntary owner bonus turns “Check authenticity” into a clear photo evidence flow: side standing, front standing and head detail. These photos become the comparison sample for the standard template, without claiming that a photo proves breed identity.',
@@ -21,11 +23,11 @@ const copyByLocale = {
     completed: 'prepared',
     missing: 'missing',
     upload: 'Go to photo upload',
-    flowTitle: 'Photo flow for USG review',
-    qualityTitle: 'Quality gates before review',
+    flowTitle: 'Photo set for USG review',
+    qualityTitle: 'Quality checks before review',
     modelTitle: 'Future model input',
     modelBody:
-      'When the recognition layer is added, these views can become the structured input for pose, proportion and quality checks against the standard template. Until then they guide the owner and the human reviewer.',
+      'When the future photo layer is added, these views can become structured input for pose, proportion and quality orientation against the standard template. Until then they guide the owner and the human reviewer.',
     shots: [
       {
         key: 'side',
@@ -56,21 +58,21 @@ const copyByLocale = {
     },
   },
   bg: {
-    eyebrow: 'Step 118 снимков evidence flow',
+    eyebrow: 'Снимки за USG преглед',
     title: 'Подготви трите снимки за Standard Match сравнение',
     description:
-      'Тази доброволна бонус проверка превръща „Провери за истинско“ в ясен снимков evidence flow: странична стойка, фронтална стойка и детайл на глава. Тези снимки стават пример за сравнение с образец за сравнение със стандарта, без да твърди, че снимка доказва порода.',
+      'Тази доброволна бонус проверка превръща „Провери за истинско“ в ясен снимков процес: странична стойка, фронтална стойка и детайл на глава. Тези снимки стават пример за сравнение с образец за сравнение със стандарта, без да твърди, че снимка доказва порода.',
     noName: 'Това Cane Corso',
     readiness: 'Готовност на снимковите доказателства',
     target: 'Целеви комплект',
     completed: 'подготвени',
     missing: 'липсват',
     upload: 'Към качване на снимки',
-    flowTitle: 'Снимков flow за USG преглед',
-    qualityTitle: 'Quality gates преди преглед',
+    flowTitle: 'Снимков комплект за USG преглед',
+    qualityTitle: 'Проверки за качество преди преглед',
     modelTitle: 'Вход за бъдещия модел',
     modelBody:
-      'Когато добавим recognition слоя, тези изгледи могат да станат структурираният вход за pose, proportion и quality checks спрямо стандарта. Дотогава водят собственика и човешкия преглед.',
+      'Когато бъде добавен бъдещият снимков слой, тези изгледи могат да станат структуриран вход за ориентация по поза, пропорции и качество спрямо стандарта. Дотогава водят собственика и човешкия преглед.',
     shots: [
       {
         key: 'side',
@@ -101,7 +103,7 @@ const copyByLocale = {
     },
   },
   it: {
-    eyebrow: 'Step 118 flusso evidenze foto',
+    eyebrow: 'Evidenze foto per revisione USG',
     title: 'Prepara le tre foto per il confronto Standard Match',
     description:
       'Questo bonus volontario trasforma “Verifica autenticità” in un flusso chiaro: lato in posa, fronte in posa e dettaglio testa. Queste foto diventano campione di confronto con il modello standard senza affermare che una foto provi la razza.',
@@ -111,11 +113,11 @@ const copyByLocale = {
     completed: 'preparate',
     missing: 'mancanti',
     upload: 'Vai al caricamento foto',
-    flowTitle: 'Flusso foto per revisione USG',
-    qualityTitle: 'Quality gates prima della revisione',
+    flowTitle: 'Set foto per revisione USG',
+    qualityTitle: 'Controlli qualità prima della revisione',
     modelTitle: 'Input per modello futuro',
     modelBody:
-      'Quando il livello di riconoscimento sarà aggiunto, queste viste potranno diventare input strutturato per pose, proporzioni e controlli qualità rispetto al modello standard. Fino ad allora guidano proprietario e revisione umana.',
+      'Quando sarà aggiunto il futuro livello foto, queste viste potranno diventare input strutturato per orientamento di posa, proporzioni e qualità rispetto al modello standard. Fino ad allora guidano proprietario e revisione umana.',
     shots: [
       {
         key: 'side',

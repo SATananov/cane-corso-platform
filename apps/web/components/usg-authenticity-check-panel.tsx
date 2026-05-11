@@ -1,6 +1,7 @@
 'use client';
 
-// Step 118.1 — USG Standard Match bonus clarity
+// Step 119 — USG Authenticity Data Foundation & ML-Safe Labels
+// Legacy QA marker: Step 118.1 — USG Standard Match bonus clarity
 
 import { useEffect, useMemo, useState } from 'react';
 import type { DogLifecycleStatus, DogMeasurementRecord, DogSex } from '@cane-corso-platform/contracts';
@@ -36,6 +37,17 @@ type AuthenticityQualificationKey = 'insufficient' | 'partial' | 'good' | 'stron
 
 type AuthenticityConfidenceKey = 'low' | 'medium' | 'high';
 
+type AuthenticityReadinessBand = 'not_ready' | 'partial' | 'almost_ready' | 'ready';
+
+type MlSafeLabelKey = 'photo_quality' | 'pose_readiness' | 'standard_signal' | 'review_readiness';
+
+type MlSafeLabel = {
+  key: MlSafeLabelKey;
+  label: string;
+  value: string;
+  description: string;
+};
+
 type AuthenticitySignal = {
   key: AuthenticitySignalKey;
   label: string;
@@ -54,6 +66,46 @@ const copyByLocale = {
     score: 'USG Standard Match',
     confidence: 'Evidence confidence',
     bonusBadge: 'Optional owner bonus',
+    dataFoundationTitle: 'What is template, what is signal, what is decision',
+    dataLayers: {
+      standardTemplate: {
+        label: 'Template',
+        title: 'Standard Match orientation',
+        body: 'A rule-based comparison against the Cane Corso standard/USG orientation, built from profile data, measurements and available photos.',
+      },
+      photoReadiness: {
+        label: 'Input',
+        title: 'Photo readiness',
+        body: 'A structured three-photo set prepares future photo/AI support without saying that a photo proves breed identity.',
+      },
+      reviewReadiness: {
+        label: 'Decision path',
+        title: 'USG review readiness',
+        body: 'The score prepares the owner for human review; Registry publication and Certificate remain separate USG-controlled decisions.',
+      },
+    },
+    mlSafeTitle: 'ML-safe labels for the future model',
+    mlSafeBody: 'The platform stores safe orientation labels such as photo quality, pose readiness, standard signal and review readiness. It never trains on a final breed-proof label.',
+    mlLabels: {
+      photo_quality: 'Photo quality',
+      pose_readiness: 'Pose readiness',
+      standard_signal: 'Standard signal',
+      review_readiness: 'Review readiness',
+    },
+    mlDescriptions: {
+      photo_quality: 'Whether the available photos are useful enough for human and future model review.',
+      pose_readiness: 'Whether the three expected views can support pose and proportion orientation.',
+      standard_signal: 'How the measurable profile compares with the standard template.',
+      review_readiness: 'Whether the owner should complete data or move toward USG review.',
+    },
+    readinessValues: {
+      not_ready: 'not ready',
+      partial: 'partial',
+      almost_ready: 'almost ready',
+      ready: 'ready',
+    },
+    authorityTitle: 'Registry and Certificate boundary',
+    authorityBody: 'Standard Match can guide the owner inside Owner Center. Registry and Certificate status are never automatic and always require the proper USG review path.',
     resultMeaningTitle: 'How to read the percentage',
     resultMeaningBody: 'The percentage shows standard-template match from available photos, measurements and profile data. It is not a purity or pedigree verdict.',
     scoreGuideTitle: 'Match levels',
@@ -83,7 +135,7 @@ const copyByLocale = {
       medium: 'medium',
       high: 'high',
     },
-    flow: ['Profile', 'Photos', 'Measurements', 'Standard Match', 'USG review'],
+    flow: ['Owner Center', 'Photos', 'Standard Match', 'USG review', 'Registry/Certificate'],
     signalLabels: {
       profile: 'Profile data',
       photos: 'Photo evidence',
@@ -130,6 +182,46 @@ const copyByLocale = {
     score: 'USG Standard Match',
     confidence: 'Увереност по доказателства',
     bonusBadge: 'Доброволен бонус за потребителя',
+    dataFoundationTitle: 'Кое е шаблон, кое е сигнал, кое е решение',
+    dataLayers: {
+      standardTemplate: {
+        label: 'Шаблон',
+        title: 'Standard Match ориентация',
+        body: 'Правилно сравнение спрямо Cane Corso стандарт/USG ориентир, изградено от профилни данни, измервания и налични снимки.',
+      },
+      photoReadiness: {
+        label: 'Входни данни',
+        title: 'Готовност на снимките',
+        body: 'Структуриран комплект от три снимки подготвя бъдеща photo/AI помощ, без да твърди, че снимка доказва порода.',
+      },
+      reviewReadiness: {
+        label: 'Път към решение',
+        title: 'Готовност за USG преглед',
+        body: 'Процентът подготвя собственика за човешки преглед; Регистърът и Сертификатът остават отделни USG решения.',
+      },
+    },
+    mlSafeTitle: 'ML-safe етикети за бъдещия модел',
+    mlSafeBody: 'Платформата пази безопасни ориентационни етикети като качество на снимка, готовност на поза, стандартен сигнал и готовност за преглед. Не обучаваме модел с финален етикет за доказана порода.',
+    mlLabels: {
+      photo_quality: 'Качество на снимки',
+      pose_readiness: 'Готовност на поза',
+      standard_signal: 'Стандартен сигнал',
+      review_readiness: 'Готовност за преглед',
+    },
+    mlDescriptions: {
+      photo_quality: 'Дали наличните снимки са достатъчно полезни за човешки и бъдещ моделен преглед.',
+      pose_readiness: 'Дали трите очаквани изгледа могат да помогнат за ориентация на поза и пропорции.',
+      standard_signal: 'Как измеримият профил се сравнява със стандартния шаблон.',
+      review_readiness: 'Дали собственикът трябва да довърши данни или да се насочи към USG преглед.',
+    },
+    readinessValues: {
+      not_ready: 'не е готово',
+      partial: 'частично',
+      almost_ready: 'почти готово',
+      ready: 'готово',
+    },
+    authorityTitle: 'Граница към Регистър и Сертификат',
+    authorityBody: 'Standard Match може да води собственика в Центъра. Статусът в Регистъра и Сертификатът никога не са автоматични и винаги минават през правилния USG преглед.',
     resultMeaningTitle: 'Как да четеш процента',
     resultMeaningBody: 'Процентът показва визуално и измеримо съответствие според наличните снимки, измервания и профилни данни. Това не е присъда за произход, порода или родословие.',
     scoreGuideTitle: 'Нива на съответствие',
@@ -159,7 +251,7 @@ const copyByLocale = {
       medium: 'средна',
       high: 'висока',
     },
-    flow: ['Профил', 'Снимки', 'Измервания', 'Standard Match', 'USG преглед'],
+    flow: ['Център', 'Снимки', 'Standard Match', 'USG преглед', 'Регистър/Сертификат'],
     signalLabels: {
       profile: 'Данни в профила',
       photos: 'Снимкови доказателства',
@@ -206,6 +298,46 @@ const copyByLocale = {
     score: 'USG Standard Match',
     confidence: 'Affidabilità evidenze',
     bonusBadge: 'Bonus volontario per utente',
+    dataFoundationTitle: 'Cosa è modello, cosa è segnale, cosa è decisione',
+    dataLayers: {
+      standardTemplate: {
+        label: 'Modello',
+        title: 'Orientamento Standard Match',
+        body: 'Confronto basato su regole rispetto allo standard Cane Corso/orientamento USG, costruito da dati profilo, misure e foto disponibili.',
+      },
+      photoReadiness: {
+        label: 'Input',
+        title: 'Prontezza foto',
+        body: 'Un set strutturato di tre foto prepara il supporto foto/AI futuro senza affermare che una foto provi la razza.',
+      },
+      reviewReadiness: {
+        label: 'Percorso decisione',
+        title: 'Prontezza revisione USG',
+        body: 'La percentuale prepara il proprietario alla revisione umana; Registro e Certificato restano decisioni USG separate.',
+      },
+    },
+    mlSafeTitle: 'Etichette ML-safe per il modello futuro',
+    mlSafeBody: 'La piattaforma conserva etichette sicure di orientamento: qualità foto, prontezza posa, segnale standard e prontezza revisione. Non addestra su una label finale che prova la razza.',
+    mlLabels: {
+      photo_quality: 'Qualità foto',
+      pose_readiness: 'Prontezza posa',
+      standard_signal: 'Segnale standard',
+      review_readiness: 'Prontezza revisione',
+    },
+    mlDescriptions: {
+      photo_quality: 'Se le foto disponibili sono abbastanza utili per revisione umana e modello futuro.',
+      pose_readiness: 'Se le tre viste attese possono supportare orientamento di posa e proporzioni.',
+      standard_signal: 'Come il profilo misurabile si confronta con il modello standard.',
+      review_readiness: 'Se il proprietario deve completare dati o andare verso revisione USG.',
+    },
+    readinessValues: {
+      not_ready: 'non pronto',
+      partial: 'parziale',
+      almost_ready: 'quasi pronto',
+      ready: 'pronto',
+    },
+    authorityTitle: 'Confine Registro e Certificato',
+    authorityBody: 'Standard Match può guidare il proprietario nel Centro. Registro e Certificato non sono mai automatici e richiedono sempre il corretto percorso di revisione USG.',
     resultMeaningTitle: 'Come leggere la percentuale',
     resultMeaningBody: 'La percentuale indica corrispondenza visiva e misurabile in base a foto, misure e dati profilo disponibili. Non è un verdetto su origine, razza o pedigree.',
     scoreGuideTitle: 'Livelli di corrispondenza',
@@ -235,7 +367,7 @@ const copyByLocale = {
       medium: 'media',
       high: 'alta',
     },
-    flow: ['Profilo', 'Foto', 'Misure', 'Standard Match', 'Revisione USG'],
+    flow: ['Centro', 'Foto', 'Standard Match', 'Revisione USG', 'Registro/Certificato'],
     signalLabels: {
       profile: 'Dati profilo',
       photos: 'Evidenza foto',
@@ -314,6 +446,35 @@ function getConfidence(signalCount: number, measurementCount: number, score: num
   if (signalCount >= 5 && measurementCount >= 2 && score >= 70) return 'high';
   if (signalCount >= 3 && score >= 45) return 'medium';
   return 'low';
+}
+
+function getPhotoReadinessBand(photoCount: number): AuthenticityReadinessBand {
+  if (photoCount >= 3) return 'ready';
+  if (photoCount === 2) return 'almost_ready';
+  if (photoCount === 1) return 'partial';
+  return 'not_ready';
+}
+
+function getReviewReadinessBand({
+  profileScore,
+  photoScore,
+  measurementScore,
+  standardScore,
+  lifecycleStatus,
+  hasPublication,
+}: {
+  profileScore: number;
+  photoScore: number;
+  measurementScore: number;
+  standardScore: number;
+  lifecycleStatus: DogLifecycleStatus;
+  hasPublication: boolean;
+}): AuthenticityReadinessBand {
+  const reviewStarted = hasPublication || ['submitted', 'approved', 'published'].includes(lifecycleStatus);
+  if (reviewStarted && profileScore >= 70 && photoScore >= 74 && standardScore >= 45) return 'ready';
+  if (profileScore >= 70 && photoScore >= 74 && (measurementScore >= 40 || standardScore >= 45)) return 'almost_ready';
+  if (profileScore >= 45 || photoScore >= 46 || measurementScore >= 30) return 'partial';
+  return 'not_ready';
 }
 
 function getNextActionKey(signals: AuthenticitySignal[]): NextAuthenticityActionKey {
@@ -456,6 +617,15 @@ export function UsgAuthenticityCheckPanel({
     const standardScore = clampScore(fciDocument.scores.measurable || fciDocument.scores.overall);
     const pedigreeScore = clampScore(Math.min(70, pedigreeFilledCount * 5) + Math.min(30, pedigreePhotoCount * 5));
     const reviewScore = clampScore((hasPublication ? 65 : 35) + (hasCertificate ? 20 : 0) + (['submitted', 'approved', 'published'].includes(lifecycleStatus) ? 15 : 0));
+    const photoReadinessBand = getPhotoReadinessBand(photoCount);
+    const reviewReadinessBand = getReviewReadinessBand({
+      profileScore,
+      photoScore,
+      measurementScore,
+      standardScore,
+      lifecycleStatus,
+      hasPublication,
+    });
 
     const signals: AuthenticitySignal[] = [
       {
@@ -513,12 +683,43 @@ export function UsgAuthenticityCheckPanel({
     const usefulSignals = signals.filter((signal) => signal.score >= 45).length;
     const confidence = getConfidence(usefulSignals, records.length, overall);
 
+    const qualification = getQualification(overall);
+    const mlSafeLabels: MlSafeLabel[] = [
+      {
+        key: 'photo_quality',
+        label: copy.mlLabels.photo_quality,
+        value: copy.readinessValues[photoReadinessBand],
+        description: copy.mlDescriptions.photo_quality,
+      },
+      {
+        key: 'pose_readiness',
+        label: copy.mlLabels.pose_readiness,
+        value: copy.readinessValues[photoReadinessBand],
+        description: copy.mlDescriptions.pose_readiness,
+      },
+      {
+        key: 'standard_signal',
+        label: copy.mlLabels.standard_signal,
+        value: copy.qualification[qualification],
+        description: copy.mlDescriptions.standard_signal,
+      },
+      {
+        key: 'review_readiness',
+        label: copy.mlLabels.review_readiness,
+        value: copy.readinessValues[reviewReadinessBand],
+        description: copy.mlDescriptions.review_readiness,
+      },
+    ];
+
     return {
       signals,
       overall,
       confidence,
-      qualification: getQualification(overall),
+      qualification,
       nextActionKey: getNextActionKey(signals),
+      photoReadinessBand,
+      reviewReadinessBand,
+      mlSafeLabels,
     };
   }, [city, color, copy, country, dateOfBirth, dogName, fciDocument.scores.measurable, fciDocument.scores.overall, galleryImageCount, hasCertificate, hasPublication, lifecycleStatus, latestMeasurement, mainImageUrl, pedigreeFilledCount, pedigreePhotoCount, records.length, sex]);
 
@@ -561,6 +762,16 @@ export function UsgAuthenticityCheckPanel({
         ))}
       </div>
 
+      <div className="authenticity-check-foundation-strip" aria-label={copy.dataFoundationTitle}>
+        {Object.values(copy.dataLayers).map((layer) => (
+          <article className="authenticity-check-foundation-card" key={layer.title}>
+            <span>{layer.label}</span>
+            <strong>{layer.title}</strong>
+            <p>{layer.body}</p>
+          </article>
+        ))}
+      </div>
+
       <div className="authenticity-check-panel__grid">
         <section className="authenticity-check-panel__signals" aria-label={copy.signals}>
           <div className="authenticity-check-panel__section-head">
@@ -584,6 +795,20 @@ export function UsgAuthenticityCheckPanel({
             <p>{copy.photoModelBody}</p>
           </section>
 
+          <section className="authenticity-check-mini-card authenticity-check-mini-card--ml-safe">
+            <span className="eyebrow-label">{copy.mlSafeTitle}</span>
+            <p>{copy.mlSafeBody}</p>
+            <div className="authenticity-check-ml-labels">
+              {signalDocument.mlSafeLabels.map((label) => (
+                <div className="authenticity-check-ml-label" key={label.key}>
+                  <span>{label.label}</span>
+                  <strong>{label.value}</strong>
+                  <small>{label.description}</small>
+                </div>
+              ))}
+            </div>
+          </section>
+
           <section className="authenticity-check-mini-card authenticity-check-mini-card--score-guide">
             <span className="eyebrow-label">{copy.scoreGuideTitle}</span>
             <ul>
@@ -594,6 +819,11 @@ export function UsgAuthenticityCheckPanel({
           <section className="authenticity-check-mini-card authenticity-check-mini-card--gold">
             <span className="eyebrow-label">{copy.nextTitle}</span>
             <p>{copy.nextActions[signalDocument.nextActionKey]}</p>
+          </section>
+
+          <section className="authenticity-check-mini-card authenticity-check-mini-card--authority">
+            <span className="eyebrow-label">{copy.authorityTitle}</span>
+            <p>{copy.authorityBody}</p>
           </section>
 
           <section className="authenticity-check-mini-card authenticity-check-mini-card--boundary">

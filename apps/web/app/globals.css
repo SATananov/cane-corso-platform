@@ -25956,3 +25956,71 @@ body {
   font-size: 0.82rem;
   line-height: 1.45;
 }
+
+/* Step 119 — USG authenticity data foundation and ML-safe labels */
+.authenticity-check-foundation-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.authenticity-check-foundation-card {
+  border: 1px solid rgba(246, 214, 144, 0.2);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 0.95rem;
+}
+
+.authenticity-check-foundation-card span,
+.authenticity-check-ml-label span {
+  display: block;
+  color: rgba(246, 214, 144, 0.84);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.authenticity-check-foundation-card strong,
+.authenticity-check-ml-label strong {
+  display: block;
+  color: #fff8e8;
+  margin-top: 0.3rem;
+}
+
+.authenticity-check-foundation-card p,
+.authenticity-check-ml-label small {
+  color: rgba(255, 248, 232, 0.72);
+  display: block;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  margin-top: 0.45rem;
+}
+
+.authenticity-check-mini-card--ml-safe,
+.authenticity-check-mini-card--authority {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.authenticity-check-ml-labels {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.authenticity-check-ml-label {
+  border: 1px solid rgba(246, 214, 144, 0.16);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.045);
+  padding: 0.72rem;
+}
+
+@media (max-width: 980px) {
+  .authenticity-check-foundation-strip {
+    grid-template-columns: 1fr;
+  }
+}
