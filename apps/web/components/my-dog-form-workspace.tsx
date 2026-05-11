@@ -30,6 +30,7 @@ import { UsgMeasurementAssistantPanel } from '@/components/usg-measurement-assis
 import { UsgIntelligenceFoundationPanel } from '@/components/usg-intelligence-foundation-panel';
 import { FciStandardConformityPanel } from '@/components/fci-standard-conformity-panel';
 import { UsgAuthenticityCheckPanel } from '@/components/usg-authenticity-check-panel';
+import { UsgPhotoEvidenceGuidePanel } from '@/components/usg-photo-evidence-guide-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 const guidanceLauncherCopy = {
@@ -708,6 +709,13 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
 
         {isGuidanceVisible ? (
           <div className="dog-form-guidance-stack">
+            <UsgPhotoEvidenceGuidePanel
+              locale={locale}
+              dogName={values.name}
+              mainImageUrl={values.mainImageUrl || values.galleryImageUrls[0]}
+              galleryImageCount={galleryImageCount}
+            />
+
             <UsgAuthenticityCheckPanel
               locale={locale}
               dogId={activeDogId}

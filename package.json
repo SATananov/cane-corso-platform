@@ -169,7 +169,8 @@
     "step115-1:hero-chip-actions:qa": "node scripts/qa-step115-1-hero-chip-action-enforcement.mjs",
     "step115-2:hero-locale-fallback:qa": "node scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs",
     "step116:product-use-mode:qa": "node scripts/qa-step116-product-use-mode-cleanup.mjs",
-    "step117:authenticity-check:qa": "node scripts/qa-step117-usg-authenticity-check-foundation.mjs"
+    "step117:authenticity-check:qa": "node scripts/qa-step117-usg-authenticity-check-foundation.mjs",
+    "step118:photo-evidence:qa": "node scripts/qa-step118-photo-evidence-flow.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

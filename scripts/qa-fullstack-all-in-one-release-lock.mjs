@@ -209,6 +209,7 @@ const qaScripts = [
   ['Step 115.2 page hero locale fallback polish', 'scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs'],
   ['Step 116 product use-mode cleanup', 'scripts/qa-step116-product-use-mode-cleanup.mjs'],
   ['Step 117 USG authenticity check foundation', 'scripts/qa-step117-usg-authenticity-check-foundation.mjs'],
+  ['Step 118 photo evidence flow', 'scripts/qa-step118-photo-evidence-flow.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

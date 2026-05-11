@@ -702,7 +702,7 @@ export function DogProfileForm({
         title={mode === 'create' ? t.sections.foundationTitleCreate : t.sections.foundationTitleEdit}
         description={t.sections.foundationDescription}
       >
-        <div className="dog-profile-cover-panel">
+        <div className="dog-profile-cover-panel" id="dog-photo-evidence-upload">
           <div className={`dog-profile-cover-panel__visual${values.mainImageUrl ? ' has-image' : ''}`}>
             {values.mainImageUrl ? (
               <ImageLightbox src={values.mainImageUrl} alt={values.name || t.preview.unnamed} imageClassName="dog-profile-cover-panel__image" />
