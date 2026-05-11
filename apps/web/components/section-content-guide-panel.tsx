@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ProgressiveChoicePanel } from '@/components/progressive-choice-panel';
 import type { Locale } from '@/lib/i18n';
 
 export type SectionContentSurface =
@@ -902,9 +903,15 @@ interface SectionContentGuidePanelProps {
 }
 
 function getDetailsLabel(locale: Locale) {
-  if (locale === 'bg') return 'Кратко обяснение';
-  if (locale === 'it') return 'Spiegazione breve';
-  return 'Short explanation';
+  if (locale === 'bg') return 'Избери тема';
+  if (locale === 'it') return 'Scegli tema';
+  return 'Choose topic';
+}
+
+function getDetailsDescription(locale: Locale) {
+  if (locale === 'bg') return 'Отвори само обяснението, което ти трябва в момента. Останалото остава скрито.';
+  if (locale === 'it') return 'Apri solo la spiegazione che ti serve ora. Il resto resta nascosto.';
+  return 'Open only the explanation you need now. The rest stays hidden.';
 }
 
 export function SectionContentGuidePanel({ locale, surface, className }: SectionContentGuidePanelProps) {
@@ -927,20 +934,26 @@ export function SectionContentGuidePanel({ locale, surface, className }: Section
         </div>
       </div>
 
-      <details className="section-content-guide__details">
-        <summary>{getDetailsLabel(locale)}</summary>
+      <div className="section-content-guide__details section-content-guide__details--progressive">
         <p className="section-content-guide__details-copy">{copy.description}</p>
-        <p className="section-content-guide__next-copy">{copy.nextText}</p>
-        <div className="section-content-guide__cards">
-          {copy.cards.map((card) => (
-            <article className="section-content-guide__card" key={`${surface}-${card.label}-${card.title}`}>
-              <span>{card.label}</span>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-            </article>
-          ))}
-        </div>
-      </details>
+        <ProgressiveChoicePanel
+          ariaLabel={`${copy.title} · ${getDetailsLabel(locale)}`}
+          title={getDetailsLabel(locale)}
+          description={getDetailsDescription(locale)}
+          className="section-content-guide__progressive"
+          items={copy.cards.map((card, index) => ({
+            id: `${surface}-${index}`,
+            label: card.label,
+            eyebrow: card.label,
+            title: card.title,
+            body: card.body,
+            actionHref: copy.nextHref,
+            actionLabel: copy.nextLabel,
+            meta: index === 0 ? copy.nextText : undefined,
+            tone: index === 0 ? 'trust' : 'default',
+          }))}
+        />
+      </div>
     </section>
   );
 }

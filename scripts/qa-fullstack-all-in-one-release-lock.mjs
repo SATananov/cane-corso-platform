@@ -51,6 +51,7 @@ const requiredFiles = [
   'docs/qa/step113-3-active-guide-navigation.md',
   'docs/qa/step114-progressive-growth-ux.md',
   'docs/qa/step114-1-growth-chart-axis-data-clarity.md',
+  'docs/qa/step115-platform-progressive-disclosure-ux.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -87,6 +88,7 @@ const requiredFiles = [
   'scripts/qa-step113-3-active-guide-navigation.mjs',
   'scripts/qa-step114-progressive-growth-ux.mjs',
   'scripts/qa-step114-1-growth-chart-axis-data-clarity.mjs',
+  'scripts/qa-step115-platform-progressive-disclosure-ux.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -134,6 +136,7 @@ const requiredPackageScripts = [
   'step113-3:active-guide-navigation:qa',
   'step114:progressive-growth-ux:qa',
   'step114-1:growth-chart-clarity:qa',
+  'step115:platform-progressive-disclosure:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -189,6 +192,7 @@ const qaScripts = [
   ['Step 113.3 active guide navigation', 'scripts/qa-step113-3-active-guide-navigation.mjs'],
   ['Step 114 progressive disclosure and growth UX', 'scripts/qa-step114-progressive-growth-ux.mjs'],
   ['Step 114.1 growth chart axis/data clarity', 'scripts/qa-step114-1-growth-chart-axis-data-clarity.mjs'],
+  ['Step 115 platform-wide progressive disclosure UX', 'scripts/qa-step115-platform-progressive-disclosure-ux.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

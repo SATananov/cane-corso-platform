@@ -164,7 +164,8 @@
     "step113-2:pregnancy-puppy-knowledge:qa": "node scripts/qa-step113-2-cane-corso-pregnancy-puppy-growth-knowledge.mjs",
     "step113-3:active-guide-navigation:qa": "node scripts/qa-step113-3-active-guide-navigation.mjs",
     "step114:progressive-growth-ux:qa": "node scripts/qa-step114-progressive-growth-ux.mjs",
-    "step114-1:growth-chart-clarity:qa": "node scripts/qa-step114-1-growth-chart-axis-data-clarity.mjs"
+    "step114-1:growth-chart-clarity:qa": "node scripts/qa-step114-1-growth-chart-axis-data-clarity.mjs",
+    "step115:platform-progressive-disclosure:qa": "node scripts/qa-step115-platform-progressive-disclosure-ux.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

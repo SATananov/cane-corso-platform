@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { ProgressiveChoicePanel } from '@/components/progressive-choice-panel';
 import type { Dog, PublicRegistryEntry } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 
@@ -332,16 +332,22 @@ export function OwnerCaneCorsoSectionWorkspace({ locale, dog, registryEntry = nu
         </div>
       </div>
 
-      <div className="owner-cane-section-grid">
-        {t.sections.map((section) => (
-          <Link href={buildHref(section.hrefKind, dog)} className={`owner-cane-section-card owner-cane-section-card--${section.key}`} key={section.key}>
-            <span className="eyebrow-label">{section.eyebrow}</span>
-            <h3>{section.title}</h3>
-            <p>{section.body}</p>
-            <strong>{section.action}</strong>
-          </Link>
-        ))}
-      </div>
+      <ProgressiveChoicePanel
+        ariaLabel={t.title}
+        title={t.title}
+        description={t.body}
+        className="owner-cane-section-progressive"
+        items={t.sections.map((section) => ({
+          id: section.key,
+          label: section.eyebrow,
+          eyebrow: section.eyebrow,
+          title: section.title,
+          body: section.body,
+          actionHref: buildHref(section.hrefKind, dog),
+          actionLabel: section.action,
+          tone: section.key === 'breedingGuide' || section.key === 'review' ? 'trust' : 'default',
+        }))}
+      />
 
       <div className="owner-cane-section-workspace__privacy-note">
         <strong>{t.privacyTitle}</strong>

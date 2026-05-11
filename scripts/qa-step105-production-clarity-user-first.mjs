@@ -34,6 +34,11 @@ function assertNotIncludes(label, text, needle) {
   else pass(`${label} does not include ${needle}`);
 }
 
+function assertIncludesAny(label, text, needles) {
+  if (needles.some((needle) => text.includes(needle))) pass(`${label} includes one accepted progressive marker`);
+  else fail(`${label} includes one of ${needles.join(' | ')}`);
+}
+
 function assertOrder(label, text, first, second) {
   const a = text.indexOf(first);
   const b = text.indexOf(second);
@@ -53,10 +58,10 @@ const allInOne = read('scripts/qa-fullstack-all-in-one-release-lock.mjs');
 const doc = read('docs/qa/step105-production-clarity-user-first.md');
 
 assertIncludes('Section guide', sectionGuide, 'section-content-guide--compact');
-assertIncludes('Section guide', sectionGuide, '<details className="section-content-guide__details">');
-assertIncludes('Section guide', sectionGuide, 'Кратко обяснение');
-assertIncludes('Section guide', sectionGuide, 'Spiegazione breve');
-assertIncludes('Section guide', sectionGuide, 'Short explanation');
+assertIncludesAny('Section guide details/progressive model', sectionGuide, ['<details className="section-content-guide__details">', 'section-content-guide__details--progressive']);
+assertIncludesAny('Section guide BG explanation label', sectionGuide, ['Кратко обяснение', 'Избери тема']);
+assertIncludesAny('Section guide IT explanation label', sectionGuide, ['Spiegazione breve', 'Scegli tema']);
+assertIncludesAny('Section guide EN explanation label', sectionGuide, ['Short explanation', 'Choose topic']);
 assertOrder('Section guide', sectionGuide, 'section-content-guide__compact-row', 'section-content-guide__details');
 
 assertIncludes('Knowledge center', knowledgeCenter, 'knowledge-center--product-clarity');

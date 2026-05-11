@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BreedStandardArticlePanel } from '@/components/breed-standard-article-panel';
 import { CaneCorsoPregnancyPuppyGuide } from '@/components/cane-corso-pregnancy-puppy-guide';
 import { KnowledgeArticleReaderCompass } from '@/components/knowledge-article-reader-compass';
+import { ProgressiveChoicePanel } from '@/components/progressive-choice-panel';
 import type { KnowledgeArticle } from '@cane-corso-platform/contracts';
 import type { Locale } from '@/lib/i18n';
 import {
@@ -29,6 +30,8 @@ const copyByLocale = {
     readingLevel: 'Reading level',
     officialLayer: 'Official Knowledge layer',
     officialLayerText: 'Reviewed public guidance connected to the USG trust system.',
+    chooseSection: 'Choose what you need',
+    chooseSectionText: 'Open one topic at a time instead of scrolling through the full article.',
   },
   bg: {
     back: 'Назад към знанията',
@@ -42,6 +45,8 @@ const copyByLocale = {
     readingLevel: 'Ниво на четене',
     officialLayer: 'Официален слой Знания',
     officialLayerText: 'Прегледани публични насоки, свързани със системата на доверие USG.',
+    chooseSection: 'Избери какво ти трябва',
+    chooseSectionText: 'Отвори една тема наведнъж, без да скролваш през цялата статия.',
   },
   it: {
     back: 'Torna a Knowledge',
@@ -55,6 +60,8 @@ const copyByLocale = {
     readingLevel: 'Livello lettura',
     officialLayer: 'Layer Conoscenza ufficiale',
     officialLayerText: 'Guida pubblica revisionata collegata al sistema trust USG.',
+    chooseSection: 'Scegli ciò che ti serve',
+    chooseSectionText: 'Apri un tema alla volta invece di scorrere tutto l’articolo.',
   },
 } as const;
 
@@ -104,19 +111,22 @@ export function KnowledgeArticleDetail({ article, locale }: KnowledgeArticleDeta
             <CaneCorsoPregnancyPuppyGuide locale={locale} />
           ) : null}
 
-          {article.sections.map((section) => (
-            <section className="knowledge-article-section" key={section.heading}>
-              <h2>{section.heading}</h2>
-              <p>{section.body}</p>
-              {section.bullets?.length ? (
-                <ul>
-                  {section.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </section>
-          ))}
+          {article.sections.length ? (
+            <ProgressiveChoicePanel
+              ariaLabel={copy.chooseSection}
+              title={copy.chooseSection}
+              description={copy.chooseSectionText}
+              className="knowledge-article-progressive"
+              items={article.sections.map((section, index) => ({
+                id: `article-section-${index}`,
+                label: section.heading,
+                title: section.heading,
+                body: section.body,
+                bullets: section.bullets,
+                tone: index === 0 ? 'trust' : 'default',
+              }))}
+            />
+          ) : null}
         </div>
 
         <aside className="knowledge-article-aside">

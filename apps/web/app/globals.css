@@ -25102,3 +25102,188 @@ body {
   }
 }
 /* Step 114 — Progressive Disclosure UX & Owner Growth Comparison END */
+
+/* Step 115 — Platform-wide Progressive Disclosure UX Pass START */
+.progressive-choice-panel {
+  display: grid;
+  gap: 0.85rem;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 24px;
+  padding: 0.95rem;
+  background:
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.09), transparent 34%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.progressive-choice-panel__head {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.progressive-choice-panel__head h3,
+.progressive-choice-panel__body h3 {
+  margin: 0;
+  color: var(--color-cream, #f8f5ef);
+  line-height: 1.15;
+}
+
+.progressive-choice-panel__head p,
+.progressive-choice-panel__body p,
+.progressive-choice-panel__body li,
+.progressive-choice-panel__body small {
+  color: rgba(248, 245, 239, 0.72);
+  line-height: 1.65;
+}
+
+.progressive-choice-panel__head p,
+.progressive-choice-panel__body p {
+  margin: 0;
+}
+
+.progressive-choice-panel__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 20px;
+  background: rgba(14, 14, 16, 0.42);
+}
+
+.progressive-choice-panel__tabs button {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 999px;
+  padding: 0.58rem 0.85rem;
+  background: rgba(212, 175, 55, 0.07);
+  color: rgba(248, 245, 239, 0.78);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 860;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.progressive-choice-panel__tabs button:hover,
+.progressive-choice-panel__tabs button:focus-visible,
+.progressive-choice-panel__tabs button.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.42);
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-cream, #f8f5ef);
+  outline: none;
+}
+
+.progressive-choice-panel__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 22px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.progressive-choice-panel__body--trust,
+.progressive-choice-panel__body--calm {
+  border-color: rgba(212, 175, 55, 0.18);
+  background: rgba(212, 175, 55, 0.065);
+}
+
+.progressive-choice-panel__body--warning {
+  border-color: rgba(255, 197, 89, 0.24);
+  background: rgba(255, 197, 89, 0.07);
+}
+
+.progressive-choice-panel__body ul {
+  margin: 0.7rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.progressive-choice-panel__body small {
+  display: block;
+  margin-top: 0.65rem;
+}
+
+.knowledge-article-progressive,
+.section-content-guide__progressive,
+.owner-cane-section-progressive {
+  margin-top: 0.6rem;
+}
+
+.section-content-guide__details--progressive {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.section-content-guide__details--progressive .section-content-guide__details-copy {
+  margin: 0;
+}
+
+.owner-cane-section-progressive .progressive-choice-panel__tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.owner-cane-section-progressive .progressive-choice-panel__tabs button {
+  justify-content: center;
+  min-height: 44px;
+}
+
+.owner-cane-section-progressive .progressive-choice-panel__body {
+  min-height: 168px;
+}
+
+[data-theme='light'] .progressive-choice-panel,
+[data-theme='heritage'] .progressive-choice-panel {
+  border-color: rgba(150, 111, 33, 0.18);
+  background: rgba(255, 251, 244, 0.58);
+}
+
+[data-theme='light'] .progressive-choice-panel__tabs,
+[data-theme='heritage'] .progressive-choice-panel__tabs,
+[data-theme='light'] .progressive-choice-panel__body,
+[data-theme='heritage'] .progressive-choice-panel__body {
+  border-color: rgba(150, 111, 33, 0.16);
+  background: rgba(255, 251, 244, 0.54);
+}
+
+[data-theme='light'] .progressive-choice-panel__head h3,
+[data-theme='heritage'] .progressive-choice-panel__head h3,
+[data-theme='light'] .progressive-choice-panel__body h3,
+[data-theme='heritage'] .progressive-choice-panel__body h3 {
+  color: #211a12;
+}
+
+[data-theme='light'] .progressive-choice-panel__head p,
+[data-theme='heritage'] .progressive-choice-panel__head p,
+[data-theme='light'] .progressive-choice-panel__body p,
+[data-theme='heritage'] .progressive-choice-panel__body p,
+[data-theme='light'] .progressive-choice-panel__body li,
+[data-theme='heritage'] .progressive-choice-panel__body li,
+[data-theme='light'] .progressive-choice-panel__body small,
+[data-theme='heritage'] .progressive-choice-panel__body small {
+  color: rgba(33, 26, 18, 0.72);
+}
+
+@media (max-width: 760px) {
+  .progressive-choice-panel__tabs,
+  .owner-cane-section-progressive .progressive-choice-panel__tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .progressive-choice-panel__tabs button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .progressive-choice-panel__body {
+    grid-template-columns: 1fr;
+  }
+}
+/* Step 115 — Platform-wide Progressive Disclosure UX Pass END */
