@@ -51,15 +51,15 @@ const requiredFiles = [
 for (const file of requiredFiles) assertFile(file);
 
 const panel = read('apps/web/components/usg-authenticity-check-panel.tsx');
-assertIncludes('Authenticity panel', panel, 'USG проверка за истинско');
-assertIncludes('Authenticity panel', panel, 'Check visual readiness against the standard');
-assertIncludes('Authenticity panel', panel, 'Verifica autenticità USG');
+assertIncludes('Authenticity panel', panel, 'USG бонус проверка за истинско');
+assertIncludes('Authenticity panel', panel, 'Compare with the standard Cane Corso profile');
+assertIncludes('Authenticity panel', panel, 'Verifica bonus autenticità USG');
 assertIncludes('Authenticity panel', panel, 'buildFciStandardConformityDocument');
 assertIncludes('Authenticity panel', panel, 'listDogMeasurements');
 assertIncludes('Authenticity panel', panel, 'ScoreGauge');
 assertIncludes('Authenticity panel', panel, 'authenticity-check-flow');
 assertIncludes('Authenticity panel', panel, 'authenticity-check-signal__bar');
-assertIncludes('Authenticity panel', panel, 'This is an AI/ML-ready orientation layer');
+assertIncludes('Authenticity panel', panel, 'This voluntary bonus check uses the standard template as a comparison model');
 assertIncludes('Authenticity panel', panel, 'Разпознаването от снимка е подготвено като бъдещ слой');
 assertIncludes('Authenticity panel', panel, 'Не доказва порода или родословие');
 assertNotIncludes('Authenticity panel', panel, 'AI потвърди');

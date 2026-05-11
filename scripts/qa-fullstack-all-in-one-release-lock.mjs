@@ -56,6 +56,8 @@ const requiredFiles = [
   'docs/qa/step115-2-page-hero-locale-fallback-polish.md',
   'docs/qa/step116-product-use-mode-cleanup.md',
   'docs/qa/step117-usg-authenticity-check-foundation.md',
+  'docs/qa/step118-photo-evidence-flow.md',
+  'docs/qa/step118-1-standard-match-bonus-clarity.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -97,6 +99,8 @@ const requiredFiles = [
   'scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs',
   'scripts/qa-step116-product-use-mode-cleanup.mjs',
   'scripts/qa-step117-usg-authenticity-check-foundation.mjs',
+  'scripts/qa-step118-photo-evidence-flow.mjs',
+  'scripts/qa-step118-1-standard-match-bonus-clarity.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -149,6 +153,8 @@ const requiredPackageScripts = [
   'step115-2:hero-locale-fallback:qa',
   'step116:product-use-mode:qa',
   'step117:authenticity-check:qa',
+  'step118:photo-evidence:qa',
+  'step118-1:standard-match-bonus:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -210,6 +216,7 @@ const qaScripts = [
   ['Step 116 product use-mode cleanup', 'scripts/qa-step116-product-use-mode-cleanup.mjs'],
   ['Step 117 USG authenticity check foundation', 'scripts/qa-step117-usg-authenticity-check-foundation.mjs'],
   ['Step 118 photo evidence flow', 'scripts/qa-step118-photo-evidence-flow.mjs'],
+  ['Step 118.1 USG Standard Match bonus clarity', 'scripts/qa-step118-1-standard-match-bonus-clarity.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

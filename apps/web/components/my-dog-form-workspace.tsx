@@ -36,22 +36,22 @@ import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 const guidanceLauncherCopy = {
   en: {
     eyebrow: 'USG visual check',
-    title: 'Check authenticity readiness only when you need it',
-    body: 'The profile starts with real owner data. The USG check opens the model-ready visual assistant, charts, standard diagrams, measurements and review boundaries without making an automatic breed claim.',
+    title: 'Use the USG bonus check only when you want deeper clarity',
+    body: 'The profile starts with real owner data. The USG bonus check opens Standard Match comparison, charts, standard diagrams, measurements and review boundaries without making an automatic breed claim.',
     open: 'Check authenticity',
     close: 'Hide authenticity check',
   },
   bg: {
     eyebrow: 'USG визуална проверка',
-    title: 'Провери за истинско само когато си готов',
-    body: 'Профилът може да започне с основни данни. USG проверката отваря model-ready визуален асистент, графики, диаграми по стандарт, измервания и граници на преглед — без автоматично твърдение за порода.',
+    title: 'Използвай USG бонус проверката само когато искаш повече яснота',
+    body: 'Профилът може да започне с основни данни. USG бонус проверката отваря Standard Match сравнение, графики, диаграми по стандарт, измервания и граници на преглед — без автоматично твърдение за порода.',
     open: 'Провери за истинско',
     close: 'Скрий проверката',
   },
   it: {
     eyebrow: 'Verifica visiva USG',
-    title: 'Controlla autenticità solo quando serve',
-    body: 'Il profilo parte dai dati reali del proprietario. La verifica USG apre l’assistente visivo pronto per modello, grafici, diagrammi standard, misure e confini di revisione senza dichiarare automaticamente la razza.',
+    title: 'Usa il bonus USG solo quando vuoi più chiarezza',
+    body: 'Il profilo parte dai dati reali del proprietario. Il bonus USG apre confronto Standard Match, grafici, diagrammi standard, misure e confini di revisione senza dichiarare automaticamente la razza.',
     open: 'Verifica autenticità',
     close: 'Nascondi verifica',
   },

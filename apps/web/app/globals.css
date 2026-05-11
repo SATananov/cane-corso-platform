@@ -25927,3 +25927,32 @@ body {
     flex-direction: column;
   }
 }
+
+
+/* Step 118.1 — USG Standard Match bonus clarity */
+.authenticity-check-panel__bonus-badge {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 188, 112, 0.34);
+  background: rgba(226, 188, 112, 0.1);
+  color: rgba(255, 239, 205, 0.92);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 0.24rem 0.58rem;
+  text-transform: uppercase;
+}
+
+.authenticity-check-mini-card--score-guide ul {
+  display: grid;
+  gap: 0.38rem;
+  margin: 0.65rem 0 0;
+  padding-left: 1rem;
+}
+
+.authenticity-check-mini-card--score-guide li {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}

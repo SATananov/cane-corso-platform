@@ -1,5 +1,7 @@
 'use client';
 
+// Step 118.1 — USG Standard Match bonus clarity
+
 import { useEffect, useMemo, useState } from 'react';
 import type { DogLifecycleStatus, DogMeasurementRecord, DogSex } from '@cane-corso-platform/contracts';
 import { listDogMeasurements } from '@/lib/api/dog-measurements.client';
@@ -30,7 +32,7 @@ type AuthenticitySignalKey = 'profile' | 'photos' | 'measurements' | 'standard' 
 
 type NextAuthenticityActionKey = 'profile' | 'photos' | 'measurements' | 'pedigree' | 'review';
 
-type AuthenticityQualificationKey = 'ready' | 'collecting' | 'weak';
+type AuthenticityQualificationKey = 'insufficient' | 'partial' | 'good' | 'strong' | 'very_strong';
 
 type AuthenticityConfidenceKey = 'low' | 'medium' | 'high';
 
@@ -44,42 +46,49 @@ type AuthenticitySignal = {
 
 const copyByLocale = {
   en: {
-    eyebrow: 'USG authenticity check',
-    title: 'Check visual readiness against the standard',
+    eyebrow: 'USG bonus authenticity check',
+    title: 'Compare with the standard Cane Corso profile',
     description:
-      'This is an AI/ML-ready orientation layer. It combines profile data, photos, measurements, FCI proportion checks and review boundaries. It does not prove breed identity or pedigree.',
-    buttonContext: 'Model-ready assistant',
-    score: 'Readiness score',
+      'This voluntary bonus check uses the standard template as a comparison model. The percentage shows visual and measurable match against the Cane Corso standard/USG orientation. It does not prove breed identity or pedigree.',
+    buttonContext: 'Voluntary bonus check for owners who want deeper clarity',
+    score: 'USG Standard Match',
     confidence: 'Evidence confidence',
+    bonusBadge: 'Optional owner bonus',
+    resultMeaningTitle: 'How to read the percentage',
+    resultMeaningBody: 'The percentage shows standard-template match from available photos, measurements and profile data. It is not a purity or pedigree verdict.',
+    scoreGuideTitle: 'Match levels',
+    scoreGuideItems: ['0–39%: insufficient data', '40–59%: partial match', '60–74%: good initial match', '75–89%: strong match', '90–100%: very strong match, human confirmation needed'],
     loading: 'Loading measurement archive…',
     loadError: 'Measurement archive is not available right now. The check continues with profile and photo evidence only.',
     noName: 'Unnamed Cane Corso',
-    evidence: 'Evidence diagram',
-    signals: 'Signals used by the check',
+    evidence: 'Standard comparison diagram',
+    signals: 'Breakdown by evidence',
     proportions: 'Standard-oriented diagrams',
-    photoModel: 'Photo model status',
+    photoModel: 'Photo comparison status',
     photoModelBody:
-      'Photo recognition is prepared as a future layer. Today the platform checks whether the uploaded photos are enough for a human/AI-assisted review, not whether the image proves breed identity.',
+      'Photo recognition is prepared as a future layer. Today the platform checks whether the uploaded photos can support comparison with the standard template, not whether the image proves breed identity.',
     nextTitle: 'Best next evidence',
     boundaryTitle: 'Trust boundary',
     boundaryBody:
-      'The result is a preliminary orientation only. Final USG review, Registry publication and Certificate decisions remain human-controlled.',
+      'The result is a preliminary standard-match orientation only. Final USG review, Registry publication and Certificate decisions remain human-controlled.',
     qualification: {
-      ready: 'Strong candidate for USG review preparation',
-      collecting: 'Good start — collect more evidence',
-      weak: 'Not enough evidence yet',
+      insufficient: 'Insufficient data / weak orientation',
+      partial: 'Partial standard match',
+      good: 'Good initial standard match',
+      strong: 'Strong standard match — needs human review',
+      very_strong: 'Very strong standard match — human confirmation needed',
     },
     confidenceValues: {
       low: 'low',
       medium: 'medium',
       high: 'high',
     },
-    flow: ['Profile', 'Photos', 'Measurements', 'Standard', 'USG review'],
+    flow: ['Profile', 'Photos', 'Measurements', 'Standard Match', 'USG review'],
     signalLabels: {
       profile: 'Profile data',
       photos: 'Photo evidence',
       measurements: 'Measurement archive',
-      standard: 'FCI/USG orientation',
+      standard: 'Standard Match orientation',
       pedigree: 'Family context',
       human_review: 'Human review boundary',
     },
@@ -87,7 +96,7 @@ const copyByLocale = {
       profile: 'Name, sex, birth date, colour, location and owner description.',
       photos: 'Main image plus owner gallery photos for visual context.',
       measurements: 'Weight, height and proportion records saved by date.',
-      standard: 'Uses the existing FCI conformity orientation engine from the latest measurements.',
+      standard: 'Uses the existing FCI conformity orientation engine as the measurable standard template.',
       pedigree: 'Known family line and ancestor photos when available.',
       human_review: 'Keeps all official decisions separate from automatic scoring.',
     },
@@ -95,7 +104,7 @@ const copyByLocale = {
       profileReady: 'profile fields ready',
       photoCount: 'photos',
       measurementCount: 'measurement records',
-      fciScore: 'standard score',
+      fciScore: 'standard match score',
       pedigreeCount: 'pedigree fields',
       locked: 'locked',
     },
@@ -113,42 +122,49 @@ const copyByLocale = {
     },
   },
   bg: {
-    eyebrow: 'USG проверка за истинско',
-    title: 'Провери готовността спрямо стандарта',
+    eyebrow: 'USG бонус проверка за истинско',
+    title: 'Сравнение със стандартен Cane Corso профил',
     description:
-      'Това е AI/ML-ready ориентир. Комбинира данни от профила, снимки, измервания, FCI пропорции и граници на преглед. Не доказва порода или родословие.',
-    buttonContext: 'Моделът е подготвен като асистент',
-    score: 'Оценка на готовност',
+      'Това е доброволна бонус проверка за потребител, който иска по-дълбока ориентация. Използва образец за сравнение със стандарта, а процентът показва визуално и измеримо съответствие с Cane Corso стандарт/USG ориентир. Не доказва порода или родословие.',
+    buttonContext: 'Бонус за собственици, които искат по-ясна ориентация',
+    score: 'USG Standard Match',
     confidence: 'Увереност по доказателства',
+    bonusBadge: 'Доброволен бонус за потребителя',
+    resultMeaningTitle: 'Как да четеш процента',
+    resultMeaningBody: 'Процентът показва визуално и измеримо съответствие според наличните снимки, измервания и профилни данни. Това не е присъда за произход, порода или родословие.',
+    scoreGuideTitle: 'Нива на съответствие',
+    scoreGuideItems: ['0–39%: недостатъчно данни', '40–59%: частично съответствие', '60–74%: добро начално съответствие', '75–89%: силно съответствие', '90–100%: много силно съответствие, нужно е човешко потвърждение'],
     loading: 'Зареждам архива с измервания…',
     loadError: 'Архивът с измервания не е достъпен в момента. Проверката продължава само с профил и снимки.',
     noName: 'Cane Corso без име',
-    evidence: 'Диаграма на доказателствата',
-    signals: 'Сигнали, използвани от проверката',
+    evidence: 'Диаграма за сравнение със стандарта',
+    signals: 'Разбивка по доказателства',
     proportions: 'Диаграми по стандарт',
-    photoModel: 'Статус на фото модела',
+    photoModel: 'Статус на снимковото сравнение',
     photoModelBody:
-      'Разпознаването от снимка е подготвено като бъдещ слой. Днес платформата проверява дали снимките са достатъчни за човешки/AI-подпомогнат преглед, не дали изображението доказва породата.',
+      'Разпознаването от снимка е подготвено като бъдещ слой. Днес платформата проверява дали снимките могат да помогнат за сравнение с образец за сравнение със стандарта, не дали изображението доказва породата.',
     nextTitle: 'Най-добра следваща стъпка',
     boundaryTitle: 'Граница на доверие',
     boundaryBody:
-      'Резултатът е само предварителен ориентир. Финалният USG преглед, публикуването в Регистъра и Сертификатът остават човешки решения.',
+      'Резултатът е само предварителна ориентация за съответствие със стандарта. Финалният USG преглед, публикуването в Регистъра и Сертификатът остават човешки решения.',
     qualification: {
-      ready: 'Силен кандидат за подготовка към USG преглед',
-      collecting: 'Добро начало — събери още доказателства',
-      weak: 'Все още няма достатъчно доказателства',
+      insufficient: 'Недостатъчно данни / слаб ориентир',
+      partial: 'Частично съответствие със стандарта',
+      good: 'Добро начално съответствие',
+      strong: 'Силно съответствие — нужен е човешки преглед',
+      very_strong: 'Много силно съответствие — нужно е човешко потвърждение',
     },
     confidenceValues: {
       low: 'ниска',
       medium: 'средна',
       high: 'висока',
     },
-    flow: ['Профил', 'Снимки', 'Измервания', 'Стандарт', 'USG преглед'],
+    flow: ['Профил', 'Снимки', 'Измервания', 'Standard Match', 'USG преглед'],
     signalLabels: {
       profile: 'Данни в профила',
       photos: 'Снимкови доказателства',
       measurements: 'Архив с измервания',
-      standard: 'FCI/USG ориентир',
+      standard: 'Ориентир за съответствие',
       pedigree: 'Семеен контекст',
       human_review: 'Човешки преглед',
     },
@@ -156,7 +172,7 @@ const copyByLocale = {
       profile: 'Име, пол, дата на раждане, цвят, локация и описание от собственика.',
       photos: 'Основна снимка плюс галерия от собственика за визуален контекст.',
       measurements: 'Тегло, височина и пропорции, записани по дата.',
-      standard: 'Използва вече наличния FCI conformity engine от последните измервания.',
+      standard: 'Използва вече наличния FCI conformity engine като измерим образец за сравнение със стандарта.',
       pedigree: 'Позната семейна линия и снимки на предци, когато са налични.',
       human_review: 'Държи официалните решения отделени от автоматичната оценка.',
     },
@@ -164,7 +180,7 @@ const copyByLocale = {
       profileReady: 'готови профилни полета',
       photoCount: 'снимки',
       measurementCount: 'записа с измервания',
-      fciScore: 'оценка по стандарт',
+      fciScore: 'оценка на съответствие',
       pedigreeCount: 'родословни полета',
       locked: 'заключено',
     },
@@ -182,42 +198,49 @@ const copyByLocale = {
     },
   },
   it: {
-    eyebrow: 'Verifica autenticità USG',
-    title: 'Controlla la prontezza rispetto allo standard',
+    eyebrow: 'Verifica bonus autenticità USG',
+    title: 'Confronto con il profilo standard Cane Corso',
     description:
-      'È un livello di orientamento pronto per AI/ML. Combina profilo, foto, misure, proporzioni FCI e confini di revisione. Non prova razza o pedigree.',
-    buttonContext: 'Assistente pronto per modello',
-    score: 'Punteggio prontezza',
+      'È una verifica bonus volontaria per chi desidera più orientamento. Usa un modello standard di confronto e la percentuale indica corrispondenza visiva e misurabile con lo standard Cane Corso/USG. Non prova razza o pedigree.',
+    buttonContext: 'Bonus volontario per proprietari che vogliono più chiarezza',
+    score: 'USG Standard Match',
     confidence: 'Affidabilità evidenze',
+    bonusBadge: 'Bonus volontario per utente',
+    resultMeaningTitle: 'Come leggere la percentuale',
+    resultMeaningBody: 'La percentuale indica corrispondenza visiva e misurabile in base a foto, misure e dati profilo disponibili. Non è un verdetto su origine, razza o pedigree.',
+    scoreGuideTitle: 'Livelli di corrispondenza',
+    scoreGuideItems: ['0–39%: dati insufficienti', '40–59%: corrispondenza parziale', '60–74%: buona corrispondenza iniziale', '75–89%: corrispondenza forte', '90–100%: corrispondenza molto forte, conferma umana necessaria'],
     loading: 'Caricamento archivio misure…',
     loadError: 'Archivio misure non disponibile ora. La verifica continua solo con profilo e foto.',
     noName: 'Cane Corso senza nome',
-    evidence: 'Diagramma evidenze',
-    signals: 'Segnali usati dalla verifica',
+    evidence: 'Diagramma confronto standard',
+    signals: 'Dettaglio per evidenze',
     proportions: 'Diagrammi orientati allo standard',
-    photoModel: 'Stato modello foto',
+    photoModel: 'Stato confronto foto',
     photoModelBody:
-      'Il riconoscimento da foto è preparato come livello futuro. Oggi la piattaforma verifica se le foto sono sufficienti per revisione umana/assistita da AI, non se l’immagine prova la razza.',
+      'Il riconoscimento da foto è preparato come livello futuro. Oggi la piattaforma verifica se le foto possono supportare il confronto con il modello standard, non se l’immagine prova la razza.',
     nextTitle: 'Prossima evidenza migliore',
     boundaryTitle: 'Confine di fiducia',
     boundaryBody:
-      'Il risultato è solo orientamento preliminare. Revisione USG finale, pubblicazione Registro e Certificato restano decisioni umane.',
+      'Il risultato è solo orientamento preliminare di corrispondenza allo standard. Revisione USG finale, pubblicazione Registro e Certificato restano decisioni umane.',
     qualification: {
-      ready: 'Forte candidato per preparazione revisione USG',
-      collecting: 'Buon inizio — raccogli più evidenze',
-      weak: 'Evidenze ancora insufficienti',
+      insufficient: 'Dati insufficienti / orientamento debole',
+      partial: 'Corrispondenza parziale allo standard',
+      good: 'Buona corrispondenza iniziale',
+      strong: 'Forte corrispondenza — serve revisione umana',
+      very_strong: 'Corrispondenza molto forte — conferma umana necessaria',
     },
     confidenceValues: {
       low: 'bassa',
       medium: 'media',
       high: 'alta',
     },
-    flow: ['Profilo', 'Foto', 'Misure', 'Standard', 'Revisione USG'],
+    flow: ['Profilo', 'Foto', 'Misure', 'Standard Match', 'Revisione USG'],
     signalLabels: {
       profile: 'Dati profilo',
       photos: 'Evidenza foto',
       measurements: 'Archivio misure',
-      standard: 'Orientamento FCI/USG',
+      standard: 'Orientamento Standard Match',
       pedigree: 'Contesto familiare',
       human_review: 'Revisione umana',
     },
@@ -225,7 +248,7 @@ const copyByLocale = {
       profile: 'Nome, sesso, data di nascita, colore, luogo e descrizione proprietario.',
       photos: 'Immagine principale più galleria proprietario per contesto visivo.',
       measurements: 'Peso, altezza e proporzioni salvate per data.',
-      standard: 'Usa il motore FCI conformity già presente dalle ultime misure.',
+      standard: 'Usa il motore FCI conformity già presente come modello misurabile di confronto standard.',
       pedigree: 'Linea familiare nota e foto antenati quando disponibili.',
       human_review: 'Tiene le decisioni ufficiali separate dal punteggio automatico.',
     },
@@ -233,7 +256,7 @@ const copyByLocale = {
       profileReady: 'campi profilo pronti',
       photoCount: 'foto',
       measurementCount: 'record misure',
-      fciScore: 'punteggio standard',
+      fciScore: 'punteggio corrispondenza standard',
       pedigreeCount: 'campi pedigree',
       locked: 'bloccato',
     },
@@ -280,9 +303,11 @@ function countMeasurementFields(record: DogMeasurementRecord | null) {
 }
 
 function getQualification(score: number): AuthenticityQualificationKey {
-  if (score >= 80) return 'ready';
-  if (score >= 55) return 'collecting';
-  return 'weak';
+  if (score >= 90) return 'very_strong';
+  if (score >= 75) return 'strong';
+  if (score >= 60) return 'good';
+  if (score >= 40) return 'partial';
+  return 'insufficient';
 }
 
 function getConfidence(signalCount: number, measurementCount: number, score: number): AuthenticityConfidenceKey {
@@ -519,7 +544,9 @@ export function UsgAuthenticityCheckPanel({
         <div className="authenticity-check-panel__summary">
           <strong>{displayName}</strong>
           <span>{copy.confidence}: {copy.confidenceValues[signalDocument.confidence]}</span>
+          <span className="authenticity-check-panel__bonus-badge">{copy.bonusBadge}</span>
           <p>{copy.buttonContext}</p>
+          <small><strong>{copy.resultMeaningTitle}:</strong> {copy.resultMeaningBody}</small>
           {loading ? <small>{copy.loading}</small> : null}
           {!loading && loadError ? <small>{copy.loadError}</small> : null}
         </div>
@@ -555,6 +582,13 @@ export function UsgAuthenticityCheckPanel({
           <section className="authenticity-check-mini-card">
             <span className="eyebrow-label">{copy.photoModel}</span>
             <p>{copy.photoModelBody}</p>
+          </section>
+
+          <section className="authenticity-check-mini-card authenticity-check-mini-card--score-guide">
+            <span className="eyebrow-label">{copy.scoreGuideTitle}</span>
+            <ul>
+              {copy.scoreGuideItems.map((item) => <li key={item}>{item}</li>)}
+            </ul>
           </section>
 
           <section className="authenticity-check-mini-card authenticity-check-mini-card--gold">

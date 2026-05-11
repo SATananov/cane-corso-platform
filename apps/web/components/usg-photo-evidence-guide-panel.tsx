@@ -12,9 +12,9 @@ type PhotoEvidenceStatus = 'ready' | 'current' | 'missing';
 const copyByLocale = {
   en: {
     eyebrow: 'Step 118 photo evidence flow',
-    title: 'Prepare the three photos the model needs',
+    title: 'Prepare the three photos for Standard Match comparison',
     description:
-      'This guide turns “Check authenticity” into a clear photo evidence flow: side standing, front standing and head detail. It prepares the future AI/ML layer without claiming that a photo proves breed identity.',
+      'This voluntary owner bonus turns “Check authenticity” into a clear photo evidence flow: side standing, front standing and head detail. These photos become the comparison sample for the standard template, without claiming that a photo proves breed identity.',
     noName: 'This Cane Corso',
     readiness: 'Photo evidence readiness',
     target: 'Target set',
@@ -25,7 +25,7 @@ const copyByLocale = {
     qualityTitle: 'Quality gates before review',
     modelTitle: 'Future model input',
     modelBody:
-      'When the recognition layer is added, these views can become the structured input for pose, proportion and quality checks. Until then they guide the owner and the human reviewer.',
+      'When the recognition layer is added, these views can become the structured input for pose, proportion and quality checks against the standard template. Until then they guide the owner and the human reviewer.',
     shots: [
       {
         key: 'side',
@@ -57,9 +57,9 @@ const copyByLocale = {
   },
   bg: {
     eyebrow: 'Step 118 снимков evidence flow',
-    title: 'Подготви трите снимки, които моделът ще използва',
+    title: 'Подготви трите снимки за Standard Match сравнение',
     description:
-      'Този guide превръща „Провери за истинско“ в ясен снимков evidence flow: странична стойка, фронтална стойка и детайл на глава. Подготвя бъдещия AI/ML слой, без да твърди, че снимка доказва порода.',
+      'Тази доброволна бонус проверка превръща „Провери за истинско“ в ясен снимков evidence flow: странична стойка, фронтална стойка и детайл на глава. Тези снимки стават пример за сравнение с образец за сравнение със стандарта, без да твърди, че снимка доказва порода.',
     noName: 'Това Cane Corso',
     readiness: 'Готовност на снимковите доказателства',
     target: 'Целеви комплект',
@@ -70,7 +70,7 @@ const copyByLocale = {
     qualityTitle: 'Quality gates преди преглед',
     modelTitle: 'Вход за бъдещия модел',
     modelBody:
-      'Когато добавим recognition слоя, тези изгледи могат да станат структурираният вход за pose, proportion и quality checks. Дотогава водят собственика и човешкия преглед.',
+      'Когато добавим recognition слоя, тези изгледи могат да станат структурираният вход за pose, proportion и quality checks спрямо стандарта. Дотогава водят собственика и човешкия преглед.',
     shots: [
       {
         key: 'side',
@@ -102,9 +102,9 @@ const copyByLocale = {
   },
   it: {
     eyebrow: 'Step 118 flusso evidenze foto',
-    title: 'Prepara le tre foto utili al modello',
+    title: 'Prepara le tre foto per il confronto Standard Match',
     description:
-      'Questa guida trasforma “Verifica autenticità” in un flusso chiaro: lato in posa, fronte in posa e dettaglio testa. Prepara il futuro livello AI/ML senza affermare che una foto provi la razza.',
+      'Questo bonus volontario trasforma “Verifica autenticità” in un flusso chiaro: lato in posa, fronte in posa e dettaglio testa. Queste foto diventano campione di confronto con il modello standard senza affermare che una foto provi la razza.',
     noName: 'Questo Cane Corso',
     readiness: 'Prontezza evidenze foto',
     target: 'Set obiettivo',
@@ -115,7 +115,7 @@ const copyByLocale = {
     qualityTitle: 'Quality gates prima della revisione',
     modelTitle: 'Input per modello futuro',
     modelBody:
-      'Quando il livello di riconoscimento sarà aggiunto, queste viste potranno diventare input strutturato per pose, proporzioni e controlli qualità. Fino ad allora guidano proprietario e revisione umana.',
+      'Quando il livello di riconoscimento sarà aggiunto, queste viste potranno diventare input strutturato per pose, proporzioni e controlli qualità rispetto al modello standard. Fino ad allora guidano proprietario e revisione umana.',
     shots: [
       {
         key: 'side',
