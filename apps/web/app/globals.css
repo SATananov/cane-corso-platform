@@ -25287,3 +25287,67 @@ body {
   }
 }
 /* Step 115 — Platform-wide Progressive Disclosure UX Pass END */
+
+/* Step 115.1 — Hero Chip Action Enforcement START */
+.page-hero-chip-control {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 16px;
+}
+
+.page-hero-chip-control .page-hero__badge-row {
+  margin-top: 0;
+}
+
+.page-hero__badge--button {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.075);
+  color: var(--gold-bright);
+}
+
+.page-hero__badge--button.is-active,
+.page-hero__badge--button[aria-expanded='true'] {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(212, 175, 55, 0.18);
+  color: var(--ivory);
+}
+
+.page-hero-chip-control__panel {
+  display: grid;
+  gap: 0.3rem;
+  max-width: 56rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--text-soft);
+}
+
+.page-hero-chip-control__panel span {
+  color: var(--gold-bright);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-hero-chip-control__panel strong {
+  color: var(--ivory);
+  font-size: 1rem;
+}
+
+.page-hero-chip-control__panel p {
+  margin: 0;
+  max-width: 64ch;
+}
+
+.page-hero-chip-control__panel .button-secondary {
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+[data-theme='heritage'] .page-hero-chip-control__panel {
+  border-color: rgba(150, 111, 33, 0.22);
+  background: rgba(255, 251, 244, 0.34);
+}
+/* Step 115.1 — Hero Chip Action Enforcement END */

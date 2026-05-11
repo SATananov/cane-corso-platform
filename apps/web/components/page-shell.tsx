@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import type { ReactNode } from 'react';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { PageHeroChipRow } from '@/components/page-hero-chip-row';
 import { SectionCard } from '@/components/section-card';
 import type { IconSymbolName } from '@/components/icon-symbol';
 
@@ -18,21 +19,12 @@ export interface PageShellHeroChip {
   href?: string;
   title?: string;
   targetId?: string;
+  description?: string;
+  actionHref?: string;
+  actionLabel?: string;
 }
 
 type PageShellHeroChipInput = string | PageShellHeroChip;
-
-function getHeroChipLabel(chip: PageShellHeroChipInput) {
-  return typeof chip === 'string' ? chip : chip.label;
-}
-
-function getHeroChipHref(chip: PageShellHeroChipInput) {
-  return typeof chip === 'string' ? undefined : chip.href;
-}
-
-function getHeroChipTargetId(chip: PageShellHeroChipInput) {
-  return typeof chip === 'string' ? undefined : chip.targetId;
-}
 
 interface PageShellProps {
   eyebrow: string;
@@ -86,35 +78,7 @@ export function PageShell({
               </Link>
             </div>
           ) : null}
-          {heroChips.length ? (
-            <div className="page-hero__badge-row">
-              {heroChips.map((chip) => {
-                const label = getHeroChipLabel(chip);
-                const href = getHeroChipHref(chip);
-                const targetId = getHeroChipTargetId(chip);
-
-                return targetId ? (
-                  <button
-                    key={`${label}-${targetId}`}
-                    type="button"
-                    className="page-hero__badge page-hero__badge--link page-hero__badge--button"
-                    title={typeof chip === 'string' ? undefined : chip.title}
-                    data-pregnancy-guide-target={targetId}
-                  >
-                    {label}
-                  </button>
-                ) : href ? (
-                  <a key={`${label}-${href}`} className="page-hero__badge page-hero__badge--link" href={href} title={typeof chip === 'string' ? undefined : chip.title}>
-                    {label}
-                  </a>
-                ) : (
-                  <span key={label} className="page-hero__badge" aria-disabled="true">
-                    {label}
-                  </span>
-                );
-              })}
-            </div>
-          ) : null}
+          {heroChips.length ? <PageHeroChipRow chips={heroChips} helpLabel={helpLabel} /> : null}
           {heroNote ? <p className="page-hero__note">{heroNote}</p> : null}
         </div>
 

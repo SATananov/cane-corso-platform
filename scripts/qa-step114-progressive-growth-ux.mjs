@@ -16,6 +16,7 @@ console.log('===================================================================
 
 const requiredFiles = [
   'apps/web/components/page-shell.tsx',
+  'apps/web/components/page-hero-chip-row.tsx',
   'apps/web/app/(public)/knowledge/[slug]/page.tsx',
   'apps/web/components/cane-corso-pregnancy-puppy-guide.tsx',
   'apps/web/components/owner-health-growth-tracker.tsx',
@@ -29,9 +30,10 @@ for (const file of requiredFiles) assertFile(file);
 
 const pageShell = 'apps/web/components/page-shell.tsx';
 assertIncludes(pageShell, 'targetId?: string', 'PageShell hero chip targetId contract exists');
-assertIncludes(pageShell, 'getHeroChipTargetId', 'PageShell reads progressive target id');
-assertIncludes(pageShell, 'page-hero__badge--button', 'PageShell can render chip buttons');
-assertIncludes(pageShell, 'data-pregnancy-guide-target', 'PageShell emits guide target data attribute');
+assertIncludes(pageShell, '<PageHeroChipRow chips={heroChips} helpLabel={helpLabel} />', 'PageShell delegates progressive hero chips to active row');
+const heroRow = 'apps/web/components/page-hero-chip-row.tsx';
+assertIncludes(heroRow, 'page-hero__badge--button', 'Hero chip row can render chip buttons');
+assertIncludes(heroRow, 'data-pregnancy-guide-target={chip.targetId}', 'Hero chip row emits guide target data attribute');
 
 const articlePage = 'apps/web/app/(public)/knowledge/[slug]/page.tsx';
 assertIncludes(articlePage, 'targetId: href.replace', 'Pregnancy article hero chips map to progressive target ids');

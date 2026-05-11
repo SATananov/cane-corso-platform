@@ -17,6 +17,7 @@ console.log('===================================================================
 const requiredFiles = [
   'apps/web/components/page-shell.tsx',
   'apps/web/app/(public)/knowledge/[slug]/page.tsx',
+  'apps/web/components/page-hero-chip-row.tsx',
   'apps/web/components/cane-corso-pregnancy-puppy-guide.tsx',
   'apps/web/app/globals.css',
   'docs/qa/step113-3-active-guide-navigation.md',
@@ -29,8 +30,11 @@ for (const file of requiredFiles) assertFile(file);
 const pageShell = 'apps/web/components/page-shell.tsx';
 assertIncludes(pageShell, 'export interface PageShellHeroChip', 'PageShell linked chip type exists');
 assertIncludes(pageShell, 'type PageShellHeroChipInput = string | PageShellHeroChip', 'PageShell keeps backward-compatible string chips');
-assertIncludes(pageShell, 'page-hero__badge page-hero__badge--link', 'PageShell renders linked hero chips as active anchors');
-assertIncludes(pageShell, 'aria-disabled="true"', 'PageShell marks static chips as non-interactive labels');
+assertIncludes(pageShell, '<PageHeroChipRow chips={heroChips} helpLabel={helpLabel} />', 'PageShell delegates hero chips to active row component');
+const heroRow = 'apps/web/components/page-hero-chip-row.tsx';
+assertIncludes(heroRow, 'page-hero__badge page-hero__badge--link', 'Hero chip row renders linked chips as active anchors');
+assertIncludes(heroRow, 'setActiveChipId', 'Hero chip row makes legacy chips active instead of inert labels');
+assertNotIncludes(pageShell, 'aria-disabled="true"', 'PageShell no longer renders inert static chips');
 
 const articlePage = 'apps/web/app/(public)/knowledge/[slug]/page.tsx';
 assertIncludes(articlePage, 'getArticleHeroChips', 'Knowledge article page maps article chips');
