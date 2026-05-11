@@ -2,6 +2,7 @@ import type { Locale } from '@/lib/i18n';
 
 type GuideRow = readonly string[];
 type GuideTable = {
+  id?: string;
   title: string;
   description: string;
   columns: readonly string[];
@@ -23,8 +24,18 @@ const guideCopy = {
       { title: 'No home medication routine', body: 'Do not give oxytocin, calcium, antibiotics, dewormers, human medicine, or “cleaning” injections without veterinary instruction.' },
       { title: 'Public platform boundary', body: 'This page is education. It is not a breeding promise, medical diagnosis, or permission for uncontrolled litters.' },
     ],
+    navLabel: 'Jump to section',
+    navItems: [
+      { label: 'Pregnancy', href: '#pregnancy-calendar' },
+      { label: 'Preparation', href: '#birth-preparation' },
+      { label: 'Birth problems', href: '#birth-warnings' },
+      { label: 'After birth', href: '#postpartum-care' },
+      { label: 'Day 1–40', href: '#puppy-day-1-40' },
+      { label: 'Deworming', href: '#owner-vet-boundary' },
+    ],
     tables: [
       {
+        id: 'pregnancy-calendar',
         title: 'From tie / mating to whelping',
         description: 'Use this as an orientation calendar, then confirm real pregnancy status and risk with a veterinarian.',
         columns: ['Period', 'What may happen', 'Owner action'],
@@ -39,6 +50,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'birth-preparation',
         title: 'Preparation before birth',
         description: 'The best help is calm preparation before there is panic.',
         columns: ['Prepare', 'Why it matters', 'How to use it'],
@@ -52,6 +64,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'birth-warnings',
         title: 'Birth problems: do not wait too long',
         description: 'These signs belong in a visible emergency card for owners.',
         columns: ['Signal', 'Possible meaning', 'Owner action'],
@@ -65,6 +78,7 @@ const guideCopy = {
         tone: 'warning',
       },
       {
+        id: 'postpartum-care',
         title: 'After birth: recovery and “cleaning”',
         description: 'The mother usually clears naturally. Routine home medication for “cleaning” is not a safe rule.',
         columns: ['Moment', 'Normal care', 'Do not do'],
@@ -77,6 +91,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'puppy-day-1-40',
         title: 'Puppies from Day 1 to Day 40',
         description: 'The first 40 days are about warmth, milk, clean bedding, weight, eyes, movement, and gentle social contact.',
         columns: ['Age', 'Development', 'Owner care'],
@@ -92,6 +107,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'owner-vet-boundary',
         title: 'Deworming orientation',
         description: 'No doses belong in the public article. Every puppy must be dosed by actual weight and veterinary product choice.',
         columns: ['Age', 'Common orientation', 'Platform note'],
@@ -117,8 +133,18 @@ const guideCopy = {
       { title: 'Без домашна лекарствена рутина', body: 'Не се дават окситоцин, калций, антибиотици, обезпаразитяващи, човешки лекарства или “инжекция за изчистване” без ветеринар.' },
       { title: 'Граница на платформата', body: 'Това е образователна страница. Не е разрешение за безконтролни малки, медицинска диагноза или обещание за разплод.' },
     ],
+    navLabel: 'Отиди директно към секция',
+    navItems: [
+      { label: 'Бременност', href: '#pregnancy-calendar' },
+      { label: 'Подготовка', href: '#birth-preparation' },
+      { label: 'Проблеми', href: '#birth-warnings' },
+      { label: 'След раждане', href: '#postpartum-care' },
+      { label: 'Ден 1–40', href: '#puppy-day-1-40' },
+      { label: 'Обезпаразитяване', href: '#owner-vet-boundary' },
+    ],
     tables: [
       {
+        id: 'pregnancy-calendar',
         title: 'От заклещване / покриване до раждане',
         description: 'Използвай го като ориентир, а реалната бременност и риск се потвърждават с ветеринар.',
         columns: ['Период', 'Какво може да се случва', 'Какво прави собственикът'],
@@ -133,6 +159,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'birth-preparation',
         title: 'Подготовка преди раждането',
         description: 'Най-добрата помощ е спокойната подготовка преди да има паника.',
         columns: ['Подготви', 'Защо е важно', 'Как се използва'],
@@ -146,6 +173,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'birth-warnings',
         title: 'Проблеми при раждане: не се чака твърде дълго',
         description: 'Тези сигнали трябва да стоят като видима спешна карта за собственика.',
         columns: ['Сигнал', 'Какво може да значи', 'Действие'],
@@ -159,6 +187,7 @@ const guideCopy = {
         tone: 'warning',
       },
       {
+        id: 'postpartum-care',
         title: 'След раждането: възстановяване и “изчистване”',
         description: 'Майката обикновено се изчиства естествено. Рутинното домашно даване на лекарства “за изчистване” не е безопасно правило.',
         columns: ['Момент', 'Нормална грижа', 'Не прави'],
@@ -171,6 +200,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'puppy-day-1-40',
         title: 'Малките от Ден 1 до Ден 40',
         description: 'Първите 40 дни са топлина, мляко, чистота, тегло, проглеждане, движение и внимателен човешки контакт.',
         columns: ['Възраст', 'Развитие', 'Грижа'],
@@ -186,6 +216,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'owner-vet-boundary',
         title: 'Ориентир за обезпаразитяване',
         description: 'В публичната статия не трябва да има дози. Всяко малко се дозира според реално тегло и продукт, избран от ветеринар.',
         columns: ['Възраст', 'Общ ориентир', 'Бележка в платформата'],
@@ -211,8 +242,18 @@ const guideCopy = {
       { title: 'Nessuna routine farmaci in casa', body: 'Non dare ossitocina, calcio, antibiotici, antiparassitari, farmaci umani o iniezioni “per pulire” senza istruzione veterinaria.' },
       { title: 'Confine piattaforma', body: 'Questa pagina è educativa. Non è permesso per cucciolate incontrollate, diagnosi medica o promessa di riproduzione.' },
     ],
+    navLabel: 'Vai alla sezione',
+    navItems: [
+      { label: 'Gravidanza', href: '#pregnancy-calendar' },
+      { label: 'Preparazione', href: '#birth-preparation' },
+      { label: 'Problemi parto', href: '#birth-warnings' },
+      { label: 'Dopo il parto', href: '#postpartum-care' },
+      { label: 'Giorno 1–40', href: '#puppy-day-1-40' },
+      { label: 'Antiparassitario', href: '#owner-vet-boundary' },
+    ],
     tables: [
       {
+        id: 'pregnancy-calendar',
         title: 'Dal tie / accoppiamento al parto',
         description: 'Usalo come orientamento, poi conferma gravidanza reale e rischio con il veterinario.',
         columns: ['Periodo', 'Cosa può accadere', 'Azione proprietario'],
@@ -227,6 +268,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'birth-preparation',
         title: 'Preparazione prima del parto',
         description: 'Il miglior aiuto è preparare con calma prima del panico.',
         columns: ['Prepara', 'Perché serve', 'Come usarlo'],
@@ -240,6 +282,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'birth-warnings',
         title: 'Problemi al parto: non aspettare troppo',
         description: 'Questi segnali devono essere visibili come card urgente per il proprietario.',
         columns: ['Segnale', 'Possibile significato', 'Azione'],
@@ -253,6 +296,7 @@ const guideCopy = {
         tone: 'warning',
       },
       {
+        id: 'postpartum-care',
         title: 'Dopo il parto: recupero e “pulizia”',
         description: 'La madre di solito si pulisce naturalmente. Farmaci domestici di routine “per pulire” non sono una regola sicura.',
         columns: ['Momento', 'Cura normale', 'Non fare'],
@@ -265,6 +309,7 @@ const guideCopy = {
         tone: 'calm',
       },
       {
+        id: 'puppy-day-1-40',
         title: 'Cuccioli dal Giorno 1 al Giorno 40',
         description: 'I primi 40 giorni sono calore, latte, pulizia, peso, apertura occhi, movimento e contatto umano delicato.',
         columns: ['Età', 'Sviluppo', 'Cura'],
@@ -280,6 +325,7 @@ const guideCopy = {
         ],
       },
       {
+        id: 'owner-vet-boundary',
         title: 'Orientamento antiparassitario',
         description: 'Nella pagina pubblica non vanno inserite dosi. Ogni cucciolo va dosato su peso reale e prodotto scelto dal veterinario.',
         columns: ['Età', 'Orientamento comune', 'Nota piattaforma'],
@@ -296,7 +342,7 @@ const guideCopy = {
 
 function GuideTableCard({ table }: { table: GuideTable }) {
   return (
-    <section className={`pregnancy-puppy-guide__table-card pregnancy-puppy-guide__table-card--${table.tone ?? 'default'}`}>
+    <section id={table.id} className={`pregnancy-puppy-guide__table-card pregnancy-puppy-guide__table-card--${table.tone ?? 'default'}`}>
       <div className="pregnancy-puppy-guide__table-head">
         <h3>{table.title}</h3>
         <p>{table.description}</p>
@@ -339,6 +385,14 @@ export function CaneCorsoPregnancyPuppyGuide({ locale }: { locale: Locale }) {
           <span>{copy.principle}</span>
         </div>
       </div>
+
+      <nav className="pregnancy-puppy-guide__nav" aria-label={copy.navLabel}>
+        {copy.navItems.map((item) => (
+          <a href={item.href} key={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </nav>
 
       <div className="pregnancy-puppy-guide__cards">
         {copy.cards.map((card) => (

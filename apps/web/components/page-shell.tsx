@@ -13,6 +13,22 @@ export interface PageShellCard {
   icon?: IconSymbolName;
 }
 
+export interface PageShellHeroChip {
+  label: string;
+  href?: string;
+  title?: string;
+}
+
+type PageShellHeroChipInput = string | PageShellHeroChip;
+
+function getHeroChipLabel(chip: PageShellHeroChipInput) {
+  return typeof chip === 'string' ? chip : chip.label;
+}
+
+function getHeroChipHref(chip: PageShellHeroChipInput) {
+  return typeof chip === 'string' ? undefined : chip.href;
+}
+
 interface PageShellProps {
   eyebrow: string;
   title: string;
@@ -26,7 +42,7 @@ interface PageShellProps {
   visualSrc?: string;
   visualAlt?: string;
   visualFit?: 'cover' | 'contain';
-  heroChips?: readonly string[];
+  heroChips?: readonly PageShellHeroChipInput[];
   heroNote?: string;
   variant?: 'default' | 'knowledge';
 }
@@ -67,11 +83,20 @@ export function PageShell({
           ) : null}
           {heroChips.length ? (
             <div className="page-hero__badge-row">
-              {heroChips.map((chip) => (
-                <span key={chip} className="page-hero__badge">
-                  {chip}
-                </span>
-              ))}
+              {heroChips.map((chip) => {
+                const label = getHeroChipLabel(chip);
+                const href = getHeroChipHref(chip);
+
+                return href ? (
+                  <a key={`${label}-${href}`} className="page-hero__badge page-hero__badge--link" href={href} title={typeof chip === 'string' ? undefined : chip.title}>
+                    {label}
+                  </a>
+                ) : (
+                  <span key={label} className="page-hero__badge" aria-disabled="true">
+                    {label}
+                  </span>
+                );
+              })}
             </div>
           ) : null}
           {heroNote ? <p className="page-hero__note">{heroNote}</p> : null}

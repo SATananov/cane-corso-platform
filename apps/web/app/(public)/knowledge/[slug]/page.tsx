@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { KnowledgeArticleDetail } from '@/components/knowledge-article-detail';
 import { PageShell } from '@/components/page-shell';
+import type { PageShellHeroChip } from '@/components/page-shell';
 import {
   getKnowledgeArticleStaticParams,
   getPublishedKnowledgeArticleBySlug,
@@ -32,6 +33,20 @@ const copyByLocale = {
   },
 } as const;
 
+
+function getArticleHeroChips(slug: string, tags: readonly string[]): readonly (string | PageShellHeroChip)[] {
+  if (slug !== 'cane-corso-pregnancy-birth-puppy-growth-calendar') {
+    return tags;
+  }
+
+  const anchors = ['#pregnancy-calendar', '#birth-warnings', '#puppy-day-1-40', '#owner-vet-boundary'] as const;
+
+  return tags.map((label, index) => ({
+    label,
+    href: anchors[index] ?? '#pregnancy-puppy-guide',
+  }));
+}
+
 export function generateStaticParams() {
   return getKnowledgeArticleStaticParams();
 }
@@ -58,7 +73,7 @@ export default async function KnowledgeArticlePage({ params }: KnowledgeArticleP
       helpLabel={copy.helpLabel}
       visualSrc="/brand/primary/welcome-logo.jpg"
       visualAlt={article.title}
-      heroChips={article.tags}
+      heroChips={getArticleHeroChips(article.slug, article.tags)}
       heroNote={copy.note}
       variant="knowledge"
     >

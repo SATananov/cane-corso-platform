@@ -161,7 +161,8 @@
     "step112:mobile-browser:qa": "node scripts/qa-step112-mobile-browser-ux-readiness.mjs",
     "step113:demo-data:qa": "node scripts/qa-step113-softuni-demo-data-pack.mjs",
     "step113-1:owner-workspace:qa": "node scripts/qa-step113-1-owner-cane-corso-section-workspace.mjs",
-    "step113-2:pregnancy-puppy-knowledge:qa": "node scripts/qa-step113-2-cane-corso-pregnancy-puppy-growth-knowledge.mjs"
+    "step113-2:pregnancy-puppy-knowledge:qa": "node scripts/qa-step113-2-cane-corso-pregnancy-puppy-growth-knowledge.mjs",
+    "step113-3:active-guide-navigation:qa": "node scripts/qa-step113-3-active-guide-navigation.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

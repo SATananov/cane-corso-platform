@@ -24695,3 +24695,89 @@ body {
   }
 }
 /* Step 113.2 — Cane Corso Pregnancy & Puppy Growth Knowledge Guide END */
+
+/* Step 113.3 — Active Hero Chips & Guide Section Navigation START */
+.page-hero__badge {
+  cursor: default;
+  text-decoration: none;
+}
+
+.page-hero__badge--link {
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.page-hero__badge--link:hover,
+.page-hero__badge--link:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.38);
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--ivory);
+  outline: none;
+}
+
+.pregnancy-puppy-guide__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.pregnancy-puppy-guide__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 999px;
+  padding: 0 0.9rem;
+  background: rgba(212, 175, 55, 0.075);
+  color: var(--gold-bright);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.pregnancy-puppy-guide__nav a:hover,
+.pregnancy-puppy-guide__nav a:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.38);
+  background: rgba(212, 175, 55, 0.13);
+  color: var(--ivory);
+  outline: none;
+}
+
+.pregnancy-puppy-guide__table-card[id] {
+  scroll-margin-top: 7rem;
+}
+
+[data-theme='heritage'] .page-hero__badge--link,
+[data-theme='heritage'] .pregnancy-puppy-guide__nav a {
+  color: #f0c86a;
+}
+
+[data-theme='heritage'] .pregnancy-puppy-guide__nav {
+  border-color: rgba(150, 111, 33, 0.18);
+  background: rgba(255, 251, 244, 0.32);
+}
+
+@media (max-width: 760px) {
+  .pregnancy-puppy-guide__nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pregnancy-puppy-guide__nav a {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+/* Step 113.3 — Active Hero Chips & Guide Section Navigation END */
