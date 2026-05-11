@@ -1,5 +1,6 @@
 import type { Locale } from '@/lib/i18n';
 
+// Step 120 — Photo Readiness Action Guidance
 // Legacy QA markers: Step 118 photo evidence flow | Step 118 снимков evidence flow | Step 118 flusso evidenze foto
 
 interface UsgPhotoEvidenceGuidePanelProps {
@@ -51,6 +52,32 @@ const copyByLocale = {
       'Keep the Cane Corso standing, not sitting or lying.',
       'Add real measurements separately when possible.',
     ],
+    actionPlanTitle: 'What to do next',
+    actionPlanBody:
+      'Use the highlighted “next” card first. A complete three-photo set improves Standard Match confidence and prepares the profile for USG review, but it is still not breed proof.',
+    actionLabel: 'Owner action',
+    reviewGateTitle: 'Review gate',
+    reviewGateBody:
+      'Photo readiness helps Owner Center decide what is missing before submission. Registry publication and Certificate remain separate USG review decisions.',
+    ownerCenterTitle: 'Owner Center path',
+    ownerCenterSteps: ['Complete profile data', 'Upload the three views', 'Add real measurements', 'Open Standard Match', 'Submit for USG review'],
+    shotActions: {
+      side: {
+        ready: 'Keep this view unless you can replace it with a clearer full-body side photo.',
+        current: 'Add this first: it is the strongest orientation photo for body length, height and overall silhouette.',
+        missing: 'This view will be needed before photo readiness can be considered complete.',
+      },
+      front: {
+        ready: 'Keep this front view if chest, front legs and head are clear.',
+        current: 'Add this next so the reviewer can check width, stance and front structure.',
+        missing: 'This view remains missing and will reduce photo readiness until added.',
+      },
+      head: {
+        ready: 'Keep this detail if head, skull and muzzle are visible without blur.',
+        current: 'Add this next to support head and muzzle proportion orientation.',
+        missing: 'This detail is still needed for stronger visual review readiness.',
+      },
+    },
     status: {
       ready: 'ready',
       current: 'next',
@@ -96,6 +123,32 @@ const copyByLocale = {
       'Cane Corso да е изправен, не седнал или легнал.',
       'Добави реални измервания отделно, когато е възможно.',
     ],
+    actionPlanTitle: 'Какво да направиш сега',
+    actionPlanBody:
+      'Първо следвай картата, маркирана като „следващо“. Пълният комплект от три снимки повишава увереността на Standard Match и подготвя профила за USG преглед, но пак не е доказателство за порода.',
+    actionLabel: 'Действие за собственика',
+    reviewGateTitle: 'Врата към преглед',
+    reviewGateBody:
+      'Готовността на снимките помага на Owner Center да покаже какво липсва преди подаване. Публикуването в Регистъра и Сертификатът остават отделни решения след USG преглед.',
+    ownerCenterTitle: 'Път в Owner Center',
+    ownerCenterSteps: ['Попълни профилните данни', 'Качи трите изгледа', 'Добави реални измервания', 'Отвори Standard Match', 'Подай към USG преглед'],
+    shotActions: {
+      side: {
+        ready: 'Запази този изглед, освен ако можеш да го замениш с по-ясна странична снимка на цялото тяло.',
+        current: 'Добави това първо: това е най-силната ориентационна снимка за дължина на тяло, височина и силует.',
+        missing: 'Този изглед ще е нужен, преди снимковата готовност да се счита за пълна.',
+      },
+      front: {
+        ready: 'Запази тази фронтална снимка, ако гърдите, предните крайници и главата са ясни.',
+        current: 'Добави това следващо, за да може прегледът да види ширина, стойка и предна структура.',
+        missing: 'Този изглед още липсва и ще намалява снимковата готовност, докато не бъде добавен.',
+      },
+      head: {
+        ready: 'Запази този детайл, ако главата, черепът и муцуната се виждат ясно без размазване.',
+        current: 'Добави това следващо, за да помогне за ориентация на пропорциите на глава и муцуна.',
+        missing: 'Този детайл още е нужен за по-силна готовност за визуален преглед.',
+      },
+    },
     status: {
       ready: 'готово',
       current: 'следващо',
@@ -141,6 +194,32 @@ const copyByLocale = {
       'Il Cane Corso deve stare in piedi, non seduto o sdraiato.',
       'Aggiungi misure reali separatamente quando possibile.',
     ],
+    actionPlanTitle: 'Cosa fare adesso',
+    actionPlanBody:
+      'Segui prima la scheda marcata come “prossimo”. Il set completo di tre foto aumenta l’affidabilità Standard Match e prepara il profilo alla revisione USG, ma non è prova di razza.',
+    actionLabel: 'Azione proprietario',
+    reviewGateTitle: 'Ingresso revisione',
+    reviewGateBody:
+      'La prontezza foto aiuta Owner Center a mostrare cosa manca prima dell’invio. Pubblicazione nel Registro e Certificato restano decisioni separate dopo revisione USG.',
+    ownerCenterTitle: 'Percorso in Owner Center',
+    ownerCenterSteps: ['Completa i dati profilo', 'Carica le tre viste', 'Aggiungi misure reali', 'Apri Standard Match', 'Invia a revisione USG'],
+    shotActions: {
+      side: {
+        ready: 'Mantieni questa vista salvo poterla sostituire con una foto laterale del corpo intero più chiara.',
+        current: 'Aggiungila per prima: è la foto più forte per lunghezza corpo, altezza e silhouette generale.',
+        missing: 'Questa vista sarà necessaria prima che la prontezza foto sia completa.',
+      },
+      front: {
+        ready: 'Mantieni questa vista frontale se petto, arti anteriori e testa sono chiari.',
+        current: 'Aggiungila come prossima per controllare larghezza, postura e struttura frontale.',
+        missing: 'Questa vista manca ancora e riduce la prontezza foto finché non viene aggiunta.',
+      },
+      head: {
+        ready: 'Mantieni questo dettaglio se testa, cranio e muso sono visibili senza sfocatura.',
+        current: 'Aggiungilo come prossimo per supportare l’orientamento delle proporzioni testa/muso.',
+        missing: 'Questo dettaglio serve ancora per una revisione visiva più forte.',
+      },
+    },
     status: {
       ready: 'pronto',
       current: 'prossimo',
@@ -208,10 +287,25 @@ export function UsgPhotoEvidenceGuidePanel({
                 <span>{copy.status[status]}</span>
                 <strong>{shot.label}</strong>
                 <p>{shot.hint}</p>
+                <div className="photo-evidence-shot-card__action">
+                  <small>{copy.actionLabel}</small>
+                  <p>{copy.shotActions[shot.key][status]}</p>
+                </div>
               </div>
             </article>
           );
         })}
+      </div>
+
+      <div className="photo-evidence-guide-panel__action-strip" aria-label={copy.actionPlanTitle}>
+        <section>
+          <span className="eyebrow-label">{copy.actionPlanTitle}</span>
+          <p>{copy.actionPlanBody}</p>
+        </section>
+        <section>
+          <span className="eyebrow-label">{copy.reviewGateTitle}</span>
+          <p>{copy.reviewGateBody}</p>
+        </section>
       </div>
 
       <div className="photo-evidence-guide-panel__footer">
@@ -224,6 +318,12 @@ export function UsgPhotoEvidenceGuidePanel({
         <section className="photo-evidence-model-note">
           <span className="eyebrow-label">{copy.modelTitle}</span>
           <p>{copy.modelBody}</p>
+        </section>
+        <section className="photo-evidence-owner-bridge">
+          <span className="eyebrow-label">{copy.ownerCenterTitle}</span>
+          <ol>
+            {copy.ownerCenterSteps.map((step) => <li key={step}>{step}</li>)}
+          </ol>
         </section>
       </div>
     </section>

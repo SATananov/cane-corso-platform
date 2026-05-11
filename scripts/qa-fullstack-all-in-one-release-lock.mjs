@@ -59,6 +59,7 @@ const requiredFiles = [
   'docs/qa/step118-photo-evidence-flow.md',
   'docs/qa/step118-1-standard-match-bonus-clarity.md',
   'docs/qa/step119-usg-authenticity-data-foundation-ml-safe-labels.md',
+  'docs/qa/step120-photo-readiness-action-guidance.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -103,6 +104,7 @@ const requiredFiles = [
   'scripts/qa-step118-photo-evidence-flow.mjs',
   'scripts/qa-step118-1-standard-match-bonus-clarity.mjs',
   'scripts/qa-step119-usg-authenticity-data-foundation-ml-safe-labels.mjs',
+  'scripts/qa-step120-photo-readiness-action-guidance.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -158,6 +160,7 @@ const requiredPackageScripts = [
   'step118:photo-evidence:qa',
   'step118-1:standard-match-bonus:qa',
   'step119:authenticity-data-foundation:qa',
+  'step120:photo-readiness-action:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -221,6 +224,7 @@ const qaScripts = [
   ['Step 118 photo evidence flow', 'scripts/qa-step118-photo-evidence-flow.mjs'],
   ['Step 118.1 USG Standard Match bonus clarity', 'scripts/qa-step118-1-standard-match-bonus-clarity.mjs'],
   ['Step 119 USG authenticity data foundation and ML-safe labels', 'scripts/qa-step119-usg-authenticity-data-foundation-ml-safe-labels.mjs'],
+  ['Step 120 photo readiness action guidance', 'scripts/qa-step120-photo-readiness-action-guidance.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

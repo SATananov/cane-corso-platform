@@ -172,7 +172,8 @@
     "step117:authenticity-check:qa": "node scripts/qa-step117-usg-authenticity-check-foundation.mjs",
     "step118:photo-evidence:qa": "node scripts/qa-step118-photo-evidence-flow.mjs",
     "step118-1:standard-match-bonus:qa": "node scripts/qa-step118-1-standard-match-bonus-clarity.mjs",
-    "step119:authenticity-data-foundation:qa": "node scripts/qa-step119-usg-authenticity-data-foundation-ml-safe-labels.mjs"
+    "step119:authenticity-data-foundation:qa": "node scripts/qa-step119-usg-authenticity-data-foundation-ml-safe-labels.mjs",
+    "step120:photo-readiness-action:qa": "node scripts/qa-step120-photo-readiness-action-guidance.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
