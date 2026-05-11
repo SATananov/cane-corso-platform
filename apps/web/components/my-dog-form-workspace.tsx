@@ -29,29 +29,30 @@ import { OwnerSubmissionHappyPathPanel } from '@/components/owner-submission-hap
 import { UsgMeasurementAssistantPanel } from '@/components/usg-measurement-assistant-panel';
 import { UsgIntelligenceFoundationPanel } from '@/components/usg-intelligence-foundation-panel';
 import { FciStandardConformityPanel } from '@/components/fci-standard-conformity-panel';
+import { UsgAuthenticityCheckPanel } from '@/components/usg-authenticity-check-panel';
 import { compactImageDataUrlForPayload } from '@/lib/image-payload.client';
 
 const guidanceLauncherCopy = {
   en: {
-    eyebrow: 'Optional intelligence tools',
-    title: 'Open USG / FCI tools only when you need them',
-    body: 'The profile can start with basic data. Intelligence, FCI orientation, measurements and review readiness stay behind this button so the first experience remains calm.',
-    open: 'Open USG / FCI tools',
-    close: 'Hide USG / FCI tools',
+    eyebrow: 'USG visual check',
+    title: 'Check authenticity readiness only when you need it',
+    body: 'The profile starts with real owner data. The USG check opens the model-ready visual assistant, charts, standard diagrams, measurements and review boundaries without making an automatic breed claim.',
+    open: 'Check authenticity',
+    close: 'Hide authenticity check',
   },
   bg: {
-    eyebrow: 'Допълнителни интелигентни инструменти',
-    title: 'Отвори USG / FCI инструментите само когато ти трябват',
-    body: 'Профилът може да започне с основни данни. Интелигентният анализ, FCI ориентирът, измерванията и готовността за преглед стоят зад този бутон, за да остане първото преживяване спокойно.',
-    open: 'Отвори USG / FCI инструменти',
-    close: 'Скрий USG / FCI инструменти',
+    eyebrow: 'USG визуална проверка',
+    title: 'Провери за истинско само когато си готов',
+    body: 'Профилът може да започне с основни данни. USG проверката отваря model-ready визуален асистент, графики, диаграми по стандарт, измервания и граници на преглед — без автоматично твърдение за порода.',
+    open: 'Провери за истинско',
+    close: 'Скрий проверката',
   },
   it: {
-    eyebrow: 'Strumenti intelligenti facoltativi',
-    title: 'Apri gli strumenti USG / FCI solo quando servono',
-    body: 'Il profilo può iniziare con dati base. Analisi intelligente, orientamento FCI, misure e prontezza revisione restano dietro questo pulsante per mantenere calmo il primo passaggio.',
-    open: 'Apri strumenti USG / FCI',
-    close: 'Nascondi strumenti USG / FCI',
+    eyebrow: 'Verifica visiva USG',
+    title: 'Controlla autenticità solo quando serve',
+    body: 'Il profilo parte dai dati reali del proprietario. La verifica USG apre l’assistente visivo pronto per modello, grafici, diagrammi standard, misure e confini di revisione senza dichiarare automaticamente la razza.',
+    open: 'Verifica autenticità',
+    close: 'Nascondi verifica',
   },
 } as const;
 
@@ -377,6 +378,16 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
   const guidanceT = guidanceLauncherCopy[locale] ?? guidanceLauncherCopy.en;
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.location.hash !== '#usg-authenticity-check') return;
+
+    setIsGuidanceVisible(true);
+    window.setTimeout(() => {
+      document.getElementById('usg-authenticity-check')?.scrollIntoView({ block: 'start' });
+    }, 0);
+  }, []);
+
+  useEffect(() => {
     let isCancelled = false;
 
     void (async () => {
@@ -697,6 +708,25 @@ export function MyDogFormWorkspace({ mode, initialValues, dogId }: MyDogFormWork
 
         {isGuidanceVisible ? (
           <div className="dog-form-guidance-stack">
+            <UsgAuthenticityCheckPanel
+              locale={locale}
+              dogId={activeDogId}
+              dogName={values.name}
+              sex={values.sex}
+              dateOfBirth={values.dateOfBirth}
+              color={values.color}
+              city={values.city}
+              country={values.country}
+              shortDescription={values.shortDescription}
+              mainImageUrl={values.mainImageUrl || values.galleryImageUrls[0]}
+              galleryImageCount={galleryImageCount}
+              pedigreeFilledCount={pedigreeFilledCount}
+              pedigreePhotoCount={pedigreePhotoCount}
+              lifecycleStatus={values.lifecycleStatus}
+              hasPublication={Boolean(values.publicationPublicSlug)}
+              hasCertificate={Boolean(values.publicationCertificateCode)}
+            />
+
             <UsgIntelligenceFoundationPanel
               locale={locale}
               dogId={activeDogId}

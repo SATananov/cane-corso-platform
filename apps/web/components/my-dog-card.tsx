@@ -147,6 +147,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       gallerySlot: 'Photo',
       addPhoto: 'Add photo',
       healthTracker: 'Health & growth',
+      authenticityCheck: 'Check authenticity',
       ownerLayer: 'Owner profile',
       ownerLayerHint: 'Visible here immediately after save.',
       registryLayer: 'Registry visibility',
@@ -183,6 +184,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       gallerySlot: 'Снимка',
       addPhoto: 'Добави снимка',
       healthTracker: 'Здраве и растеж',
+      authenticityCheck: 'Провери за истинско',
       ownerLayer: 'Профил на собственика',
       ownerLayerHint: 'Видими са тук веднага след запис.',
       registryLayer: 'Видимост в Регистъра',
@@ -219,6 +221,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
       gallerySlot: 'Foto',
       addPhoto: 'Aggiungi foto',
       healthTracker: 'Salute e crescita',
+      authenticityCheck: 'Verifica autenticità',
       ownerLayer: 'Profilo proprietario',
       ownerLayerHint: 'Visibili qui subito dopo il salvataggio.',
       registryLayer: 'Visibilità nel registro',
@@ -250,6 +253,7 @@ export function MyDogCard({ dog }: MyDogCardProps) {
     gallerySlot: 'Photo',
     addPhoto: 'Add photo',
     healthTracker: 'Health & growth',
+    authenticityCheck: 'Check authenticity',
     ownerLayer: 'Owner profile',
     ownerLayerHint: 'Visible here immediately after save.',
     registryLayer: 'Registry visibility',
@@ -478,6 +482,9 @@ export function MyDogCard({ dog }: MyDogCardProps) {
         ) : null}
 
         <div className="dog-card-actions">
+          <Link href={`/my-dogs/${dog.id}/edit#usg-authenticity-check`} className="button-primary small">
+            {workspaceCopy.authenticityCheck}
+          </Link>
           <Link href={`/my-dogs/${dog.id}/edit`} className="button-secondary small">
             {dictionary.common.editProfile}
           </Link>
