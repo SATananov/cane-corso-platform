@@ -12,6 +12,7 @@
     "db:push": "drizzle-kit push --config drizzle.config.ts",
     "db:migrate": "node packages/db/scripts/migrate.mjs",
     "db:seed": "node packages/db/scripts/seed-demo-member.mjs",
+    "demo:seed:softuni": "node packages/db/scripts/seed-softuni-demo-data.mjs",
     "db:bootstrap": "pnpm db:migrate && pnpm db:seed",
     "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "clean": "git clean -xdf node_modules .turbo",
@@ -157,7 +158,8 @@
     "step111-1:usg-heritage-story:qa": "node scripts/qa-step111-1-usg-heritage-written-story-toggle.mjs",
     "step111-2:usg-platform-origin:qa": "node scripts/qa-step111-2-usg-platform-origin-story.mjs",
     "step111-3:heritage-nav-member-clarity:qa": "node scripts/qa-step111-3-heritage-navigation-member-clarity.mjs",
-    "step112:mobile-browser:qa": "node scripts/qa-step112-mobile-browser-ux-readiness.mjs"
+    "step112:mobile-browser:qa": "node scripts/qa-step112-mobile-browser-ux-readiness.mjs",
+    "step113:demo-data:qa": "node scripts/qa-step113-softuni-demo-data-pack.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

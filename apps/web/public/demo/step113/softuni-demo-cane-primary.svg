@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ares SoftUni demo Cane Corso placeholder</title>
+  <desc id="desc">Premium USG placeholder for the main Cane Corso demo profile image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#050505"/>
+      <stop offset="0.5" stop-color="#111111"/>
+      <stop offset="1" stop-color="#241B08"/>
+    </linearGradient>
+    <radialGradient id="seal" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#D4AF37" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect width="1400" height="900" fill="url(#seal)"/>
+  <path d="M325 535c65-150 170-210 305-180 65 15 125 4 178-29 69-43 160-22 206 48 34 52 55 116 65 192" fill="none" stroke="#D4AF37" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+  <path d="M515 365c20-86 95-132 168-112 64 18 103 76 96 145" fill="none" stroke="#F8F5EF" stroke-width="16" stroke-linecap="round" opacity="0.88"/>
+  <circle cx="708" cy="320" r="10" fill="#F8F5EF"/>
+  <path d="M360 595h670" stroke="#F8F5EF" stroke-width="3" opacity="0.35"/>
+  <text x="700" y="710" text-anchor="middle" font-family="Georgia, serif" font-size="70" fill="#F8F5EF" letter-spacing="5">ARES SOFTUNI DEMO</text>
+  <text x="700" y="770" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#D4AF37" letter-spacing="5">CANE CORSO • REGISTRY DEMO</text>
+</svg>

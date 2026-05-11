@@ -45,6 +45,7 @@ const requiredFiles = [
   'docs/qa/step111-2-usg-platform-origin-story.md',
   'docs/qa/step111-3-heritage-navigation-member-clarity.md',
   'docs/qa/step112-mobile-browser-ux-readiness.md',
+  'docs/qa/step113-softuni-demo-data-pack.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -75,6 +76,7 @@ const requiredFiles = [
   'scripts/qa-step111-2-usg-platform-origin-story.mjs',
   'scripts/qa-step111-3-heritage-navigation-member-clarity.mjs',
   'scripts/qa-step112-mobile-browser-ux-readiness.mjs',
+  'scripts/qa-step113-softuni-demo-data-pack.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -116,6 +118,8 @@ const requiredPackageScripts = [
   'step111-2:usg-platform-origin:qa',
   'step111-3:heritage-nav-member-clarity:qa',
   'step112:mobile-browser:qa',
+  'step113:demo-data:qa',
+  'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
   'workspace:verify',
@@ -164,6 +168,7 @@ const qaScripts = [
   ['Step 111.2 USG platform origin story', 'scripts/qa-step111-2-usg-platform-origin-story.mjs'],
   ['Step 111.3 Heritage navigation/member clarity', 'scripts/qa-step111-3-heritage-navigation-member-clarity.mjs'],
   ['Step 112 Mobile browser UX readiness', 'scripts/qa-step112-mobile-browser-ux-readiness.mjs'],
+  ['Step 113 SoftUni demo data pack', 'scripts/qa-step113-softuni-demo-data-pack.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],
