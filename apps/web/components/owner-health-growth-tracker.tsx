@@ -156,6 +156,15 @@ const copy = {
     userLineLabel: 'My Cane Corso',
     standardLineLabel: 'Standard midpoint',
     standardRangeLabel: 'Standard range',
+    chartHint: 'Bottom numbers are age in months. The vertical scale shows the selected value in kg or cm.',
+    chartAgeAxis: 'Age (months)',
+    chartWeightAxis: 'Weight (kg)',
+    chartHeightAxis: 'Height at withers (cm)',
+    chartAgeHeader: 'Age',
+    chartActualHeader: 'My Cane Corso record',
+    chartStandardHeader: 'Standard midpoint',
+    chartRangeHeader: 'Orientation range',
+    monthShort: 'mo',
     noComparisonData: 'Add dated measurements with age in months to compare against the orientation range.',
     standardWeightTitle: 'Weight orientation by age',
     standardHeightTitle: 'Height orientation by age',
@@ -250,6 +259,15 @@ const copy = {
     userLineLabel: 'Моето Cane Corso',
     standardLineLabel: 'Среден ориентир',
     standardRangeLabel: 'Ориентировъчен диапазон',
+    chartHint: 'Числата долу са възраст в месеци. Вертикалната скала показва избраната стойност в кг или см.',
+    chartAgeAxis: 'Възраст (месеци)',
+    chartWeightAxis: 'Тегло (кг)',
+    chartHeightAxis: 'Височина при холката (см)',
+    chartAgeHeader: 'Възраст',
+    chartActualHeader: 'Запис на моето Cane Corso',
+    chartStandardHeader: 'Среден ориентир',
+    chartRangeHeader: 'Ориентировъчен диапазон',
+    monthShort: 'м.',
     noComparisonData: 'Добави измервания с дата и възраст в месеци, за да има сравнение с ориентира.',
     standardWeightTitle: 'Ориентир за тегло по възраст',
     standardHeightTitle: 'Ориентир за височина по възраст',
@@ -344,6 +362,15 @@ const copy = {
     userLineLabel: 'Il mio Cane Corso',
     standardLineLabel: 'Orientamento medio',
     standardRangeLabel: 'Range orientativo',
+    chartHint: 'I numeri in basso sono l’età in mesi. La scala verticale mostra il valore scelto in kg o cm.',
+    chartAgeAxis: 'Età (mesi)',
+    chartWeightAxis: 'Peso (kg)',
+    chartHeightAxis: 'Altezza al garrese (cm)',
+    chartAgeHeader: 'Età',
+    chartActualHeader: 'Record del mio Cane Corso',
+    chartStandardHeader: 'Orientamento medio',
+    chartRangeHeader: 'Range orientativo',
+    monthShort: 'm',
     noComparisonData: 'Aggiungi misure con data ed età in mesi per confrontare con il range orientativo.',
     standardWeightTitle: 'Orientamento peso per età',
     standardHeightTitle: 'Orientamento altezza per età',
@@ -544,6 +571,13 @@ function GrowthLineChart({
   standardLabel,
   rangeLabel,
   emptyLabel,
+  xAxisLabel,
+  yAxisLabel,
+  chartHint,
+  ageColumnLabel,
+  valueColumnLabel,
+  rangeColumnLabel,
+  monthShortLabel,
   showActual = true,
   showStandard = true,
 }: {
@@ -554,6 +588,13 @@ function GrowthLineChart({
   standardLabel: string;
   rangeLabel: string;
   emptyLabel: string;
+  xAxisLabel: string;
+  yAxisLabel: string;
+  chartHint: string;
+  ageColumnLabel: string;
+  valueColumnLabel: string;
+  rangeColumnLabel: string;
+  monthShortLabel: string;
   showActual?: boolean;
   showStandard?: boolean;
 }) {
@@ -567,7 +608,7 @@ function GrowthLineChart({
   const maxChartValue = Math.max(...chartValues) + 5;
   const width = 640;
   const height = 260;
-  const padding = { top: 22, right: 34, bottom: 42, left: 42 };
+  const padding = { top: 26, right: 40, bottom: 52, left: 64 };
   const sortedPoints = [...points].sort((a, b) => a.ageMonths - b.ageMonths);
   const minAge = Math.min(...sortedPoints.map((point) => point.ageMonths));
   const maxAge = Math.max(...sortedPoints.map((point) => point.ageMonths));
@@ -586,9 +627,13 @@ function GrowthLineChart({
 
   return (
     <div className="owner-growth-line-chart" aria-label={title}>
-      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={title}>
+      <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title}. ${chartHint}`}>
         <line className="owner-growth-line-chart__axis" x1={padding.left} y1={height - padding.bottom} x2={width - padding.right} y2={height - padding.bottom} />
         <line className="owner-growth-line-chart__axis" x1={padding.left} y1={padding.top} x2={padding.left} y2={height - padding.bottom} />
+        <text className="owner-growth-line-chart__axis-title owner-growth-line-chart__axis-title--x" x={width / 2} y={height - 5}>{xAxisLabel}</text>
+        <text className="owner-growth-line-chart__axis-title owner-growth-line-chart__axis-title--y" x={16} y={height / 2} transform={`rotate(-90 16 ${height / 2})`}>{yAxisLabel}</text>
+        <text className="owner-growth-line-chart__value-label" x={padding.left - 10} y={padding.top + 5}>{formatValue(maxChartValue, valueSuffix)}</text>
+        <text className="owner-growth-line-chart__value-label" x={padding.left - 10} y={height - padding.bottom + 4}>{formatValue(minChartValue, valueSuffix)}</text>
         {rangePolygon && showStandard ? <polygon className="owner-growth-line-chart__range" points={rangePolygon} /> : null}
         {standardPolyline && showStandard ? <polyline className="owner-growth-line-chart__standard" points={standardPolyline} /> : null}
         {actualPolyline && showActual ? <polyline className="owner-growth-line-chart__actual" points={actualPolyline} /> : null}
@@ -596,21 +641,27 @@ function GrowthLineChart({
           <g key={`${point.key}-dot`}>
             {showActual && point.actual != null ? <circle className="owner-growth-line-chart__actual-dot" cx={xAt(point)} cy={yAt(point.actual)} r="5" /> : null}
             {showStandard && point.standardMid != null ? <circle className="owner-growth-line-chart__standard-dot" cx={xAt(point)} cy={yAt(point.standardMid)} r="4" /> : null}
-            <text className="owner-growth-line-chart__label" x={xAt(point)} y={height - 14}>{point.label}</text>
+            <text className="owner-growth-line-chart__label" x={xAt(point)} y={height - 22}>{point.label} {monthShortLabel}</text>
           </g>
         ))}
       </svg>
+      <p className="owner-growth-line-chart__hint">{chartHint}</p>
       <div className="owner-growth-line-chart__legend">
         {showActual ? <span className="owner-growth-line-chart__legend-actual">{actualLabel}</span> : null}
         {showStandard ? <span className="owner-growth-line-chart__legend-standard">{standardLabel}</span> : null}
         {showStandard ? <span className="owner-growth-line-chart__legend-range">{rangeLabel}</span> : null}
       </div>
-      <div className="owner-growth-line-chart__data" role="list">
+      <div className="owner-growth-line-chart__data" role="table" aria-label={title}>
+        <div className="owner-growth-line-chart__data-head" role="row">
+          <span role="columnheader">{ageColumnLabel}</span>
+          <strong role="columnheader">{valueColumnLabel}</strong>
+          <small role="columnheader">{rangeColumnLabel}</small>
+        </div>
         {sortedPoints.map((point) => (
-          <div role="listitem" key={`${point.key}-data`}>
-            <span>{point.label}</span>
-            <strong>{point.actual != null ? formatValue(point.actual, valueSuffix) : point.standardMid != null ? formatValue(point.standardMid, valueSuffix) : '—'}</strong>
-            <small>{formatRange(point.standardMin != null && point.standardMax != null ? ([point.standardMin, point.standardMax] as [number, number]) : null, valueSuffix)}</small>
+          <div role="row" key={`${point.key}-data`}>
+            <span role="cell">{point.label} {monthShortLabel}</span>
+            <strong role="cell">{point.actual != null ? formatValue(point.actual, valueSuffix) : point.standardMid != null ? formatValue(point.standardMid, valueSuffix) : '—'}</strong>
+            <small role="cell">{formatRange(point.standardMin != null && point.standardMax != null ? ([point.standardMin, point.standardMax] as [number, number]) : null, valueSuffix)}</small>
           </div>
         ))}
       </div>
@@ -1086,6 +1137,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                 standardLabel={t.standardLineLabel}
                 rangeLabel={t.standardRangeLabel}
                 emptyLabel={t.emptyChart}
+                xAxisLabel={t.chartAgeAxis}
+                yAxisLabel={t.chartWeightAxis}
+                chartHint={t.chartHint}
+                ageColumnLabel={t.chartAgeHeader}
+                valueColumnLabel={t.chartActualHeader}
+                rangeColumnLabel={t.chartRangeHeader}
+                monthShortLabel={t.monthShort}
                 showStandard={false}
               />
             </section>
@@ -1106,6 +1164,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                 standardLabel={t.standardLineLabel}
                 rangeLabel={t.standardRangeLabel}
                 emptyLabel={t.emptyChart}
+                xAxisLabel={t.chartAgeAxis}
+                yAxisLabel={t.chartHeightAxis}
+                chartHint={t.chartHint}
+                ageColumnLabel={t.chartAgeHeader}
+                valueColumnLabel={t.chartActualHeader}
+                rangeColumnLabel={t.chartRangeHeader}
+                monthShortLabel={t.monthShort}
                 showStandard={false}
               />
             </section>
@@ -1127,6 +1192,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                   standardLabel={t.standardLineLabel}
                   rangeLabel={t.standardRangeLabel}
                   emptyLabel={t.emptyChart}
+                  xAxisLabel={t.chartAgeAxis}
+                  yAxisLabel={t.chartWeightAxis}
+                  chartHint={t.chartHint}
+                  ageColumnLabel={t.chartAgeHeader}
+                  valueColumnLabel={t.chartStandardHeader}
+                  rangeColumnLabel={t.chartRangeHeader}
+                  monthShortLabel={t.monthShort}
                   showActual={false}
                 />
               </div>
@@ -1144,6 +1216,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                   standardLabel={t.standardLineLabel}
                   rangeLabel={t.standardRangeLabel}
                   emptyLabel={t.emptyChart}
+                  xAxisLabel={t.chartAgeAxis}
+                  yAxisLabel={t.chartHeightAxis}
+                  chartHint={t.chartHint}
+                  ageColumnLabel={t.chartAgeHeader}
+                  valueColumnLabel={t.chartStandardHeader}
+                  rangeColumnLabel={t.chartRangeHeader}
+                  monthShortLabel={t.monthShort}
                   showActual={false}
                 />
               </div>
@@ -1166,6 +1245,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                   standardLabel={t.standardLineLabel}
                   rangeLabel={t.standardRangeLabel}
                   emptyLabel={t.noComparisonData}
+                  xAxisLabel={t.chartAgeAxis}
+                  yAxisLabel={t.chartWeightAxis}
+                  chartHint={t.chartHint}
+                  ageColumnLabel={t.chartAgeHeader}
+                  valueColumnLabel={t.chartActualHeader}
+                  rangeColumnLabel={t.chartRangeHeader}
+                  monthShortLabel={t.monthShort}
                 />
               </div>
               <div className="owner-health-graph-panel">
@@ -1182,6 +1268,13 @@ export function OwnerHealthGrowthTracker({ locale, dogId, dogName, dateOfBirth }
                   standardLabel={t.standardLineLabel}
                   rangeLabel={t.standardRangeLabel}
                   emptyLabel={t.noComparisonData}
+                  xAxisLabel={t.chartAgeAxis}
+                  yAxisLabel={t.chartHeightAxis}
+                  chartHint={t.chartHint}
+                  ageColumnLabel={t.chartAgeHeader}
+                  valueColumnLabel={t.chartActualHeader}
+                  rangeColumnLabel={t.chartRangeHeader}
+                  monthShortLabel={t.monthShort}
                 />
               </div>
             </section>

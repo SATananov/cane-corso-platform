@@ -24935,10 +24935,53 @@ body {
 
 .owner-growth-line-chart__label {
   fill: rgba(248, 245, 239, 0.68);
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 850;
   text-anchor: middle;
 }
+
+/* Step 114.1 — Growth chart axis and data clarity START */
+.owner-growth-line-chart__axis-title,
+.owner-growth-line-chart__value-label {
+  fill: rgba(248, 245, 239, 0.62);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.owner-growth-line-chart__axis-title--x {
+  text-anchor: middle;
+}
+
+.owner-growth-line-chart__axis-title--y {
+  text-anchor: middle;
+}
+
+.owner-growth-line-chart__value-label {
+  text-anchor: end;
+}
+
+.owner-growth-line-chart__hint {
+  margin: -0.15rem 0 0;
+  color: rgba(248, 245, 239, 0.7);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.owner-growth-line-chart__data-head {
+  border-color: rgba(212, 175, 55, 0.18) !important;
+  background: rgba(212, 175, 55, 0.08) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.owner-growth-line-chart__data-head span,
+.owner-growth-line-chart__data-head strong,
+.owner-growth-line-chart__data-head small {
+  color: rgba(212, 175, 55, 0.92) !important;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+/* Step 114.1 — Growth chart axis and data clarity END */
 
 .owner-growth-line-chart__legend {
   display: flex;
