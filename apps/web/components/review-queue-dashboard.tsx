@@ -4,6 +4,7 @@ import { OverviewStatCard } from '@/components/overview-stat-card';
 import { ImageLightbox } from '@/components/image-lightbox';
 import { ReviewDecisionReadinessPanel } from '@/components/review-decision-readiness-panel';
 import { AdminModerationActionFlowPanel } from '@/components/admin-moderation-action-flow-panel';
+import { AdminPhotoReviewAssistantPanel } from '@/components/admin-photo-review-assistant-panel';
 import type { Locale } from '@/lib/i18n';
 import type { ReviewQueueDocument, ReviewQueueStatus } from '@cane-corso-platform/contracts';
 import {
@@ -644,6 +645,8 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                       </button>
                     </form>
                   </div>
+
+                  <AdminPhotoReviewAssistantPanel locale={locale} dogName={item.dog.name} media={item.ownerMedia} />
 
                   <div className="review-media-control">
                     <div className="review-media-control__head">
