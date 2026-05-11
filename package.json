@@ -166,7 +166,8 @@
     "step114:progressive-growth-ux:qa": "node scripts/qa-step114-progressive-growth-ux.mjs",
     "step114-1:growth-chart-clarity:qa": "node scripts/qa-step114-1-growth-chart-axis-data-clarity.mjs",
     "step115:platform-progressive-disclosure:qa": "node scripts/qa-step115-platform-progressive-disclosure-ux.mjs",
-    "step115-1:hero-chip-actions:qa": "node scripts/qa-step115-1-hero-chip-action-enforcement.mjs"
+    "step115-1:hero-chip-actions:qa": "node scripts/qa-step115-1-hero-chip-action-enforcement.mjs",
+    "step115-2:hero-locale-fallback:qa": "node scripts/qa-step115-2-page-hero-locale-fallback-polish.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

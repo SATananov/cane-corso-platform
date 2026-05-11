@@ -14,6 +14,7 @@ const copyByLocale = {
     title: 'Official vs community ecosystem review',
     description:
       'Moderation surface for deciding whether an ecosystem item is an official listing, a community listing, or only an internal suggestion signal.',
+    helpLabel: 'Help',
     heroChips: ['Official listing', 'Community listing', 'Suggestion'],
     heroNote:
       'This queue protects the public platform: nothing from the ecosystem becomes visible before admin review.',
@@ -23,6 +24,7 @@ const copyByLocale = {
     title: 'Преглед на официални и общностни записи',
     description:
       'Модерационна зона за преценка дали даден запис е официален, общностен или само вътрешно предложение.',
+    helpLabel: 'Помощ',
     heroChips: ['Официален запис', 'Общностен запис', 'Предложение'],
     heroNote:
       'Тази опашка пази публичната платформа: нищо от екосистемата не става видимо преди админ преглед.',
@@ -32,6 +34,7 @@ const copyByLocale = {
     title: 'Revisione ecosistema: ufficiale o comunità',
     description:
       'Area di moderazione per decidere se un elemento dell’ecosistema è una scheda ufficiale, una scheda della comunità o solo un segnale interno.',
+    helpLabel: 'Aiuto',
     heroChips: ['Scheda ufficiale', 'Scheda comunità', 'Suggerimento'],
     heroNote:
       'Questa coda protegge la piattaforma pubblica: niente diventa visibile senza revisione amministrativa.',
@@ -49,6 +52,7 @@ export default async function AdminEcosystemPage() {
       title={copy.title}
       description={copy.description}
       accentLabel={locale === 'bg' ? 'Модерация на екосистемата' : locale === 'it' ? 'Moderazione ecosistema' : 'Ecosystem moderation'}
+      helpLabel={copy.helpLabel}
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >

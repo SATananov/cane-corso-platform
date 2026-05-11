@@ -14,8 +14,20 @@ function normalizeId(value: string, index: number) {
   return `${value.trim().toLowerCase().replace(/[^a-z0-9а-яёіїєъь]+/gi, '-').replace(/^-+|-+$/g, '') || 'topic'}-${index}`;
 }
 
-function getFallbackCopy(helpLabel: string) {
-  if (helpLabel === 'Помощ') {
+function buildLocaleSignal(helpLabel: string, chips: readonly NormalizedHeroChip[]) {
+  return [
+    helpLabel,
+    ...chips.flatMap((chip) => [chip.label, chip.title ?? '', chip.description ?? '', chip.actionLabel ?? '']),
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
+function getFallbackCopy(helpLabel: string, chips: readonly NormalizedHeroChip[]) {
+  const localeSignal = buildLocaleSignal(helpLabel, chips);
+  const lowerSignal = localeSignal.toLowerCase();
+
+  if (/[\u0400-\u04ff]/.test(localeSignal)) {
     return {
       titlePrefix: 'Избран фокус',
       body: 'Тази тема е част от текущия модул. Използвай активните карти, избори и действия под основния блок — съдържанието е прибрано, за да не се губиш в дълго скролване.',
@@ -23,7 +35,10 @@ function getFallbackCopy(helpLabel: string) {
     } as const;
   }
 
-  if (helpLabel === 'Aiuto') {
+  if (
+    /[àèéìòù]/i.test(localeSignal) ||
+    /\b(aiuto|apri|verifica|registro|certificato|scheda|comunità|piattaforma|proprietario|preparazione|voci|ecosistema|candidature|catalogo|sincronizzazione|revisione|ufficiale|suggerimento|fiducia|pubblica|sostegno|distinti|moderazione|amministrativa|controllo|opportunità|servizi|luoghi|cuccioli|adozione|riproduzione)\b/.test(lowerSignal)
+  ) {
     return {
       titlePrefix: 'Focus selezionato',
       body: 'Questo tema fa parte del modulo corrente. Usa le schede, le scelte e le azioni attive sotto il blocco principale — il contenuto resta raccolto per evitare lunghi scorrimenti.',
@@ -48,7 +63,7 @@ function normalizeChip(chip: PageHeroChipInput, index: number): NormalizedHeroCh
 
 export function PageHeroChipRow({ chips, helpLabel }: { chips: readonly PageHeroChipInput[]; helpLabel: string }) {
   const normalizedChips = useMemo(() => chips.map(normalizeChip), [chips]);
-  const fallback = getFallbackCopy(helpLabel);
+  const fallback = getFallbackCopy(helpLabel, normalizedChips);
   const [activeChipId, setActiveChipId] = useState<string | null>(null);
   const activeChip = normalizedChips.find((chip) => chip.id === activeChipId) ?? null;
 

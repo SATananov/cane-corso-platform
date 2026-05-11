@@ -17,6 +17,8 @@ const copyByLocale = {
     description:
       'A calm member area for your profile, Cane Corso records, registry preparation, partner applications, and ecosystem entries. Anything public still passes through review first.',
     accentLabel: 'Owner Center governance',
+    actionLabel: 'Open section',
+    helpLabel: 'Help',
     heroChips: ['Owner profiles', 'Registry preparation', 'Ecosystem entries'],
     heroNote:
       'This area is for preparation and tracking. Registry, Gallery, Certificate, Verify, Review, and Admin stay separate approval and publication layers.',
@@ -50,6 +52,8 @@ const copyByLocale = {
     description:
       'Спокойна работна зона за твоя профил, Cane Corso записите, подготовката за регистъра, кандидатурите за партньорство и записите в екосистемата. Всичко публично първо минава през преглед.',
     accentLabel: 'Управление на личната зона',
+    actionLabel: 'Отвори',
+    helpLabel: 'Помощ',
     heroChips: ['Профили на собственика', 'Подготовка за регистъра', 'Записи в екосистемата'],
     heroNote:
       'Тази зона служи за подготовка и проследяване. Регистърът, Галерията, Сертификатът, Проверка, Преглед и Админ секциите остават отделни слоеве за одобрение и публикуване.',
@@ -83,6 +87,8 @@ const copyByLocale = {
     description:
       'Un’area riservata per profilo, schede Cane Corso, preparazione al registro, candidature partner e voci dell’ecosistema. Tutto ciò che diventa pubblico passa prima dalla revisione.',
     accentLabel: 'Gestione area proprietario',
+    actionLabel: 'Apri',
+    helpLabel: 'Aiuto',
     heroChips: ['Profili proprietario', 'Preparazione registro', 'Voci ecosistema'],
     heroNote:
       'Questa area serve per preparare e seguire il lavoro. Registro, Galleria, Certificato, Verifica, Revisione e Amministrazione restano livelli separati di approvazione e pubblicazione.',
@@ -130,6 +136,8 @@ export default async function EcosystemPage() {
       description={copy.description}
       cards={copy.cards}
       accentLabel={copy.accentLabel}
+      actionLabel={copy.actionLabel}
+      helpLabel={copy.helpLabel}
       heroChips={copy.heroChips}
       heroNote={copy.heroNote}
     >
