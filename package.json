@@ -186,7 +186,8 @@
     "step130:first-real-user-onboarding:qa": "node scripts/qa-step130-first-real-user-onboarding-polish.mjs",
     "step130-1:journey-visual-readability:qa": "node scripts/qa-step130-1-journey-visual-readability-polish.mjs",
     "step131:ask-mark-i:qa": "node scripts/qa-step131-ask-mark-i-assistant-foundation.mjs",
-    "step131-1:ask-mark-i-visual:qa": "node scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs"
+    "step131-1:ask-mark-i-visual:qa": "node scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs",
+    "step132:owner-path-timeline:qa": "node scripts/qa-step132-owner-path-next-action-timeline.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

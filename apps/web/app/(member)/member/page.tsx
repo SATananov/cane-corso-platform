@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { OwnerCenterWorkspace } from '@/components/owner-center-workspace';
 import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
+import { UsgOwnerPathTimeline } from '@/components/usg-owner-path-timeline';
 import { buildAccessPath } from '@/lib/access-control';
 import { getCurrentLocale } from '@/lib/locale.server';
 import { getCurrentOwnerCenterDocument } from '@/lib/owner-center.server';
@@ -103,6 +104,13 @@ export default async function MemberCommandCenterPage() {
 
         <UsgJourneyCarousel locale={locale} variant="member" className="member-home-journey" />
         <AskMarkIPanel locale={locale} variant="member" className="member-home-ask-mark-i" />
+
+        <UsgOwnerPathTimeline
+          locale={locale}
+          dogs={document.dogs.items}
+          surface="member"
+          className="member-home-owner-path"
+        />
 
         <section className="member-start-grid" data-layout="priority" aria-label={copy.cardsLabel}>
           {startCards.map((item, index) => (

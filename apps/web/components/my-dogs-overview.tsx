@@ -18,6 +18,7 @@ import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigre
 import { UsgOwnerPhotoChecklistPanel } from '@/components/usg-standard-knowledge-panel';
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
+import { UsgOwnerPathTimeline } from '@/components/usg-owner-path-timeline';
 
 interface MyDogsOverviewProps {
   dogs: Dog[];
@@ -201,6 +202,13 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
       <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? null} />
 
       <AskMarkIPanel locale={locale} variant="myDogs" className="my-dogs-ask-mark-i" />
+
+      <UsgOwnerPathTimeline
+        locale={locale}
+        dogs={dogsWithMedia}
+        surface="myDogs"
+        className="my-dogs-owner-path"
+      />
 
       <div className="stats-grid five-up">
         <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />
