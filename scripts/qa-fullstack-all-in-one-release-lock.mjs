@@ -70,6 +70,8 @@ const requiredFiles = [
   'docs/qa/step127-real-browser-product-journey-review.md',
   'docs/qa/evidence/step127-real-browser-product-journey-review/README.md',
   'docs/qa/step128-product-priority-navigation-demo-data-separation.md',
+  'docs/qa/step129-netlify-live-product-evidence-lock.md',
+  'docs/qa/evidence/step129-netlify-live-product-evidence-lock/README.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -123,6 +125,7 @@ const requiredFiles = [
   'scripts/qa-step126-admin-ml-safe-review-assistant-polish.mjs',
   'scripts/qa-step127-real-browser-product-journey-review.mjs',
   'scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs',
+  'scripts/qa-step129-netlify-live-product-evidence-lock.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -187,6 +190,7 @@ const requiredPackageScripts = [
   'step126:admin-ml-safe-review-assistant:qa',
   'step127:browser-product-journey:qa',
   'step128:product-priority-demo-separation:qa',
+  'step129:live-product-evidence:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -259,6 +263,7 @@ const qaScripts = [
   ['Step 126 admin ML-safe review assistant polish', 'scripts/qa-step126-admin-ml-safe-review-assistant-polish.mjs'],
   ['Step 127 real browser product journey review', 'scripts/qa-step127-real-browser-product-journey-review.mjs'],
   ['Step 128 product priority navigation and demo data separation', 'scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs'],
+  ['Step 129 Netlify live product evidence lock', 'scripts/qa-step129-netlify-live-product-evidence-lock.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],
