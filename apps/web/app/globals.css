@@ -26080,6 +26080,7 @@ body {
 }
 
 /* Step 121-123 — Admin Photo Review Assistant / Dataset / ML-safe Prototype */
+/* Step 126 — Admin ML-safe Review Assistant Polish */
 .admin-photo-review-assistant {
   margin: 1.25rem 0;
   padding: 1.1rem;
@@ -26125,6 +26126,66 @@ body {
   border-radius: 18px;
   border: 1px solid rgba(248, 245, 239, 0.12);
   background: rgba(248, 245, 239, 0.055);
+}
+
+
+.admin-photo-review-assistant__summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 0.85rem;
+  margin: 0 0 1rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 255, 255, 0.045));
+}
+
+.admin-photo-review-assistant__summary-main span,
+.admin-photo-review-assistant__summary dt {
+  color: rgba(248, 245, 239, 0.58);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.admin-photo-review-assistant__summary-main strong {
+  display: block;
+  margin: 0.2rem 0 0.3rem;
+  color: var(--ivory, #f8f5ef);
+  font-size: clamp(1rem, 1.4vw, 1.22rem);
+}
+
+.admin-photo-review-assistant__summary-main p,
+.admin-photo-review-assistant__learning-note {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.74);
+}
+
+.admin-photo-review-assistant__summary dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.admin-photo-review-assistant__summary dl div {
+  min-width: 0;
+  padding: 0.68rem;
+  border: 1px solid rgba(248, 245, 239, 0.12);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.admin-photo-review-assistant__summary dd {
+  margin: 0.15rem 0 0;
+  color: var(--gold, #d4af37);
+  font-weight: 900;
+}
+
+.admin-photo-review-assistant__learning-note {
+  grid-column: 1 / -1;
+  padding-top: 0.2rem;
 }
 
 .admin-photo-review-assistant__rows {
@@ -26196,6 +26257,7 @@ body {
 
 @media (max-width: 860px) {
   .admin-photo-review-assistant__head,
+  .admin-photo-review-assistant__summary,
   .admin-photo-review-assistant__row,
   .admin-photo-review-assistant__footer-grid {
     grid-template-columns: 1fr;
@@ -26203,5 +26265,9 @@ body {
 
   .admin-photo-review-assistant__head {
     display: grid;
+  }
+
+  .admin-photo-review-assistant__summary dl {
+    grid-template-columns: 1fr;
   }
 }

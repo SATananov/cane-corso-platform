@@ -1,10 +1,11 @@
 // Step 121 — Admin Photo Review Assistant & Human Labels Foundation
 // Step 122 — Authenticity Dataset Preparation Guardrails
 // Step 123 — ML-safe Photo Assistant Prototype
+// Step 126 — Admin ML-safe Review Assistant Polish
 
 import type { Locale } from '@/lib/i18n';
-import { buildUsgPhotoAssistantSuggestion } from '@/lib/usg-photo-review-assistant';
-import type { UsgAdminPhotoQuality, UsgAdminPhotoView, UsgAssistantConfidence, UsgHumanPhotoLabel } from '@/lib/usg-photo-review-assistant';
+import { buildUsgPhotoAssistantSuggestion, buildUsgPhotoReviewDecisionSupport } from '@/lib/usg-photo-review-assistant';
+import type { UsgAdminPhotoQuality, UsgAdminPhotoView, UsgAssistantConfidence, UsgHumanPhotoLabel, UsgPhotoReviewNextAction, UsgPhotoReviewReadiness } from '@/lib/usg-photo-review-assistant';
 
 // QA marker for safe stored learning fields: dog_id, media_id, expected_view, assistant_quality, assistant_confidence, admin_final_label, dataset_use, review_status.
 
@@ -80,6 +81,25 @@ const copyByLocale = {
       unclear_extra: 'Extra photo needs human judgment before any learning use.',
     },
     rowsTitle: 'Photo labels',
+    summaryTitle: 'Review readiness snapshot',
+    scoreLabel: 'Readiness score',
+    viewsLabel: 'Required views',
+    learningLabel: 'Learning candidates',
+    nextActionLabel: 'Recommended next action',
+    learningReady: 'Can be prepared as learning candidates after the reviewer confirms the labels.',
+    learningBlocked: 'Do not prepare for learning yet; a reviewer must request missing or better views first.',
+    readiness: {
+      ready_for_human_review: 'Ready for human review',
+      needs_more_photos: 'Needs missing views',
+      needs_better_primary: 'Needs stronger primary photo',
+      review_carefully: 'Review extra photos carefully',
+    },
+    nextActions: {
+      confirm_labels: 'Confirm labels and continue USG review',
+      request_missing_views: 'Request the missing side/front/head view',
+      request_better_primary: 'Request a clearer main side photo',
+      review_extra_photos: 'Check extra photos before learning use',
+    },
     photoFallback: 'Photo',
   },
   bg: {
@@ -138,6 +158,25 @@ const copyByLocale = {
       unclear_extra: 'Допълнителна снимка, която иска човешка преценка преди употреба за обучение.',
     },
     rowsTitle: 'Етикети на снимките',
+    summaryTitle: 'Бърза картина за преглед',
+    scoreLabel: 'Готовност на снимките',
+    viewsLabel: 'Задължителни изгледи',
+    learningLabel: 'Кандидати за обучение',
+    nextActionLabel: 'Препоръчана следваща стъпка',
+    learningReady: 'Може да се подготви за обучение само след човешко потвърждение на етикетите.',
+    learningBlocked: 'Още не се подготвя за обучение; първо трябва да се поискат липсващи или по-добри изгледи.',
+    readiness: {
+      ready_for_human_review: 'Готово за човешки преглед',
+      needs_more_photos: 'Липсват нужни изгледи',
+      needs_better_primary: 'Иска по-силна основна снимка',
+      review_carefully: 'Прегледай допълнителните снимки внимателно',
+    },
+    nextActions: {
+      confirm_labels: 'Потвърди етикетите и продължи USG прегледа',
+      request_missing_views: 'Поискай липсващия страничен/преден/глава изглед',
+      request_better_primary: 'Поискай по-ясна основна странична снимка',
+      review_extra_photos: 'Провери допълнителните снимки преди обучителна употреба',
+    },
     photoFallback: 'Снимка',
   },
   it: {
@@ -196,6 +235,25 @@ const copyByLocale = {
       unclear_extra: 'Foto extra che richiede giudizio umano prima dell’uso per apprendimento.',
     },
     rowsTitle: 'Etichette foto',
+    summaryTitle: 'Sintesi prontezza revisione',
+    scoreLabel: 'Punteggio prontezza',
+    viewsLabel: 'Viste richieste',
+    learningLabel: 'Candidati apprendimento',
+    nextActionLabel: 'Prossima azione consigliata',
+    learningReady: 'Può essere preparato per apprendimento solo dopo conferma umana delle etichette.',
+    learningBlocked: 'Non preparare ancora per apprendimento; prima servono viste mancanti o migliori.',
+    readiness: {
+      ready_for_human_review: 'Pronto per revisione umana',
+      needs_more_photos: 'Mancano viste richieste',
+      needs_better_primary: 'Serve foto principale più chiara',
+      review_carefully: 'Rivedi con attenzione le foto extra',
+    },
+    nextActions: {
+      confirm_labels: 'Conferma etichette e continua revisione USG',
+      request_missing_views: 'Richiedi vista laterale/frontale/testa mancante',
+      request_better_primary: 'Richiedi foto laterale principale più chiara',
+      review_extra_photos: 'Controlla foto extra prima dell’uso per apprendimento',
+    },
     photoFallback: 'Foto',
   },
 } as const;
@@ -220,6 +278,7 @@ export function AdminPhotoReviewAssistantPanel({ locale, dogName, media }: Admin
     });
     return { item, index, suggestion };
   });
+  const decisionSupport = buildUsgPhotoReviewDecisionSupport(expectedRows.map(({ suggestion }) => suggestion));
 
   return (
     <section className="admin-photo-review-assistant" aria-label={copy.title}>
@@ -233,6 +292,31 @@ export function AdminPhotoReviewAssistantPanel({ locale, dogName, media }: Admin
       </div>
 
       <p className="admin-photo-review-assistant__warning">{copy.noBreedProof}</p>
+
+      <div className="admin-photo-review-assistant__summary" aria-label={copy.summaryTitle}>
+        <div className="admin-photo-review-assistant__summary-main">
+          <span>{copy.summaryTitle}</span>
+          <strong>{copy.readiness[decisionSupport.readiness as UsgPhotoReviewReadiness]}</strong>
+          <p>{copy.nextActions[decisionSupport.nextAction as UsgPhotoReviewNextAction]}</p>
+        </div>
+        <dl>
+          <div>
+            <dt>{copy.scoreLabel}</dt>
+            <dd>{decisionSupport.readinessScore}%</dd>
+          </div>
+          <div>
+            <dt>{copy.viewsLabel}</dt>
+            <dd>{decisionSupport.presentViewsCount}/{decisionSupport.expectedViewsCount}</dd>
+          </div>
+          <div>
+            <dt>{copy.learningLabel}</dt>
+            <dd>{decisionSupport.trainingCandidateCount}</dd>
+          </div>
+        </dl>
+        <p className="admin-photo-review-assistant__learning-note">
+          {decisionSupport.canPrepareLearningCandidate ? copy.learningReady : copy.learningBlocked}
+        </p>
+      </div>
 
       <div className="admin-photo-review-assistant__rows">
         {expectedRows.map(({ item, index, suggestion }) => (
