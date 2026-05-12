@@ -64,7 +64,7 @@ assertIncludes('apps/web/lib/ask-mark-i-content.ts', "export type AskMarkIVarian
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'Попитай MARK I', 'Bulgarian Ask MARK I copy exists');
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'Ask MARK I', 'English Ask MARK I copy exists');
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'Chiedi a MARK I', 'Italian Ask MARK I copy exists');
-assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'Официалните решения за Регистър и Сертификат остават човешки USG review решения.', 'Bulgarian authority boundary is explicit');
+assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'Официалните решения за Регистър и Сертификат остават човешки решения на USG прегледа.', 'Bulgarian authority boundary is explicit');
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'They do not replace veterinary advice', 'English veterinary boundary is explicit');
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'sostituiscono il veterinario', 'Italian veterinary boundary is explicit');
 assertIncludes('apps/web/lib/ask-mark-i-content.ts', 'photos alone do not prove pedigree or official status', 'Photo guidance avoids proof-by-photo claim');

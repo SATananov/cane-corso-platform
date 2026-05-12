@@ -29,19 +29,25 @@ export function AskMarkIPanel({ locale, variant, className }: AskMarkIPanelProps
     <section className={`ask-mark-i-panel ask-mark-i-panel--${variant}${className ? ` ${className}` : ''}`} aria-labelledby={`ask-mark-i-${variant}-title`}>
       <div className="ask-mark-i-panel__identity" aria-hidden="true">
         <div className="ask-mark-i-panel__portrait">
-          <Image src={MARK_I_IMAGE} alt="" fill sizes="(max-width: 720px) 72px, 160px" priority={false} />
+          <Image src={MARK_I_IMAGE} alt="" fill sizes="(max-width: 720px) 96px, 220px" priority={false} />
         </div>
-        <div className="ask-mark-i-panel__seal">
-          <Image src={USG_SEAL} alt="" fill sizes="72px" priority={false} />
+        <div className="ask-mark-i-panel__identity-meta">
+          <div className="ask-mark-i-panel__seal">
+            <Image src={USG_SEAL} alt="" fill sizes="72px" priority={false} />
+          </div>
+          <div className="ask-mark-i-panel__identity-copy">
+            <strong>MARK I</strong>
+            <span>{copy.visualLabel}</span>
+          </div>
         </div>
-        <span>{copy.visualLabel}</span>
       </div>
 
       <div className="ask-mark-i-panel__content">
         <div className="ask-mark-i-panel__head">
           <div>
-            <span className="eyebrow-label">{copy.eyebrow}</span>
-            <h2 id={`ask-mark-i-${variant}-title`}>{copy.title}</h2>
+            <span className="eyebrow-label ask-mark-i-panel__kicker">{copy.visualLabel}</span>
+            <h2 id={`ask-mark-i-${variant}-title`}>{copy.eyebrow}</h2>
+            <p className="ask-mark-i-panel__tagline">{copy.title}</p>
             <p>{copy.intro}</p>
           </div>
           <em>{copy.subtitle}</em>

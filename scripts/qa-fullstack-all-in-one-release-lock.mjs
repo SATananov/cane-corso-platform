@@ -74,6 +74,7 @@ const requiredFiles = [
   'docs/qa/step130-first-real-user-onboarding-polish.md',
   'docs/qa/step130-1-journey-visual-readability-polish.md',
   'docs/qa/step131-ask-mark-i-assistant-foundation.md',
+  'docs/qa/step131-1-ask-mark-i-visual-balance-polish.md',
   'docs/qa/evidence/step129-netlify-live-product-evidence-lock/README.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
@@ -132,6 +133,7 @@ const requiredFiles = [
   'scripts/qa-step130-first-real-user-onboarding-polish.mjs',
   'scripts/qa-step130-1-journey-visual-readability-polish.mjs',
   'scripts/qa-step131-ask-mark-i-assistant-foundation.mjs',
+  'scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -200,6 +202,7 @@ const requiredPackageScripts = [
   'step130:first-real-user-onboarding:qa',
   'step130-1:journey-visual-readability:qa',
   'step131:ask-mark-i:qa',
+  'step131-1:ask-mark-i-visual:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -276,6 +279,7 @@ const qaScripts = [
   ['Step 130 first real user onboarding polish', 'scripts/qa-step130-first-real-user-onboarding-polish.mjs'],
   ['Step 130.1 journey visual readability polish', 'scripts/qa-step130-1-journey-visual-readability-polish.mjs'],
   ['Step 131 Ask MARK I assistant foundation', 'scripts/qa-step131-ask-mark-i-assistant-foundation.mjs'],
+  ['Step 131.1 Ask MARK I visual balance polish', 'scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

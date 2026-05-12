@@ -27162,3 +27162,261 @@ body {
     justify-content: center;
   }
 }
+
+/* Step 131.1 — Ask MARK I Visual Balance Polish */
+.ask-mark-i-panel {
+  grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+  gap: clamp(20px, 3.3vw, 36px);
+  padding: clamp(22px, 3.5vw, 38px);
+  border-color: rgba(212, 175, 55, 0.26);
+  background:
+    radial-gradient(circle at 16% 16%, rgba(212, 175, 55, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(212, 175, 55, 0.075), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+    rgba(5, 6, 9, 0.95);
+}
+
+.ask-mark-i-panel::before {
+  right: clamp(18px, 5vw, 72px);
+  top: -4px;
+  color: rgba(212, 175, 55, 0.032);
+  font-size: clamp(4.8rem, 10vw, 10.5rem);
+  letter-spacing: -0.1em;
+}
+
+.ask-mark-i-panel__identity {
+  gap: clamp(14px, 2vw, 20px);
+  justify-content: flex-start;
+  padding: clamp(12px, 1.7vw, 18px);
+}
+
+.ask-mark-i-panel__portrait {
+  min-height: clamp(250px, 29vw, 370px);
+  border-radius: 24px;
+  box-shadow: inset 0 -34px 70px rgba(0, 0, 0, 0.38);
+}
+
+.ask-mark-i-panel__portrait::after {
+  background:
+    linear-gradient(180deg, rgba(6, 7, 10, 0.01), rgba(6, 7, 10, 0.36) 58%, rgba(6, 7, 10, 0.66)),
+    radial-gradient(circle at 50% 16%, transparent 34%, rgba(0, 0, 0, 0.2));
+}
+
+.ask-mark-i-panel__identity-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.ask-mark-i-panel__identity-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ask-mark-i-panel__identity-copy strong {
+  color: var(--ivory);
+  font-size: 0.98rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ask-mark-i-panel__identity-copy span {
+  color: rgba(212, 175, 55, 0.84);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.ask-mark-i-panel__head {
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.ask-mark-i-panel__kicker {
+  display: inline-flex;
+  margin-bottom: 8px;
+}
+
+.ask-mark-i-panel__head h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.65rem);
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.ask-mark-i-panel__tagline {
+  margin: 10px 0 0;
+  color: #f8ecd0;
+  font-size: clamp(1.05rem, 1.35vw, 1.24rem);
+  font-weight: 800;
+  line-height: 1.24;
+  letter-spacing: -0.025em;
+}
+
+.ask-mark-i-panel__head p:not(.ask-mark-i-panel__tagline),
+.ask-mark-i-panel__answer p {
+  max-width: 760px;
+  font-size: 0.96rem;
+}
+
+.ask-mark-i-panel__head em {
+  max-width: 250px;
+  border-color: rgba(212, 175, 55, 0.24);
+  background: rgba(212, 175, 55, 0.085);
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.03);
+}
+
+.ask-mark-i-panel__workspace {
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.ask-mark-i-panel__questions,
+.ask-mark-i-panel__answer,
+.ask-mark-i-panel__notes {
+  border-color: rgba(255, 255, 255, 0.095);
+  background: rgba(255, 255, 255, 0.038);
+}
+
+.ask-mark-i-panel__questions {
+  gap: 14px;
+  padding: clamp(14px, 1.8vw, 18px);
+}
+
+.ask-mark-i-panel__question-grid {
+  gap: 10px;
+}
+
+.ask-mark-i-panel__question-grid button {
+  min-height: 44px;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  line-height: 1.22;
+}
+
+.ask-mark-i-panel__question-grid button.is-active {
+  border-color: rgba(212, 175, 55, 0.52);
+  background:
+    linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(212, 175, 55, 0.075));
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.12), 0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+.ask-mark-i-panel__answer {
+  padding: clamp(18px, 2.2vw, 26px);
+}
+
+.ask-mark-i-panel__answer h3 {
+  margin-top: 10px;
+  font-size: clamp(1.22rem, 1.75vw, 1.62rem);
+}
+
+.ask-mark-i-panel__notes {
+  gap: 18px;
+  padding: clamp(14px, 1.8vw, 18px) clamp(16px, 2vw, 22px);
+  border-color: rgba(212, 175, 55, 0.18);
+  background:
+    linear-gradient(135deg, rgba(212, 175, 55, 0.07), rgba(255, 255, 255, 0.026));
+}
+
+.ask-mark-i-panel__notes p {
+  max-width: 780px;
+  font-size: 0.88rem;
+}
+
+.ask-mark-i-panel__notes strong {
+  max-width: 330px;
+}
+
+.ask-mark-i-panel--review {
+  grid-template-columns: minmax(180px, 0.3fr) minmax(0, 1fr);
+}
+
+.ask-mark-i-panel--review .ask-mark-i-panel__portrait {
+  min-height: clamp(170px, 22vw, 260px);
+}
+
+.ask-mark-i-panel--review .ask-mark-i-panel__head h2 {
+  font-size: clamp(1.85rem, 3vw, 3rem);
+}
+
+@media (max-width: 980px) {
+  .ask-mark-i-panel,
+  .ask-mark-i-panel--review {
+    grid-template-columns: 1fr;
+  }
+
+  .ask-mark-i-panel__identity {
+    grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+  }
+
+  .ask-mark-i-panel__portrait,
+  .ask-mark-i-panel--review .ask-mark-i-panel__portrait {
+    min-height: 150px;
+  }
+
+  .ask-mark-i-panel__identity-meta {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .ask-mark-i-panel {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .ask-mark-i-panel::before {
+    font-size: 4.2rem;
+    opacity: 0.72;
+  }
+
+  .ask-mark-i-panel__head h2 {
+    font-size: clamp(1.85rem, 10vw, 2.6rem);
+  }
+
+  .ask-mark-i-panel__identity {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .ask-mark-i-panel__portrait {
+    min-height: 112px;
+    border-radius: 18px;
+  }
+
+  .ask-mark-i-panel__identity-meta {
+    padding: 10px;
+  }
+
+  .ask-mark-i-panel__seal {
+    display: block;
+    width: 48px;
+    height: 48px;
+  }
+
+  .ask-mark-i-panel__question-grid button {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ask-mark-i-panel__identity {
+    grid-template-columns: 1fr;
+  }
+
+  .ask-mark-i-panel__portrait {
+    min-height: 168px;
+  }
+
+  .ask-mark-i-panel__identity-meta {
+    justify-content: flex-start;
+  }
+}
