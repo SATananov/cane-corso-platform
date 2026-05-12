@@ -65,6 +65,7 @@ const requiredFiles = [
   'docs/qa/step123-ml-safe-photo-assistant-prototype.md',
   'docs/product/current-platform-state-bg.md',
   'docs/qa/step124-current-platform-readme.md',
+  'docs/qa/step125-real-user-production-readiness-ui-tone.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
   'scripts/qa-fullstack-all-in-one-release-lock.mjs',
@@ -114,6 +115,7 @@ const requiredFiles = [
   'scripts/qa-step122-authenticity-dataset-preparation-guardrails.mjs',
   'scripts/qa-step123-ml-safe-photo-assistant-prototype.mjs',
   'scripts/qa-step124-current-platform-readme.mjs',
+  'scripts/qa-step125-real-user-production-readiness-ui-tone.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -174,6 +176,7 @@ const requiredPackageScripts = [
   'step122:dataset-guardrails:qa',
   'step123:ml-safe-photo-assistant:qa',
   'step124:current-platform-readme:qa',
+  'step125:real-user-production-readiness:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -242,6 +245,7 @@ const qaScripts = [
   ['Step 122 authenticity dataset preparation guardrails', 'scripts/qa-step122-authenticity-dataset-preparation-guardrails.mjs'],
   ['Step 123 ML-safe photo assistant prototype', 'scripts/qa-step123-ml-safe-photo-assistant-prototype.mjs'],
   ['Step 124 current platform README', 'scripts/qa-step124-current-platform-readme.mjs'],
+  ['Step 125 real-user production readiness and UI tone', 'scripts/qa-step125-real-user-production-readiness-ui-tone.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

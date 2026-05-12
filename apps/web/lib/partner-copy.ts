@@ -54,7 +54,19 @@ const categoryLabels: Record<Locale, Record<string, string>> = {
 
 
 const standardPartnerTextTranslations: Record<Locale, Record<string, string>> = {
-  en: {},
+  en: {
+    'A premium Cane Corso-focused veterinary service profile for public directory testing.':
+      'Premium Cane Corso-focused veterinary service profile prepared for the public partner directory.',
+    'Premium boarding and relocation support for large-breed Cane Corso owners.':
+      'Premium boarding and relocation support for large-breed Cane Corso owners.',
+    'Demo approved service entry used to validate the Partners and Services vertical, detail page rendering, and category filtering.':
+      'Approved service partner profile with information for the public directory, detail page, and category filters.',
+    'Official Partner / Services profile approved for the Cane Corso ecosystem.':
+      'Official partner or service profile approved for the Cane Corso ecosystem.',
+    'Visible after administrator approval. Community ratings remain separate from official approval.':
+      'Visible after USG approval. Community ratings remain separate from official approval.',
+    'Starter Member': 'Verified member',
+  },
   bg: {
     'A premium Cane Corso-focused veterinary service profile for public directory testing.':
       'Премиум ветеринарен профил за Cane Corso, подготвен за публичния каталог с партньори.',
@@ -67,7 +79,7 @@ const standardPartnerTextTranslations: Record<Locale, Record<string, string>> = 
     'Official Partner / Services profile approved for the Cane Corso ecosystem.':
       'Официален профил за партньор или услуга, одобрен за Cane Corso екосистемата.',
     'Visible after administrator approval. Community ratings remain separate from official approval.':
-      'Видим след одобрение от администратор. Оценките от общността остават отделени от официалното одобрение.',
+      'Видим след USG одобрение. Оценките от общността остават отделени от официалното одобрение.',
     'Starter Member': 'Проверен член',
     Bulgaria: 'България',
     Sofia: 'София',
@@ -77,15 +89,15 @@ const standardPartnerTextTranslations: Record<Locale, Record<string, string>> = 
     'A premium Cane Corso-focused veterinary service profile for public directory testing.':
       'Profilo veterinario premium per Cane Corso preparato per la directory pubblica dei partner.',
     'Premium boarding and relocation support for large-breed Cane Corso owners.':
-      'Boarding premium e supporto al trasporto per proprietari di Cane Corso di taglia grande.',
+      'Pensione premium e supporto al trasporto per proprietari di Cane Corso di taglia grande.',
     'Demo approved service entry used to validate the Partners and Services vertical, detail page rendering, and category filtering.':
       'Profilo partner servizio approvato con informazioni per la directory pubblica, la pagina dettaglio e i filtri categoria.',
     'We focus on premium boarding and relocation support for large-breed Cane Corso, including travel preparation and calm handling.':
-      'Il focus è su boarding premium e supporto al trasferimento per Cane Corso di taglia grande, con preparazione al viaggio e gestione calma.',
+      'Il focus è su pensione premium e supporto al trasferimento per Cane Corso di taglia grande, con preparazione al viaggio e gestione calma.',
     'Official Partner / Services profile approved for the Cane Corso ecosystem.':
       'Profilo partner o servizio ufficiale approvato per l’ecosistema Cane Corso.',
     'Visible after administrator approval. Community ratings remain separate from official approval.':
-      'Visibile dopo approvazione amministratore. Le valutazioni community restano separate dall’approvazione ufficiale.',
+      'Visibile dopo approvazione USG. Le valutazioni della comunità restano separate dall’approvazione ufficiale.',
     'Starter Member': 'Membro verificato',
   },
 };

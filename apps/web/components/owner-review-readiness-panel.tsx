@@ -44,14 +44,14 @@ export interface OwnerReviewReadinessPanelProps {
 const readinessCopy = {
   en: {
     eyebrow: 'Owner review readiness',
-    title: 'Prepare this Cane Corso for calm admin review',
+    title: 'Prepare this Cane Corso for a calm USG review',
     titleOverview: 'Featured profile review readiness',
     titlePreview: 'Live review readiness',
     description:
-      'This is a member guidance layer only. It helps the owner prepare a complete profile before admin review, without changing Registry, Certificate, Gallery, Verify, Auth, or moderation logic.',
+      'This panel helps the owner prepare a complete profile before USG review. Publication, certificate, Verify, and Gallery decisions remain separate protected steps.',
     readyLabel: 'Ready for review',
     attentionLabel: 'Needs owner attention',
-    publicLabel: 'Public after admin publish',
+    publicLabel: 'Public after USG publication',
     privateLabel: 'Owner workspace only',
     complete: 'Ready',
     missing: 'Needs work',
@@ -68,9 +68,9 @@ const readinessCopy = {
     boundariesTitle: 'Trust boundaries stay separate',
     boundaries: [
       'Owner profile: private workspace and draft changes.',
-      'Registry: visible only after admin publication.',
-      'USG Certificate: separate official admin decision.',
-      'USG Gallery: curated by admin, never automatic from owner uploads.',
+      'Registry: visible only after USG publication.',
+      'USG Certificate: separate official USG decision.',
+      'USG Gallery: curated by USG, never automatic from owner uploads.',
     ],
     actions: {
       edit: 'Edit profile',
@@ -86,14 +86,14 @@ const readinessCopy = {
   },
   bg: {
     eyebrow: 'Готовност за преглед',
-    title: 'Подготви това Cane Corso спокойно за администраторски преглед',
+    title: 'Подготви това Cane Corso спокойно за USG преглед',
     titleOverview: 'Готовност на избрания профил за преглед',
     titlePreview: 'Текуща готовност за преглед',
     description:
-      'Това е само насочващ слой за собственика. Помага профилът да бъде подготвен преди администраторски преглед, без да променя Регистър, Сертификат, Галерия, Проверка, достъп или модерация.',
+      'Този панел помага на собственика да подготви пълен профил преди USG преглед. Публикуването, сертификатът, проверката и изборът за Галерия остават отделни защитени стъпки.',
     readyLabel: 'Готово за преглед',
     attentionLabel: 'Има нужда от внимание',
-    publicLabel: 'Публично след публикуване от администратор',
+    publicLabel: 'Публично след USG публикуване',
     privateLabel: 'Само в личната зона',
     complete: 'Готово',
     missing: 'За довършване',
@@ -110,9 +110,9 @@ const readinessCopy = {
     boundariesTitle: 'Границите на доверие остават отделни',
     boundaries: [
       'Профил на собственика: лична зона и промени по чернова.',
-      'Регистър: видим само след публикуване от администратор.',
-      'USG сертификат: отделно официално решение от администратор.',
-      'USG Галерия: избира се от администратор, не автоматично от качените снимки.',
+      'Регистър: видим само след USG публикуване.',
+      'USG сертификат: отделно официално USG решение.',
+      'USG Галерия: избира се от USG, не автоматично от качените снимки.',
     ],
     actions: {
       edit: 'Редактирай профил',
@@ -128,14 +128,14 @@ const readinessCopy = {
   },
   it: {
     eyebrow: 'Prontezza per revisione',
-    title: 'Prepara questo Cane Corso per una revisione ordinata dell’amministratore',
+    title: 'Prepara questo Cane Corso per una revisione USG ordinata',
     titleOverview: 'Prontezza del profilo in evidenza',
     titlePreview: 'Prontezza attuale per la revisione',
     description:
-      'Questo è solo un livello guida per il proprietario. Aiuta a preparare un profilo completo prima della revisione, senza cambiare Registro, Certificato, Galleria, Verifica, accesso o moderazione.',
+      'Questo pannello aiuta il proprietario a preparare un profilo completo prima della revisione USG. Pubblicazione, certificato, verifica e Galleria restano passaggi protetti separati.',
     readyLabel: 'Pronto per revisione',
     attentionLabel: 'Richiede attenzione del proprietario',
-    publicLabel: 'Pubblico dopo pubblicazione dell’amministratore',
+    publicLabel: 'Pubblico dopo pubblicazione USG',
     privateLabel: 'Solo area personale',
     complete: 'Pronto',
     missing: 'Da completare',

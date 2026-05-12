@@ -423,22 +423,29 @@ const categoryLabelsByLocale: Record<Locale, Record<string, string>> = {
 };
 
 const standardTextTranslations: Record<Locale, Record<string, string>> = {
-  en: {},
+  en: {
+    'A premium Cane Corso-focused veterinary service profile for public directory testing.':
+      'Premium Cane Corso-focused veterinary service profile prepared for the public directory.',
+    'Official Partner / Services profile approved for the Cane Corso ecosystem.':
+      'Official partner or service profile approved for the Cane Corso ecosystem.',
+    'Visible after administrator approval. Community ratings remain separate from official approval.':
+      'Visible after USG approval. Community ratings remain separate from official approval.',
+  },
   bg: {
     'A premium Cane Corso-focused veterinary service profile for public directory testing.':
-      'Премиум ветеринарен профил за Cane Corso, използван за тест на публичната директория.',
+      'Премиум ветеринарен профил за Cane Corso, подготвен за публичната директория.',
     'Premium boarding and relocation support for large-breed Cane Corso owners.':
       'Премиум престой и съдействие при преместване за собственици на едри Cane Corso.',
     'Official Partner / Services profile approved for the Cane Corso ecosystem.':
       'Официален профил за партньор или услуга, одобрен за Cane Corso екосистемата.',
     'Visible after administrator approval. Community ratings remain separate from official approval.':
-      'Видим след одобрение от администратор. Общностните оценки остават отделени от официалното одобрение.',
+      'Видим след USG одобрение. Общностните оценки остават отделени от официалното одобрение.',
   },
   it: {
     'Official Partner / Services profile approved for the Cane Corso ecosystem.':
       'Profilo partner o servizio ufficiale approvato per l’ecosistema Cane Corso.',
     'Visible after administrator approval. Community ratings remain separate from official approval.':
-      'Visibile dopo approvazione amministratore. Le valutazioni community restano separate dall’approvazione ufficiale.',
+      'Visibile dopo approvazione USG. Le valutazioni della comunità restano separate dall’approvazione ufficiale.',
   },
 };
 

@@ -17,9 +17,9 @@ const copyByLocale = {
       location: 'Location',
       publishedAt: 'Published',
       communityRating: 'Community rating',
-      adminAssessment: 'Admin assessment',
+      adminAssessment: 'USG assessment',
       noCommunityVotes: 'No community votes yet',
-      awaitingAdminAssessment: 'Awaiting admin assessment',
+      awaitingAdminAssessment: 'Awaiting USG assessment',
       votes: 'votes',
       openProfile: 'Open public profile',
       backToRegistry: 'Back to registry',
@@ -51,9 +51,9 @@ const copyByLocale = {
       location: 'Локация',
       publishedAt: 'Публикуван',
       communityRating: 'Оценка от общността',
-      adminAssessment: 'Админ оценка',
+      adminAssessment: 'USG оценка',
       noCommunityVotes: 'Все още няма оценки от общността',
-      awaitingAdminAssessment: 'Очаква админ оценка',
+      awaitingAdminAssessment: 'Очаква USG оценка',
       votes: 'гласа',
       openProfile: 'Отвори публичния профил',
       backToRegistry: 'Назад към регистъра',
@@ -85,9 +85,9 @@ const copyByLocale = {
       location: 'Località',
       publishedAt: 'Pubblicato',
       communityRating: 'Valutazione community',
-      adminAssessment: 'Valutazione admin',
+      adminAssessment: 'Valutazione USG',
       noCommunityVotes: 'Nessun voto della community',
-      awaitingAdminAssessment: 'In attesa della valutazione admin',
+      awaitingAdminAssessment: 'In attesa della valutazione USG',
       votes: 'voti',
       openProfile: 'Apri il profilo pubblico',
       backToRegistry: 'Torna al registro',
@@ -151,7 +151,7 @@ export function VerificationResultPanel({ document, locale, code }: Verification
   if (!document) {
     return (
     <div className="content-grid two-columns-wide-right verify-entry-layout">
-      <VerifyCertificateTrustContinuityPanel />
+      <VerifyCertificateTrustContinuityPanel locale={locale} />
         <section className="content-card verify-result-card">
           <span className="eyebrow-label">{copy.labels.result}</span>
           <h2>{copy.labels.notFoundTitle}</h2>

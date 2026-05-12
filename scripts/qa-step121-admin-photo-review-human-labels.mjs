@@ -18,7 +18,7 @@ const pkg = file('package.json');
 expect(panel, /Step 121 — Admin Photo Review Assistant & Human Labels Foundation/, 'Step 121 marker present');
 expect(panel, /AdminPhotoReviewAssistantPanel/, 'Admin photo assistant component exported');
 expect(panel, /good.*usable.*poor.*wrong_angle.*missing_view/s, 'Human label set is represented');
-expect(panel, /admin label remains the source of truth|крайният етикет на администратора остава истината/i, 'Human label authority copy present');
+expect(panel, /human label remains the source of truth|крайният човешки етикет остава водещ|etichetta umana finale.*fonte di verità/i, 'Human label authority copy present');
 expect(panel, /No AI or ML result here proves breed|няма AI\/ML резултат, който доказва порода/i, 'No AI breed proof copy present');
 expect(review, /AdminPhotoReviewAssistantPanel/, 'Admin review queue integrates assistant panel');
 expect(css, /admin-photo-review-assistant/, 'Admin photo assistant CSS present');

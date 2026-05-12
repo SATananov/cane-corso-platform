@@ -19,7 +19,7 @@ const copyByLocale = {
       lanes: [
         {
           title: 'Curated selection',
-          state: 'Admin choice',
+          state: 'USG choice',
           description: 'Photos appear here only when selected for showcase, not automatically on owner upload.',
         },
         {
@@ -50,7 +50,7 @@ const copyByLocale = {
         {
           title: 'Certificate issued',
           state: 'Official decision',
-          description: 'Certified presence means there is a separate admin decision for USG certificate.',
+          description: 'Certified presence means there is a separate USG review decision for USG certificate.',
         },
         {
           title: 'Verify continuity',
@@ -81,7 +81,7 @@ const copyByLocale = {
       lanes: [
         {
           title: 'Кураторски избор',
-          state: 'Админ решение',
+          state: 'USG решение',
           description: 'Снимките се появяват тук само когато са избрани за витрина, не автоматично при качване.',
         },
         {
@@ -112,7 +112,7 @@ const copyByLocale = {
         {
           title: 'Издан сертификат',
           state: 'Официално решение',
-          description: 'Сертифицирано присъствие означава, че има отделно админ решение за USG сертификат.',
+          description: 'Сертифицирано присъствие означава, че има отделно USG решение за USG сертификат.',
         },
         {
           title: 'Проверяемост',
@@ -143,7 +143,7 @@ const copyByLocale = {
       lanes: [
         {
           title: 'Selezione curata',
-          state: 'Scelta admin',
+          state: 'Scelta USG',
           description: 'Le foto appaiono qui solo quando selezionate per la vetrina, non automaticamente al caricamento.',
         },
         {
@@ -174,7 +174,7 @@ const copyByLocale = {
         {
           title: 'Certificato rilasciato',
           state: 'Decisione ufficiale',
-          description: 'La presenza certificata significa che c\'è una decisione admin separata per il certificato USG.',
+          description: 'La presenza certificata significa che c\'è una decisione separata della revisione USG per il certificato USG.',
         },
         {
           title: 'Continuità di verifica',

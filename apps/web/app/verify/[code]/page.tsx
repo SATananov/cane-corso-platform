@@ -26,7 +26,7 @@ export default async function VerifyPage({ params }: VerifyPageProps) {
         { eyebrow: 'Active record', title: 'A successful result confirms active certificate trust', description: 'This means the code matches an active public certificate record tied to a published Cane Corso profile.', href: '/verify', meta: 'Active • public • certificate', icon: 'verify' as const },
         { eyebrow: 'Published profile', title: 'The registry profile is the public profile layer', description: 'The published profile and the certificate trust layer are related, but they are not the same thing.', href: '/registry', meta: 'Registry • public profile', icon: 'registry' as const },
         { eyebrow: 'Guide', title: 'Use the guide if you need the full trust explanation', description: 'The guide explains registry publication, member preparation, moderation, and certificate trust together.', href: '/guide?topic=registry#registry', meta: 'Guide • trust layers', icon: 'guide' as const },
-        { eyebrow: 'Owner path', title: 'Owners still work from the private member area first', description: 'Profile work begins in My Dogs and Profile long before verification becomes relevant.', href: '/my-dogs', meta: 'Подготовка на собственика • private area', icon: 'member' as const },
+        { eyebrow: 'Owner path', title: 'Owners still work from the private member area first', description: 'Profile work begins in My Dogs and Profile long before verification becomes relevant.', href: '/my-dogs', meta: 'Owner preparation • private area', icon: 'member' as const },
       ],
     },
     bg: {
@@ -35,7 +35,7 @@ export default async function VerifyPage({ params }: VerifyPageProps) {
       cards: [
         { eyebrow: 'Активен запис', title: 'Успешният резултат потвърждава активно сертификатно доверие', description: 'Това значи, че кодът съвпада с активен публичен сертификатен запис, вързан към публикуван Cane Corso профил.', href: '/verify', meta: 'Активен • публичен • сертификат', icon: 'verify' as const },
         { eyebrow: 'Публикуван профил', title: 'Профилът в Регистъра е публичният профилен слой', description: 'Публикуваният профил и сертификатният слой на доверие са свързани, но не са едно и също.', href: '/registry', meta: 'Регистър • публичен профил', icon: 'registry' as const },
-        { eyebrow: 'Наръчник', title: 'Ползвай наръчника за пълното trust обяснение', description: 'Наръчникът обяснява заедно публикацията в Регистъра, членската подготовка, модерацията и сертификатното доверие.', href: '/guide?topic=registry#registry', meta: 'Наръчник • слоеве на доверие', icon: 'guide' as const },
+        { eyebrow: 'Наръчник', title: 'Ползвай наръчника за пълното обяснение за доверие', description: 'Наръчникът обяснява заедно публикацията в Регистъра, членската подготовка, модерацията и сертификатното доверие.', href: '/guide?topic=registry#registry', meta: 'Наръчник • слоеве на доверие', icon: 'guide' as const },
         { eyebrow: 'Път на собственика', title: 'Собствениците пак работят първо от частната членска зона', description: 'Работата по профила започва в „Моите Cane Corso“ и „Профил“ много преди проверката да стане важна.', href: '/my-dogs', meta: 'Подготовка на собственика • частна зона', icon: 'member' as const },
       ],
     },

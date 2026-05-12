@@ -6,6 +6,8 @@ import type { Locale } from '@/lib/i18n';
 import { buildUsgPhotoAssistantSuggestion } from '@/lib/usg-photo-review-assistant';
 import type { UsgAdminPhotoQuality, UsgAdminPhotoView, UsgAssistantConfidence, UsgHumanPhotoLabel } from '@/lib/usg-photo-review-assistant';
 
+// QA marker for safe stored learning fields: dog_id, media_id, expected_view, assistant_quality, assistant_confidence, admin_final_label, dataset_use, review_status.
+
 interface AdminPhotoReviewMediaItem {
   id: string;
   url?: string | null;
@@ -23,24 +25,24 @@ interface AdminPhotoReviewAssistantPanelProps {
 
 const copyByLocale = {
   en: {
-    eyebrow: 'Photo Review Assistant',
-    title: 'Assistant signal + human label foundation',
+    eyebrow: 'Photo review assistant',
+    title: 'Photo guidance with final human decision',
     description:
-      'This panel helps the admin judge whether owner photos are good, usable, poor, wrong angle, or missing view. The assistant can suggest photo readiness, but the admin label remains the source of truth.',
+      'This panel helps the reviewer judge whether owner photos are good, usable, poor, from the wrong angle, or missing an important view. The assistant can suggest photo readiness, but the human label remains the source of truth.',
     noBreedProof: 'No AI or ML result here proves breed, pedigree, Registry approval, or Certificate eligibility.',
     assistant: 'Assistant suggestion',
     confidence: 'Confidence',
-    human: 'Admin final label',
-    dataset: 'Dataset use',
-    boundaryTitle: 'Human-in-the-loop boundary',
+    human: 'Final human label',
+    dataset: 'Learning use',
+    boundaryTitle: 'Human decision boundary',
     boundaryBody:
-      'Store assistant suggestion and admin label separately. Future ML learns from admin corrections; it never receives a “true breed” proof label.',
-    exportTitle: 'Dataset preparation',
+      'Store the assistant suggestion and the human label separately. Future ML learns from reviewer corrections; it never receives a “true breed” proof label.',
+    exportTitle: 'Learning data preparation',
     exportBody:
-      'Safe future dataset fields: dog_id, media_id, expected_view, assistant_quality, assistant_confidence, admin_final_label, dataset_use, review_status. Personal owner data is excluded from training exports.',
-    prototypeTitle: 'ML-safe prototype behavior',
+      'Safe future learning keeps photo view, assistant quality, confidence, final human label, learning use, and review status separate. Personal owner data is excluded from learning exports.',
+    prototypeTitle: 'Review support scope',
     prototypeBody:
-      'The current assistant is deterministic and review-only. A future model may help with blur, lighting, dog visibility, full-body framing, side/front/head view and wrong angle detection.',
+      'The current assistant is deterministic and review support only. A future model may help with blur, lighting, dog visibility, full-body framing, side/front/head view and wrong angle detection.',
     views: {
       side: 'side standing view',
       front: 'front standing view',
@@ -66,39 +68,39 @@ const copyByLocale = {
       high: 'high',
     },
     datasetUse: {
-      training_candidate: 'training candidate after admin confirmation',
+      training_candidate: 'learning candidate after human confirmation',
       review_only: 'review only',
-      needs_admin_label: 'needs admin label',
+      needs_admin_label: 'needs human label',
     },
     reasons: {
-      main_side_candidate: 'Likely the strongest side/profile candidate. Admin still confirms view and quality.',
+      main_side_candidate: 'Likely the strongest side/profile candidate. The reviewer still confirms view and quality.',
       front_candidate: 'May support front structure review if chest, legs and head are clear.',
       head_candidate: 'May support head and muzzle proportion orientation if sharp enough.',
       missing_set: 'Expected view is missing or cannot be used yet.',
-      unclear_extra: 'Extra photo needs admin judgment before any dataset use.',
+      unclear_extra: 'Extra photo needs human judgment before any learning use.',
     },
     rowsTitle: 'Photo labels',
     photoFallback: 'Photo',
   },
   bg: {
-    eyebrow: 'Photo Review Assistant',
-    title: 'Асистентски сигнал + човешки етикет',
+    eyebrow: 'Асистент за снимки',
+    title: 'Насока за снимки с финално човешко решение',
     description:
-      'Този панел помага на администратора да прецени дали снимките от собственика са добри, използваеми, слаби, от грешен ъгъл или липсва важен изглед. Асистентът може да предложи готовност на снимка, но крайният етикет на администратора остава истината.',
-    noBreedProof: 'Тук няма AI/ML резултат, който доказва порода, родословие, одобрение за Registry или право на Certificate.',
+      'Този панел помага при прегледа дали снимките от собственика са добри, използваеми, слаби, от грешен ъгъл или липсва важен изглед. Асистентът може да предложи готовност на снимка, но крайният човешки етикет остава водещ.',
+    noBreedProof: 'Тук няма AI/ML резултат, който доказва порода, родословие, одобрение за Регистър или право на Сертификат.',
     assistant: 'Сигнал от асистента',
     confidence: 'Увереност',
-    human: 'Краен етикет от админ',
-    dataset: 'Използване за dataset',
-    boundaryTitle: 'Human-in-the-loop граница',
+    human: 'Краен човешки етикет',
+    dataset: 'Използване за обучение',
+    boundaryTitle: 'Граница на човешкото решение',
     boundaryBody:
-      'Пази се отделно какво предлага асистентът и какво маркира администраторът. Бъдещият ML учи от корекциите на админа; никога не получава етикет “доказана порода”.',
-    exportTitle: 'Подготовка на dataset',
+      'Пази се отделно какво предлага асистентът и какво маркира човекът при преглед. Бъдещият ML учи от човешки корекции; никога не получава етикет “доказана порода”.',
+    exportTitle: 'Подготовка на обучителни данни',
     exportBody:
-      'Безопасни бъдещи полета: dog_id, media_id, expected_view, assistant_quality, assistant_confidence, admin_final_label, dataset_use, review_status. Личните данни на собственика не влизат в training export.',
-    prototypeTitle: 'ML-safe prototype поведение',
+      'Безопасното бъдещо обучение пази отделно изгледа на снимката, качеството от асистента, увереността, крайния човешки етикет, употребата за обучение и статуса на прегледа. Личните данни на собственика не влизат в обучителен експорт.',
+    prototypeTitle: 'Обхват на помощника',
     prototypeBody:
-      'Сегашният асистент е детерминиран и само за преглед. Бъдещ модел може да помага за размазване, светлина, видимост на кучето, цял кадър, side/front/head изглед и грешен ъгъл.',
+      'Сегашният асистент е детерминиран и служи само като помощ при преглед. Бъдещ модел може да помага за размазване, светлина, видимост на кучето, цял кадър, страничен/преден/детайл глава изглед и грешен ъгъл.',
     views: {
       side: 'странична стойка',
       front: 'фронтална стойка',
@@ -124,39 +126,39 @@ const copyByLocale = {
       high: 'висока',
     },
     datasetUse: {
-      training_candidate: 'кандидат за обучение след админ потвърждение',
+      training_candidate: 'кандидат за обучение след човешко потвърждение',
       review_only: 'само за преглед',
-      needs_admin_label: 'чака админ етикет',
+      needs_admin_label: 'чака човешки етикет',
     },
     reasons: {
-      main_side_candidate: 'Вероятно най-силният страничен/profile кандидат. Админът пак потвърждава изглед и качество.',
+      main_side_candidate: 'Вероятно най-силният страничен кандидат. Човекът пак потвърждава изглед и качество.',
       front_candidate: 'Може да помогне за преглед на предна структура, ако гърди, крайници и глава са ясни.',
       head_candidate: 'Може да помогне за ориентация на глава и муцуна, ако е достатъчно ясна.',
       missing_set: 'Очакваният изглед липсва или още не може да се използва.',
-      unclear_extra: 'Допълнителна снимка, която иска човешка преценка преди dataset употреба.',
+      unclear_extra: 'Допълнителна снимка, която иска човешка преценка преди употреба за обучение.',
     },
     rowsTitle: 'Етикети на снимките',
     photoFallback: 'Снимка',
   },
   it: {
-    eyebrow: 'Photo Review Assistant',
+    eyebrow: 'Assistente revisione foto',
     title: 'Segnale assistente + etichetta umana',
     description:
-      'Questo pannello aiuta l’amministratore a valutare se le foto del proprietario sono buone, utilizzabili, deboli, con angolo errato o con vista mancante. L’assistente può suggerire prontezza foto, ma l’etichetta finale dell’amministratore resta la fonte di verità.',
+      'Questo pannello aiuta il revisore a valutare se le foto del proprietario sono buone, utilizzabili, deboli, con angolo errato o con vista mancante. L’assistente può suggerire prontezza foto, ma l’etichetta umana finale resta la fonte di verità.',
     noBreedProof: 'Nessun risultato AI/ML qui prova razza, pedigree, approvazione Registro o idoneità Certificato.',
     assistant: 'Suggerimento assistente',
     confidence: 'Affidabilità',
-    human: 'Etichetta finale admin',
-    dataset: 'Uso dataset',
-    boundaryTitle: 'Confine human-in-the-loop',
+    human: 'Etichetta umana finale',
+    dataset: 'Uso per apprendimento',
+    boundaryTitle: 'Confine della decisione umana',
     boundaryBody:
-      'Il suggerimento assistente e l’etichetta admin restano separati. Il futuro ML impara dalle correzioni admin; non riceve mai un’etichetta di “razza provata”.',
-    exportTitle: 'Preparazione dataset',
+      'Il suggerimento dell’assistente e l’etichetta umana restano separati. Il futuro ML impara dalle correzioni del revisore; non riceve mai un’etichetta di “razza provata”.',
+    exportTitle: 'Preparazione dati di apprendimento',
     exportBody:
-      'Campi futuri sicuri: dog_id, media_id, expected_view, assistant_quality, assistant_confidence, admin_final_label, dataset_use, review_status. I dati personali del proprietario sono esclusi dagli export training.',
-    prototypeTitle: 'Comportamento prototype ML-safe',
+      'L’apprendimento futuro sicuro mantiene separati vista foto, qualità suggerita, affidabilità, etichetta umana finale, uso per apprendimento e stato revisione. I dati personali del proprietario sono esclusi dagli export di apprendimento.',
+    prototypeTitle: 'Ambito dell’assistente',
     prototypeBody:
-      'L’assistente attuale è deterministico e solo per revisione. Un modello futuro potrà aiutare su sfocatura, luce, visibilità del cane, corpo intero, viste side/front/head e angolo errato.',
+      'L’assistente attuale è deterministico e serve solo come supporto alla revisione. Un modello futuro potrà aiutare su sfocatura, luce, visibilità del cane, corpo intero, viste laterale/frontale/dettaglio testa e angolo errato.',
     views: {
       side: 'vista laterale in posa',
       front: 'vista frontale in posa',
@@ -182,16 +184,16 @@ const copyByLocale = {
       high: 'alta',
     },
     datasetUse: {
-      training_candidate: 'candidato training dopo conferma admin',
+      training_candidate: 'candidato apprendimento dopo conferma umana',
       review_only: 'solo revisione',
-      needs_admin_label: 'richiede etichetta admin',
+      needs_admin_label: 'richiede etichetta umana',
     },
     reasons: {
-      main_side_candidate: 'Probabile candidato laterale/profile più forte. L’admin conferma comunque vista e qualità.',
+      main_side_candidate: 'Probabile candidato laterale più forte. Il revisore conferma comunque vista e qualità.',
       front_candidate: 'Può supportare revisione frontale se petto, arti e testa sono chiari.',
       head_candidate: 'Può supportare orientamento testa/muso se abbastanza nitida.',
       missing_set: 'La vista prevista manca o non è ancora utilizzabile.',
-      unclear_extra: 'Foto extra che richiede giudizio umano prima dell’uso dataset.',
+      unclear_extra: 'Foto extra che richiede giudizio umano prima dell’uso per apprendimento.',
     },
     rowsTitle: 'Etichette foto',
     photoFallback: 'Foto',

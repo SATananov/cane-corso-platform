@@ -37,7 +37,7 @@ const copyByLocale = {
     boundariesEyebrow: 'Trust boundaries',
     boundariesTitle: 'Knowledge explains. Registry, Certificate, Verify, and Gallery remain separate authority layers.',
     boundariesDescription:
-      'This section is educational and read-only. It does not publish Cane Corso profiles, issue certificates, change Verify records, select Gallery images, or mutate admin moderation state.',
+      'This section is educational. It helps visitors learn, while profile publication, certificate decisions, Verify records, Gallery selection, and moderation remain handled in their own protected areas.',
     path: [
       {
         title: 'Identity first',
@@ -81,7 +81,7 @@ const copyByLocale = {
     boundariesEyebrow: 'Граници на доверие',
     boundariesTitle: 'Знанията обясняват. Регистър, Сертификат, Проверка и Галерия остават отделни авторитетни слоеве.',
     boundariesDescription:
-      'Тази секция е образователна и само за преглед. Тя не публикува Cane Corso профили, не издава сертификати, не променя проверки, не избира снимки за Галерия и не променя админ модерация.',
+      'Тази секция е образователна. Тя помага на посетителя да учи, а публикуването на профили, сертификатните решения, проверките, изборът за Галерия и модерацията остават в отделните защитени части на платформата.',
     path: [
       {
         title: 'Първо идентичност',
@@ -125,7 +125,7 @@ const copyByLocale = {
     boundariesEyebrow: 'Confini di fiducia',
     boundariesTitle: 'Knowledge spiega. Registro, Certificato, Verifica e Galleria restano livelli autoritativi separati.',
     boundariesDescription:
-      'Questa sezione è educativa e solo in lettura. Non pubblica profili Cane Corso, non emette certificati, non modifica la verifica, non seleziona immagini per la Galleria e non cambia la moderazione amministrativa.',
+      'Questa sezione è educativa. Aiuta il visitatore a imparare, mentre pubblicazione profili, decisioni certificato, verifica, scelta Galleria e moderazione restano nelle aree protette della piattaforma.',
     path: [
       {
         title: 'Prima identità',

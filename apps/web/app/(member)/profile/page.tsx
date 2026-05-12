@@ -74,9 +74,9 @@ function getOwnerIdentityFormLabels(locale: string) {
     en: {
       eyebrow: 'Owner details',
       title: 'Complete the owner identity',
-      description: 'Keep the full owner information here. Admins can review it, while the public Registry shows only the owner name and avatar.',
+      description: 'Keep the full owner information here. USG can review it, while the public Registry shows only the owner name and avatar.',
       publicNotice: 'Public by default: name + avatar only',
-      privacyNotice: 'Address, phone, website, email, and biography stay private/admin-visible unless admin explicitly approves extra visibility later.',
+      privacyNotice: 'Address, phone, website, email, and biography stay private/USG-visible unless USG explicitly approves extra visibility later.',
       fields: {
         displayName: 'Public owner name',
         firstName: 'First name',
@@ -96,10 +96,10 @@ function getOwnerIdentityFormLabels(locale: string) {
         lastName: 'Tananov',
         city: 'Kardzhali',
         country: 'Bulgaria',
-        addressLine: 'Private address for admin use only',
+        addressLine: 'Private address for USG review only',
         websiteUrl: 'https://example.com',
         phone: '+359 ...',
-        bio: 'Short private/admin note about the owner or kennel.',
+        bio: 'Short private/USG note about the owner or kennel.',
       },
       saveLabel: 'Save owner details',
       savingLabel: 'Saving…',
@@ -110,9 +110,9 @@ function getOwnerIdentityFormLabels(locale: string) {
     bg: {
       eyebrow: 'Данни на собственика',
       title: 'Попълни идентичността на собственика',
-      description: 'Пълните данни стоят тук. Админът ги вижда при преглед, а публичният Регистър показва само името и аватара на собственика.',
+      description: 'Пълните данни стоят тук. USG ги вижда при преглед, а публичният Регистър показва само името и аватара на собственика.',
       publicNotice: 'Публично по подразбиране: име + аватар',
-      privacyNotice: 'Адрес, телефон, сайт, имейл и биография остават лични/видими за админ, освен ако админ изрично не разреши друго публично показване.',
+      privacyNotice: 'Адрес, телефон, сайт, имейл и биография остават лични/видими за USG, освен ако USG изрично не разреши друго публично показване.',
       fields: {
         displayName: 'Публично име на собственика',
         firstName: 'Име',
@@ -132,10 +132,10 @@ function getOwnerIdentityFormLabels(locale: string) {
         lastName: 'Тананов',
         city: 'Кърджали',
         country: 'България',
-        addressLine: 'Личен адрес само за админ',
+        addressLine: 'Личен адрес само за USG преглед',
         websiteUrl: 'https://example.com',
         phone: '+359 ...',
-        bio: 'Кратка лична/админ бележка за собственика или развъдника.',
+        bio: 'Кратка лична/USG бележка за собственика или развъдника.',
       },
       saveLabel: 'Запази данните',
       savingLabel: 'Запазване…',
@@ -146,9 +146,9 @@ function getOwnerIdentityFormLabels(locale: string) {
     it: {
       eyebrow: 'Dati del proprietario',
       title: 'Completa l’identità del proprietario',
-      description: 'Le informazioni complete restano qui. L’admin le vede in revisione, mentre il Registro pubblico mostra solo nome e avatar del proprietario.',
+      description: 'Le informazioni complete restano qui. USG le vede in revisione, mentre il Registro pubblico mostra solo nome e avatar del proprietario.',
       publicNotice: 'Pubblico di default: nome + avatar',
-      privacyNotice: 'Indirizzo, telefono, sito, email e biografia restano privati/visibili all’admin salvo approvazione esplicita dell’admin.',
+      privacyNotice: 'Indirizzo, telefono, sito, email e biografia restano privati/visibili a USG salvo approvazione esplicita di USG.',
       fields: {
         displayName: 'Nome pubblico proprietario',
         firstName: 'Nome',
@@ -168,10 +168,10 @@ function getOwnerIdentityFormLabels(locale: string) {
         lastName: 'Tananov',
         city: 'Kardzhali',
         country: 'Bulgaria',
-        addressLine: 'Indirizzo privato solo per admin',
+        addressLine: 'Indirizzo privato solo per revisione USG',
         websiteUrl: 'https://example.com',
         phone: '+359 ...',
-        bio: 'Breve nota privata/admin sul proprietario o allevamento.',
+        bio: 'Breve nota privata/USG sul proprietario o allevamento.',
       },
       saveLabel: 'Salva dati proprietario',
       savingLabel: 'Salvataggio…',
@@ -265,7 +265,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Owner identity',
         identityTitle: 'Your personal foundation',
         identityDescription:
-          'This is your owner profile. You and the admin can see the full data; the public Registry uses only your public owner name and safe presentation details.',
+          'This is your owner profile. You and USG can see the full data; the public Registry uses only your public owner name and safe presentation details.',
         labels: {
           ownerName: 'Owner name',
           email: 'Email',
@@ -313,7 +313,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Public presence',
         presenceTitle: 'How your owner profile connects to the registry',
         presenceDescription:
-          'Your owner profile remains private to you and admin. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
+          'Your owner profile remains private to you and USG. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
         presenceItems: [
           `${published} published profile${published === 1 ? '' : 's'}`,
           `${inReview} in review`,
@@ -372,7 +372,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Идентичност на собственика',
         identityTitle: 'Твоята лична основа',
         identityDescription:
-          'Това е твоят профил на собственик. Ти и админът виждате пълните данни; публичният Регистър използва само публичното име на собственика и безопасните данни за представяне.',
+          'Това е твоят профил на собственик. Ти и USG виждате пълните данни; публичният Регистър използва само публичното име на собственика и безопасните данни за представяне.',
         labels: {
           ownerName: 'Име на собственика',
           email: 'Имейл',
@@ -420,7 +420,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Публично присъствие',
         presenceTitle: 'Как профилът ти се свързва с регистъра',
         presenceDescription:
-          'Профилът ти на собственик остава видим само за теб и админ. Публичният Регистър използва само одобрено безопасно представяне на собственика и публикуваното ядро за Cane Corso.',
+          'Профилът ти на собственик остава видим само за теб и USG. Публичният Регистър използва само одобрено безопасно представяне на собственика и публикуваното ядро за Cane Corso.',
         presenceItems: [
           published === 1 ? '1 публикуван профил' : `${published} публикувани профила`,
           inReview === 1 ? '1 профил в преглед' : `${inReview} профила в преглед`,
@@ -479,7 +479,7 @@ export default async function ProfilePage() {
         identityEyebrow: 'Identità del proprietario',
         identityTitle: 'La tua base personale',
         identityDescription:
-          'Questo è il tuo profilo proprietario. Tu e l’admin vedete i dati completi; il Registry pubblico usa solo il nome pubblico del proprietario e i dati sicuri di presentazione.',
+          'Questo è il tuo profilo proprietario. Tu e USG vedete i dati completi; il Registry pubblico usa solo il nome pubblico del proprietario e i dati sicuri di presentazione.',
         labels: {
           ownerName: 'Nome proprietario',
           email: 'Email',
@@ -527,7 +527,7 @@ export default async function ProfilePage() {
         presenceEyebrow: 'Presenza pubblica',
         presenceTitle: 'Come il tuo profilo si collega al registro',
         presenceDescription:
-          'Il tuo profilo proprietario resta visibile solo a te e all’admin. Il Registro pubblico usa solo la presentazione sicura approvata del proprietario e il nucleo pubblicato del Cane Corso.',
+          'Il tuo profilo proprietario resta visibile solo a te e a USG. Il Registro pubblico usa solo la presentazione sicura approvata del proprietario e il nucleo pubblicato del Cane Corso.',
         presenceItems: [
           published === 1 ? '1 profilo pubblicato' : `${published} profili pubblicati`,
           inReview === 1 ? '1 profilo in revisione' : `${inReview} profili in revisione`,
@@ -585,7 +585,7 @@ export default async function ProfilePage() {
       },
       identityEyebrow: 'Owner identity',
       identityTitle: 'Your personal foundation',
-      identityDescription: 'This is your owner profile. You and the admin can see the full data; the public Registry uses only your public owner name and safe presentation details.',
+      identityDescription: 'This is your owner profile. You and USG can see the full data; the public Registry uses only your public owner name and safe presentation details.',
       labels: {
         ownerName: 'Owner name',
         email: 'Email',
@@ -633,7 +633,7 @@ export default async function ProfilePage() {
       presenceEyebrow: 'Public presence',
       presenceTitle: 'How your owner profile connects to the registry',
       presenceDescription:
-        'Your owner profile remains private to you and admin. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
+        'Your owner profile remains private to you and USG. Public Registry visibility uses only approved safe owner presentation and the published Cane Corso essentials.',
       presenceItems: [],
       nextTitle: 'Best next step',
       nextDescription: workingDog

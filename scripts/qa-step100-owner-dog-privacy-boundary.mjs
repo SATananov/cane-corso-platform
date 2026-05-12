@@ -22,6 +22,11 @@ function assertIncludes(label, content, fragment) {
   else fail(`${label} — missing: ${fragment}`);
 }
 
+function assertAnyIncludes(label, content, fragments) {
+  if (fragments.some((fragment) => content.includes(fragment))) pass(label);
+  else fail(`${label} — missing one of: ${fragments.join(' | ')}`);
+}
+
 function assertNotIncludes(label, content, fragment) {
   if (!content.includes(fragment)) pass(label);
   else fail(`${label} — unexpected: ${fragment}`);
@@ -78,10 +83,10 @@ assertIncludes('Registry story is gated by protected depth', publicRegistryProfi
 assertNotIncludes('Old member-registration unlock claim is removed from registry copy', publicRegistryProfile, 'unlock after member registration');
 assertNotIncludes('Old Bulgarian member unlock claim is removed from registry copy', publicRegistryProfile, 'отключват след членска регистрация');
 
-assertIncludes('Owner profile page explains full owner data is owner/admin visible', memberProfile, 'Ти и админът виждате пълните данни');
+assertAnyIncludes('Owner profile page explains full owner data is owner/USG visible', memberProfile, ['Ти и админът виждате пълните данни', 'Ти и USG виждате пълните данни']);
 assertIncludes('Owner profile page clarifies public Registry uses only safe owner presentation', memberProfile, 'публичният Регистър използва само публичното име');
 assertIncludes('My Dogs overview explains other people see only approved public core', myDogsOverview, 'Другите хора виждат само одобрени снимки, име на Cane Corso, дата на раждане и публично име на собственика.');
-assertIncludes('My Dogs overview explains full Cane Corso data stays owner/admin only', myDogsOverview, 'Пълните Cane Corso данни остават видими само за теб и админ.');
+assertAnyIncludes('My Dogs overview explains full Cane Corso data stays owner/USG only', myDogsOverview, ['Пълните Cane Corso данни остават видими само за теб и админ.', 'Пълните Cane Corso данни остават видими само за теб и USG.']);
 assertIncludes('Role-aware profile panel says profile means owner data', roleAware, 'Това е профилът на човека, не на Cane Corso.');
 assertIncludes('Role-aware My Dogs panel keeps full data private with USG review wording', roleAware, 'Пълните данни са лични и се използват само при USG преглед.');
 
