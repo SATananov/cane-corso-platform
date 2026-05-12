@@ -5,6 +5,7 @@ import { ImageLightbox } from '@/components/image-lightbox';
 import { ReviewDecisionReadinessPanel } from '@/components/review-decision-readiness-panel';
 import { AdminModerationActionFlowPanel } from '@/components/admin-moderation-action-flow-panel';
 import { AdminPhotoReviewAssistantPanel } from '@/components/admin-photo-review-assistant-panel';
+import { UsgReviewStepsRail } from '@/components/usg-review-steps-rail';
 import type { Locale } from '@/lib/i18n';
 import { cleanDemoDogName, cleanDemoOwnerName, cleanDemoProductionText, getDemoDataPresentationCopy, hasDemoLikeValues } from '@/lib/demo-data-presentation';
 import type { ReviewQueueDocument, ReviewQueueStatus } from '@cane-corso-platform/contracts';
@@ -410,6 +411,8 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
 
   return (
     <div className="member-route-stack">
+      <UsgReviewStepsRail locale={locale} />
+
       <section id="admin-certificate-flow" className="content-card admin-command-panel admin-command-panel--review">
         <div className="admin-command-panel__copy">
           <span className="eyebrow-label">{adminCopy.commandEyebrow}</span>

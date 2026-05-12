@@ -71,6 +71,7 @@ const requiredFiles = [
   'docs/qa/evidence/step127-real-browser-product-journey-review/README.md',
   'docs/qa/step128-product-priority-navigation-demo-data-separation.md',
   'docs/qa/step129-netlify-live-product-evidence-lock.md',
+  'docs/qa/step130-first-real-user-onboarding-polish.md',
   'docs/qa/evidence/step129-netlify-live-product-evidence-lock/README.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
@@ -126,6 +127,7 @@ const requiredFiles = [
   'scripts/qa-step127-real-browser-product-journey-review.mjs',
   'scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs',
   'scripts/qa-step129-netlify-live-product-evidence-lock.mjs',
+  'scripts/qa-step130-first-real-user-onboarding-polish.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -191,6 +193,7 @@ const requiredPackageScripts = [
   'step127:browser-product-journey:qa',
   'step128:product-priority-demo-separation:qa',
   'step129:live-product-evidence:qa',
+  'step130:first-real-user-onboarding:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -264,6 +267,7 @@ const qaScripts = [
   ['Step 127 real browser product journey review', 'scripts/qa-step127-real-browser-product-journey-review.mjs'],
   ['Step 128 product priority navigation and demo data separation', 'scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs'],
   ['Step 129 Netlify live product evidence lock', 'scripts/qa-step129-netlify-live-product-evidence-lock.mjs'],
+  ['Step 130 first real user onboarding polish', 'scripts/qa-step130-first-real-user-onboarding-polish.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

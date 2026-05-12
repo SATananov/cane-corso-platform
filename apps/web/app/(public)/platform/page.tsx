@@ -8,6 +8,7 @@ import { getCurrentLocale } from '@/lib/locale.server';
 import { getOptionalCookieMemberSession } from '@/lib/session.server';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
 import { UsgFounderHeritagePanel } from '@/components/usg-founder-heritage-panel';
+import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
 
 export default async function PlatformPage() {
   const locale = await getCurrentLocale();
@@ -532,6 +533,8 @@ export default async function PlatformPage() {
         </div>
       </section>
 
+
+      {!currentSession ? <UsgJourneyCarousel locale={locale} variant="public" className="section-block--journey section-block--journey-platform" /> : null}
 
       {currentSession ? (
         <section className="section-block section-block--member-compass" aria-label={memberCompass.title}>

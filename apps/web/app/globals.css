@@ -26449,3 +26449,379 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Step 130 — First Real User Onboarding Polish */
+.usg-journey-carousel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 32px;
+  padding: clamp(1.05rem, 2vw, 1.45rem);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(212, 175, 55, 0.2), transparent 30%),
+    radial-gradient(circle at 92% 18%, rgba(248, 245, 239, 0.08), transparent 32%),
+    linear-gradient(135deg, rgba(7, 7, 7, 0.94), rgba(21, 18, 13, 0.92));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  color: rgba(248, 245, 239, 0.94);
+}
+
+.usg-journey-carousel::before {
+  content: "USG";
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.4rem);
+  top: 0.65rem;
+  color: rgba(212, 175, 55, 0.08);
+  font-family: Georgia, serif;
+  font-size: clamp(3.2rem, 10vw, 7.6rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.entry-shell__journey,
+.section-block--journey,
+.member-home-journey,
+.my-dogs-empty-journey {
+  margin-block: clamp(1rem, 2.3vw, 1.75rem);
+}
+
+.entry-shell__journey {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.entry-journey-carousel {
+  border-color: rgba(212, 175, 55, 0.28);
+  background:
+    radial-gradient(circle at 15% 8%, rgba(212, 175, 55, 0.22), transparent 33%),
+    linear-gradient(145deg, rgba(8, 8, 8, 0.96), rgba(23, 17, 10, 0.94));
+}
+
+.usg-journey-carousel__intro {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin-bottom: 1rem;
+}
+
+.usg-journey-carousel__intro h2 {
+  margin: 0.22rem 0 0.35rem;
+  font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.usg-journey-carousel__intro p,
+.usg-journey-carousel__active-card p {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.68);
+  line-height: 1.7;
+}
+
+.usg-journey-carousel__stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(0.9rem, 2vw, 1.25rem);
+  align-items: stretch;
+}
+
+.usg-journey-carousel__media {
+  position: relative;
+  min-height: clamp(240px, 31vw, 390px);
+  overflow: hidden;
+  border: 1px solid rgba(248, 245, 239, 0.12);
+  border-radius: 26px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.usg-journey-carousel__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46));
+}
+
+.usg-journey-carousel__media img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  transform: scale(1.015);
+}
+
+.usg-journey-carousel__seal {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.48);
+  color: rgba(248, 225, 124, 0.92);
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.26);
+}
+
+.usg-journey-carousel__active-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  border: 1px solid rgba(248, 245, 239, 0.1);
+  border-radius: 26px;
+  padding: clamp(1.05rem, 2.3vw, 1.65rem);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
+}
+
+.usg-journey-carousel__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.usg-journey-carousel__meta-row span,
+.usg-journey-carousel__meta-row em {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.usg-journey-carousel__meta-row span {
+  padding: 0.34rem 0.62rem;
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  background: rgba(212, 175, 55, 0.11);
+  color: rgba(248, 225, 124, 0.94);
+}
+
+.usg-journey-carousel__meta-row em {
+  color: rgba(248, 245, 239, 0.52);
+  font-style: normal;
+}
+
+.usg-journey-carousel__active-card h3 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.usg-journey-carousel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.15rem;
+}
+
+.usg-journey-carousel__controls {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: stretch;
+  margin-top: 0.9rem;
+}
+
+.usg-journey-carousel__arrow,
+.usg-journey-carousel__dot {
+  border: 1px solid rgba(248, 245, 239, 0.12);
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(248, 245, 239, 0.88);
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.usg-journey-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  border-radius: 18px;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.usg-journey-carousel__dots {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.usg-journey-carousel__dot {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.18rem;
+  align-items: flex-start;
+  border-radius: 18px;
+  padding: 0.62rem 0.68rem;
+  text-align: left;
+}
+
+.usg-journey-carousel__dot span {
+  color: rgba(212, 175, 55, 0.86);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.usg-journey-carousel__dot strong {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.74rem;
+  line-height: 1.15;
+}
+
+.usg-journey-carousel__dot.is-active,
+.usg-journey-carousel__arrow:hover,
+.usg-journey-carousel__dot:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.36);
+  background: rgba(212, 175, 55, 0.11);
+}
+
+.usg-review-steps-rail {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+  gap: 1rem;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 28px;
+  padding: clamp(1rem, 2vw, 1.25rem);
+  background:
+    radial-gradient(circle at 6% 8%, rgba(212, 175, 55, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(12, 12, 12, 0.94), rgba(24, 20, 14, 0.9));
+  color: rgba(248, 245, 239, 0.94);
+}
+
+.usg-review-steps-rail__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.usg-review-steps-rail__head h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.6vw, 1.95rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.usg-review-steps-rail__head p {
+  margin: 0;
+  color: rgba(248, 245, 239, 0.66);
+  line-height: 1.65;
+}
+
+.usg-review-steps-rail__list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.48rem;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usg-review-steps-rail__list li {
+  min-width: 0;
+}
+
+.usg-review-steps-rail__list a {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 0.28rem;
+  border: 1px solid rgba(248, 245, 239, 0.11);
+  border-radius: 18px;
+  padding: 0.78rem;
+  background: rgba(255, 255, 255, 0.045);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.usg-review-steps-rail__list a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212, 175, 55, 0.36);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.usg-review-steps-rail__list span {
+  color: rgba(212, 175, 55, 0.88);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.usg-review-steps-rail__list strong {
+  font-size: 0.88rem;
+  line-height: 1.18;
+}
+
+.usg-review-steps-rail__list em {
+  color: rgba(248, 245, 239, 0.55);
+  font-size: 0.72rem;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+@media (max-width: 1050px) {
+  .usg-journey-carousel__stage,
+  .usg-review-steps-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .usg-review-steps-rail__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .usg-journey-carousel {
+    border-radius: 24px;
+    padding: 0.85rem;
+  }
+
+  .usg-journey-carousel__stage,
+  .usg-journey-carousel__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .usg-journey-carousel__media {
+    min-height: 220px;
+  }
+
+  .usg-journey-carousel__dots,
+  .usg-review-steps-rail__list {
+    grid-template-columns: 1fr;
+  }
+
+  .usg-journey-carousel__arrow {
+    min-height: 44px;
+  }
+}

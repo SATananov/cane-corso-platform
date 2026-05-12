@@ -16,6 +16,7 @@ import { getPublishedRegistryProfileDocument } from '@/lib/registry.server';
 import { getPedigreeFilledCount, getPedigreePhotoCount } from '@/lib/dog-pedigree';
 import { UsgOwnerPhotoChecklistPanel } from '@/components/usg-standard-knowledge-panel';
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
+import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
 
 interface MyDogsOverviewProps {
   dogs: Dog[];
@@ -312,6 +313,7 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
         <div className="content-grid two-columns-wide-right my-dogs-command-layout my-dogs-command-layout--simplified">
           <div className="stack-blocks">
             <OwnerCaneCorsoSpotlight locale={locale} dog={null} variant="workspace" />
+            <UsgJourneyCarousel locale={locale} variant="myDogsEmpty" className="my-dogs-empty-journey" />
             <EmptyStatePanel
               title={t.pages.myDogs.noDogsTitle}
               description={t.pages.myDogs.noDogsDescription}

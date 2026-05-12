@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { LocaleSwitcher } from '@/components/locale-switcher';
+import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
 import { useLocale } from '@/components/locale-provider';
 import type { Locale } from '@/lib/i18n';
 
@@ -378,6 +379,10 @@ export function EntryExperience() {
         </div>
       </section>
 
+
+      <div className="entry-shell__journey">
+        <UsgJourneyCarousel locale={locale} variant="public" className="entry-journey-carousel" />
+      </div>
 
       <footer className="entry-page__footer">{copy.footerTrademark}</footer>
     </main>
