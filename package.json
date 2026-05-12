@@ -183,7 +183,8 @@
     "step127:browser-product-journey:qa": "node scripts/qa-step127-real-browser-product-journey-review.mjs",
     "step128:product-priority-demo-separation:qa": "node scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs",
     "step129:live-product-evidence:qa": "node scripts/qa-step129-netlify-live-product-evidence-lock.mjs",
-    "step130:first-real-user-onboarding:qa": "node scripts/qa-step130-first-real-user-onboarding-polish.mjs"
+    "step130:first-real-user-onboarding:qa": "node scripts/qa-step130-first-real-user-onboarding-polish.mjs",
+    "step130-1:journey-visual-readability:qa": "node scripts/qa-step130-1-journey-visual-readability-polish.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

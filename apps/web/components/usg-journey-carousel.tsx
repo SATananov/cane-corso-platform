@@ -36,9 +36,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
   en: {
     public: {
       eyebrow: 'First path through USG',
-      title: 'Start with the right Cane Corso journey',
+      title: 'Start your Cane Corso journey in USG',
       description:
-        'A visual guide for guests: understand trust, knowledge, community, and the private member path before creating a profile.',
+        'A calm visual path for guests: verify trust, explore knowledge, discover community, and create a private profile only when ready.',
       progressLabel: 'Guest journey slide',
       previousLabel: 'Previous step',
       nextLabel: 'Next step',
@@ -112,9 +112,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     member: {
       eyebrow: 'Owner journey',
-      title: 'Your first real actions after login',
+      title: 'Your first clear actions after login',
       description:
-        'This path keeps the member area simple: add one Cane Corso, prepare the profile, then use review, health, and community tools when they matter.',
+        'A focused owner path: add one Cane Corso, prepare the profile, then use review, health, and community tools when they matter.',
       progressLabel: 'Member journey slide',
       previousLabel: 'Previous action',
       nextLabel: 'Next action',
@@ -183,9 +183,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     myDogsEmpty: {
       eyebrow: 'First Cane Corso profile',
-      title: 'What you will complete inside My Cane Corso',
+      title: 'Build the first profile step by step',
       description:
-        'Before the first profile exists, this path shows the exact flow: identity, photos, origin, review, and public profile only after approval.',
+        'Before the first profile exists, this path keeps the flow clear: identity, photos, origin, review, and public profile only after approval.',
       progressLabel: 'My Cane Corso setup slide',
       previousLabel: 'Previous setup step',
       nextLabel: 'Next setup step',
@@ -256,9 +256,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
   bg: {
     public: {
       eyebrow: 'Първи път през USG',
-      title: 'Започни с правилния Cane Corso път',
+      title: 'Започни своя Cane Corso път в USG',
       description:
-        'Визуален ориентир за гости: разбери доверието, знанията, общността и личния членски път, преди да създадеш профил.',
+        'Спокоен визуален път за гости: провери доверие, разгледай знания, открий общност и създай личен профил само когато си готов.',
       progressLabel: 'Слайд от пътя за гости',
       previousLabel: 'Предишна стъпка',
       nextLabel: 'Следваща стъпка',
@@ -332,9 +332,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     member: {
       eyebrow: 'Път на собственика',
-      title: 'Първите реални действия след вход',
+      title: 'Първите ясни действия след вход',
       description:
-        'Този път държи членската зона ясна: добави един Cane Corso, подготви профила, после използвай преглед, здраве и общност, когато има смисъл.',
+        'Фокусиран път за собственик: добави един Cane Corso, подготви профила, после използвай преглед, здраве и общност, когато има смисъл.',
       progressLabel: 'Слайд от пътя на собственика',
       previousLabel: 'Предишно действие',
       nextLabel: 'Следващо действие',
@@ -403,9 +403,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     myDogsEmpty: {
       eyebrow: 'Първи Cane Corso профил',
-      title: 'Какво ще попълниш в Моите Cane Corso',
+      title: 'Изгради първия профил стъпка по стъпка',
       description:
-        'Преди да има първи профил, този път показва точния поток: идентичност, снимки, произход, преглед и публичен профил само след одобрение.',
+        'Преди да има първи профил, този път държи потока ясен: идентичност, снимки, произход, преглед и публичен профил само след одобрение.',
       progressLabel: 'Слайд за подготовка в Моите Cane Corso',
       previousLabel: 'Предишна стъпка за попълване',
       nextLabel: 'Следваща стъпка за попълване',
@@ -476,9 +476,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
   it: {
     public: {
       eyebrow: 'Primo percorso in USG',
-      title: 'Inizia dal giusto percorso Cane Corso',
+      title: 'Inizia il tuo percorso Cane Corso in USG',
       description:
-        'Una guida visiva per ospiti: comprendi fiducia, conoscenza, community e area privata membro prima di creare un profilo.',
+        'Un percorso visivo calmo per ospiti: verifica fiducia, esplora conoscenza, scopri community e crea un profilo privato solo quando sei pronto.',
       progressLabel: 'Slide percorso ospite',
       previousLabel: 'Passo precedente',
       nextLabel: 'Passo successivo',
@@ -552,9 +552,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     member: {
       eyebrow: 'Percorso proprietario',
-      title: 'Le prime azioni reali dopo il login',
+      title: 'Le prime azioni chiare dopo il login',
       description:
-        'Questo percorso mantiene semplice l’area membro: aggiungi un Cane Corso, prepara il profilo, poi usa revisione, salute e community quando servono.',
+        'Un percorso proprietario focalizzato: aggiungi un Cane Corso, prepara il profilo, poi usa revisione, salute e community quando servono.',
       progressLabel: 'Slide percorso membro',
       previousLabel: 'Azione precedente',
       nextLabel: 'Azione successiva',
@@ -623,9 +623,9 @@ const copyByLocale: Record<Locale, JourneyCopyByVariant> = {
     },
     myDogsEmpty: {
       eyebrow: 'Primo profilo Cane Corso',
-      title: 'Cosa completerai in I miei Cane Corso',
+      title: 'Costruisci il primo profilo passo dopo passo',
       description:
-        'Prima che esista il primo profilo, questo percorso mostra il flusso: identità, foto, origine, revisione e profilo pubblico solo dopo approvazione.',
+        'Prima che esista il primo profilo, questo percorso mantiene chiaro il flusso: identità, foto, origine, revisione e profilo pubblico solo dopo approvazione.',
       progressLabel: 'Slide setup I miei Cane Corso',
       previousLabel: 'Passo setup precedente',
       nextLabel: 'Passo setup successivo',
