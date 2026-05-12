@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Dog, DogMedia } from '@cane-corso-platform/contracts';
 import { MyDogCard, type OwnerWorkspaceDog } from '@/components/my-dog-card';
 import { OverviewStatCard } from '@/components/overview-stat-card';
+import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { EmptyStatePanel } from '@/components/empty-state-panel';
 import { OwnerCaneCorsoSpotlight } from '@/components/owner-cane-corso-spotlight';
 import { OwnerCaneCorsoSectionWorkspace } from '@/components/owner-cane-corso-section-workspace';
@@ -198,6 +199,8 @@ export async function MyDogsOverview({ dogs }: MyDogsOverviewProps) {
       </section>
 
       <RoleAwareActionPanel locale={locale} surface="myDogs" role={currentSession?.user.role ?? null} />
+
+      <AskMarkIPanel locale={locale} variant="myDogs" className="my-dogs-ask-mark-i" />
 
       <div className="stats-grid five-up">
         <OverviewStatCard label={t.pages.myDogs.labels.totalProfiles} value={String(totalDogs)} tone="gold" />

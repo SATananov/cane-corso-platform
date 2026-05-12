@@ -5,6 +5,7 @@ import { ImageLightbox } from '@/components/image-lightbox';
 import { ReviewDecisionReadinessPanel } from '@/components/review-decision-readiness-panel';
 import { AdminModerationActionFlowPanel } from '@/components/admin-moderation-action-flow-panel';
 import { AdminPhotoReviewAssistantPanel } from '@/components/admin-photo-review-assistant-panel';
+import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { UsgReviewStepsRail } from '@/components/usg-review-steps-rail';
 import type { Locale } from '@/lib/i18n';
 import { cleanDemoDogName, cleanDemoOwnerName, cleanDemoProductionText, getDemoDataPresentationCopy, hasDemoLikeValues } from '@/lib/demo-data-presentation';
@@ -412,6 +413,8 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
   return (
     <div className="member-route-stack">
       <UsgReviewStepsRail locale={locale} />
+
+      <AskMarkIPanel locale={locale} variant="review" className="review-ask-mark-i" />
 
       <section id="admin-certificate-flow" className="content-card admin-command-panel admin-command-panel--review">
         <div className="admin-command-panel__copy">

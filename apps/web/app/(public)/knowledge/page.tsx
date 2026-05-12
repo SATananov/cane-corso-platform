@@ -1,3 +1,4 @@
+import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { KnowledgeCenter } from '@/components/knowledge-center';
 import { PageShell } from '@/components/page-shell';
 import type { PageShellCard, PageShellHeroChip } from '@/components/page-shell';
@@ -88,6 +89,8 @@ export default async function KnowledgePage() {
       variant="knowledge"
     >
       <RoleAwareActionPanel locale={locale} surface="knowledge" role={currentSession?.user.role ?? null} />
+
+      <AskMarkIPanel locale={locale} variant="knowledge" className="knowledge-ask-mark-i" />
 
       <section id="knowledge-center" aria-label="Cane Corso Knowledge Center">
         <KnowledgeCenter copy={copy} actionLabel={actionLabel} articles={articles} locale={locale} />

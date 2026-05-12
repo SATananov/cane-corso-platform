@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { OwnerCenterWorkspace } from '@/components/owner-center-workspace';
 import { UsgJourneyCarousel } from '@/components/usg-journey-carousel';
 import { buildAccessPath } from '@/lib/access-control';
@@ -101,6 +102,7 @@ export default async function MemberCommandCenterPage() {
         </section>
 
         <UsgJourneyCarousel locale={locale} variant="member" className="member-home-journey" />
+        <AskMarkIPanel locale={locale} variant="member" className="member-home-ask-mark-i" />
 
         <section className="member-start-grid" data-layout="priority" aria-label={copy.cardsLabel}>
           {startCards.map((item, index) => (

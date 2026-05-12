@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { AskMarkIPanel } from '@/components/ask-mark-i-panel';
 import { SectionCard } from '@/components/section-card';
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 import { UsgIdentityBulgaricoPanel } from '@/components/usg-identity-bulgarico-panel';
@@ -534,7 +535,12 @@ export default async function PlatformPage() {
       </section>
 
 
-      {!currentSession ? <UsgJourneyCarousel locale={locale} variant="public" className="section-block--journey section-block--journey-platform" /> : null}
+      {!currentSession ? (
+        <>
+          <UsgJourneyCarousel locale={locale} variant="public" className="section-block--journey section-block--journey-platform" />
+          <AskMarkIPanel locale={locale} variant="public" className="section-block--ask-mark-i section-block--ask-mark-i-platform" />
+        </>
+      ) : null}
 
       {currentSession ? (
         <section className="section-block section-block--member-compass" aria-label={memberCompass.title}>
