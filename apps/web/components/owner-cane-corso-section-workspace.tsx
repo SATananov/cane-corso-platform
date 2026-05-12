@@ -277,11 +277,12 @@ const copy = {
 
 type SectionHrefKind = (typeof copy.en.sections)[number]['hrefKind'];
 
-function buildHref(kind: SectionHrefKind, dog: Dog) {
+function buildHref(kind: SectionHrefKind, dog: Dog): string | undefined {
   switch (kind) {
     case 'edit':
+      return `/my-dogs/${dog.id}/edit#dog-profile-core`;
     case 'review':
-      return `/my-dogs/${dog.id}/edit`;
+      return `/my-dogs/${dog.id}/edit#dog-profile-review`;
     case 'media':
       return `/my-dogs/${dog.id}/media`;
     case 'growth':
@@ -289,7 +290,7 @@ function buildHref(kind: SectionHrefKind, dog: Dog) {
     case 'vaccines':
       return `/my-dogs/${dog.id}/health#vaccines-table`;
     case 'ratings':
-      return dog.publication ? `/registry/${dog.publication.publicSlug}#ratings` : `/my-dogs/${dog.id}/edit`;
+      return dog.publication ? `/registry/${dog.publication.publicSlug}#ratings` : undefined;
     case 'knowledge':
       return '/knowledge/cane-corso-pregnancy-birth-puppy-growth-calendar';
     case 'ecosystem':
@@ -297,7 +298,7 @@ function buildHref(kind: SectionHrefKind, dog: Dog) {
     case 'services':
       return `/ecosystem#friendly-place-form`;
     default:
-      return `/my-dogs/${dog.id}/edit`;
+      return `/my-dogs/${dog.id}/edit#dog-profile-core`;
   }
 }
 

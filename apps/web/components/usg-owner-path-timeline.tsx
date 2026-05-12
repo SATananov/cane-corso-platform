@@ -22,8 +22,10 @@ interface OwnerPathStepView {
   id: string;
   label: string;
   description: string;
-  href: string;
+  href?: string;
   state: OwnerPathStepState;
+  actionLabel: string;
+  passiveLabel?: string;
 }
 
 const reviewedStatuses: DogLifecycleStatus[] = ['submitted', 'needs_changes', 'approved', 'published'];
@@ -40,8 +42,18 @@ const copyByLocale = {
     startLabel: 'Starting point',
     nextActionLabel: 'Next action',
     progressLabel: 'Path readiness',
-    open: 'Open',
+    open: 'Open step',
     start: 'Create profile',
+    passive: 'Not active yet',
+    markIHint: 'MARK I points to the next practical action. Official USG decisions remain human review.',
+    passiveLabels: {
+      afterProfile: 'Create the profile first',
+      afterPhotos: 'Add profile photos first',
+      afterReview: 'After USG review',
+      afterPublication: 'After USG publication',
+      afterCertificate: 'After USG certificate',
+      separateDecision: 'Separate USG decision',
+    },
     status: {
       draft: 'Draft',
       submitted: 'Submitted for review',
@@ -56,7 +68,7 @@ const copyByLocale = {
       photos: 'Add clear photos so the profile can be reviewed with better visual context.',
       origin: 'Add pedigree number or known parents/origin details if you have them.',
       review: 'Send or track the profile through USG review. Human review remains the official decision.',
-      public: 'Review the public Registry presence after publication.',
+      public: 'Wait for USG publication, then open the public Registry profile.',
       certificate: 'Track certificate/verify only when USG issues that separate trust layer.',
       care: 'Keep health, growth, and community/service actions up to date.',
     },
@@ -82,8 +94,18 @@ const copyByLocale = {
     startLabel: 'Начална точка',
     nextActionLabel: 'Следващо действие',
     progressLabel: 'Готовност на пътя',
-    open: 'Отвори',
+    open: 'Отвори стъпката',
     start: 'Създай профил',
+    passive: 'Още не е активно',
+    markIHint: 'MARK I подсказва следващата практична стъпка. Официалните USG решения остават човешки преглед.',
+    passiveLabels: {
+      afterProfile: 'Първо създай профил',
+      afterPhotos: 'Първо добави снимки',
+      afterReview: 'След USG преглед',
+      afterPublication: 'След USG публикуване',
+      afterCertificate: 'След USG сертификат',
+      separateDecision: 'Отделно USG решение',
+    },
     status: {
       draft: 'Чернова',
       submitted: 'Подаден за преглед',
@@ -98,7 +120,7 @@ const copyByLocale = {
       photos: 'Добави ясни снимки, за да има по-добър визуален контекст при преглед.',
       origin: 'Добави pedigree номер или известни родители/произход, ако ги имаш.',
       review: 'Изпрати или следи профила през USG прегледа. Човешкият преглед остава официалното решение.',
-      public: 'Прегледай публичното присъствие в Регистъра след публикация.',
+      public: 'Изчакай USG публикуване, после отвори публичния профил в Регистъра.',
       certificate: 'Следи сертификат/проверка само когато USG издаде този отделен слой на доверие.',
       care: 'Поддържай здраве, растеж и действията в общност/услуги актуални.',
     },
@@ -124,8 +146,18 @@ const copyByLocale = {
     startLabel: 'Punto di partenza',
     nextActionLabel: 'Prossima azione',
     progressLabel: 'Preparazione percorso',
-    open: 'Apri',
+    open: 'Apri passaggio',
     start: 'Crea profilo',
+    passive: 'Non attivo ancora',
+    markIHint: 'MARK I indica la prossima azione pratica. Le decisioni ufficiali USG restano revisione umana.',
+    passiveLabels: {
+      afterProfile: 'Prima crea il profilo',
+      afterPhotos: 'Prima aggiungi foto',
+      afterReview: 'Dopo revisione USG',
+      afterPublication: 'Dopo pubblicazione USG',
+      afterCertificate: 'Dopo certificato USG',
+      separateDecision: 'Decisione USG separata',
+    },
     status: {
       draft: 'Bozza',
       submitted: 'Inviato alla revisione',
@@ -140,7 +172,7 @@ const copyByLocale = {
       photos: 'Aggiungi foto chiare per dare più contesto alla revisione.',
       origin: 'Aggiungi numero pedigree o genitori/origine noti se li hai.',
       review: 'Invia o segui il profilo nella revisione USG. La revisione umana resta la decisione ufficiale.',
-      public: 'Controlla la presenza pubblica nel Registro dopo la pubblicazione.',
+      public: 'Attendi la pubblicazione USG, poi apri il profilo pubblico nel Registro.',
       certificate: 'Segui certificato/verifica solo quando USG emette questo livello separato di fiducia.',
       care: 'Mantieni aggiornati salute, crescita e azioni community/servizi.',
     },
@@ -189,55 +221,64 @@ function makeState(isComplete: boolean, isCurrent: boolean, isAttention = false)
   return 'locked';
 }
 
+function stepWithAction(
+  step: { label: string; description: string },
+  values: Pick<OwnerPathStepView, 'id' | 'href' | 'state' | 'actionLabel' | 'passiveLabel'>,
+): OwnerPathStepView {
+  return { ...step, ...values };
+}
+
 function buildTimelineSteps(locale: Locale, dog: OwnerPathDog | null): { steps: OwnerPathStepView[]; nextAction: string; progress: number } {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
 
   if (!dog) {
     const steps: OwnerPathStepView[] = [
-      {
+      stepWithAction(copy.steps.profile, {
         id: 'profile',
         href: '/my-dogs/new',
         state: 'current',
-        ...copy.steps.profile,
-      },
-      {
+        actionLabel: copy.start,
+      }),
+      stepWithAction(copy.steps.core, {
         id: 'core',
-        href: '/my-dogs/new',
         state: 'locked',
-        ...copy.steps.core,
-      },
-      {
+        actionLabel: copy.open,
+        passiveLabel: copy.passiveLabels.afterProfile,
+      }),
+      stepWithAction(copy.steps.photos, {
         id: 'photos',
-        href: '/my-dogs/new',
         state: 'locked',
-        ...copy.steps.photos,
-      },
-      {
+        actionLabel: copy.open,
+        passiveLabel: copy.passiveLabels.afterProfile,
+      }),
+      stepWithAction(copy.steps.origin, {
         id: 'origin',
-        href: '/my-dogs/new',
         state: 'locked',
-        ...copy.steps.origin,
-      },
-      {
+        actionLabel: copy.open,
+        passiveLabel: copy.passiveLabels.afterProfile,
+      }),
+      stepWithAction(copy.steps.review, {
         id: 'review',
-        href: '/my-dogs/new',
         state: 'locked',
-        ...copy.steps.review,
-      },
+        actionLabel: copy.open,
+        passiveLabel: copy.passiveLabels.afterProfile,
+      }),
     ];
 
     return { steps, nextAction: copy.next.create, progress: 0 };
   }
 
-  const editHref = `/my-dogs/${dog.id}/edit`;
+  const editCoreHref = `/my-dogs/${dog.id}/edit#dog-profile-core`;
+  const editOriginHref = `/my-dogs/${dog.id}/edit#dog-profile-origin`;
+  const editReviewHref = `/my-dogs/${dog.id}/edit#dog-profile-review`;
   const mediaHref = `/my-dogs/${dog.id}/media`;
-  const healthHref = `/my-dogs/${dog.id}/health`;
-  const publicHref = dog.publication ? `/registry/${dog.publication.publicSlug}` : '/registry';
+  const healthHref = `/my-dogs/${dog.id}/health#growth-table`;
+  const publicHref = dog.publication?.publicSlug ? `/registry/${dog.publication.publicSlug}` : undefined;
   const verifyHref = dog.publication?.certificateCode
     ? `/verify/${dog.publication.certificateCode}`
     : dog.publication?.verificationSlug
       ? `/verify/${dog.publication.verificationSlug}`
-      : '/verify';
+      : undefined;
 
   const profileComplete = true;
   const coreComplete = Boolean(dog.dateOfBirth && hasText(dog.color) && hasText(dog.shortDescription) && dog.registryClass);
@@ -246,7 +287,7 @@ function buildTimelineSteps(locale: Locale, dog: OwnerPathDog | null): { steps: 
   const originComplete = Boolean(hasText(dog.pedigreeNumber) || getPedigreeFilledCount(dog.pedigree) > 0);
   const reviewStarted = reviewedStatuses.includes(dog.lifecycleStatus);
   const needsAttention = dog.lifecycleStatus === 'needs_changes';
-  const registryComplete = Boolean(dog.publication || dog.lifecycleStatus === 'published');
+  const registryComplete = Boolean(publicHref || dog.lifecycleStatus === 'published');
   const certificateComplete = Boolean(dog.publication?.certificateCode);
 
   const nextKey = needsAttention
@@ -266,54 +307,57 @@ function buildTimelineSteps(locale: Locale, dog: OwnerPathDog | null): { steps: 
                 : 'care';
 
   const steps: OwnerPathStepView[] = [
-    {
+    stepWithAction(copy.steps.profile, {
       id: 'profile',
-      href: editHref,
+      href: editCoreHref,
       state: makeState(profileComplete, false),
-      ...copy.steps.profile,
-    },
-    {
+      actionLabel: copy.open,
+    }),
+    stepWithAction(copy.steps.core, {
       id: 'core',
-      href: editHref,
+      href: editCoreHref,
       state: makeState(coreComplete, nextKey === 'core'),
-      ...copy.steps.core,
-    },
-    {
+      actionLabel: copy.open,
+    }),
+    stepWithAction(copy.steps.photos, {
       id: 'photos',
       href: mediaHref,
       state: makeState(photosComplete, nextKey === 'photos'),
-      ...copy.steps.photos,
-    },
-    {
+      actionLabel: copy.open,
+    }),
+    stepWithAction(copy.steps.origin, {
       id: 'origin',
-      href: editHref,
+      href: editOriginHref,
       state: makeState(originComplete, nextKey === 'origin'),
-      ...copy.steps.origin,
-    },
-    {
+      actionLabel: copy.open,
+    }),
+    stepWithAction(copy.steps.review, {
       id: 'review',
-      href: editHref,
+      href: editReviewHref,
       state: makeState(reviewStarted && !needsAttention, nextKey === 'review', needsAttention),
-      ...copy.steps.review,
-    },
-    {
+      actionLabel: copy.open,
+    }),
+    stepWithAction(copy.steps.registry, {
       id: 'registry',
-      href: publicHref,
+      href: registryComplete ? publicHref : undefined,
       state: makeState(registryComplete, nextKey === 'public'),
-      ...copy.steps.registry,
-    },
-    {
+      actionLabel: copy.open,
+      passiveLabel: reviewStarted ? copy.passiveLabels.afterPublication : copy.passiveLabels.afterReview,
+    }),
+    stepWithAction(copy.steps.certificate, {
       id: 'certificate',
-      href: verifyHref,
+      href: certificateComplete ? verifyHref : undefined,
       state: makeState(certificateComplete, nextKey === 'certificate'),
-      ...copy.steps.certificate,
-    },
-    {
+      actionLabel: copy.open,
+      passiveLabel: registryComplete ? copy.passiveLabels.separateDecision : copy.passiveLabels.afterPublication,
+    }),
+    stepWithAction(copy.steps.care, {
       id: 'care',
       href: healthHref,
       state: nextKey === 'care' ? 'current' : hasSomePhoto ? 'complete' : 'locked',
-      ...copy.steps.care,
-    },
+      actionLabel: copy.open,
+      passiveLabel: copy.passiveLabels.afterPhotos,
+    }),
   ];
 
   const completeCount = steps.filter((step) => step.state === 'complete').length;
@@ -356,19 +400,37 @@ export function UsgOwnerPathTimeline({ locale, dogs, surface = 'member', classNa
         <div>
           <span>{copy.nextActionLabel}</span>
           <strong>{nextAction}</strong>
+          <small className="usg-owner-path-timeline__mark-i-hint">{copy.markIHint}</small>
         </div>
       </div>
 
       <div className="usg-owner-path-timeline__steps" aria-label={copy.eyebrow}>
-        {steps.map((step, index) => (
-          <Link href={step.href} className={`usg-owner-path-step is-${step.state}`} key={step.id}>
-            <span className="usg-owner-path-step__index">{String(index + 1).padStart(2, '0')}</span>
-            <span className="usg-owner-path-step__body">
-              <strong>{step.label}</strong>
-              <small>{step.description}</small>
-            </span>
-          </Link>
-        ))}
+        {steps.map((step, index) => {
+          const content = (
+            <>
+              <span className="usg-owner-path-step__index">{String(index + 1).padStart(2, '0')}</span>
+              <span className="usg-owner-path-step__body">
+                <strong>{step.label}</strong>
+                <small>{step.description}</small>
+                <span className="usg-owner-path-step__action">{step.href && step.state !== 'locked' ? step.actionLabel : step.passiveLabel ?? copy.passive}</span>
+              </span>
+            </>
+          );
+
+          if (step.href && step.state !== 'locked') {
+            return (
+              <Link href={step.href} className={`usg-owner-path-step is-${step.state}`} key={step.id}>
+                {content}
+              </Link>
+            );
+          }
+
+          return (
+            <div className={`usg-owner-path-step is-${step.state} is-passive`} aria-disabled="true" key={step.id}>
+              {content}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

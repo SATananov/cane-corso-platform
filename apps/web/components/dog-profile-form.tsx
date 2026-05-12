@@ -498,6 +498,39 @@ export function DogProfileForm({
     }));
   }, [errors]);
 
+  useEffect(() => {
+    const openGuidedSectionFromHash = () => {
+      const sectionId = window.location.hash.replace('#', '');
+
+      if (!sectionId) {
+        return;
+      }
+
+      if (sectionId === 'dog-profile-core') {
+        window.requestAnimationFrame(() => document.getElementById(sectionId)?.scrollIntoView({ block: 'start' }));
+        return;
+      }
+
+      if (sectionId === 'dog-profile-origin') {
+        setOpenPanels((current) => ({ ...current, identity: true, pedigree: true }));
+        setIsPedigreeVisible(true);
+      } else if (sectionId === 'dog-profile-review') {
+        setOpenPanels((current) => ({ ...current, checks: true }));
+      } else if (sectionId === 'dog-profile-presentation') {
+        setOpenPanels((current) => ({ ...current, presentation: true }));
+      } else {
+        return;
+      }
+
+      window.requestAnimationFrame(() => document.getElementById(sectionId)?.scrollIntoView({ block: 'start' }));
+    };
+
+    openGuidedSectionFromHash();
+    window.addEventListener('hashchange', openGuidedSectionFromHash);
+
+    return () => window.removeEventListener('hashchange', openGuidedSectionFromHash);
+  }, []);
+
   const withCurrentValue = (options: Array<{ value: string; label: string }>, currentValue: string) => {
     const normalizedCurrentValue = currentValue.trim();
 
@@ -699,6 +732,7 @@ export function DogProfileForm({
   return (
     <div className="form-stack">
       <FormSectionCard
+        id="dog-profile-core"
         title={mode === 'create' ? t.sections.foundationTitleCreate : t.sections.foundationTitleEdit}
         description={t.sections.foundationDescription}
       >
@@ -981,7 +1015,7 @@ export function DogProfileForm({
       ) : null}
 
       {openPanels.pedigree ? (
-        <FormSectionCard title={t.sections.pedigreeTitle} description={t.sections.pedigreeDescription}>
+        <FormSectionCard id="dog-profile-origin" title={t.sections.pedigreeTitle} description={t.sections.pedigreeDescription}>
           <div className="pedigree-disclosure">
             <div className="pedigree-disclosure__bar">
               <div className="pedigree-disclosure__main">
@@ -1057,7 +1091,7 @@ export function DogProfileForm({
       </div>
 
       {openPanels.checks ? (
-        <FormSectionCard title={flowT.checksTitle} description={flowT.checksDescription}>
+        <FormSectionCard id="dog-profile-review" title={flowT.checksTitle} description={flowT.checksDescription}>
           <div className="dog-form-secondary-panels">
             <div className="validation-banner-row">
               <div className="validation-summary-card">

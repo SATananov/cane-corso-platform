@@ -76,6 +76,7 @@ const requiredFiles = [
   'docs/qa/step131-ask-mark-i-assistant-foundation.md',
   'docs/qa/step131-1-ask-mark-i-visual-balance-polish.md',
   'docs/qa/step132-owner-path-next-action-timeline.md',
+  'docs/qa/step133-owner-next-action-deep-links-guided-sections.md',
   'docs/qa/evidence/step129-netlify-live-product-evidence-lock/README.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
@@ -136,6 +137,7 @@ const requiredFiles = [
   'scripts/qa-step131-ask-mark-i-assistant-foundation.mjs',
   'scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs',
   'scripts/qa-step132-owner-path-next-action-timeline.mjs',
+  'scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -206,6 +208,7 @@ const requiredPackageScripts = [
   'step131:ask-mark-i:qa',
   'step131-1:ask-mark-i-visual:qa',
   'step132:owner-path-timeline:qa',
+  'step133:owner-next-actions:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -284,6 +287,7 @@ const qaScripts = [
   ['Step 131 Ask MARK I assistant foundation', 'scripts/qa-step131-ask-mark-i-assistant-foundation.mjs'],
   ['Step 131.1 Ask MARK I visual balance polish', 'scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs'],
   ['Step 132 USG Owner Path and Next Action Timeline', 'scripts/qa-step132-owner-path-next-action-timeline.mjs'],
+  ['Step 133 Owner Next Action Deep Links and Guided Sections', 'scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

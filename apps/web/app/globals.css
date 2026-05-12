@@ -27565,8 +27565,8 @@ body {
   transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
-.usg-owner-path-step:hover,
-.usg-owner-path-step:focus-visible {
+.usg-owner-path-step:not(.is-passive):hover,
+.usg-owner-path-step:not(.is-passive):focus-visible {
   transform: translateY(-1px);
   border-color: rgba(212, 175, 55, 0.34);
   background: rgba(255, 255, 255, 0.055);
@@ -27601,6 +27601,30 @@ body {
   line-height: 1.42;
 }
 
+/* Step 133 — Owner Next Action Deep Links & Guided Sections */
+.usg-owner-path-timeline__mark-i-hint {
+  margin-top: 4px;
+  color: rgba(247, 239, 221, 0.58) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+}
+
+.usg-owner-path-step__action {
+  align-self: end;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 6px 9px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 999px;
+  color: rgba(248, 236, 208, 0.86);
+  background: rgba(212, 175, 55, 0.08);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .usg-owner-path-step.is-complete {
   border-color: rgba(212, 175, 55, 0.24);
   background: rgba(212, 175, 55, 0.075);
@@ -27632,6 +27656,16 @@ body {
 
 .usg-owner-path-step.is-locked {
   opacity: 0.74;
+}
+
+.usg-owner-path-step.is-passive {
+  cursor: default;
+}
+
+.usg-owner-path-step.is-passive .usg-owner-path-step__action {
+  border-color: rgba(255, 255, 255, 0.09);
+  color: rgba(247, 239, 221, 0.52);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .usg-owner-path-step.is-locked .usg-owner-path-step__body small {

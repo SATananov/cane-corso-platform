@@ -231,11 +231,11 @@ export function OwnerReviewReadinessPanel(props: OwnerReviewReadinessPanelProps)
     actionLinks.push({ href: props.mediaHref, label: copy.actions.media, tone: 'secondary' });
   }
 
-  if (props.publicHref) {
+  if (props.hasPublication && props.publicHref) {
     actionLinks.push({ href: props.publicHref, label: copy.actions.public, tone: 'ghost' });
   }
 
-  if (props.verifyHref) {
+  if (props.hasCertificate && props.verifyHref) {
     actionLinks.push({ href: props.verifyHref, label: copy.actions.verify, tone: 'ghost' });
   }
 
