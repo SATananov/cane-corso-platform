@@ -179,7 +179,8 @@
     "step123:ml-safe-photo-assistant:qa": "node scripts/qa-step123-ml-safe-photo-assistant-prototype.mjs",
     "step124:current-platform-readme:qa": "node scripts/qa-step124-current-platform-readme.mjs",
     "step125:real-user-production-readiness:qa": "node scripts/qa-step125-real-user-production-readiness-ui-tone.mjs",
-    "step126:admin-ml-safe-review-assistant:qa": "node scripts/qa-step126-admin-ml-safe-review-assistant-polish.mjs"
+    "step126:admin-ml-safe-review-assistant:qa": "node scripts/qa-step126-admin-ml-safe-review-assistant-polish.mjs",
+    "step127:browser-product-journey:qa": "node scripts/qa-step127-real-browser-product-journey-review.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",
