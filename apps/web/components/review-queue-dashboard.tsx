@@ -6,6 +6,7 @@ import { ReviewDecisionReadinessPanel } from '@/components/review-decision-readi
 import { AdminModerationActionFlowPanel } from '@/components/admin-moderation-action-flow-panel';
 import { AdminPhotoReviewAssistantPanel } from '@/components/admin-photo-review-assistant-panel';
 import type { Locale } from '@/lib/i18n';
+import { cleanDemoDogName, cleanDemoOwnerName, cleanDemoProductionText, getDemoDataPresentationCopy, hasDemoLikeValues } from '@/lib/demo-data-presentation';
 import type { ReviewQueueDocument, ReviewQueueStatus } from '@cane-corso-platform/contracts';
 import {
   applyReviewDecisionAction,
@@ -390,6 +391,7 @@ function getVisibleActions(status: ReviewQueueStatus) {
 export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardProps) {
   const copy = copyByLocale[locale] ?? copyByLocale.en;
   const adminCopy = reviewAdminPolishCopy[locale] ?? reviewAdminPolishCopy.en;
+  const demoCopy = getDemoDataPresentationCopy(locale);
   
   const registryDecisionOptions = [
     { value: 'not_reviewed', label: copy.labels.notReviewed },
@@ -408,7 +410,7 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
 
   return (
     <div className="member-route-stack">
-      <section className="content-card admin-command-panel admin-command-panel--review">
+      <section id="admin-certificate-flow" className="content-card admin-command-panel admin-command-panel--review">
         <div className="admin-command-panel__copy">
           <span className="eyebrow-label">{adminCopy.commandEyebrow}</span>
           <h2>{adminCopy.commandTitle}</h2>
@@ -443,7 +445,7 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
         <OverviewStatCard label={copy.stats.published} value={String(document.summary.published)} tone="gold" />
       </div>
 
-      <section className="content-card review-queue-card">
+      <section id="review-queue" className="content-card review-queue-card">
         <div className="section-head-row">
           <div>
             <span className="eyebrow-label">{copy.labels.queue}</span>
@@ -459,20 +461,34 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
           </div>
         ) : (
           <div className="review-queue-list">
-            {document.items.map((item) => {
+            {document.items.map((item, index) => {
               const actions = getVisibleActions(item.status);
               const hasCertificate = Boolean(item.certificateCode || item.verificationSlug);
               const assessment = item.adminAssessment;
+              const isDemoLikeRecord = hasDemoLikeValues([
+                item.dog.name,
+                item.dog.shortDescription,
+                item.currentReviewNote,
+                item.owner.displayName,
+                item.certificateCode,
+                item.verificationSlug,
+                item.dog.pedigreeNumber,
+              ]);
+              const displayDogName = cleanDemoDogName(item.dog.name, locale);
+              const displayOwnerName = cleanDemoOwnerName(item.owner.displayName, locale);
+              const displayDogDescription = cleanDemoProductionText(item.dog.shortDescription, locale, 'profile');
+              const displayReviewNote = cleanDemoProductionText(item.currentReviewNote, locale, 'note');
 
               return (
                 <article className="review-queue-item" key={item.submissionId}>
                   <div className="review-queue-item__head">
                     <div>
                       <div className="review-queue-item__title-row">
-                        <h3>{item.dog.name}</h3>
+                        <h3>{displayDogName}</h3>
                         <StatusBadge status={item.status} />
                       </div>
-                      <p className="review-queue-item__copy">{item.dog.shortDescription || copy.labels.noReviewNote}</p>
+                      <p className={`review-queue-item__copy${isDemoLikeRecord ? ' is-demo-clean' : ''}`}>{isDemoLikeRecord ? displayDogDescription : item.dog.shortDescription || copy.labels.noReviewNote}</p>
+                        {isDemoLikeRecord ? <span className="review-queue-item__demo-badge">{demoCopy.badge}</span> : null}
                     </div>
                     <div className="review-queue-item__meta-stack">
                       <div className="review-queue-item__meta-pill">
@@ -494,10 +510,10 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                       <dd>
                         <span className="review-owner-identity">
                           <span className="review-owner-identity__avatar">
-                            {item.owner.avatarUrl ? <img src={item.owner.avatarUrl} alt="" loading="lazy" decoding="async" /> : item.owner.displayName.slice(0, 2).toUpperCase()}
+                            {item.owner.avatarUrl ? <img src={item.owner.avatarUrl} alt="" loading="lazy" decoding="async" /> : displayOwnerName.slice(0, 2).toUpperCase()}
                           </span>
                           <span>
-                            <strong>{item.owner.displayName}</strong>
+                            <strong>{displayOwnerName}</strong>
                             <small>{item.owner.email}</small>
                           </span>
                         </span>
@@ -546,15 +562,15 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                     </dl>
                   </section>
 
-                  <div className="review-queue-item__note">
+                  <div className={`review-queue-item__note${isDemoLikeRecord ? ' is-demo-clean' : ''}`}>
                     <span className="eyebrow-label">{copy.labels.reviewNote}</span>
-                    <p>{translateSystemNote(item.currentReviewNote, copy) || copy.labels.noReviewNote}</p>
+                    <p>{isDemoLikeRecord ? displayReviewNote : translateSystemNote(item.currentReviewNote, copy) || copy.labels.noReviewNote}</p>
                   </div>
 
                   <ReviewDecisionReadinessPanel
                     locale={locale}
                     status={item.status}
-                    dogName={item.dog.name}
+                    dogName={displayDogName}
                     ownerPhotoCount={item.ownerMedia.length}
                     registryVisiblePhotoCount={item.ownerMedia.filter((media) => media.isVisibleInRegistry).length}
                     gallerySelectedPhotoCount={item.ownerMedia.filter((media) => media.isVisibleInUsgGallery).length}
@@ -646,7 +662,9 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                     </form>
                   </div>
 
-                  <AdminPhotoReviewAssistantPanel locale={locale} dogName={item.dog.name} media={item.ownerMedia} />
+                  <div id={index === 0 ? 'admin-photo-assistant' : undefined}>
+                    <AdminPhotoReviewAssistantPanel locale={locale} dogName={displayDogName} media={item.ownerMedia} />
+                  </div>
 
                   <div className="review-media-control">
                     <div className="review-media-control__head">
@@ -667,11 +685,11 @@ export function ReviewQueueDashboard({ document, locale }: ReviewQueueDashboardP
                               {media.url ? (
                                 <ImageLightbox
                                   src={media.url}
-                                  alt={media.altText || `${item.dog.name} ${index + 1}`}
-                                  openLabel={`Open ${item.dog.name} photo ${index + 1}`}
+                                  alt={media.altText || `${displayDogName} ${index + 1}`}
+                                  openLabel={`Open ${displayDogName} photo ${index + 1}`}
                                 />
                               ) : (
-                                <span>{item.dog.name.slice(0, 1)}</span>
+                                <span>{displayDogName.slice(0, 1)}</span>
                               )}
                             </div>
 

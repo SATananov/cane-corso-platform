@@ -180,7 +180,8 @@
     "step124:current-platform-readme:qa": "node scripts/qa-step124-current-platform-readme.mjs",
     "step125:real-user-production-readiness:qa": "node scripts/qa-step125-real-user-production-readiness-ui-tone.mjs",
     "step126:admin-ml-safe-review-assistant:qa": "node scripts/qa-step126-admin-ml-safe-review-assistant-polish.mjs",
-    "step127:browser-product-journey:qa": "node scripts/qa-step127-real-browser-product-journey-review.mjs"
+    "step127:browser-product-journey:qa": "node scripts/qa-step127-real-browser-product-journey-review.mjs",
+    "step128:product-priority-demo-separation:qa": "node scripts/qa-step128-product-priority-navigation-demo-data-separation.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

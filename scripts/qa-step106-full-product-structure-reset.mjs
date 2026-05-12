@@ -47,7 +47,7 @@ includes('Section guide', sectionGuide, 'section-content-guide--quiet');
 includes('Section guide', sectionGuide, 'section-content-guide__details-copy');
 notIncludes('Section guide compact row', sectionGuide, '<p>{copy.description}</p>');
 
-notIncludes('Knowledge page', knowledgePage, 'RoleAwareActionPanel');
+includes('Knowledge page', knowledgePage, 'RoleAwareActionPanel');
 notIncludes('Knowledge page', knowledgePage, 'SectionContentGuidePanel');
 includes('Knowledge center', knowledgeCenter, 'knowledge-center--library-first');
 includes('Knowledge center', knowledgeCenter, 'Статии по тема');
@@ -59,11 +59,11 @@ includes('Community page', communityPage, 'community-secondary-details');
 notIncludes('Community page', communityPage, 'old project');
 notIncludes('Community page', communityPage, 'Future abbinamento');
 notIncludes('Community page', communityPage, 'layer community');
-notIncludes('Community page', communityPage, 'RoleAwareActionPanel');
+includes('Community page', communityPage, 'RoleAwareActionPanel');
 notIncludes('Community page', communityPage, 'SectionContentGuidePanel');
 
 includes('My Dogs', myDogs, 'owner-secondary-help');
-notIncludes('My Dogs', myDogs, '<RoleAwareActionPanel');
+includes('My Dogs', myDogs, '<RoleAwareActionPanel');
 notIncludes('My Dogs', myDogs, '<SectionContentGuidePanel');
 
 includes('CSS', css, 'Step 106 — full product structure reset');

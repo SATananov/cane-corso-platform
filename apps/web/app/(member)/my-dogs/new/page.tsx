@@ -5,6 +5,7 @@ import { getDictionary } from '../../../../lib/i18n';
 import { getCurrentLocale } from '../../../../lib/locale.server';
 import { buildAccessPath } from '@/lib/access-control';
 import { SessionUnavailableError } from '@/lib/session.server';
+import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,6 +30,8 @@ export default async function NewDogPage() {
             <span className="route-pill">{t.pages.newDog.pillC}</span>
           </div>
         </section>
+
+        <RoleAwareActionPanel locale={locale} surface="myDogs" role="member" />
 
         <MyDogFormWorkspace mode="create" initialValues={draft} />
       </div>

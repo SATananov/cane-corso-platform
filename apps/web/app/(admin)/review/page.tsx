@@ -1,4 +1,4 @@
-import { PageShell } from '@/components/page-shell';
+import { PageShell, type PageShellHeroChip } from '@/components/page-shell';
 import { ReviewQueueDashboard } from '@/components/review-queue-dashboard';
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
 import { RoleAwareActionPanel } from '@/components/role-aware-action-panel';
@@ -12,17 +12,29 @@ export const dynamic = 'force-dynamic';
 
 const reviewPageCopy = {
   en: {
-    heroChips: ['Registry review', 'Photo control', 'USG certificate'],
+    heroChips: [
+      { label: 'Registry review', href: '#review-queue', title: 'Pending profiles', description: 'Jump directly to the submitted profiles and decisions.', actionLabel: 'Open queue' },
+      { label: 'Photo control', href: '#admin-photo-assistant', title: 'Photo assistant', description: 'Jump directly to photo readiness, labels, and image choices.', actionLabel: 'Open photos' },
+      { label: 'USG certificate', href: '#admin-certificate-flow', title: 'Certificate flow', description: 'Jump directly to the separate certificate decision lane.', actionLabel: 'Open certificate flow' },
+    ] satisfies readonly PageShellHeroChip[],
     heroNote:
       'Registry approval and USG certification stay separate. Publish only the profile first, then issue a certificate only when the admin decision is clear.',
   },
   bg: {
-    heroChips: ['Преглед за Регистър', 'Контрол на снимки', 'USG сертификат'],
+    heroChips: [
+      { label: 'Преглед за Регистър', href: '#review-queue', title: 'Чакащи профили', description: 'Отиди директно към изпратените профили и решенията.', actionLabel: 'Към опашката' },
+      { label: 'Контрол на снимки', href: '#admin-photo-assistant', title: 'Асистент за снимки', description: 'Отиди директно към готовност, етикети и избор на снимки.', actionLabel: 'Към снимките' },
+      { label: 'USG сертификат', href: '#admin-certificate-flow', title: 'Сертификатен поток', description: 'Отиди директно към отделното решение за сертификат.', actionLabel: 'Към сертификата' },
+    ] satisfies readonly PageShellHeroChip[],
     heroNote:
       'Одобрението за Регистъра и USG сертификатът остават отделни решения. Първо прегледай заявката, после публикувай профила и издай сертификат само при ясна администраторска преценка.',
   },
   it: {
-    heroChips: ['Revisione Registro', 'Controllo foto', 'Certificato USG'],
+    heroChips: [
+      { label: 'Revisione Registro', href: '#review-queue', title: 'Profili in attesa', description: 'Vai direttamente ai profili inviati e alle decisioni.', actionLabel: 'Apri coda' },
+      { label: 'Controllo foto', href: '#admin-photo-assistant', title: 'Assistente foto', description: 'Vai direttamente a prontezza, etichette e scelta immagini.', actionLabel: 'Apri foto' },
+      { label: 'Certificato USG', href: '#admin-certificate-flow', title: 'Flusso certificato', description: 'Vai direttamente alla decisione separata sul certificato.', actionLabel: 'Apri certificato' },
+    ] satisfies readonly PageShellHeroChip[],
     heroNote:
       'Approvazione del Registro e certificazione USG restano decisioni separate. Prima pubblica il profilo, poi emetti il certificato solo con una decisione amministrativa chiara.',
   },

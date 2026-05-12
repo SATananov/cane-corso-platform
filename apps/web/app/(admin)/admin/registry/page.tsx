@@ -10,6 +10,7 @@ import { AdminRegistryEvidencePolishPanel } from '@/components/admin-registry-ev
 import { AdminOperationalClarityPanel } from '@/components/admin-operational-clarity-panel';
 import { RegistryCertificateReleaseFlowPanel } from '@/components/registry-certificate-release-flow-panel';
 import { SectionContentGuidePanel } from '@/components/section-content-guide-panel';
+import { cleanDemoDogName, cleanDemoOwnerName, cleanDemoProductionText, getDemoDataPresentationCopy, hasDemoLikeValues } from '@/lib/demo-data-presentation';
 
 export const dynamic = 'force-dynamic';
 
@@ -165,6 +166,7 @@ export default async function AdminRegistryManagementPage() {
   const ownPublished = registryDocument.entries.filter((entry) => entry.owner.profileId === session.user.profileId);
   const moderationItems = reviewDocument.items.filter((item) => item.status !== 'published');
   const certifiedCount = registryDocument.entries.filter((entry) => entry.certificate).length;
+  const demoCopy = getDemoDataPresentationCopy(locale);
 
   return (
     <PageShell
@@ -232,14 +234,24 @@ export default async function AdminRegistryManagementPage() {
             <div className="admin-management-list">
               {ownPublished.map((entry) => {
                 const hasCertificate = Boolean(entry.certificate);
+                const isDemoLikeRecord = hasDemoLikeValues([
+                  entry.dog.name,
+                  entry.summary,
+                  entry.owner.displayName,
+                  entry.certificate?.certificateCode,
+                ]);
+                const displayDogName = cleanDemoDogName(entry.dog.name, locale);
+                const displayOwnerName = cleanDemoOwnerName(entry.owner.displayName, locale);
+                const displaySummary = isDemoLikeRecord ? cleanDemoProductionText(entry.summary, locale, 'profile') : entry.summary;
 
                 return (
                   <article className="admin-management-item" key={`mine-${entry.entryId}`}>
                     <div className="admin-management-item__head">
                       <div>
                         <span className="eyebrow-label">{copy.sections.profile}</span>
-                        <h3>{entry.dog.name}</h3>
-                        <p className="admin-management-item__summary">{entry.summary}</p>
+                        <h3>{displayDogName}</h3>
+                        <p className={`admin-management-item__summary${isDemoLikeRecord ? ' is-demo-clean' : ''}`}>{displaySummary}</p>
+                        {isDemoLikeRecord ? <span className="admin-management-item__demo-badge">{demoCopy.badge}</span> : null}
                       </div>
                       <div className="admin-management-item__actions">
                         <Link href={`/registry/${entry.publicSlug}`} className="button-secondary small">
@@ -274,7 +286,7 @@ export default async function AdminRegistryManagementPage() {
                     <dl className="admin-management-item__meta-grid">
                       <div>
                         <dt>{copy.sections.owner}</dt>
-                        <dd>{entry.owner.displayName}</dd>
+                        <dd>{displayOwnerName}</dd>
                       </div>
                       <div>
                         <dt>{copy.sections.location}</dt>
@@ -313,14 +325,24 @@ export default async function AdminRegistryManagementPage() {
             <div className="admin-management-list">
               {registryDocument.entries.map((entry) => {
                 const hasCertificate = Boolean(entry.certificate);
+                const isDemoLikeRecord = hasDemoLikeValues([
+                  entry.dog.name,
+                  entry.summary,
+                  entry.owner.displayName,
+                  entry.certificate?.certificateCode,
+                ]);
+                const displayDogName = cleanDemoDogName(entry.dog.name, locale);
+                const displayOwnerName = cleanDemoOwnerName(entry.owner.displayName, locale);
+                const displaySummary = isDemoLikeRecord ? cleanDemoProductionText(entry.summary, locale, 'profile') : entry.summary;
 
                 return (
                   <article className="admin-management-item" key={entry.entryId}>
                     <div className="admin-management-item__head">
                       <div>
                         <span className="eyebrow-label">{copy.sections.profile}</span>
-                        <h3>{entry.dog.name}</h3>
-                        <p className="admin-management-item__summary">{entry.summary}</p>
+                        <h3>{displayDogName}</h3>
+                        <p className={`admin-management-item__summary${isDemoLikeRecord ? ' is-demo-clean' : ''}`}>{displaySummary}</p>
+                        {isDemoLikeRecord ? <span className="admin-management-item__demo-badge">{demoCopy.badge}</span> : null}
                       </div>
                       <div className="admin-management-item__actions">
                         <Link href={`/registry/${entry.publicSlug}`} className="button-secondary small">
@@ -361,7 +383,7 @@ export default async function AdminRegistryManagementPage() {
                     <dl className="admin-management-item__meta-grid">
                       <div>
                         <dt>{copy.sections.owner}</dt>
-                        <dd>{entry.owner.displayName}</dd>
+                        <dd>{displayOwnerName}</dd>
                       </div>
                       <div>
                         <dt>{copy.sections.location}</dt>
