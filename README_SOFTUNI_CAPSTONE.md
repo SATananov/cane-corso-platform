@@ -100,6 +100,38 @@ The application is product-oriented, but it is also suitable as a SoftUni Capsto
 
 ---
 
+## Personal Motivation
+
+My love for the Cane Corso breed is the reason I started learning software development at SoftUni about two years ago. I wanted to gain the skills needed to build a real platform dedicated to this breed — not just a small demo application, but a complete ecosystem for Cane Corso owners, profiles, registry, knowledge, health tracking, partners, certificates, community features, and future AI assistance.
+
+This Capstone Project is an important step toward that long-term vision: creating something unique and focused entirely on Cane Corso. The project will continue to grow after the course assessment. My intention is to keep integrating the new things I learn — better architecture, better user experience, stronger data handling, AI/ML concepts, mobile improvements, automation, and production-readiness practices — whenever they add real value to the platform.
+
+---
+
+## Bonus AI / ML and Future AI Assistant Direction
+
+The core submission already covers the full-stack Capstone requirements. In addition, the project is prepared for future AI-oriented extensions that connect naturally to the Cane Corso domain and to the existing platform modules.
+
+### Regression-Based Growth Insight
+
+The **Owner Health & Growth Tracker** creates a natural foundation for a regression-based ML extension. The idea is to analyze owner-submitted Cane Corso growth records such as age, weight, height, body length, chest circumference, head length, muzzle length, and related measurements.
+
+A simple linear regression model can be used to show basic growth tendencies, while polynomial regression can later model a more realistic growth curve. This can help demonstrate how machine learning may support owner awareness, growth tracking, and future product intelligence.
+
+This extension is intentionally positioned as an educational and analytical prototype. It is not a veterinary diagnostic system, does not replace professional veterinary advice, and should not make official health or breed-standard decisions automatically.
+
+### ASK MARK I — Planned AI Assistant
+
+The platform is also prepared for a future AI chat assistant called **ASK MARK I**.
+
+ASK MARK I is planned as a guided assistant for Cane Corso owners, visitors, partners, and administrators. For owners, it can help explain platform sections, guide profile completion, clarify next steps, support photo-readiness preparation, summarize Knowledge Center content, and help users understand health/growth tracking in a responsible way.
+
+For administrators, ASK MARK I can later support review workflows by summarizing submitted information, pointing to missing evidence, explaining moderation context, and helping keep review decisions consistent.
+
+ASK MARK I is planned as a support layer, not as an automated authority. Final registry, certificate, moderation, health, and trust decisions must remain under human/admin review.
+
+---
+
 ## Capstone Requirement Mapping
 
 | Requirement | Project Implementation | Where to verify |
@@ -119,6 +151,7 @@ The application is product-oriented, but it is also suitable as a SoftUni Capsto
 | Mobile screens/sections | More than 5 mobile app sections using shared API contracts | `apps/mobile/App.tsx`, `apps/mobile/src/api.ts` |
 | Deployment | Netlify live deployment | live URL and Netlify config |
 | AI agent instructions | Project-wide AI agent rules and guardrails | `AGENTS.md` |
+| Bonus AI / ML direction | Regression-based growth insight concept and planned ASK MARK I assistant direction | this SoftUni README, Owner Health & Growth Tracker, Knowledge/Admin roadmap |
 | Documentation | Main README, architecture docs, QA docs, release docs, and this SoftUni README | `README.md`, `docs/`, `README_SOFTUNI_CAPSTONE.md` |
 | File uploads/photos | Dog media and storage abstraction layer are present in the project structure | `packages/storage/`, dog media routes/components |
 | Scalability | Paging/filter-oriented directory and registry architecture; large-data validation should be checked before final submission if required by the evaluator | repository APIs, QA scripts, seed strategy docs |
@@ -142,6 +175,7 @@ The application is product-oriented, but it is also suitable as a SoftUni Capsto
 | Mobile App | Expo mobile client with API health, auth/profile, registry, verify, partners, ecosystem, and shared API checks. |
 | Deployment | Live Netlify deployment connected to the production database target. |
 | Documentation | Main README, this SoftUni README, architecture docs, QA docs, release docs, `AGENTS.md`. |
+| AI / ML Bonus Direction | Regression-based growth insight and ASK MARK I planned assistant are documented as future-ready AI extensions. |
 | File Uploads Bonus | Dog media/photos and storage abstraction layer exist in the platform. |
 | Backups Bonus | Not required for the base score; planned as a future GitHub Actions/R2 enhancement. |
 
@@ -700,6 +734,7 @@ Use this checklist before submitting the project in SoftUni Judge or sending it 
 - [ ] Mobile app has 5+ working sections/screens.
 - [ ] Admin panel is accessible with admin credentials.
 - [ ] Registry / Verify / Partners / Community flows are demonstrable.
+- [ ] Bonus AI/ML direction is explained clearly as a planned/educational extension, not as an automated authority.
 - [ ] No `.env`, secrets, `node_modules`, build folders, logs, or nested ZIPs are committed.
 
 ---
@@ -716,6 +751,7 @@ For the Capstone assessment, the most important flows to check are:
 4. open the public Registry and Verify routes;
 5. sign in with the admin demo account;
 6. review admin moderation, registry, certificate, partners, ecosystem, and knowledge surfaces;
-7. inspect the repository structure, Drizzle migrations, seed scripts, shared packages, and mobile app.
+7. inspect the repository structure, Drizzle migrations, seed scripts, shared packages, and mobile app;
+8. review the documented bonus AI/ML direction: regression-based growth insight and the planned ASK MARK I assistant.
 
 The main product README remains the canonical product documentation. This file is a focused Capstone submission guide for SoftUni evaluation.
