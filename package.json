@@ -188,7 +188,9 @@
     "step131:ask-mark-i:qa": "node scripts/qa-step131-ask-mark-i-assistant-foundation.mjs",
     "step131-1:ask-mark-i-visual:qa": "node scripts/qa-step131-1-ask-mark-i-visual-balance-polish.mjs",
     "step132:owner-path-timeline:qa": "node scripts/qa-step132-owner-path-next-action-timeline.mjs",
-    "step133:owner-next-actions:qa": "node scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs"
+    "step133:owner-next-actions:qa": "node scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs",
+    "softuni:scalability:seed": "node packages/db/scripts/seed-softuni-scalability-dataset.mjs",
+    "step134-5:softuni-final:qa": "node scripts/qa-step134-5-softuni-final-submission-readiness.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

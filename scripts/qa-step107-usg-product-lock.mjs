@@ -44,7 +44,11 @@ for (const required of [
 ]) assertFile(required);
 
 const rootFiles = readdirSync(root, { withFileTypes: true }).filter((entry) => entry.isFile()).map((entry) => entry.name);
-const rootClutter = rootFiles.filter((name) => /^(STEP|PATCH|README_).*\.(txt|md)$/i.test(name));
+const allowedRootReadmes = new Set(['README_SOFTUNI_CAPSTONE.md']);
+const rootClutter = rootFiles.filter((name) => {
+  if (allowedRootReadmes.has(name)) return false;
+  return /^(STEP|PATCH|README_).*\.(txt|md)$/i.test(name);
+});
 if (rootClutter.length === 0) pass('Root has no legacy STEP/PATCH apply-note clutter');
 else fail(`Root legacy clutter remains: ${rootClutter.join(', ')}`);
 assertFile('docs/archive/package-notes/STEP106_PATCH_APPLY_NOTES.txt');

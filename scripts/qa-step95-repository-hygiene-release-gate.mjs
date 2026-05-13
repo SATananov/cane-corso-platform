@@ -44,8 +44,13 @@ const rootFiles = fs.readdirSync(root, { withFileTypes: true })
   .filter((entry) => entry.isFile())
   .map((entry) => entry.name);
 
+const allowedRootReadmes = new Set([
+  'README.md',
+  'README_SOFTUNI_CAPSTONE.md',
+]);
+
 const legacyRootNotes = rootFiles.filter((name) => {
-  if (name === 'README.md') return false;
+  if (allowedRootReadmes.has(name)) return false;
   return /^(README_|PATCH_|PATCH_NOTES|QA_|STEP\d|USG_|PACKAGING_|CLEAN_ZIP)/.test(name);
 });
 assert(legacyRootNotes.length === 0, `Root legacy patch/notes clutter removed (${legacyRootNotes.length})`);

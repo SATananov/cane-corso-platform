@@ -265,7 +265,7 @@ flowchart TB
 | Bonus AI / ML direction | Regression-based growth insight concept and planned ASK MARK I assistant direction | this SoftUni README, Owner Health & Growth Tracker, Knowledge/Admin roadmap |
 | Documentation | Main README, architecture docs, QA docs, release docs, and this SoftUni README | `README.md`, `docs/`, `README_SOFTUNI_CAPSTONE.md` |
 | File uploads/photos | Dog media and storage abstraction layer are present in the project structure | `packages/storage/`, dog media routes/components |
-| Scalability | Paging/filter-oriented directory and registry architecture; large-data validation should be checked before final submission if required by the evaluator | repository APIs, QA scripts, seed strategy docs |
+| Scalability | Server-side paging is supported on the ecosystem API and a dedicated seed can generate 10,000 deterministic records for large-data validation | `/api/ecosystem?page=1&pageSize=24`, `pnpm softuni:scalability:seed`, `docs/architecture/softuni-scalability-proof.md` |
 | Backups | Non-mandatory requirement; can be added later through GitHub Actions and object storage | future enhancement |
 
 ---
@@ -274,13 +274,13 @@ flowchart TB
 
 | Assessment criterion | Project evidence |
 | --- | --- |
-| GitHub Commits | Verify commit count in the public repository commit history. |
-| GitHub Commit Days | Verify commits across at least 3 different days in GitHub. |
+| GitHub Commits | Verify commit count in the public repository commit history. Recommended command: `git rev-list --count HEAD`. |
+| GitHub Commit Days | Verify commits across at least 3 different days in GitHub. Recommended command: `git log --date=short --pretty=%ad`. |
 | Architecture | Node.js monorepo with `apps/web`, `apps/mobile`, and shared `packages/*`. |
 | Backend | Next.js API routes, server actions, auth/session checks, repository layer, database persistence. |
 | Database | More than 4 tables, Drizzle schema files, SQL migrations, relationships, seed scripts. |
 | Users and Roles | Guest/member/partner/admin flows with role-aware protected surfaces. |
-| Scalability | Filtered/paged directory-style architecture and QA/seed strategy; strict 10,000-record proof can be validated as a final hand-in step. |
+| Scalability | Ecosystem API supports server-side paging and `pnpm softuni:scalability:seed` can generate 10,000 deterministic records for validation. |
 | Web App | Far more than 10 routes/screens across public, member, and admin areas. |
 | Admin Panel | Review queue, Registry admin, Partners admin, Ecosystem moderation, Knowledge admin, Members admin. |
 | Mobile App | Expo mobile client with API health, auth/profile, registry, verify, partners, ecosystem, and shared API checks. |
@@ -662,6 +662,14 @@ Seed SoftUni demo data:
 pnpm demo:seed:softuni
 ```
 
+Optional large-data scalability proof for the Capstone assessment:
+
+```powershell
+pnpm softuni:scalability:seed
+```
+
+This generates 10,000 deterministic ecosystem listings and can be used with `/api/ecosystem?page=1&pageSize=24` to validate server-side paging.
+
 Start the development servers:
 
 ```powershell
@@ -708,6 +716,13 @@ pnpm requirements:qa
 pnpm demo:seed:softuni
 pnpm step113:demo-data:qa
 pnpm step133:owner-next-actions:qa
+pnpm step134-5:softuni-final:qa
+```
+
+Optional scalability proof on a local or dedicated Neon database:
+
+```powershell
+pnpm softuni:scalability:seed
 ```
 
 Database/deployment checks:
@@ -735,6 +750,39 @@ pnpm content:authority:qa
 pnpm mobile:responsive-final:qa
 pnpm owner:onboarding-final:qa
 pnpm ux:sanity:qa
+```
+
+---
+
+## SoftUni Scalability Proof
+
+The project includes a dedicated scalability proof for the Capstone assessment. The seed script generates **10,000 deterministic ecosystem listings** in the real `ecosystem_listings` table. This keeps the proof connected to the actual product domain instead of using a detached mock dataset.
+
+```powershell
+pnpm demo:seed:softuni
+pnpm softuni:scalability:seed
+```
+
+After seeding, the paged API can be checked with:
+
+```txt
+/api/ecosystem?page=1&pageSize=24
+/api/ecosystem?page=2&pageSize=24
+```
+
+More details are documented in `docs/architecture/softuni-scalability-proof.md`.
+
+---
+
+## GitHub Assessment Checklist
+
+Before final hand-in, the repository should be accessible to the evaluator and should show at least 15 commits across at least 3 different days.
+
+Useful local checks:
+
+```powershell
+git rev-list --count HEAD
+git log --date=short --pretty=%ad | Sort-Object -Unique
 ```
 
 ---

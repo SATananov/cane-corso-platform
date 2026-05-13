@@ -21,7 +21,16 @@ export async function GET(request: Request) {
       return jsonOk(document);
     }
 
-    const document = await getPublishedEcosystemDirectoryDocument();
+    const page = url.searchParams.get('page');
+    const pageSize = url.searchParams.get('pageSize');
+    const document = await getPublishedEcosystemDirectoryDocument(
+      page || pageSize
+        ? {
+            page: page ? Number(page) : undefined,
+            pageSize: pageSize ? Number(pageSize) : undefined,
+          }
+        : undefined,
+    );
     return jsonOk(document);
   } catch (error) {
     if (error instanceof SessionUnavailableError) {

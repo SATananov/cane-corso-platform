@@ -1,4 +1,4 @@
-import { and, desc, eq, ne } from 'drizzle-orm';
+import { and, desc, eq, ne, sql } from 'drizzle-orm';
 import type {
   EcosystemDirectoryDocument,
   EcosystemListing,
@@ -28,7 +28,7 @@ export interface EcosystemRepository {
   listOwnerWorkspace(ownerProfileId: string): Promise<EcosystemOwnerWorkspaceDocument>;
   saveOwnerDraft(ownerProfileId: string, input: UpsertEcosystemListingInput): Promise<EcosystemListing>;
   submitOwnerListing(ownerProfileId: string, input: UpsertEcosystemListingInput): Promise<EcosystemListing>;
-  listPublishedDirectory(): Promise<EcosystemDirectoryDocument>;
+  listPublishedDirectory(options?: PublishedDirectoryOptions): Promise<EcosystemDirectoryDocument>;
   getPublishedListingBySlug(slug: string): Promise<EcosystemProfileDocument | null>;
   listModerationQueue(): Promise<EcosystemModerationDocument>;
   reviewListing(
@@ -47,6 +47,44 @@ type ModerationRow = {
   ownerProfile: typeof profiles.$inferSelect;
   ownerUser: typeof users.$inferSelect;
 };
+
+export interface PublishedDirectoryOptions {
+  page?: number;
+  pageSize?: number;
+}
+
+const DEFAULT_DIRECTORY_PAGE = 1;
+const DEFAULT_DIRECTORY_PAGE_SIZE = 24;
+const MAX_DIRECTORY_PAGE_SIZE = 100;
+
+function normalizePositiveInteger(value: number | undefined, fallback: number) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  const normalized = Math.floor(value ?? fallback);
+  return normalized > 0 ? normalized : fallback;
+}
+
+function normalizeDirectoryPagination(options?: PublishedDirectoryOptions) {
+  if (!options || (options.page === undefined && options.pageSize === undefined)) {
+    return null;
+  }
+
+  const page = normalizePositiveInteger(options.page, DEFAULT_DIRECTORY_PAGE);
+  const requestedPageSize = normalizePositiveInteger(options.pageSize, DEFAULT_DIRECTORY_PAGE_SIZE);
+  const pageSize = Math.min(requestedPageSize, MAX_DIRECTORY_PAGE_SIZE);
+
+  return {
+    page,
+    pageSize,
+    offset: (page - 1) * pageSize,
+  };
+}
+
+function toCount(value: unknown) {
+  return Number(value ?? 0);
+}
 
 const ADMIN_MEDIATED_TYPES: EcosystemListingType[] = [
   'breeding_match',
@@ -462,28 +500,69 @@ class DrizzleEcosystemRepository implements EcosystemRepository {
     return upsertOwnerListing(db, ownerProfileId, input, 'submit');
   }
 
-  async listPublishedDirectory(): Promise<EcosystemDirectoryDocument> {
+  async listPublishedDirectory(options?: PublishedDirectoryOptions): Promise<EcosystemDirectoryDocument> {
     const db = getDb();
-    const rows = await db
+    const pagination = normalizeDirectoryPagination(options);
+    const publishedDirectoryWhere = and(
+      eq(ecosystemListings.status, 'published'),
+      ne(ecosystemListings.submissionChannel, 'community_suggestion'),
+    );
+
+    const summaryRows = await db
+      .select({
+        total: sql<number>`count(*)`,
+        countries: sql<number>`count(distinct ${ecosystemListings.country})`,
+        featured: sql<number>`count(*) filter (where ${ecosystemListings.isFeatured} = true)`,
+        listingTypes: sql<number>`count(distinct ${ecosystemListings.listingType})`,
+        officialPublished: sql<number>`count(*) filter (where ${ecosystemListings.submissionChannel} = 'official_listing')`,
+        communityPublished: sql<number>`count(*) filter (where ${ecosystemListings.submissionChannel} = 'community_listing')`,
+      })
+      .from(ecosystemListings)
+      .where(publishedDirectoryWhere);
+
+    const baseQuery = db
       .select()
       .from(ecosystemListings)
-      .where(and(eq(ecosystemListings.status, 'published'), ne(ecosystemListings.submissionChannel, 'community_suggestion')))
+      .where(publishedDirectoryWhere)
       .orderBy(desc(ecosystemListings.isFeatured), desc(ecosystemListings.publishedAt), desc(ecosystemListings.updatedAt));
 
+    const rows = pagination ? await baseQuery.limit(pagination.pageSize).offset(pagination.offset) : await baseQuery;
     const items = rows.map(mapListingRow);
-    const countries = new Set(items.map((item: EcosystemListing) => item.country).filter(Boolean));
+    const summary = summaryRows[0] ?? {
+      total: items.length,
+      countries: 0,
+      featured: 0,
+      listingTypes: 0,
+      officialPublished: 0,
+      communityPublished: 0,
+    };
 
-    return {
+    const totalItems = toCount(summary.total);
+    const document: EcosystemDirectoryDocument = {
       summary: {
-        total: items.length,
-        countries: countries.size,
-        featured: items.filter((item: EcosystemListing) => item.isFeatured).length,
-        listingTypes: new Set(items.map((item: EcosystemListing) => item.listingType)).size,
-        officialPublished: countByChannel(items, 'official_listing'),
-        communityPublished: countByChannel(items, 'community_listing'),
+        total: totalItems,
+        countries: toCount(summary.countries),
+        featured: toCount(summary.featured),
+        listingTypes: toCount(summary.listingTypes),
+        officialPublished: toCount(summary.officialPublished),
+        communityPublished: toCount(summary.communityPublished),
       },
       items,
     };
+
+    if (pagination) {
+      const totalPages = Math.max(1, Math.ceil(totalItems / pagination.pageSize));
+      document.pagination = {
+        page: pagination.page,
+        pageSize: pagination.pageSize,
+        totalItems,
+        totalPages,
+        hasNextPage: pagination.page < totalPages,
+        hasPreviousPage: pagination.page > 1,
+      };
+    }
+
+    return document;
   }
 
   async getPublishedListingBySlug(slug: string): Promise<EcosystemProfileDocument | null> {

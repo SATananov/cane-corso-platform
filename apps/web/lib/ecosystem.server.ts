@@ -41,9 +41,9 @@ export async function getCurrentOwnerEcosystemDocument(options?: { allowDevFallb
   return repository.listOwnerWorkspace(session.user.profileId);
 }
 
-export async function getPublishedEcosystemDirectoryDocument() {
+export async function getPublishedEcosystemDirectoryDocument(options?: { page?: number; pageSize?: number }) {
   const repository = createEcosystemRepository();
-  return repository.listPublishedDirectory();
+  return repository.listPublishedDirectory(options);
 }
 
 export async function getPublishedEcosystemProfileDocument(slug: string) {
