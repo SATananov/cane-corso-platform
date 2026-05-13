@@ -2,7 +2,7 @@
 
 This file is prepared for the SoftUni **Full Stack Apps with AI** Capstone Project submission.
 
-The main product documentation remains in [`README.md`](./README.md). This SoftUni README does not replace the product identity of the application. It only summarizes how the existing Cane Corso Platform covers the Capstone requirements.
+The main product documentation remains in [`README.md`](./README.md). This SoftUni README does not replace the product identity of the application. It summarizes how the existing **Cane Corso Platform — USG / Unico Suo Genere** covers the Capstone requirements and gives evaluators a direct path for reviewing the project.
 
 ---
 
@@ -44,6 +44,40 @@ Demo public routes prepared by the seed include:
 
 ---
 
+## Reviewer Quick Start
+
+Recommended review flow for the evaluator:
+
+1. Open the live project URL: `https://cane-corso-platform.netlify.app/`.
+2. Review the public surfaces: `/`, `/registry`, `/verify`, `/gallery`, `/community`, `/partners`, `/knowledge`, `/faq`.
+3. Sign in as **Member/User** with the demo credentials.
+4. Review `/member`, `/profile`, `/my-dogs`, `/my-dogs/new`, owner guidance, health/growth records, and moderated ecosystem flows.
+5. Sign out and sign in as **Admin** with the demo credentials.
+6. Review `/review`, `/admin/registry`, `/admin/partners`, `/admin/ecosystem`, `/admin/knowledge`, and admin-only moderation/authority boundaries.
+7. Inspect the GitHub repository: monorepo structure, Next.js API routes, Expo app, Drizzle schema/migrations, seed scripts, QA scripts, and `AGENTS.md`.
+8. If running locally, use `pnpm install`, `pnpm db:migrate`, `pnpm demo:seed:softuni`, `pnpm dev`, then run the QA commands listed below.
+
+### Suggested live routes to check
+
+| Area | Route | What it demonstrates |
+| --- | --- | --- |
+| Public entry | `/` | Premium platform entry and navigation |
+| Registry | `/registry` | Public registry surface |
+| Registry detail | `/registry/ares-softuni-demo` | Published dog profile demo route when seed data is present |
+| Verify | `/verify` and `/verify/USG-SOFTUNI-DEMO-113` | Certificate verification flow |
+| Gallery | `/gallery` | Curated public showcase |
+| Community | `/community` | Intent-first moderated ecosystem hub |
+| Partners | `/partners` and `/partners/softuni-partner` | Partner/service discovery |
+| Knowledge | `/knowledge` | Educational content surface |
+| Member dashboard | `/member` | Authenticated owner/member experience |
+| My Cane Corso | `/my-dogs` | Owner dog profile management |
+| Admin review | `/review` | Admin decision console |
+| Admin ecosystem | `/admin/ecosystem` | Moderation and match-request review |
+| Admin partners | `/admin/partners` | Partner review/publishing controls |
+| Runtime DB check | `/api/health/db` | Production database target and runtime status |
+
+---
+
 ## Project Summary
 
 Cane Corso Platform is a full-stack, multi-platform application for Cane Corso owners, public visitors, partners, and admins.
@@ -58,7 +92,7 @@ The platform provides:
 - pedigree, health, measurement, and photo-readiness records;
 - moderated community and ecosystem listings;
 - partner/service directory;
-- admin review, moderation, certificate, registry, partner, and ecosystem controls;
+- admin review, moderation, certificate, registry, partner, ecosystem, and knowledge controls;
 - educational Knowledge area for Cane Corso ownership, breed identity, structure, care, and platform trust rules;
 - Expo mobile client connected to the same Next.js API surface.
 
@@ -68,27 +102,48 @@ The application is product-oriented, but it is also suitable as a SoftUni Capsto
 
 ## Capstone Requirement Mapping
 
-| Requirement | Project Implementation |
+| Requirement | Project Implementation | Where to verify |
+| --- | --- | --- |
+| Backend API | Next.js App Router API routes inside `apps/web/app/api/*` | `apps/web/app/api/` |
+| Web client | Next.js + React + TypeScript + Tailwind in `apps/web` | `apps/web/app/`, `apps/web/components/` |
+| Mobile client | Expo / React Native app in `apps/mobile` | `apps/mobile/` |
+| Database | PostgreSQL with Drizzle ORM in `packages/db` | `packages/db/src/schema/`, `packages/db/drizzle/` |
+| Production DB target | Neon serverless PostgreSQL | Netlify env + `/api/health/db` |
+| Monorepo | pnpm workspace + TurboRepo | `pnpm-workspace.yaml`, `turbo.json`, `apps/`, `packages/` |
+| Authentication | Local auth/session layer, secure cookie, password hashing, role-aware access | `packages/auth/`, `packages/db/src/schema/local-auth.ts`, `apps/web/app/api/auth/` |
+| Authorization | Guest/member/partner/admin boundaries and protected admin/member pages | protected routes and API guards |
+| Admin panel | Review, Registry, Partners, Ecosystem, Knowledge, Members/Admin surfaces | `/review`, `/admin/*` |
+| Database migrations | SQL migrations committed in the repository | `packages/db/drizzle/*.sql` |
+| Seed data | Demo seed scripts, including SoftUni demo seed | `packages/db/scripts/seed-softuni-demo-data.mjs` |
+| Web screens | More than 10 public/member/admin pages | routes listed below |
+| Mobile screens/sections | More than 5 mobile app sections using shared API contracts | `apps/mobile/App.tsx`, `apps/mobile/src/api.ts` |
+| Deployment | Netlify live deployment | live URL and Netlify config |
+| AI agent instructions | Project-wide AI agent rules and guardrails | `AGENTS.md` |
+| Documentation | Main README, architecture docs, QA docs, release docs, and this SoftUni README | `README.md`, `docs/`, `README_SOFTUNI_CAPSTONE.md` |
+| File uploads/photos | Dog media and storage abstraction layer are present in the project structure | `packages/storage/`, dog media routes/components |
+| Scalability | Paging/filter-oriented directory and registry architecture; large-data validation should be checked before final submission if required by the evaluator | repository APIs, QA scripts, seed strategy docs |
+| Backups | Non-mandatory requirement; can be added later through GitHub Actions and object storage | future enhancement |
+
+---
+
+## SoftUni Assessment Coverage
+
+| Assessment criterion | Project evidence |
 | --- | --- |
-| Backend API | Next.js App Router API routes inside `apps/web/app/api/*` |
-| Web client | Next.js + React + TypeScript + Tailwind in `apps/web` |
-| Mobile client | Expo / React Native app in `apps/mobile` |
-| Database | PostgreSQL with Drizzle ORM in `packages/db` |
-| Production DB target | Neon serverless PostgreSQL |
-| Monorepo | pnpm workspace + TurboRepo |
-| Authentication | Local auth/session layer, secure session cookie, password hashing, role-aware access |
-| Authorization | Role checks for guest/member/partner/admin flows and protected admin/member pages |
-| Admin panel | Review, Registry, Partners, Ecosystem, Knowledge, Members/Admin surfaces |
-| Database migrations | SQL migrations in `packages/db/drizzle` |
-| Seed data | Demo seed scripts in `packages/db/scripts`, including SoftUni demo seed |
-| Web screens | More than 10 public/member/admin pages |
-| Mobile screens/sections | More than 5 mobile app sections using shared API contracts |
-| Deployment | Netlify live deployment |
-| AI agent instructions | `AGENTS.md` describes project context, rules, architecture, locked areas, and AI development guardrails |
-| Documentation | Main README, architecture docs, QA docs, release docs, and this SoftUni README |
-| File uploads/photos | Dog media and storage abstraction layer are present in the project structure |
-| Scalability | Paging/filter-oriented directory and registry architecture; large-data validation should be checked before final submission if required by the evaluator |
-| Backups | Non-mandatory requirement; can be added later through GitHub Actions and object storage |
+| GitHub Commits | Verify commit count in the public repository commit history. |
+| GitHub Commit Days | Verify commits across at least 3 different days in GitHub. |
+| Architecture | Node.js monorepo with `apps/web`, `apps/mobile`, and shared `packages/*`. |
+| Backend | Next.js API routes, server actions, auth/session checks, repository layer, database persistence. |
+| Database | More than 4 tables, Drizzle schema files, SQL migrations, relationships, seed scripts. |
+| Users and Roles | Guest/member/partner/admin flows with role-aware protected surfaces. |
+| Scalability | Filtered/paged directory-style architecture and QA/seed strategy; strict 10,000-record proof can be validated as a final hand-in step. |
+| Web App | Far more than 10 routes/screens across public, member, and admin areas. |
+| Admin Panel | Review queue, Registry admin, Partners admin, Ecosystem moderation, Knowledge admin, Members admin. |
+| Mobile App | Expo mobile client with API health, auth/profile, registry, verify, partners, ecosystem, and shared API checks. |
+| Deployment | Live Netlify deployment connected to the production database target. |
+| Documentation | Main README, this SoftUni README, architecture docs, QA docs, release docs, `AGENTS.md`. |
+| File Uploads Bonus | Dog media/photos and storage abstraction layer exist in the platform. |
+| Backups Bonus | Not required for the base score; planned as a future GitHub Actions/R2 enhancement. |
 
 ---
 
@@ -170,6 +225,63 @@ apps/mobile/app.json
 
 The project uses a client-server architecture in a Node.js monorepo.
 
+### Visual architecture overview
+
+The platform is a full-stack Next.js product deployed on Netlify, with Drizzle ORM communicating with Neon PostgreSQL. Shared TypeScript packages keep the web, mobile, auth, contracts, storage, and database layers aligned.
+
+```mermaid
+flowchart LR
+    User[User / Owner / Admin] --> Netlify[Netlify Deploy]
+    Netlify --> Next[Next.js App Router]
+    Next --> Pages[Pages / Layouts / React Server Components]
+    Next --> Api[API Routes / Server Actions]
+    Pages --> UI[Tailwind CSS UI Layer]
+    Api --> Auth[Session / Role Guards]
+    Api --> Drizzle[Drizzle ORM]
+    Drizzle --> Neon[(Neon PostgreSQL)]
+    Next --> Packages[Shared TS Packages]
+    Packages --> Contracts[Contracts]
+    Packages --> Storage[Storage]
+    Packages --> DbPkg[DB Repositories]
+```
+
+### Runtime responsibility map
+
+| Layer | Responsibility | Main location |
+| --- | --- | --- |
+| Netlify | Production hosting, SSR/API runtime, environment variables | `netlify.toml`, Netlify project settings |
+| Next.js App Router | Public/member/admin routes, layouts, SSR, route handlers | `apps/web/app/` |
+| React UI + Tailwind | Premium USG interface, role-aware actions, responsive surfaces | `apps/web/components/`, `apps/web/app/globals.css` |
+| Auth/session | Cookie session, role separation, member/admin boundaries | `packages/auth/`, `apps/web/app/api/session/` |
+| Drizzle ORM | Typed database access and schema mapping | `packages/db/` |
+| Neon PostgreSQL | Production database target | `DATABASE_URL`, `DATABASE_URL_DIRECT` |
+| Shared contracts | API and document shapes shared across apps | `packages/contracts/` |
+| Expo Mobile | Mobile client surface using shared API documents | `apps/mobile/` |
+
+### Core data flow
+
+```mermaid
+sequenceDiagram
+    participant Member
+    participant Next as Next.js App Router
+    participant API as API Route / Server Action
+    participant ORM as Drizzle ORM
+    participant DB as Neon PostgreSQL
+    participant Admin
+
+    Member->>Next: Create or edit Cane Corso profile
+    Next->>API: Save draft / submit for review
+    API->>ORM: Validate ownership and role
+    ORM->>DB: Persist dog profile and submission
+    Admin->>Next: Review submission
+    Next->>API: Approve / request changes / publish
+    API->>ORM: Revalidate admin authority
+    ORM->>DB: Publish registry entry or issue certificate
+    DB-->>Next: Registry / Verify data available publicly
+```
+
+### Repository structure
+
 ```txt
 apps/
   web/                 Next.js web application and API routes
@@ -223,9 +335,9 @@ Main schema areas:
 | Area | Tables |
 | --- | --- |
 | Users/Auth | `users`, `profiles`, `auth_local_credentials` |
-| Dogs/Registry | `dogs`, `dog_media`, `dog_submissions`, `submission_reviews`, `dog_admin_assessments`, `registry_entries`, `certificates` |
+| Dogs/Registry | `dogs`, `dog_media`, `dog_submissions`, `submission_reviews`, `dog_admin_assessments`, `registry_entries`, `certificates`, `registry_entry_ratings` |
 | Owner records | `dog_measurement_records`, `dog_health_records` |
-| Partners | `partners`, `partner_applications` |
+| Partners | `partners`, `partner_applications`, `partner_ratings` |
 | Ecosystem | `ecosystem_listings`, `ecosystem_match_requests`, `ecosystem_reviews` |
 | Knowledge | `articles` |
 | Audit | `audit_logs` |
@@ -240,6 +352,127 @@ Drizzle schema files are located in:
 
 ```txt
 packages/db/src/schema/*
+```
+
+### Simplified ERD
+
+This diagram is intentionally simplified. It shows the core product relationships used for owner profiles, Cane Corso profiles, registry publication, USG certificate verification, moderated community listings, partner visibility, and knowledge content. The real schema can contain additional support fields, indexes, status enums, audit values, and media tables.
+
+```mermaid
+erDiagram
+    users ||--o| profiles : has_profile
+    users ||--o| auth_local_credentials : signs_in_with
+    profiles ||--o{ dogs : owns
+    profiles ||--o{ ecosystem_listings : creates
+    profiles ||--o{ partner_applications : submits
+
+    dogs ||--o{ dog_media : has
+    dogs ||--o{ dog_measurement_records : tracks_growth
+    dogs ||--o{ dog_health_records : tracks_health
+    dogs ||--o{ dog_submissions : enters_review
+    dogs ||--o| registry_entries : published_as
+
+    dog_submissions ||--o{ submission_reviews : receives
+    dog_submissions ||--o{ dog_admin_assessments : assessed_by_admin
+    registry_entries ||--o| certificates : may_receive
+    registry_entries ||--o{ registry_entry_ratings : receives
+
+    ecosystem_listings ||--o{ ecosystem_match_requests : receives
+    ecosystem_listings ||--o{ ecosystem_reviews : reviewed_by_admin
+    partner_applications ||--o| partners : approved_as
+    partners ||--o{ partner_ratings : receives
+
+    profiles ||--o{ articles : authors_or_reviews
+    profiles ||--o{ audit_logs : performs_actions
+
+    users {
+        uuid id
+        string email
+        string role
+        datetime createdAt
+    }
+
+    profiles {
+        uuid id
+        uuid userId
+        string displayName
+        string avatarUrl
+    }
+
+    dogs {
+        uuid id
+        uuid ownerId
+        string name
+        string sex
+        string color
+        string lifecycleStatus
+    }
+
+    dog_media {
+        uuid id
+        uuid dogId
+        string mediaType
+        string storagePath
+        string visibility
+    }
+
+    dog_submissions {
+        uuid id
+        uuid dogId
+        string reviewStatus
+        datetime submittedAt
+    }
+
+    registry_entries {
+        uuid id
+        uuid dogId
+        string slug
+        string publicationStatus
+        datetime publishedAt
+    }
+
+    certificates {
+        uuid id
+        uuid registryEntryId
+        string verificationCode
+        string certificateStatus
+        datetime issuedAt
+    }
+
+    ecosystem_listings {
+        uuid id
+        uuid ownerId
+        string category
+        string status
+        string contactPolicy
+    }
+
+    ecosystem_match_requests {
+        uuid id
+        uuid listingId
+        uuid requesterProfileId
+        string status
+    }
+
+    partner_applications {
+        uuid id
+        uuid profileId
+        string serviceCategory
+        string reviewStatus
+    }
+
+    partners {
+        uuid id
+        string publicSlug
+        string publicationStatus
+    }
+
+    articles {
+        uuid id
+        string slug
+        string locale
+        string status
+    }
 ```
 
 ---
@@ -323,18 +556,21 @@ pnpm workspace:syntax
 pnpm typecheck
 ```
 
+SoftUni and requirement checks:
+
+```powershell
+pnpm requirements:qa
+pnpm demo:seed:softuni
+pnpm step113:demo-data:qa
+pnpm step133:owner-next-actions:qa
+```
+
 Database/deployment checks:
 
 ```powershell
 pnpm db:target:qa
 pnpm deploy:netlify:qa
 pnpm neon:runtime:smoke:qa
-```
-
-SoftUni demo seed check:
-
-```powershell
-pnpm demo:seed:softuni
 ```
 
 Release gate:
@@ -414,6 +650,14 @@ Before final submission, verify this directly in GitHub:
 https://github.com/SATananov/cane-corso-platform/commits
 ```
 
+Recommended commit for this file:
+
+```powershell
+git add README_SOFTUNI_CAPSTONE.md
+git commit -m "docs: add SoftUni capstone README"
+git push
+```
+
 ---
 
 ## AI-Assisted Development
@@ -430,7 +674,9 @@ Project-wide AI agent instructions are documented in:
 AGENTS.md
 ```
 
-The repository also contains many QA scripts and documentation checkpoints that show the development and validation process.
+The repository also contains QA scripts and documentation checkpoints that show the development and validation process.
+
+The project workflow keeps product logic, locked authority surfaces, and release checks protected while allowing safe incremental improvements.
 
 ---
 
@@ -445,7 +691,8 @@ Use this checklist before submitting the project in SoftUni Judge or sending it 
 - [ ] Demo credentials work on the intended test database.
 - [ ] `pnpm install` works locally.
 - [ ] `pnpm db:migrate` works with configured PostgreSQL/Neon database.
-- [ ] `pnpm demo:seed:softuni` prepares demo data.
+- [ ] `pnpm demo:seed:softuni` prepares demo data locally.
+- [ ] `pnpm requirements:qa` passes.
 - [ ] `pnpm workspace:syntax` passes.
 - [ ] `pnpm typecheck` passes.
 - [ ] `pnpm release:all:qa` passes.
@@ -471,3 +718,4 @@ For the Capstone assessment, the most important flows to check are:
 6. review admin moderation, registry, certificate, partners, ecosystem, and knowledge surfaces;
 7. inspect the repository structure, Drizzle migrations, seed scripts, shared packages, and mobile app.
 
+The main product README remains the canonical product documentation. This file is a focused Capstone submission guide for SoftUni evaluation.
