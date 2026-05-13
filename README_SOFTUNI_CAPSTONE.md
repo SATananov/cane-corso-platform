@@ -100,6 +100,57 @@ The application is product-oriented, but it is also suitable as a SoftUni Capsto
 
 ---
 
+
+## Visual Product Evidence Map
+
+The diagram below summarizes what the project already contains and how the main product surfaces connect to the full-stack architecture. It is included here so the SoftUni evaluator can quickly see the real platform scope, not only read a feature list.
+
+```mermaid
+flowchart TB
+    Visitor["Public visitor"] --> Public["Public platform surfaces"]
+    Owner["Registered member / owner"] --> Member["Member workspace"]
+    AdminUser["Admin user"] --> Admin["Admin review and moderation"]
+
+    Public --> Registry["Registry"]
+    Public --> Verify["Certificate Verify"]
+    Public --> Gallery["Gallery / Certified archive"]
+    Public --> Knowledge["Knowledge Center"]
+    Public --> Partners["Partners directory"]
+    Public --> Community["Community / ecosystem listings"]
+
+    Member --> Profile["Owner profile"]
+    Member --> Dogs["My Cane Corso profiles"]
+    Member --> Health["Health and growth tracker"]
+    Member --> Photos["Photo evidence and media"]
+    Member --> OwnerPath["Owner path and next actions"]
+
+    Admin --> Review["Registry review"]
+    Admin --> Certificates["Certificate authority flow"]
+    Admin --> PartnerAdmin["Partner moderation"]
+    Admin --> EcoAdmin["Ecosystem moderation"]
+    Admin --> KnowledgeAdmin["Knowledge administration"]
+
+    Registry --> API["Next.js API routes / server actions"]
+    Verify --> API
+    Dogs --> API
+    Health --> API
+    Review --> API
+    PartnerAdmin --> API
+    EcoAdmin --> API
+
+    API --> Auth["Auth, sessions and role guards"]
+    API --> Drizzle["Drizzle ORM repositories"]
+    Drizzle --> Neon[("Neon PostgreSQL")]
+    API --> Storage["Server-side photo / file storage layer"]
+
+    Health -. bonus foundation .-> Regression["Regression-based growth insight concept"]
+    Knowledge -. future layer .-> AskMark["ASK MARK I planned AI assistant"]
+    Review -. future layer .-> AskMark
+```
+
+**Legend:** solid arrows describe implemented platform flows; dotted arrows describe bonus/future-ready AI directions built on top of existing modules and data foundations.
+
+---
 ## Personal Motivation
 
 My love for the Cane Corso breed is the reason I started learning software development at SoftUni about two years ago. I wanted to gain the skills needed to build a real platform dedicated to this breed — not just a small demo application, but a complete ecosystem for Cane Corso owners, profiles, registry, knowledge, health tracking, partners, certificates, community features, and future AI assistance.
@@ -129,6 +180,66 @@ ASK MARK I is planned as a guided assistant for Cane Corso owners, visitors, par
 For administrators, ASK MARK I can later support review workflows by summarizing submitted information, pointing to missing evidence, explaining moderation context, and helping keep review decisions consistent.
 
 ASK MARK I is planned as a support layer, not as an automated authority. Final registry, certificate, moderation, health, and trust decisions must remain under human/admin review.
+
+
+### Regression-Based Growth Insight — Visual Concept
+
+This diagram shows how the existing Health & Growth Tracker can become a future regression-based insight layer. The purpose is to show a realistic AI/ML direction for the project while keeping the final interpretation under human and veterinary responsibility.
+
+```mermaid
+flowchart LR
+    A["Owner adds growth record"] --> B["Age / weight / height / measurements"]
+    B --> C["Health and Growth Tracker"]
+    C --> D["Clean structured growth dataset"]
+    D --> E["Regression analysis concept"]
+    E --> F["Linear regression trend"]
+    E --> G["Polynomial regression curve"]
+    F --> H["Owner-friendly growth insight"]
+    G --> H
+    H --> I["Human / veterinary review remains required"]
+```
+
+Conceptual model examples:
+
+```txt
+linear trend:      predicted_measurement = b0 + b1 * age
+polynomial trend:  predicted_measurement = b0 + b1 * age + b2 * age^2
+```
+
+This is not presented as a medical diagnosis model. It is a bonus analytical direction that can support learning, owner awareness, and future product intelligence.
+
+### ASK MARK I — Visual Roadmap
+
+ASK MARK I is planned as a guided AI assistant layer that helps users understand the platform and helps admins review information more consistently, without replacing human authority.
+
+```mermaid
+flowchart TB
+    User["Owner / visitor / partner"] --> Ask["ASK MARK I planned assistant"]
+    AdminRole["Admin"] --> Ask
+
+    Ask --> Explain["Explain platform sections"]
+    Ask --> Guide["Guide profile completion"]
+    Ask --> KnowledgeSupport["Summarize Knowledge Center content"]
+    Ask --> Readiness["Explain registry / photo readiness"]
+    Ask --> HealthSupport["Explain health and growth tracking responsibly"]
+    Ask --> AdminSupport["Summarize submitted information for admin review"]
+
+    Explain --> Human["Human decision remains final"]
+    Guide --> Human
+    KnowledgeSupport --> Human
+    Readiness --> Human
+    HealthSupport --> Human
+    AdminSupport --> Human
+```
+
+### Implemented vs Future-Ready Clarification
+
+| Area | Current project state | How it is represented in this README |
+| --- | --- | --- |
+| Health & Growth Tracker | Existing platform foundation for owner-entered measurements and records | Real implemented product area |
+| Regression-based insight | Bonus AI/ML concept built on top of growth records | Future-ready analytical prototype, not diagnosis |
+| ASK MARK I | Planned AI assistant direction | Future support layer, not an automated authority |
+| Admin review / certificates / registry | Existing trust and moderation flows | Human/admin authority remains final |
 
 ---
 
