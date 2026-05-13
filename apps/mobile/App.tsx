@@ -73,10 +73,34 @@ const initialState: MobileWorkspaceState = {
   selectedVerificationLookup: '',
 };
 
+type CapstoneMobileScreenId = 'home' | 'access' | 'myDogs' | 'registryVerify' | 'knowledge' | 'profile';
+
+const capstoneMobileScreens: Array<{ id: CapstoneMobileScreenId; label: string; hint: string }> = [
+  { id: 'home', label: 'Home', hint: 'Platform overview' },
+  { id: 'access', label: 'Access', hint: 'Auth + API' },
+  { id: 'myDogs', label: 'My Dogs', hint: 'Owner workspace' },
+  { id: 'registryVerify', label: 'Registry', hint: 'Verify bridge' },
+  { id: 'knowledge', label: 'Knowledge', hint: 'Care guide' },
+  { id: 'profile', label: 'Profile', hint: 'Account context' },
+];
+
+interface MobileScreenProps {
+  state: MobileWorkspaceState;
+  apiBaseUrl: string;
+  featuredPartner: PartnerDirectoryEntry | null;
+  featuredEcosystemListing: EcosystemListing | null;
+  verifyInput: string;
+  setVerifyInput: (value: string) => void;
+  isResolvingVerify: boolean;
+  handleVerifyLookup: () => void;
+  handleSelectRegistryEntry: (entry: PublicRegistryEntry) => void;
+}
+
 export default function App() {
   const [state, setState] = useState<MobileWorkspaceState>(initialState);
   const [verifyInput, setVerifyInput] = useState('');
   const [isResolvingVerify, setIsResolvingVerify] = useState(false);
+  const [selectedMobileScreen, setSelectedMobileScreen] = useState<CapstoneMobileScreenId>('home');
 
   const apiBaseUrl = useMemo(() => getApiBaseUrl(), []);
 
@@ -273,11 +297,11 @@ export default function App() {
       >
         <View style={styles.heroBlock}>
           <Text style={styles.eyebrow}>UNICO SUO GENERE</Text>
-          <Text style={styles.heroTitle}>Mobile QA bridge</Text>
+          <Text style={styles.heroTitle}>Mobile Capstone App</Text>
           <Text style={styles.heroCopy}>
-            This Expo client checks the shared Next.js API from a mobile surface: health, session, profile, My Cane Corso,
-            public registry, verify, partners, and ecosystem directory. Pull to refresh the mobile workspace after every
-            publish, certificate, partner, or ecosystem update.
+            This Expo client presents the same platform through mobile-first screens: overview, access, My Cane Corso,
+            registry and verify, knowledge, and profile. Each screen reads shared Next.js API contracts and keeps the
+            mobile client aligned with the deployed web platform.
           </Text>
           <Text style={styles.heroMeta}>{apiBaseUrl}</Text>
         </View>
@@ -305,193 +329,417 @@ export default function App() {
           <MetricCard label="Ecosystem" value={state.ecosystem?.summary.total ?? 0} />
         </View>
 
-        <SectionCard
-          eyebrow="API status"
-          title={state.health?.status ?? 'offline'}
-          description={state.sessionLabel}
-          meta={state.health ? `${state.health.service} • ${state.health.environment} • DB ${state.health.database}` : 'Shared web API unreachable'}
-        />
+        <MobileScreenTabs selectedScreen={selectedMobileScreen} onSelect={setSelectedMobileScreen} />
 
-        <SectionCard
-          eyebrow="Auth strategy"
-          title={state.authStrategy?.provider ?? 'Unavailable'}
-          description={
-            state.authStrategy
-              ? `Web uses ${state.authStrategy.webSessionTransport}; mobile reads public APIs and session-aware APIs through the shared API base URL.`
-              : 'The mobile client could not read the current auth/provider contract yet.'
-          }
-          meta={state.authStrategy ? `${state.authStrategy.provider} • secure cookies ${state.authStrategy.usesSecureCookies ? 'on' : 'off'}` : '/api/auth/provider'}
-        />
-
-        <SectionCard
-          eyebrow="Current profile"
-          title={state.profileLabel}
-          description="This confirms the mobile client can read the same member identity document exposed by the web API."
-          meta="/api/profile/me"
-        />
-
-        <SectionCard
-          eyebrow="My Cane Corso"
-          title={`${state.dogs.length} profiles in session scope`}
-          description={
-            state.dogs.length > 0
-              ? 'Publication badges and verify identifiers are surfaced inside the mobile workspace too.'
-              : 'No Cane Corso profiles are coming through the shared member API yet.'
-          }
-          meta="/api/dogs"
-        >
-          {state.dogs.length > 0 ? (
-            state.dogs.map((dog) => (
-              <View key={dog.id} style={styles.listRow}>
-                <View style={styles.listRowHeader}>
-                  <Text style={styles.listTitle}>{dog.name}</Text>
-                  <Text style={styles.statusPill}>{dog.lifecycleStatus}</Text>
-                </View>
-                <Text style={styles.listCopy}>
-                  {dog.visibility} • {dog.sex} • {dog.registryClass ?? 'owner_declared_cane_corso'}
-                </Text>
-                {dog.publication ? (
-                  <Text style={styles.listMeta}>
-                    {dog.publication.publicSlug} • {dog.publication.certificateCode ?? 'certificate not issued'}
-                  </Text>
-                ) : null}
-              </View>
-            ))
-          ) : (
-            <Text style={styles.emptyCopy}>Create and submit a Cane Corso profile in the web app, then publish it from review to see the full bridge here.</Text>
-          )}
-        </SectionCard>
-
-        <SectionCard
-          eyebrow="Public registry"
-          title={`${state.registry?.total ?? 0} published profiles`}
-          description={
-            state.registry?.entries.length
-              ? 'Tap a published profile to load the shared registry detail document. Verify becomes available only after an active certificate exists.'
-              : 'No published profiles are available yet. Once a review item is published, it will surface here.'
-          }
-          meta="/api/registry"
-        >
-          {state.registry?.entries.length ? (
-            state.registry.entries.map((entry) => {
-              const isSelected = entry.publicSlug === state.selectedRegistrySlug;
-
-              return (
-                <Pressable
-                  key={entry.entryId}
-                  onPress={() => handleSelectRegistryEntry(entry)}
-                  style={[styles.selectableRow, isSelected ? styles.selectableRowActive : null]}
-                >
-                  <View style={styles.listRowHeader}>
-                    <Text style={styles.listTitle}>{entry.title}</Text>
-                    <Text style={styles.statusPill}>{entry.dog.sex}</Text>
-                  </View>
-                  <Text style={styles.listCopy}>{entry.owner.displayName}</Text>
-                  <Text style={styles.listMeta}>{entry.publicSlug}</Text>
-                </Pressable>
-              );
-            })
-          ) : (
-            <Text style={styles.emptyCopy}>The public registry is still empty in this environment.</Text>
-          )}
-        </SectionCard>
-
-        <SectionCard
-          eyebrow="Registry detail"
-          title={state.registryProfile?.entry.title ?? 'Waiting for a published selection'}
-          description={
-            state.registryProfile
-              ? `${state.registryProfile.entry.owner.displayName} • ${state.registryProfile.entry.publicSlug}`
-              : 'Select a published registry card above to load its dedicated detail document.'
-          }
-          meta={state.registryProfile ? `/api/registry/${state.registryProfile.entry.publicSlug}` : '/api/registry/[slug]'}
-        >
-          {state.registryProfile ? (
-            <View style={styles.listRow}>
-              <Text style={styles.listCopy}>{state.registryProfile.entry.summary || 'No registry summary yet.'}</Text>
-              <Text style={styles.listMeta}>
-                {state.registryProfile.entry.certificate?.certificateCode ?? 'Certificate not issued'}
-              </Text>
-            </View>
-          ) : (
-            <Text style={styles.emptyCopy}>The detail bridge will appear here once you select a published profile.</Text>
-          )}
-        </SectionCard>
-
-        <SectionCard
-          eyebrow="Verify bridge"
-          title={state.verification?.entry.certificate?.certificateCode ?? 'Resolve certificate or slug'}
-          description={
-            state.verification
-              ? `${state.verification.entry.title} is available through the shared verify contract.`
-              : 'Use the active certificate code or verification slug to test the verify endpoint directly from mobile.'
-          }
-          meta={
-            state.verification?.entry.certificate?.verificationSlug
-              ? `/api/verify/${state.verification.entry.certificate.verificationSlug}`
-              : '/api/verify/[code]'
-          }
-        >
-          <TextInput
-            value={verifyInput}
-            onChangeText={setVerifyInput}
-            placeholder="USG-20260409-RHODOPE or nero-del-rhodope-verify"
-            placeholderTextColor="#8f887c"
-            autoCapitalize="none"
-            autoCorrect={false}
-            style={styles.input}
+        {selectedMobileScreen === 'home' ? (
+          <MobileHomeScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
           />
-          <Pressable onPress={handleVerifyLookup} style={styles.primaryButton}>
-            <Text style={styles.primaryButtonLabel}>{isResolvingVerify ? 'Resolving…' : 'Resolve verify record'}</Text>
-          </Pressable>
+        ) : null}
 
-          {state.verification ? (
-            <View style={styles.listRow}>
-              <Text style={styles.listTitle}>{state.verification.entry.dog.name}</Text>
-              <Text style={styles.listCopy}>{state.verification.entry.owner.displayName}</Text>
-              <Text style={styles.listMeta}>{state.verification.entry.certificate?.verificationSlug ?? 'No slug available'}</Text>
-            </View>
-          ) : (
-            <Text style={styles.emptyCopy}>No verification record is loaded yet.</Text>
-          )}
-        </SectionCard>
+        {selectedMobileScreen === 'access' ? (
+          <MobileAccessScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
+          />
+        ) : null}
 
-        <SectionCard
-          eyebrow="Partners bridge"
-          title={`${state.partners?.total ?? 0} approved partners`}
-          description="The mobile app now reads the same approved partner directory that powers the locked public Partners page."
-          meta="/api/partners"
-        >
-          {featuredPartner ? <PartnerPreview partner={featuredPartner} /> : <Text style={styles.emptyCopy}>No approved partner profile is available yet.</Text>}
-        </SectionCard>
+        {selectedMobileScreen === 'myDogs' ? (
+          <MobileMyDogsScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
+          />
+        ) : null}
 
-        <SectionCard
-          eyebrow="Ecosystem bridge"
-          title={`${state.ecosystem?.summary.total ?? 0} published ecosystem listings`}
-          description="This checks the community/ecosystem public directory from mobile without touching the locked web pages."
-          meta="/api/ecosystem"
-        >
-          {featuredEcosystemListing ? (
-            <EcosystemPreview listing={featuredEcosystemListing} />
-          ) : (
-            <Text style={styles.emptyCopy}>No published ecosystem listing is available yet.</Text>
-          )}
-        </SectionCard>
+        {selectedMobileScreen === 'registryVerify' ? (
+          <MobileRegistryVerifyScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
+          />
+        ) : null}
 
-        <SectionCard
-          eyebrow="Mobile readiness"
-          title="Shared API surface is now visible from mobile"
-          description="Step 7 keeps the app as a QA bridge, but it now covers the locked registry, verify, partners, and ecosystem public layers."
-          meta="Expo • Next.js API • contracts package"
-        >
-          <View style={styles.checkList}>
-            <CheckRow label="Registry and verify bridge" passed={Boolean(state.registry || state.verification)} />
-            <CheckRow label="Partners public directory" passed={Boolean(state.partners)} />
-            <CheckRow label="Ecosystem public directory" passed={Boolean(state.ecosystem)} />
-          </View>
-        </SectionCard>
+        {selectedMobileScreen === 'knowledge' ? (
+          <MobileKnowledgeScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
+          />
+        ) : null}
+
+        {selectedMobileScreen === 'profile' ? (
+          <MobileProfileScreen
+            state={state}
+            apiBaseUrl={apiBaseUrl}
+            featuredPartner={featuredPartner}
+            featuredEcosystemListing={featuredEcosystemListing}
+            verifyInput={verifyInput}
+            setVerifyInput={setVerifyInput}
+            isResolvingVerify={isResolvingVerify}
+            handleVerifyLookup={handleVerifyLookup}
+            handleSelectRegistryEntry={handleSelectRegistryEntry}
+          />
+        ) : null}
+
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+
+function MobileScreenTabs({
+  selectedScreen,
+  onSelect,
+}: {
+  selectedScreen: CapstoneMobileScreenId;
+  onSelect: (screenId: CapstoneMobileScreenId) => void;
+}) {
+  return (
+    <View style={styles.mobileScreenNav}>
+      {capstoneMobileScreens.map((screen) => {
+        const isActive = selectedScreen === screen.id;
+
+        return (
+          <Pressable
+            key={screen.id}
+            onPress={() => onSelect(screen.id)}
+            accessibilityRole="button"
+            accessibilityState={{ selected: isActive }}
+            style={[styles.mobileScreenTab, isActive ? styles.mobileScreenTabActive : null]}
+          >
+            <Text style={[styles.mobileScreenTabLabel, isActive ? styles.mobileScreenTabLabelActive : null]}>{screen.label}</Text>
+            <Text style={styles.mobileScreenTabHint}>{screen.hint}</Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+function MobileHomeScreen({ state, apiBaseUrl, featuredPartner, featuredEcosystemListing }: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 1 / Home"
+        title="Platform overview"
+        description="A mobile-first overview of the deployed Cane Corso Platform, shared API health, live data counts, and public product surfaces."
+        meta={apiBaseUrl}
+      >
+        <View style={styles.checkList}>
+          <CheckRow label="Next.js API is reachable from Expo" passed={state.health?.status === 'ok'} />
+          <CheckRow label="Registry data is available" passed={Boolean(state.registry)} />
+          <CheckRow label="Partner and ecosystem data is available" passed={Boolean(state.partners && state.ecosystem)} />
+        </View>
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="API status"
+        title={state.health?.status ?? 'offline'}
+        description={state.sessionLabel}
+        meta={state.health ? `${state.health.service} • ${state.health.environment} • DB ${state.health.database}` : 'Shared web API unreachable'}
+      />
+
+      <SectionCard
+        eyebrow="Mobile readiness"
+        title="Six mobile screens are available for the Capstone review"
+        description="The Expo app is no longer presented only as a QA bridge. It exposes reviewer-friendly mobile screens for the core platform areas."
+        meta="Expo • Next.js API • contracts package"
+      >
+        <View style={styles.checkList}>
+          <CheckRow label="Home / platform overview" passed />
+          <CheckRow label="Access / auth orientation" passed />
+          <CheckRow label="My Dogs / owner workspace" passed />
+          <CheckRow label="Registry + Verify mobile flow" passed />
+          <CheckRow label="Knowledge / care guide" passed />
+          <CheckRow label="Profile / account context" passed />
+        </View>
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Featured surfaces"
+        title="Public platform content"
+        description="Mobile reviewers can see approved partner and ecosystem documents coming through the same shared REST-style API contracts."
+        meta="/api/partners • /api/ecosystem"
+      >
+        {featuredPartner ? <PartnerPreview partner={featuredPartner} /> : <Text style={styles.emptyCopy}>No approved partner profile is available yet.</Text>}
+        {featuredEcosystemListing ? (
+          <EcosystemPreview listing={featuredEcosystemListing} />
+        ) : (
+          <Text style={styles.emptyCopy}>No published ecosystem listing is available yet.</Text>
+        )}
+      </SectionCard>
+    </View>
+  );
+}
+
+function MobileAccessScreen({ state }: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 2 / Access"
+        title={state.authStrategy?.provider ?? 'Auth strategy unavailable'}
+        description={
+          state.authStrategy
+            ? `Web sessions use ${state.authStrategy.webSessionTransport}. The mobile client reads public and session-aware API documents through the shared API base URL.`
+            : 'The mobile client could not read the current auth/provider contract yet.'
+        }
+        meta={state.authStrategy ? `${state.authStrategy.provider} • secure cookies ${state.authStrategy.usesSecureCookies ? 'on' : 'off'}` : '/api/auth/provider'}
+      />
+
+      <SectionCard
+        eyebrow="Session signal"
+        title="Member-aware API context"
+        description={state.sessionLabel}
+        meta="/api/session"
+      />
+
+      <SectionCard
+        eyebrow="Access boundaries"
+        title="Mobile respects the same role model"
+        description="The mobile screen documents how member and admin checks remain owned by the Next.js backend. It does not create a separate mobile-only authority layer."
+        meta="member • partner • admin"
+      >
+        <View style={styles.checkList}>
+          <CheckRow label="Authentication stays server-owned" passed />
+          <CheckRow label="Admin authority remains in protected web/API routes" passed />
+          <CheckRow label="Mobile reads contracts instead of bypassing roles" passed />
+        </View>
+      </SectionCard>
+    </View>
+  );
+}
+
+function MobileMyDogsScreen({ state }: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 3 / My Dogs"
+        title={`${state.dogs.length} profiles in session scope`}
+        description={
+          state.dogs.length > 0
+            ? 'Owner Cane Corso profiles, publication badges and verify identifiers are surfaced inside the mobile workspace too.'
+            : 'No Cane Corso profiles are coming through the shared member API yet.'
+        }
+        meta="/api/dogs"
+      >
+        {state.dogs.length > 0 ? (
+          state.dogs.map((dog) => (
+            <View key={dog.id} style={styles.listRow}>
+              <View style={styles.listRowHeader}>
+                <Text style={styles.listTitle}>{dog.name}</Text>
+                <Text style={styles.statusPill}>{dog.lifecycleStatus}</Text>
+              </View>
+              <Text style={styles.listCopy}>
+                {dog.visibility} • {dog.sex} • {dog.registryClass ?? 'owner_declared_cane_corso'}
+              </Text>
+              {dog.publication ? (
+                <Text style={styles.listMeta}>
+                  {dog.publication.publicSlug} • {dog.publication.certificateCode ?? 'certificate not issued'}
+                </Text>
+              ) : null}
+            </View>
+          ))
+        ) : (
+          <Text style={styles.emptyCopy}>Create and submit a Cane Corso profile in the web app, then publish it from review to see the full bridge here.</Text>
+        )}
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Owner journey"
+        title="Profile completion and review readiness"
+        description="The mobile screen mirrors the owner-first product direction: create a profile, add core data, add photos, prepare for review, then follow Registry and Verify status."
+        meta="private profile → review → registry → verify"
+      />
+    </View>
+  );
+}
+
+function MobileRegistryVerifyScreen({
+  state,
+  verifyInput,
+  setVerifyInput,
+  isResolvingVerify,
+  handleVerifyLookup,
+  handleSelectRegistryEntry,
+}: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 4 / Registry"
+        title={`${state.registry?.total ?? 0} published profiles`}
+        description={
+          state.registry?.entries.length
+            ? 'Tap a published profile to load the shared registry detail document. Verify becomes available only after an active certificate exists.'
+            : 'No published profiles are available yet. Once a review item is published, it will surface here.'
+        }
+        meta="/api/registry"
+      >
+        {state.registry?.entries.length ? (
+          state.registry.entries.map((entry) => {
+            const isSelected = entry.publicSlug === state.selectedRegistrySlug;
+
+            return (
+              <Pressable
+                key={entry.entryId}
+                onPress={() => handleSelectRegistryEntry(entry)}
+                style={[styles.selectableRow, isSelected ? styles.selectableRowActive : null]}
+              >
+                <View style={styles.listRowHeader}>
+                  <Text style={styles.listTitle}>{entry.title}</Text>
+                  <Text style={styles.statusPill}>{entry.dog.sex}</Text>
+                </View>
+                <Text style={styles.listCopy}>{entry.owner.displayName}</Text>
+                <Text style={styles.listMeta}>{entry.publicSlug}</Text>
+              </Pressable>
+            );
+          })
+        ) : (
+          <Text style={styles.emptyCopy}>The public registry is still empty in this environment.</Text>
+        )}
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Registry detail"
+        title={state.registryProfile?.entry.title ?? 'Waiting for a published selection'}
+        description={
+          state.registryProfile
+            ? `${state.registryProfile.entry.owner.displayName} • ${state.registryProfile.entry.publicSlug}`
+            : 'Select a published registry card above to load its dedicated detail document.'
+        }
+        meta={state.registryProfile ? `/api/registry/${state.registryProfile.entry.publicSlug}` : '/api/registry/[slug]'}
+      >
+        {state.registryProfile ? (
+          <View style={styles.listRow}>
+            <Text style={styles.listCopy}>{state.registryProfile.entry.summary || 'No registry summary yet.'}</Text>
+            <Text style={styles.listMeta}>{state.registryProfile.entry.certificate?.certificateCode ?? 'Certificate not issued'}</Text>
+          </View>
+        ) : (
+          <Text style={styles.emptyCopy}>The detail bridge will appear here once you select a published profile.</Text>
+        )}
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Verify bridge"
+        title={state.verification?.entry.certificate?.certificateCode ?? 'Resolve certificate or slug'}
+        description={
+          state.verification
+            ? `${state.verification.entry.title} is available through the shared verify contract.`
+            : 'Use the active certificate code or verification slug to test the verify endpoint directly from mobile.'
+        }
+        meta={state.verification?.entry.certificate?.verificationSlug ? `/api/verify/${state.verification.entry.certificate.verificationSlug}` : '/api/verify/[code]'}
+      >
+        <TextInput
+          value={verifyInput}
+          onChangeText={setVerifyInput}
+          placeholder="USG-SOFTUNI-DEMO-113"
+          placeholderTextColor="#8f887c"
+          autoCapitalize="none"
+          autoCorrect={false}
+          style={styles.input}
+        />
+        <Pressable onPress={handleVerifyLookup} style={styles.primaryButton}>
+          <Text style={styles.primaryButtonLabel}>{isResolvingVerify ? 'Resolving…' : 'Resolve verify record'}</Text>
+        </Pressable>
+
+        {state.verification ? (
+          <View style={styles.listRow}>
+            <Text style={styles.listTitle}>{state.verification.entry.dog.name}</Text>
+            <Text style={styles.listCopy}>{state.verification.entry.owner.displayName}</Text>
+            <Text style={styles.listMeta}>{state.verification.entry.certificate?.verificationSlug ?? 'No slug available'}</Text>
+          </View>
+        ) : (
+          <Text style={styles.emptyCopy}>No verification record is loaded yet.</Text>
+        )}
+      </SectionCard>
+    </View>
+  );
+}
+
+function MobileKnowledgeScreen({ state, featuredEcosystemListing }: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 5 / Knowledge"
+        title="Care, growth and responsible ownership"
+        description="This mobile screen presents the knowledge direction that supports Cane Corso owners: growth tracking, responsible breeding guidance, photo readiness and safe human/veterinary review boundaries."
+        meta="Knowledge Center • Health & Growth Tracker"
+      >
+        <View style={styles.checkList}>
+          <CheckRow label="Growth records can support future regression insights" passed />
+          <CheckRow label="ASK MARK I remains guidance-only, not an authority" passed />
+          <CheckRow label="Veterinary decisions stay with professionals" passed />
+        </View>
+      </SectionCard>
+
+      <SectionCard
+        eyebrow="Ecosystem learning signal"
+        title={`${state.ecosystem?.summary.total ?? 0} published ecosystem listings`}
+        description="The Knowledge screen connects educational guidance with the moderated ecosystem, helping owners discover safe services and community information."
+        meta="/api/ecosystem?page=1&pageSize=24"
+      >
+        {featuredEcosystemListing ? (
+          <EcosystemPreview listing={featuredEcosystemListing} />
+        ) : (
+          <Text style={styles.emptyCopy}>No published ecosystem listing is available yet.</Text>
+        )}
+      </SectionCard>
+    </View>
+  );
+}
+
+function MobileProfileScreen({ state, featuredPartner }: MobileScreenProps) {
+  return (
+    <View style={styles.mobileScreenPanel}>
+      <SectionCard
+        eyebrow="Mobile screen 6 / Profile"
+        title={state.profileLabel}
+        description="This confirms the mobile client can read the same member identity document exposed by the web API. It gives reviewers a dedicated account/profile context screen."
+        meta="/api/profile/me"
+      />
+
+      <SectionCard
+        eyebrow="Partner context"
+        title={`${state.partners?.total ?? 0} approved partners`}
+        description="The profile screen also shows how member, partner and admin product areas remain connected through shared platform data."
+        meta="/api/partners"
+      >
+        {featuredPartner ? <PartnerPreview partner={featuredPartner} /> : <Text style={styles.emptyCopy}>No approved partner profile is available yet.</Text>}
+      </SectionCard>
+    </View>
   );
 }
 
@@ -654,6 +902,42 @@ const styles = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
+  },
+  mobileScreenNav: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  mobileScreenTab: {
+    flexGrow: 1,
+    minWidth: 132,
+    borderWidth: 1,
+    borderColor: 'rgba(212, 175, 55, 0.16)',
+    borderRadius: 18,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    backgroundColor: '#121218',
+    gap: 4,
+  },
+  mobileScreenTabActive: {
+    borderColor: '#d4af37',
+    backgroundColor: '#1d1910',
+  },
+  mobileScreenTabLabel: {
+    color: '#d0cabf',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  mobileScreenTabLabelActive: {
+    color: '#f8f5ef',
+  },
+  mobileScreenTabHint: {
+    color: '#8f887c',
+    fontSize: 11,
+    lineHeight: 15,
+  },
+  mobileScreenPanel: {
+    gap: 20,
   },
   metricCard: {
     flexGrow: 1,

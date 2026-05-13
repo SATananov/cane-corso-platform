@@ -190,7 +190,8 @@
     "step132:owner-path-timeline:qa": "node scripts/qa-step132-owner-path-next-action-timeline.mjs",
     "step133:owner-next-actions:qa": "node scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs",
     "softuni:scalability:seed": "node packages/db/scripts/seed-softuni-scalability-dataset.mjs",
-    "step134-5:softuni-final:qa": "node scripts/qa-step134-5-softuni-final-submission-readiness.mjs"
+    "step134-5:softuni-final:qa": "node scripts/qa-step134-5-softuni-final-submission-readiness.mjs",
+    "step135:mobile-capstone:qa": "node scripts/qa-step135-mobile-capstone-evidence-lock.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.19.17",

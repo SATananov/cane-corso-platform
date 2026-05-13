@@ -80,6 +80,7 @@ const requiredFiles = [
   'docs/qa/step133-owner-next-action-deep-links-guided-sections.md',
   'docs/architecture/softuni-scalability-proof.md',
   'docs/qa/step134-5-softuni-final-submission-readiness.md',
+  'docs/qa/step135-mobile-capstone-evidence-lock.md',
   'docs/qa/evidence/step129-netlify-live-product-evidence-lock/README.md',
   'docs/architecture/language-terminology-lock.md',
   'docs/qa/evidence/step98-real-browser-evidence/README.md',
@@ -142,6 +143,7 @@ const requiredFiles = [
   'scripts/qa-step132-owner-path-next-action-timeline.mjs',
   'scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs',
   'scripts/qa-step134-5-softuni-final-submission-readiness.mjs',
+  'scripts/qa-step135-mobile-capstone-evidence-lock.mjs',
 ];
 
 const requiredPackageScripts = [
@@ -215,6 +217,7 @@ const requiredPackageScripts = [
   'step133:owner-next-actions:qa',
   'softuni:scalability:seed',
   'step134-5:softuni-final:qa',
+  'step135:mobile-capstone:qa',
   'demo:seed:softuni',
   'db:target:qa',
   'deploy:netlify:qa',
@@ -295,6 +298,7 @@ const qaScripts = [
   ['Step 132 USG Owner Path and Next Action Timeline', 'scripts/qa-step132-owner-path-next-action-timeline.mjs'],
   ['Step 133 Owner Next Action Deep Links and Guided Sections', 'scripts/qa-step133-owner-next-action-deep-links-guided-sections.mjs'],
   ['Step 134.5 SoftUni final submission readiness', 'scripts/qa-step134-5-softuni-final-submission-readiness.mjs'],
+  ['Step 135 Mobile Capstone Evidence Lock', 'scripts/qa-step135-mobile-capstone-evidence-lock.mjs'],
   ['Runtime DB target guardrail', 'scripts/qa-runtime-db-target-guardrail.mjs'],
   ['Netlify deploy readiness', 'scripts/qa-netlify-deploy-readiness.mjs'],
   ['Workspace foundation verification', 'scripts/verify-workshop-foundation.mjs'],

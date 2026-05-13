@@ -340,20 +340,18 @@ The web application contains more than the minimum 10 required app screens. Impo
 
 ## Mobile App Coverage
 
-The Expo mobile app connects to the shared Next.js API and displays the same platform data from a mobile surface.
+The Expo mobile app connects to the shared Next.js API and presents the platform through reviewer-friendly mobile screens, not only as a technical API bridge.
 
-Mobile app sections include:
+Capstone mobile screens include:
 
-- API health/status;
-- auth strategy/session information;
-- current profile;
-- My Cane Corso profiles;
-- public registry list;
-- registry detail bridge;
-- verify bridge;
-- partners bridge;
-- ecosystem bridge;
-- mobile readiness / shared API checks.
+1. **Home / Platform Overview** — API health, live data counts, public product surfaces and mobile readiness.
+2. **Access / Auth Orientation** — auth strategy, session signal and role boundary explanation.
+3. **My Dogs / Owner Workspace** — member-scoped Cane Corso profiles from the shared `/api/dogs` contract.
+4. **Registry + Verify** — public registry list, registry detail bridge and certificate verification lookup.
+5. **Knowledge / Care Guide** — responsible ownership, Health & Growth Tracker direction, regression insight boundary and ASK MARK I guidance boundary.
+6. **Profile / Account Context** — current member profile context and partner/product relationship signal.
+
+The mobile app remains intentionally lightweight for the Capstone submission, but it demonstrates the required multi-platform architecture: Expo / React Native UI, shared contract types, and REST-style communication with the Next.js backend.
 
 Main files:
 
@@ -362,6 +360,12 @@ apps/mobile/App.tsx
 apps/mobile/src/api.ts
 apps/mobile/package.json
 apps/mobile/app.json
+```
+
+QA evidence:
+
+```powershell
+pnpm step135:mobile-capstone:qa
 ```
 
 ---
@@ -890,7 +894,7 @@ Use this checklist before submitting the project in SoftUni Judge or sending it 
 - [ ] `pnpm typecheck` passes.
 - [ ] `pnpm release:all:qa` passes.
 - [ ] Web app has 10+ working screens.
-- [ ] Mobile app has 5+ working sections/screens.
+- [ ] Mobile app has 5+ working screens; Step 135 documents 6 Expo mobile screens.
 - [ ] Admin panel is accessible with admin credentials.
 - [ ] Registry / Verify / Partners / Community flows are demonstrable.
 - [ ] Bonus AI/ML direction is explained clearly as a planned/educational extension, not as an automated authority.
