@@ -113,10 +113,10 @@ flowchart TB
 
     Public --> Registry["Registry"]
     Public --> Verify["Certificate Verify"]
-    Public --> Gallery["Gallery / Certified archive"]
+    Public --> Gallery["Gallery and Certified archive"]
     Public --> Knowledge["Knowledge Center"]
     Public --> Partners["Partners directory"]
-    Public --> Community["Community / ecosystem listings"]
+    Public --> Community["Community and ecosystem listings"]
 
     Member --> Profile["Owner profile"]
     Member --> Dogs["My Cane Corso profiles"]
@@ -130,7 +130,7 @@ flowchart TB
     Admin --> EcoAdmin["Ecosystem moderation"]
     Admin --> KnowledgeAdmin["Knowledge administration"]
 
-    Registry --> API["Next.js API routes / server actions"]
+    Registry --> API["Next.js API routes and server actions"]
     Verify --> API
     Dogs --> API
     Health --> API
@@ -140,15 +140,15 @@ flowchart TB
 
     API --> Auth["Auth, sessions and role guards"]
     API --> Drizzle["Drizzle ORM repositories"]
-    Drizzle --> Neon[("Neon PostgreSQL")]
-    API --> Storage["Server-side photo / file storage layer"]
+    Drizzle --> Neon[(Neon PostgreSQL)]
+    API --> Storage["Server-side photo and file storage layer"]
 
-    Health -. bonus foundation .-> Regression["Regression-based growth insight concept"]
-    Knowledge -. future layer .-> AskMark["ASK MARK I planned AI assistant"]
-    Review -. future layer .-> AskMark
+    Health -.-> Regression["Bonus: regression-based growth insight concept"]
+    Knowledge -.-> AskMark["Future-ready ASK MARK I assistant layer"]
+    Review -.-> AskMark
 ```
 
-**Legend:** solid arrows describe implemented platform flows; dotted arrows describe bonus/future-ready AI directions built on top of existing modules and data foundations.
+**Legend:** solid arrows describe implemented platform flows; dotted arrows describe bonus or future-ready AI directions built on top of existing modules and data foundations.
 
 ---
 ## Personal Motivation
